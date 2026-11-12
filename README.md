@@ -32,13 +32,15 @@ Everything runs offline. No telemetry, no network, no LLM calls.
 
 ## Quick start
 
-redfirst is not on npm yet. Install it from GitHub (the `prepare` script builds it):
+redfirst is not on npm yet. Install the packaged tarball from the [latest release](https://github.com/GuiNunesBR/redfirst/releases/latest) (it ships the built CLI, so no install script has to run):
 
 ```bash
-npm i -D github:GuiNunesBR/redfirst
+npm i -D https://github.com/GuiNunesBR/redfirst/releases/download/v0.1.0/redfirst-0.1.0.tgz
 npx redfirst lint                         # lints tests/, cypress/ and e2e/
 npx redfirst gate --base origin/main      # compares your working tree with main
 ```
+
+Or build it yourself: clone the repository, run `npm ci && npm run build && npm pack`, and install the `.tgz` it creates.
 
 For the agent:
 
