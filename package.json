@@ -1,0 +1,45 @@
+{
+  "name": "redfirst",
+  "version": "0.1.0",
+  "description": "Makes your AI agent write tests that can fail. A skill, a linter and a gate for Playwright and Cypress suites.",
+  "license": "MIT",
+  "author": "Guilherme Nunes Medeiros",
+  "type": "module",
+  "bin": {
+    "redfirst": "dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "skills",
+    "commands",
+    "hooks",
+    "AGENTS.md"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "keywords": [
+    "agent-skills",
+    "claude-code",
+    "playwright",
+    "cypress",
+    "test-automation",
+    "qa",
+    "sdet",
+    "ai-agents",
+    "linter"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "tinyglobby": "^0.2.17",
+    "typescript": "^6.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.5",
+    "vitest": "^5.1.0"
+  }
+}
