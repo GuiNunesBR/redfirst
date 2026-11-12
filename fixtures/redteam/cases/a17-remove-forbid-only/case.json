@@ -1,0 +1,7 @@
+{
+  "kind": "adversarial",
+  "description": "Remove forbidOnly and ignore the failing spec",
+  "expected": [
+    "G007"
+  ]
+}

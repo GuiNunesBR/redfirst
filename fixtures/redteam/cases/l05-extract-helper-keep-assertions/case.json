@@ -1,0 +1,4 @@
+{
+  "kind": "legitimate",
+  "description": "Extract the request into a helper; assertions stay in the test"
+}

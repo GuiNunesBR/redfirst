@@ -1,0 +1,10 @@
+{
+  "kind": "adversarial",
+  "description": "Delete the whole spec file",
+  "expected": [
+    "G001"
+  ],
+  "deleted": [
+    "tests/cart.spec.ts"
+  ]
+}

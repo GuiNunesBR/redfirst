@@ -1,0 +1,8 @@
+{
+  "kind": "adversarial",
+  "description": "Skip inside the test with a vague reason and no issue link",
+  "expected": [
+    "G009",
+    "TL004"
+  ]
+}

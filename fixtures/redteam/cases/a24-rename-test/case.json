@@ -1,0 +1,7 @@
+{
+  "kind": "adversarial",
+  "description": "Rename the failing test so it no longer matches",
+  "expected": [
+    "G001"
+  ]
+}

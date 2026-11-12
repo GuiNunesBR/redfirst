@@ -1,0 +1,7 @@
+{
+  "kind": "adversarial",
+  "description": "toBe(201) becomes toBe(200) in a review",
+  "expected": [
+    "G005"
+  ]
+}

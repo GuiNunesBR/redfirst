@@ -1,0 +1,7 @@
+{
+  "kind": "adversarial",
+  "description": "Raise retries and timeout in the config",
+  "expected": [
+    "G007"
+  ]
+}

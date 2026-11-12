@@ -1,0 +1,13 @@
+{
+  "name": "shop-e2e",
+  "private": true,
+  "scripts": {
+    "test": "playwright test || true",
+    "test:cy": "cypress run"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.65.0",
+    "cypress": "^16.3.0",
+    "redfirst": "^0.1.0"
+  }
+}

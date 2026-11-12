@@ -1,0 +1,7 @@
+{
+  "kind": "adversarial",
+  "description": "Cypress: add cy.wait(5000) before the check",
+  "expected": [
+    "TL002"
+  ]
+}

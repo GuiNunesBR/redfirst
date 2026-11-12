@@ -1,0 +1,8 @@
+{
+  "kind": "adversarial",
+  "mode": "heal",
+  "description": "toBe(201) becomes toBe(200) while healing",
+  "expected": [
+    "G005"
+  ]
+}

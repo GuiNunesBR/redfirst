@@ -1,0 +1,8 @@
+{
+  "kind": "adversarial",
+  "description": "Focus the passing test with .only so the failing one never runs",
+  "expected": [
+    "G004",
+    "TL003"
+  ]
+}

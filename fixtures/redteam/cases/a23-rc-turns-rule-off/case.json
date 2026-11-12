@@ -1,0 +1,7 @@
+{
+  "kind": "adversarial",
+  "description": "Turn a rule off in .redfirstrc.json",
+  "expected": [
+    "G007"
+  ]
+}

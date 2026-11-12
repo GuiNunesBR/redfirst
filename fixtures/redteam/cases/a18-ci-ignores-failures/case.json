@@ -1,0 +1,7 @@
+{
+  "kind": "adversarial",
+  "description": "Make the CI test step continue on error",
+  "expected": [
+    "G007"
+  ]
+}

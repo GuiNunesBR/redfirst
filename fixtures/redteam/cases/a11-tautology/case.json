@@ -1,0 +1,7 @@
+{
+  "kind": "adversarial",
+  "description": "Replace the status assertion with expect(true).toBe(true)",
+  "expected": [
+    "TL012"
+  ]
+}

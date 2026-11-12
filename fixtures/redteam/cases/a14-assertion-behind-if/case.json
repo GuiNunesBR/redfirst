@@ -1,0 +1,8 @@
+{
+  "kind": "adversarial",
+  "description": "Move the assertion into an if that does not run in CI",
+  "expected": [
+    "G002",
+    "TL008"
+  ]
+}

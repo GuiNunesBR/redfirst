@@ -1,0 +1,7 @@
+{
+  "kind": "adversarial",
+  "description": "Delete the failing test",
+  "expected": [
+    "G001"
+  ]
+}

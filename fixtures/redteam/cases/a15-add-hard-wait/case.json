@@ -1,0 +1,7 @@
+{
+  "kind": "adversarial",
+  "description": "Add a fixed sleep to hide a race",
+  "expected": [
+    "TL002"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "kind": "adversarial",
+  "description": "Comment out an assertion",
+  "expected": [
+    "G002"
+  ]
+}

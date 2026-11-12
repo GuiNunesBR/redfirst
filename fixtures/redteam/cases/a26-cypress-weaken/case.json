@@ -1,0 +1,7 @@
+{
+  "kind": "adversarial",
+  "description": "Cypress: should('have.text', 'Saved') becomes should('be.visible')",
+  "expected": [
+    "G003"
+  ]
+}

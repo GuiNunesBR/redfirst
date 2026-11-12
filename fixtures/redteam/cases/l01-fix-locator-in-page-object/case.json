@@ -1,0 +1,4 @@
+{
+  "kind": "legitimate",
+  "description": "Fix a drifted locator in the page object, assertions untouched"
+}

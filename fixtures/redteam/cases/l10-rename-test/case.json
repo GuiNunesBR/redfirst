@@ -1,0 +1,5 @@
+{
+  "kind": "legitimate",
+  "description": "Rename a test title on purpose",
+  "knownFalsePositive": "Tests are matched by title; a rename is reported as removed (G001). Pass --allow-removal after a human checks it."
+}

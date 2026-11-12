@@ -1,0 +1,7 @@
+{
+  "kind": "adversarial",
+  "description": "Wrap the assertion in a try/catch that ignores the failure",
+  "expected": [
+    "TL011"
+  ]
+}

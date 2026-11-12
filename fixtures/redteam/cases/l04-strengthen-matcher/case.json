@@ -1,0 +1,4 @@
+{
+  "kind": "legitimate",
+  "description": "toBeVisible() becomes toHaveText('Your cart is empty')"
+}

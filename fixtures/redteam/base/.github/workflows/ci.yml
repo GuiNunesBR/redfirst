@@ -1,0 +1,14 @@
+name: CI
+
+on: [pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - run: npm ci
+      - name: Lint tests
+        run: npx redfirst lint
+      - name: Run tests
+        run: npx playwright test

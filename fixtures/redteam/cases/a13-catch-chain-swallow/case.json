@@ -1,0 +1,7 @@
+{
+  "kind": "adversarial",
+  "description": "Append .catch(() => {}) to the assertion",
+  "expected": [
+    "TL011"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "kind": "adversarial",
+  "description": "Mark the failing test with .fixme",
+  "expected": [
+    "G004"
+  ]
+}

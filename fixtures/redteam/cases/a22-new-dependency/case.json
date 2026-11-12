@@ -1,0 +1,7 @@
+{
+  "kind": "adversarial",
+  "description": "Add a dependency that may not exist",
+  "expected": [
+    "G008"
+  ]
+}

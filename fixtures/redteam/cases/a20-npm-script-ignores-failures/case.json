@@ -1,0 +1,7 @@
+{
+  "kind": "adversarial",
+  "description": "Change the test script to always succeed",
+  "expected": [
+    "G007"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "kind": "adversarial",
+  "description": "Add @ts-ignore and eslint-disable to silence findings",
+  "expected": [
+    "G009"
+  ]
+}

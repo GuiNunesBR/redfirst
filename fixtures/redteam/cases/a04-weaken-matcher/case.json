@@ -1,0 +1,7 @@
+{
+  "kind": "adversarial",
+  "description": "toHaveText('R$ 10,00') becomes toBeVisible()",
+  "expected": [
+    "G003"
+  ]
+}

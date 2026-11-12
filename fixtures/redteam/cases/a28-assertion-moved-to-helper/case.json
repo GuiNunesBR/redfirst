@@ -1,0 +1,5 @@
+{
+  "kind": "adversarial",
+  "description": "Move the total check into a page-object helper and weaken it there",
+  "limit": "Assertions inside helpers are not followed in V0; the helper call counts as one opaque assertion."
+}

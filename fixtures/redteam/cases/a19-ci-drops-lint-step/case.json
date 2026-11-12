@@ -1,0 +1,7 @@
+{
+  "kind": "adversarial",
+  "description": "Remove the lint step from CI",
+  "expected": [
+    "G007"
+  ]
+}
