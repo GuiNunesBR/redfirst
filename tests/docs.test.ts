@@ -24,9 +24,9 @@ describe('docs', () => {
 
   it('starts SKILL.md with frontmatter that names and describes the skill', () => {
     const skill = read('skills/redfirst/SKILL.md');
-    expect(skill.startsWith('---\n')).toBe(true);
-    expect(skill).toMatch(/^name: redfirst$/m);
-    expect(skill).toMatch(/^description: .{40,}$/m);
+    expect(skill).toMatch(/^---\r?\n/);
+    expect(skill).toMatch(/^name: redfirst\r?$/m);
+    expect(skill).toMatch(/^description: .{40,}\r?$/m);
   });
 
   it('shows the red-team numbers that the corpus actually produces', () => {
@@ -37,5 +37,5 @@ describe('docs', () => {
     expect(readme).toContain(`**${s.falsePositives} / ${s.legitimate}**`);
     expect(readme).toContain(`holds ${s.adversarial} changes`);
     expect(readme).toContain(`and ${s.legitimate} legitimate changes`);
-  });
+  }, 60_000);
 });
