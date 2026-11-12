@@ -95,7 +95,9 @@ export function runGate(options: GateOptions): GateResult {
       }
       const strongBefore = was.assertions.filter((a) => a.strength === 'strong');
       const strongAfter = now.assertions.filter((a) => a.strength === 'strong');
-      if (strongAfter.length < strongBefore.length) {
+      // Removals are G002; G003 is about strong checks that turned weak.
+      const removed = Math.max(0, was.assertions.length - now.assertions.length);
+      if (strongBefore.length - strongAfter.length > removed) {
         const lost = strongBefore.map((a) => a.matcher).filter((m) => !strongAfter.some((s) => s.matcher === m));
         const weak = now.assertions.filter((a) => a.strength === 'weak').map((a) => a.matcher);
         const detail = lost.length ? `${lost.join(', ')} is gone` : 'fewer value checks';
