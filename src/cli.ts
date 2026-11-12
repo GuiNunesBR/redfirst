@@ -15,6 +15,7 @@ Usage:
   redfirst lint [paths...] [--format text|json|github] [--strict] [--config file] [--framework pw|cy]
   redfirst gate --base <ref> [--head <ref>] [--paths <glob>...] [--mode review|heal]
                 [--allow-removal] [--format text|json|github] [--strict] [--config file]
+                [--allow-protected] [--allow-dependencies]   (human overrides, after review)
   redfirst gate --base-dir <dir> --head-dir <dir> [same options]
 
 Exit codes: 0 clean, 1 violations found, 2 usage or internal error.
@@ -77,6 +78,7 @@ function gate(args: string[], cwd: string): number {
       mode: { type: 'string' },
       'allow-removal': { type: 'boolean', default: false },
       'allow-protected': { type: 'boolean', default: false },
+      'allow-dependencies': { type: 'boolean', default: false },
     },
     strict: true,
   });
@@ -105,6 +107,7 @@ function gate(args: string[], cwd: string): number {
     paths: values.paths,
     allowRemoval: values['allow-removal'],
     allowProtected: values['allow-protected'],
+    allowDependencies: values['allow-dependencies'],
     config,
     framework: framework(values.framework),
   });

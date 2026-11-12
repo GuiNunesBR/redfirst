@@ -132,6 +132,9 @@ describe('G008 new-dependency', () => {
   it('flags a lockfile change without a package.json change', () => {
     expect(gate({ 'package-lock.json': '{}' }, { 'package-lock.json': '{"x":1}' }).rules).toEqual(['G008:error']);
   });
+  it('accepts it with --allow-dependencies', () => {
+    expect(gate({ 'package.json': pkg({ a: '1.0.0' }) }, { 'package.json': pkg({ a: '2.0.0' }) }, { allowDependencies: true }).rules).toEqual([]);
+  });
   it('accepts a removed dependency', () => {
     expect(gate({ 'package.json': pkg({ a: '1.0.0', b: '1.0.0' }) }, { 'package.json': pkg({ a: '1.0.0' }) }).rules).toEqual([]);
   });

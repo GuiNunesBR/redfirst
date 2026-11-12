@@ -14,8 +14,9 @@ export interface GateOptions {
   /** Restrict test files to these globs (default: test-like file names and test folders). */
   paths?: string[];
   allowRemoval?: boolean;
-  /** Human override for G007. Never meant for agents. */
+  /** Human overrides for G007 and G008, after review. Never meant for agents. */
   allowProtected?: boolean;
+  allowDependencies?: boolean;
   config?: Config;
   framework?: Framework;
 }
@@ -152,13 +153,13 @@ export function runGate(options: GateOptions): GateResult {
     if (scripts.length && !options.allowProtected) {
       add('G007', 'error', file, lineOf(head.read(file), /"scripts"/), `npm scripts changed: ${scripts.join(', ')}. A human must make or approve this change.`);
     }
-    if (dependencies.length) {
+    if (dependencies.length && !options.allowDependencies) {
       add('G008', 'error', file, lineOf(head.read(file), /ependencies"/), `Dependencies added or changed: ${dependencies.join(', ')}. A human must check that each package exists and is the intended one.`);
     }
   }
   const packageChanged = changed.some((f) => /(^|\/)package\.json$/.test(f) && packageChanges(base.read(f), head.read(f)).dependencies.length);
   for (const file of changed.filter(isLockfile)) {
-    if (!packageChanged) add('G008', 'error', file, 1, 'Lockfile changed without a reviewed package.json change.');
+    if (!packageChanged && !options.allowDependencies) add('G008', 'error', file, 1, 'Lockfile changed without a reviewed package.json change.');
   }
 
   // G009: new disable comments or skips on changed files.
