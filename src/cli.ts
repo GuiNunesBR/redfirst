@@ -5,7 +5,7 @@ import { parseArgs } from 'node:util';
 import { loadConfig } from './config.js';
 import type { Finding, Framework } from './core/types.js';
 import { runGate, type GateMode } from './gate/gate.js';
-import { dirSource, gitRefSource, gitRoot, worktreeSource } from './gate/sources.js';
+import { dirSource, gitChangedFiles, gitRefSource, gitRoot, worktreeSource } from './gate/sources.js';
 import { DEFAULT_DIRS, lintFiles } from './lint/engine.js';
 import { format, FORMATS, summarize, type Format } from './report/format.js';
 
@@ -89,6 +89,7 @@ function gate(args: string[], cwd: string): number {
 
   let base;
   let head;
+  let changed: string[] | undefined;
   if (values['base-dir'] || values['head-dir']) {
     if (!values['base-dir'] || !values['head-dir']) throw new UsageError('--base-dir and --head-dir go together.');
     base = dirSource(path.resolve(cwd, values['base-dir']));
@@ -98,6 +99,7 @@ function gate(args: string[], cwd: string): number {
     const root = gitRoot(cwd);
     base = gitRefSource(root, values.base);
     head = values.head ? gitRefSource(root, values.head) : worktreeSource(root);
+    changed = gitChangedFiles(root, values.base, values.head);
   }
 
   const result = runGate({
@@ -110,6 +112,7 @@ function gate(args: string[], cwd: string): number {
     allowDependencies: values['allow-dependencies'],
     config,
     framework: framework(values.framework),
+    changed,
   });
   return finish('gate', result.findings, as, values.strict, result.changedFiles.length);
 }

@@ -19,6 +19,8 @@ export interface GateOptions {
   allowDependencies?: boolean;
   config?: Config;
   framework?: Framework;
+  /** Files known to differ (from git). When absent, both sides are read and compared. */
+  changed?: string[];
 }
 
 export interface GateResult {
@@ -67,8 +69,9 @@ export function runGate(options: GateOptions): GateResult {
   const add = (rule: string, severity: Severity, file: string, line: number, message: string, test?: string) =>
     findings.push({ rule, severity, file, line, column: 1, message, test });
 
-  const all = [...new Set([...base.files(), ...head.files()])].sort();
-  const changed = all.filter((f) => base.read(f) !== head.read(f));
+  const changed =
+    options.changed ??
+    [...new Set([...base.files(), ...head.files()])].sort().filter((f) => base.read(f) !== head.read(f));
   const filters = options.paths?.map(globToRegExp);
   const inScope = (f: string) => (filters ? filters.some((re) => re.test(f)) : isTestFile(f));
 
@@ -96,9 +99,21 @@ export function runGate(options: GateOptions): GateResult {
       }
       const strongBefore = was.assertions.filter((a) => a.strength === 'strong');
       const strongAfter = now.assertions.filter((a) => a.strength === 'strong');
-      // Removals are G002; G003 is about strong checks that turned weak.
+      const pairs = alignAssertions(was.assertions, now.assertions);
+      let weakened = 0;
+      for (const [i, j] of pairs) {
+        const a = was.assertions[i]!;
+        const b = now.assertions[j]!;
+        if (a.strength === 'strong' && b.strength === 'weak') {
+          weakened++;
+          add('G003', 'error', file, b.line, `${a.matcher} on ${a.subject} became ${b.matcher}, which only checks presence.`, title);
+        } else if (a.matcher === b.matcher && a.expected !== null && b.expected !== null && a.expected !== b.expected) {
+          add('G005', mode === 'heal' ? 'error' : 'warn', file, b.line, `Expected value of ${b.matcher} on ${b.subject} changed: ${a.expected} -> ${b.expected}. Needs a human decision.`, title);
+        }
+      }
+      // Removals are G002; G003 is about strong checks that turned weak, even when the subject text changed too.
       const removed = Math.max(0, was.assertions.length - now.assertions.length);
-      if (strongBefore.length - strongAfter.length > removed) {
+      if (!weakened && strongBefore.length - strongAfter.length > removed) {
         const lost = strongBefore.map((a) => a.matcher).filter((m) => !strongAfter.some((s) => s.matcher === m));
         const weak = now.assertions.filter((a) => a.strength === 'weak').map((a) => a.matcher);
         const detail = lost.length ? `${lost.join(', ')} is gone` : 'fewer value checks';
@@ -106,13 +121,6 @@ export function runGate(options: GateOptions): GateResult {
       }
       for (const flag of ['skip', 'fixme', 'only'] as const) {
         if (now[flag] && !was[flag]) add('G004', 'error', file, now.line, `Test gained .${flag}.`, title);
-      }
-      for (const [i, j] of alignAssertions(was.assertions, now.assertions)) {
-        const a = was.assertions[i]!;
-        const b = now.assertions[j]!;
-        if (a.expected !== null && b.expected !== null && a.expected !== b.expected) {
-          add('G005', mode === 'heal' ? 'error' : 'warn', file, b.line, `Expected value of ${b.matcher} changed: ${a.expected} -> ${b.expected}. Needs a human decision.`, title);
-        }
       }
     }
   }

@@ -11,6 +11,8 @@ export interface Assertion {
   /** The `expect(...)` call, for expect-style assertions. */
   expectCall?: ts.CallExpression;
   matcher: string;
+  /** What is being checked, as source text: `page.getByTestId('total')`, `response.status()`. */
+  subject: string;
   negated: boolean;
   strength: Strength;
   /** Normalized literal expected value; '' when the matcher takes no argument; null when not a literal. */
@@ -29,6 +31,8 @@ const WEAK_CHAINERS = new Set(['exist', 'be.visible', 'be.ok', 'ok']);
 
 /** Opaque assertion helpers (`verifyCart()`, `expectToast()`); their body is not followed. */
 const HELPER = /^(expect|assert|verify|check)[A-Z_]/;
+
+const sourceText = (node: ts.Node | undefined, sf: ts.SourceFile) => (node ? node.getText(sf).replace(/\s+/g, ' ') : '');
 
 function expectedOf(args: readonly ts.Expression[], sf: ts.SourceFile): string | null {
   if (args.length === 0) return '';
@@ -114,6 +118,7 @@ function fromCall(call: ts.CallExpression, sf: ts.SourceFile): Assertion | null 
       node: top,
       expectCall: call,
       matcher,
+      subject: sourceText(call.arguments[0], sf),
       negated,
       strength: strengthOf('expect', matcher, negated),
       expected: expectedOf(args, sf),
@@ -134,6 +139,7 @@ function fromCall(call: ts.CallExpression, sf: ts.SourceFile): Assertion | null 
       kind: 'should',
       node: call,
       matcher: chainer,
+      subject: sourceText(callee.expression, sf),
       negated,
       strength: negated ? 'strong' : strengthOf('should', matcher, false),
       expected: expectedOf(args, sf),
@@ -149,6 +155,7 @@ function fromCall(call: ts.CallExpression, sf: ts.SourceFile): Assertion | null 
       kind: 'assert',
       node: call,
       matcher: chain[1] ?? 'assert',
+      subject: sourceText(call.arguments[0], sf),
       negated: false,
       strength: 'strong',
       expected: expectedOf(call.arguments.slice(1), sf),
@@ -164,6 +171,7 @@ function fromCall(call: ts.CallExpression, sf: ts.SourceFile): Assertion | null 
       kind: 'helper',
       node: call,
       matcher: name,
+      subject: sourceText(call, sf),
       negated: false,
       strength: 'strong',
       expected: null,

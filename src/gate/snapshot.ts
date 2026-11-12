@@ -5,6 +5,7 @@ import type { Framework } from '../core/types.js';
 
 export interface AssertionSnapshot {
   matcher: string;
+  subject: string;
   strength: Strength;
   expected: string | null;
   line: number;
@@ -52,6 +53,7 @@ export function snapshotFile(file: string, text: string, framework?: Framework):
       line: block.line,
       assertions: assertions.map((a) => ({
         matcher: a.matcher,
+        subject: a.subject,
         strength: a.strength,
         expected: a.expected,
         line: a.line,
@@ -63,21 +65,21 @@ export function snapshotFile(file: string, text: string, framework?: Framework):
   return tests;
 }
 
-/** Longest common subsequence of two assertion lists by matcher name, as index pairs. */
+/** Longest common subsequence of two assertion lists by subject (what is checked), as index pairs. */
 export function alignAssertions(base: AssertionSnapshot[], head: AssertionSnapshot[]): [number, number][] {
   const rows = base.length;
   const cols = head.length;
   const table = Array.from({ length: rows + 1 }, () => new Array<number>(cols + 1).fill(0));
   for (let i = rows - 1; i >= 0; i--) {
     for (let j = cols - 1; j >= 0; j--) {
-      table[i]![j] = base[i]!.matcher === head[j]!.matcher ? table[i + 1]![j + 1]! + 1 : Math.max(table[i + 1]![j]!, table[i]![j + 1]!);
+      table[i]![j] = base[i]!.subject === head[j]!.subject ? table[i + 1]![j + 1]! + 1 : Math.max(table[i + 1]![j]!, table[i]![j + 1]!);
     }
   }
   const pairs: [number, number][] = [];
   let i = 0;
   let j = 0;
   while (i < rows && j < cols) {
-    if (base[i]!.matcher === head[j]!.matcher) {
+    if (base[i]!.subject === head[j]!.subject) {
       pairs.push([i++, j++]);
     } else if (table[i + 1]![j]! >= table[i]![j + 1]!) {
       i++;

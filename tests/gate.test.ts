@@ -4,7 +4,7 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { globToRegExp, runGate, type GateOptions } from '../src/gate/gate.js';
-import { gitRefSource, worktreeSource, type FileSource } from '../src/gate/sources.js';
+import { gitChangedFiles, gitRefSource, worktreeSource, type FileSource } from '../src/gate/sources.js';
 
 function memory(files: Record<string, string>): FileSource {
   return { label: 'memory', files: () => Object.keys(files), read: (f) => files[f] };
@@ -53,8 +53,22 @@ describe('G003 assertion-weakened', () => {
   const page = (assertion: string) => `import { test, expect } from '@playwright/test';\n\ntest('shows the total', async ({ page }) => {\n  ${assertion}\n});\n`;
   it('flags a value check turned into a presence check', () => {
     const result = gate({ [FILE]: page("await expect(page.getByTestId('total')).toHaveText('R$ 10');") }, { [FILE]: page("await expect(page.getByTestId('total')).toBeVisible();") });
-    expect(result.rules).toEqual(['G003:error', 'G006:warn']);
-    expect(result.findings[0]!.message).toContain('toHaveText is gone');
+    expect(result.rules.sort()).toEqual(['G003:error', 'G006:warn']);
+    expect(result.findings.find((f) => f.rule === 'G003')!.message).toBe("toHaveText on page.getByTestId('total') became toBeVisible, which only checks presence.");
+  });
+  it('aligns by subject, so an inserted assertion neither hides a weakening nor fakes a changed value', () => {
+    const base = `import { test, expect } from '@playwright/test';
+
+test('adds', async ({ page }) => {
+  await expect(page.getByTestId('count')).toHaveText('1');
+  await expect(page.getByTestId('total')).toHaveText('R$ 10');
+});
+`;
+    const head = base
+      .replace("  await expect(page.getByTestId('count'))", "  await expect(page.getByTestId('banner')).toHaveText('Sale');\n  await expect(page.getByTestId('count'))")
+      .replace("toHaveText('R$ 10')", 'toBeVisible()');
+    const result = gate({ [FILE]: base }, { [FILE]: head });
+    expect(result.rules).toEqual(['G003:error']);
   });
   it('accepts a presence check turned into a value check', () => {
     const result = gate({ [FILE]: page("await expect(page.getByTestId('total')).toBeVisible();") }, { [FILE]: page("await expect(page.getByTestId('total')).toHaveText('R$ 10');") });
@@ -183,7 +197,10 @@ describe('git sources', () => {
       git('commit', '-q', '-m', 'base');
       writeFileSync(path.join(dir, 'orders.spec.ts'), spec('  expect(response.status()).toBe(201);'));
 
-      const result = runGate({ base: gitRefSource(dir, 'HEAD'), head: worktreeSource(dir) });
+      writeFileSync(path.join(dir, 'new.spec.ts'), spec(STRONG));
+      expect(gitChangedFiles(dir, 'HEAD')).toEqual(['new.spec.ts', 'orders.spec.ts']);
+
+      const result = runGate({ base: gitRefSource(dir, 'HEAD'), head: worktreeSource(dir), changed: gitChangedFiles(dir, 'HEAD') });
       expect(result.findings.map((f) => f.rule)).toEqual(['G002']);
       expect(() => gitRefSource(dir, 'no-such-ref')).toThrow('Unknown git ref');
     } finally {

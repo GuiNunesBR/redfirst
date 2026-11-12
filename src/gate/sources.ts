@@ -75,6 +75,16 @@ export function dirSource(dir: string): FileSource {
   };
 }
 
+/**
+ * Files that differ between `base` and `head` (or the working tree, untracked files included).
+ * Asking git is much faster than reading every file on both sides.
+ */
+export function gitChangedFiles(root: string, base: string, head?: string): string[] {
+  const diff = git(root, ['diff', '--name-only', '--no-renames', '-z', base, ...(head ? [head] : [])]).split('\0');
+  const untracked = head ? [] : git(root, ['ls-files', '-z', '--others', '--exclude-standard']).split('\0');
+  return [...new Set([...diff, ...untracked].filter(Boolean))].sort();
+}
+
 export function gitRoot(cwd: string): string {
   return git(cwd, ['rev-parse', '--show-toplevel']).trim();
 }
