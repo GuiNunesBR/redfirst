@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "description": "Makes your AI agent write tests that can fail. A skill, a linter and a gate for Playwright and Cypress suites.",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GuiNunesBR/redfirst.git"
+  },
   "author": "Guilherme Nunes Medeiros",
   "type": "module",
   "bin": {
@@ -31,6 +35,7 @@
   ],
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
+    "prepare": "npm run build",
     "typecheck": "tsc --noEmit",
     "test": "vitest run"
   },
