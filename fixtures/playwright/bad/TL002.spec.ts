@@ -6,6 +6,7 @@ test('waits the wrong way', async ({ page }) => {
   await page.goto('/');
   await page.waitForTimeout(2000); // expect: TL002
   await new Promise((resolve) => setTimeout(resolve, 500)); // expect: TL002
+  await new Promise<void>((done) => setTimeout(() => done(), 300)); // expect: TL002
   await sleep(100); // expect: TL002
   await expect(page.getByRole('heading')).toHaveText('Home');
 });

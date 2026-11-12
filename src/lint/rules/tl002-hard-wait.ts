@@ -1,6 +1,28 @@
 import ts from 'typescript';
-import { calledName, chainRoot, walk } from '../../core/source.js';
+import { calledName, chainRoot, isFunctionLike, walk } from '../../core/source.js';
 import { testOf, type Rule } from '../rule.js';
+
+/**
+ * A sleep resolves when the timer fires: `setTimeout(resolve, n)` or `setTimeout(() => resolve(), n)`.
+ * A timer that only rejects is a timeout guard, not a wait.
+ */
+function resolvesOnTimer(executor: ts.Expression | undefined): boolean {
+  if (!isFunctionLike(executor)) return false;
+  const resolve = executor.parameters[0]?.name;
+  if (!resolve || !ts.isIdentifier(resolve)) return false;
+  let sleeps = false;
+  walk(executor.body, (node) => {
+    if (!ts.isCallExpression(node) || !ts.isIdentifier(node.expression) || node.expression.text !== 'setTimeout') return;
+    const callback = node.arguments[0];
+    if (callback && ts.isIdentifier(callback) && callback.text === resolve.text) sleeps = true;
+    if (isFunctionLike(callback)) {
+      walk(callback.body, (inner) => {
+        if (ts.isCallExpression(inner) && ts.isIdentifier(inner.expression) && inner.expression.text === resolve.text) sleeps = true;
+      });
+    }
+  });
+  return sleeps;
+}
 
 export const hardWait: Rule = {
   id: 'TL002',
@@ -22,13 +44,7 @@ export const hardWait: Rule = {
         }
       }
       if (ts.isNewExpression(node) && ts.isIdentifier(node.expression) && node.expression.text === 'Promise') {
-        let usesTimer = false;
-        node.arguments?.forEach((arg) =>
-          walk(arg, (inner) => {
-            if (ts.isCallExpression(inner) && ts.isIdentifier(inner.expression) && inner.expression.text === 'setTimeout') usesTimer = true;
-          }),
-        );
-        if (usesTimer) report(node, 'new Promise + setTimeout is a fixed sleep.', testOf(analysis, node));
+        if (resolvesOnTimer(node.arguments?.[0])) report(node, 'new Promise + setTimeout is a fixed sleep.', testOf(analysis, node));
       }
     });
   },

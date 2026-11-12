@@ -25,7 +25,7 @@ const run = (...args: string[]) => main(args, ROOT);
 describe('lint', () => {
   it('exits 0 on clean files', async () => {
     expect(await run('lint', 'fixtures/playwright/good', 'fixtures/cypress/good')).toBe(0);
-    expect(out.join('\n')).toContain('lint: PASS (0 errors, 0 warnings in 2 files)');
+    expect(out.join('\n')).toContain('lint: PASS (0 errors, 0 warnings in 3 files)');
   });
 
   it('exits 1 on errors', async () => {
