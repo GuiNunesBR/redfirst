@@ -1,4 +1,4 @@
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { DISABLE_WITHOUT_REASON, RULES } from '../src/lint/registry.js';
@@ -27,6 +27,20 @@ describe('docs', () => {
     expect(skill).toMatch(/^---\r?\n/);
     expect(skill).toMatch(/^name: redfirst\r?$/m);
     expect(skill).toMatch(/^description: .{40,}\r?$/m);
+  });
+
+  it('keeps the plugin manifests in step with package.json and pointing at real files', () => {
+    const pkg = JSON.parse(read('package.json'));
+    for (const file of ['.claude-plugin/plugin.json', '.codex-plugin/plugin.json']) {
+      const manifest = JSON.parse(read(file));
+      expect(manifest.name, file).toBe(pkg.name);
+      expect(manifest.version, file).toBe(pkg.version);
+      for (const ref of [manifest.skills, manifest.hooks].filter(Boolean)) expect(existsSync(path.join(ROOT, ref)), ref).toBe(true);
+      expect(pkg.files, file).toContain(path.dirname(file));
+    }
+    for (const file of ['.claude-plugin/marketplace.json', '.agents/plugins/marketplace.json']) {
+      expect(JSON.parse(read(file)).plugins.map((p: { name: string }) => p.name), file).toEqual([pkg.name]);
+    }
   });
 
   it('shows the red-team numbers that the corpus actually produces', () => {

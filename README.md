@@ -25,7 +25,8 @@ Each of these turns a red build green without fixing anything. Knowing the Playw
 | [`AGENTS.md`](AGENTS.md) | The same rules, compact, for agents that read a rules file. |
 | `redfirst lint` | 13 deterministic rules (TL000–TL012) for Playwright and Cypress test files, using the TypeScript AST. |
 | `redfirst gate` | Compares the tests at a base and a head and fails when the change weakens them, or touches the files that decide whether tests run (G001–G009). |
-| [`hooks/claude-code`](hooks/claude-code) | Claude Code hooks: block edits to protected files; lint every test file the agent edits and send the errors back. |
+| [`hooks`](hooks) | Agent hooks: block edits to protected files; lint every test file the agent edits and send the errors back. |
+| Plugin manifests | Install the skill, the command and the hooks as a plugin in Claude Code, Codex or Grok Build. |
 | [`commands/redfirst-review.md`](commands/redfirst-review.md) | A terse senior-SDET review of a test diff. |
 
 Everything runs offline. No telemetry, no network, no LLM calls.
@@ -42,16 +43,28 @@ npx redfirst gate --base origin/main      # compares your working tree with main
 
 Or build it yourself: clone the repository, run `npm ci && npm run build && npm pack`, and install the `.tgz` it creates.
 
-For the agent:
+### For the agent
+
+The repository is also a plugin: the skill, the review command and the hooks in one install. The hooks need `node` on the PATH; the lint hook uses the redfirst installed in the project (the step above) and stays silent without it.
+
+| Agent | Install |
+|---|---|
+| Claude Code | `/plugin marketplace add GuiNunesBR/redfirst`, then `/plugin install redfirst@redfirst` |
+| Codex | `codex plugin marketplace add GuiNunesBR/redfirst`, then `codex plugin add redfirst@redfirst`; review and trust the hooks in `/hooks` |
+| Grok Build | Reads Claude Code marketplaces and plugins: add this repository as a source under `[[marketplace.sources]]` in `~/.grok/config.toml`, then install redfirst from the Marketplace tab in `/plugins` |
+| Anything else | Copy [`AGENTS.md`](AGENTS.md) to the project root; most agents read it |
+
+Without the plugin, copy the pieces into the project:
 
 ```bash
 mkdir -p .claude/skills .claude/commands
 cp -r node_modules/redfirst/skills/redfirst .claude/skills/
 cp node_modules/redfirst/commands/redfirst-review.md .claude/commands/
-cp node_modules/redfirst/AGENTS.md ./AGENTS.md            # for agents that read AGENTS.md
 ```
 
-Then merge [`hooks/claude-code/settings.example.json`](hooks/claude-code/settings.example.json) into `.claude/settings.json`.
+and merge [`hooks/settings.example.json`](hooks/settings.example.json) into `.claude/settings.json`.
+
+The same hook scripts serve the three agents: they read the edited file from `tool_input.file_path` (Claude Code, Grok Build) or from the `apply_patch` text (Codex), and block with exit code 2.
 
 ### Lint
 

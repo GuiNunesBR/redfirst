@@ -1,0 +1,21 @@
+{
+  "name": "redfirst",
+  "interface": {
+    "displayName": "redfirst"
+  },
+  "plugins": [
+    {
+      "name": "redfirst",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/GuiNunesBR/redfirst.git",
+        "ref": "main"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

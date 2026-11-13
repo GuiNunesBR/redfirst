@@ -20,6 +20,8 @@ Put this in `.github/CODEOWNERS` (replace the owners):
 /.github/workflows/          @your-team/qa
 /.github/CODEOWNERS          @your-team/qa
 /.claude/                    @your-team/qa
+/.codex/                     @your-team/qa
+/.grok/                      @your-team/qa
 ```
 
 ## 2. Branch protection on `main`
@@ -56,9 +58,9 @@ jobs:
 
 The `redfirst:approved` label is the human override: a code owner reviews the protected change, adds the label, and re-runs the job. Restrict who can add labels if agents open pull requests in your repository.
 
-## 4. Claude Code hooks
+## 4. Agent hooks
 
-Copy [`hooks/claude-code/settings.example.json`](../hooks/claude-code/settings.example.json) into `.claude/settings.json`:
+Installing redfirst as a plugin in Claude Code, Codex or Grok Build loads [`hooks/hooks.json`](../hooks/hooks.json). Without the plugin, merge [`hooks/settings.example.json`](../hooks/settings.example.json) into `.claude/settings.json` (Grok Build reads that file too):
 
 - `pre-edit-protect.mjs` (PreToolUse) blocks edits to protected files and tells the agent to propose the change instead.
 - `post-edit-lint.mjs` (PostToolUse) lints each test file the agent edits and sends the errors back to it.

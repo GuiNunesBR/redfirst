@@ -17,6 +17,8 @@
     "skills",
     "commands",
     "hooks",
+    ".claude-plugin",
+    ".codex-plugin",
     "AGENTS.md"
   ],
   "engines": {
@@ -24,7 +26,6 @@
   },
   "keywords": [
     "agent-skills",
-    "claude-code",
     "playwright",
     "cypress",
     "test-automation",

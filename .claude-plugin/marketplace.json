@@ -1,0 +1,16 @@
+{
+  "name": "redfirst",
+  "description": "Tests that can fail for the right reason.",
+  "owner": {
+    "name": "Guilherme Nunes Medeiros",
+    "url": "https://github.com/GuiNunesBR"
+  },
+  "plugins": [
+    {
+      "name": "redfirst",
+      "description": "A skill, a review command and hooks that stop an agent from weakening Playwright and Cypress tests.",
+      "source": "./",
+      "category": "testing"
+    }
+  ]
+}
