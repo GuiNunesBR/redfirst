@@ -1,6 +1,6 @@
 /**
  * Files an agent must not change on its own: whoever can edit them can switch the checks off.
- * Same list as the pre-edit hook (hooks/claude-code/pre-edit-protect.mjs).
+ * Same list as the pre-edit hook (hooks/pre-edit-protect.mjs).
  */
 export const PROTECTED_PATHS: RegExp[] = [
   /(^|\/)playwright\.config\.[cm]?[jt]s$/,
@@ -13,7 +13,9 @@ export const PROTECTED_PATHS: RegExp[] = [
   /^\.github\/workflows\//,
   /(^|\/)CODEOWNERS$/,
   /^\.claude\/(settings[^/]*\.json|hooks\/)/,
-  /(^|\/)(post-edit-lint|pre-edit-protect)\.m?js$/,
+  /^\.codex\/(config\.toml|hooks\.json|hooks\/)/,
+  /^\.grok\/hooks\//,
+  /(^|\/)(post-edit-lint|pre-edit-protect|edited-files)\.m?js$/,
 ];
 
 export const isProtected = (file: string) => PROTECTED_PATHS.some((re) => re.test(file));
