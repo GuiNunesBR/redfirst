@@ -49,6 +49,14 @@ Or build it yourself: clone the repository, run `npm ci && npm run build && npm 
 
 The repository is also a plugin: the skill, the review command and the hooks in one install. The hooks need `node` on the PATH; the lint hook uses the redfirst installed in the project (the step above) and stays silent without it.
 
+The short way, from the project root:
+
+```bash
+npx redfirst init               # or --agent claude,codex,grok, and --dry-run to see first
+```
+
+It adds the redfirst marketplace and plugin to `.claude/settings.json`, the MCP server to `.mcp.json` (read by Claude Code and Grok Build) and the rules to `AGENTS.md`, without replacing anything already there, and prints the steps that live in each person's own config. Commit those files and the team gets the same setup. By hand:
+
 | Agent | Install |
 |---|---|
 | Claude Code | `/plugin marketplace add GuiNunesBR/redfirst`, then `/plugin install redfirst@redfirst` |

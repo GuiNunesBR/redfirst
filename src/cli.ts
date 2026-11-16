@@ -5,6 +5,7 @@ import { parseArgs } from 'node:util';
 import type { Framework } from './core/types.js';
 import type { GateMode } from './gate/gate.js';
 import { diagnoseProject, formatDiagnosis } from './diagnose/run.js';
+import { AGENTS, formatInit, initProject, type Agent } from './init.js';
 import { format, FORMATS, type Format } from './report/format.js';
 import { gateProject, lintProject, UsageError, type Report } from './run.js';
 
@@ -18,6 +19,8 @@ Usage:
   redfirst gate --base-dir <dir> --head-dir <dir> [same options]
   redfirst diagnose --report <playwright json> [--passing <json>] [--base <ref>] [--format text|json]
                                                why each test in the report failed, and what a fix may do
+  redfirst init [--agent claude,codex,grok] [--dry-run]
+                                               set the project up for the agents (plugin, MCP, AGENTS.md)
   redfirst mcp                                 MCP server on stdio, for the project in the working directory
 
 Exit codes: 0 clean, 1 violations found, 2 usage or internal error.
@@ -100,6 +103,15 @@ function gate(args: string[], cwd: string): number {
   return print(result, as);
 }
 
+function init(args: string[], cwd: string): number {
+  const { values } = parseArgs({ args, options: { agent: { type: 'string' }, 'dry-run': { type: 'boolean', default: false } }, strict: true });
+  const agents = values.agent?.split(',').map((a) => a.trim());
+  for (const a of agents ?? []) if (!(AGENTS as readonly string[]).includes(a)) throw new UsageError(`--agent takes ${AGENTS.join(', ')}; got ${a}`);
+  const dryRun = values['dry-run'];
+  console.log(formatInit(initProject(cwd, { agents: agents as Agent[] | undefined, dryRun }), dryRun));
+  return 0;
+}
+
 function diagnose(args: string[], cwd: string): number {
   const { values } = parseArgs({
     args,
@@ -127,6 +139,7 @@ export async function main(argv: string[], cwd = process.cwd()): Promise<number>
   try {
     if (command === 'lint') return await lint(rest, cwd);
     if (command === 'gate') return gate(rest, cwd);
+    if (command === 'init') return init(rest, cwd);
     if (command === 'diagnose') return diagnose(rest, cwd);
     if (command === 'mcp') return await mcp(rest, cwd);
     if (command === '--version' || command === '-v') {
