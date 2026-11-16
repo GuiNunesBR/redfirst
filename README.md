@@ -35,15 +35,13 @@ Everything runs offline. No telemetry, no network, no LLM calls.
 
 ## Quick start
 
-redfirst is not on npm yet. Install the packaged tarball from the [latest release](https://github.com/GuiNunesBR/redfirst/releases/latest) (it ships the built CLI, so no install script has to run):
-
 ```bash
-npm i -D https://github.com/GuiNunesBR/redfirst/releases/download/v0.1.0/redfirst-0.1.0.tgz
+npm i -D @guinunesbr/redfirst
 npx redfirst lint                         # lints tests/, cypress/ and e2e/
 npx redfirst gate --base origin/main      # compares your working tree with main
 ```
 
-Or build it yourself: clone the repository, run `npm ci && npm run build && npm pack`, and install the `.tgz` it creates.
+The package is scoped on npm; the command it installs is `redfirst`. It ships the built CLI, so no install script runs.
 
 ### For the agent
 
@@ -68,8 +66,8 @@ Without the plugin, copy the pieces into the project:
 
 ```bash
 mkdir -p .claude/skills .claude/commands
-cp -r node_modules/redfirst/skills/redfirst .claude/skills/
-cp node_modules/redfirst/commands/redfirst-review.md .claude/commands/
+cp -r node_modules/@guinunesbr/redfirst/skills/redfirst .claude/skills/
+cp node_modules/@guinunesbr/redfirst/commands/redfirst-review.md .claude/commands/
 ```
 
 and merge [`hooks/settings.example.json`](hooks/settings.example.json) into `.claude/settings.json`.

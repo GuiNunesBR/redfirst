@@ -12,12 +12,16 @@ const TEST_DIR = /(^|\/)(tests?|e2e|cypress)\/.*\.[cm]?[jt]sx?$/;
 
 /** The project's installed redfirst, or the one this hook ships with (absent in a plugin installed from git). */
 function findCli(root) {
-  try {
-    const pkg = createRequire(path.join(root, 'package.json')).resolve('redfirst/package.json');
-    return path.join(path.dirname(pkg), 'dist', 'cli.js');
-  } catch {
-    return path.resolve(import.meta.dirname, '../dist/cli.js');
+  const require = createRequire(path.join(root, 'package.json'));
+  // The npm package is scoped; the unscoped name is the tarball of 0.1.0.
+  for (const name of ['@guinunesbr/redfirst', 'redfirst']) {
+    try {
+      return path.join(path.dirname(require.resolve(`${name}/package.json`)), 'dist', 'cli.js');
+    } catch {
+      // try the next name
+    }
   }
+  return path.resolve(import.meta.dirname, '../dist/cli.js');
 }
 
 const { root, files } = await editedFiles();

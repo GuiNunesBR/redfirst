@@ -26,9 +26,9 @@ jobs:
         run: test "${GITHUB_REF_NAME}" = "v$(node -p "require('./package.json').version")"
       - name: Publish unless this version is already on npm
         run: |
-          version=$(node -p "require('./package.json').version")
-          if npm view "redfirst@${version}" version > /dev/null 2>&1; then
-            echo "redfirst@${version} is already published."
+          package="$(node -p "require('./package.json').name")@$(node -p "require('./package.json').version")"
+          if npm view "${package}" version > /dev/null 2>&1; then
+            echo "${package} is already published."
           else
             npm publish --access public
           fi

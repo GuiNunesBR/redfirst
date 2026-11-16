@@ -22,7 +22,7 @@ describe('init', () => {
     });
     expect(json('.mcp.json')).toEqual({ mcpServers: { redfirst: { command: 'npx', args: ['--no', 'redfirst', 'mcp'] } } });
     expect(readFileSync(file('AGENTS.md'), 'utf8')).toContain('A green test that can\'t fail is a lie.');
-    expect(result.todo.join('\n')).toMatch(/npm i -D redfirst[\s\S]*claude plugin install redfirst@redfirst --scope project[\s\S]*codex plugin marketplace add[\s\S]*codex mcp add[\s\S]*~\/\.grok\/config\.toml/);
+    expect(result.todo.join('\n')).toMatch(/npm i -D @guinunesbr\/redfirst[\s\S]*claude plugin install redfirst@redfirst --scope project[\s\S]*codex plugin marketplace add[\s\S]*codex mcp add[\s\S]*~\/\.grok\/config\.toml/);
   });
 
   it('keeps what is there and changes nothing on a second run', () => {
@@ -67,7 +67,7 @@ describe('init', () => {
   });
 
   it('does not ask to install redfirst when the project already has it', () => {
-    writeFileSync(file('package.json'), JSON.stringify({ devDependencies: { redfirst: '^0.2.0' } }));
+    writeFileSync(file('package.json'), JSON.stringify({ devDependencies: { '@guinunesbr/redfirst': '^0.2.0' } }));
     expect(initProject(dir, { agents: ['grok'] }).todo.join('\n')).not.toContain('npm i');
   });
 });

@@ -31,15 +31,17 @@ describe('docs', () => {
 
   it('keeps the plugin manifests in step with package.json and pointing at real files', () => {
     const pkg = JSON.parse(read('package.json'));
+    // The npm package is scoped; the plugin and the command keep the bare name.
+    const name = pkg.name.split('/').pop();
     for (const file of ['.claude-plugin/plugin.json', '.codex-plugin/plugin.json']) {
       const manifest = JSON.parse(read(file));
-      expect(manifest.name, file).toBe(pkg.name);
+      expect(manifest.name, file).toBe(name);
       expect(manifest.version, file).toBe(pkg.version);
       for (const ref of [manifest.skills, manifest.hooks].filter(Boolean)) expect(existsSync(path.join(ROOT, ref)), ref).toBe(true);
       expect(pkg.files, file).toContain(path.dirname(file));
     }
     for (const file of ['.claude-plugin/marketplace.json', '.agents/plugins/marketplace.json']) {
-      expect(JSON.parse(read(file)).plugins.map((p: { name: string }) => p.name), file).toEqual([pkg.name]);
+      expect(JSON.parse(read(file)).plugins.map((p: { name: string }) => p.name), file).toEqual([name]);
     }
   });
 

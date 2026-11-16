@@ -103,7 +103,7 @@ export function initProject(cwd: string, request: InitRequest = {}): InitResult 
     result.todo.push(`Grok Build: add ${REPO} under [[marketplace.sources]] in ~/.grok/config.toml, then install redfirst in /plugins`);
   }
   const pkg = path.join(cwd, 'package.json');
-  if (!existsSync(pkg) || !/"redfirst"\s*:/.test(readFileSync(pkg, 'utf8'))) result.todo.unshift('npm i -D redfirst   (the hooks and the MCP server use the project install)');
+  if (!existsSync(pkg) || !/"@guinunesbr\/redfirst"\s*:/.test(readFileSync(pkg, 'utf8'))) result.todo.unshift('npm i -D @guinunesbr/redfirst   (the hooks and the MCP server use the project install)');
 
   if (!request.dryRun) {
     for (const [file, text] of pending) {
