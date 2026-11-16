@@ -25,15 +25,15 @@ Read the feature and the existing tests first. Then climb, and stop at the first
 - Never delete, loosen or skip an assertion, and never change an expected value, to make a test pass.
 - Never add `waitForTimeout`, `cy.wait(<ms>)`, `.only`, a `catch` that hides a failure, or a skip without an issue link.
 - Never edit CI, test or lint config, thresholds, npm scripts or the gate, and never add a dependency, without explicit human approval. Propose the change instead.
-- Heal only **locators and waits**. If the app's behavior changed, stop: it is either a bug or a requirement change, and both are a human's call.
+- Heal only **the test's own mistakes**: a locator that drifted, a wait for the wrong condition, test code or data that broke. If the app's behavior changed, stop: it is either a bug or a requirement change, and both are a human's call. If the app got slower, report it; a longer timeout hides it.
 - Run the changed tests at least 3 times (`--repeat-each=3` in Playwright) before calling them done.
 - If redfirst is installed, run `npx redfirst lint` on what you touched and `npx redfirst gate --base <branch>` before you finish. Fix what they report; do not silence it.
 
 ## Healing protocol
 
 1. **Reproduce** the failure and read the error, the trace or the screenshot.
-2. **Classify** it: locator drift, timing, real bug or environment.
-3. **Fix only locator drift and timing.** Same assertions, same expected values (`redfirst gate --mode heal` enforces this).
+2. **Classify** it: locator drift, test or data bug, timing, contract change, real bug, product change or environment. If redfirst is installed, run `npx redfirst diagnose --report <json> --passing <json of a green run>` (or the `classify_failure` tool) and read its evidence; change the test only when its action is `update-test`.
+3. **Fix only the test's own mistakes.** Same assertions, same expected values (`redfirst gate --mode heal` enforces this).
 4. **Re-run three times.**
 5. **Show the diff.**
 6. **Real bug:** leave the test red and write a short bug note (steps, expected, actual, evidence).

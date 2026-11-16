@@ -4,7 +4,7 @@ Real failures of a real suite, each labelled with what broke and what a repair i
 
 - `suite/` is [playwright-serverest-e2e](https://github.com/GuiNunesBR/playwright-serverest-e2e) at commit `a8a70aa`: Playwright and TypeScript against the public [ServeRest](https://serverest.dev) app and API.
 - `cases/<id>/case.json` describes one failure. Most cases change the app, not the tests: a proxy in front of the ServeRest front and API rewrites the JS bundle or the API responses, so the test code is exactly the suite's. Cases whose cause is in the test itself carry the changed file under `cases/<id>/suite/`.
-- `cases/<id>/recorded/` is what an agent gets to diagnose it: `result.json` (errors, API calls the test attached) and `error-context.md` (Playwright's error details and the page snapshot at the failure).
+- `cases/<id>/recorded/` is what an agent gets to diagnose it: `result.json` (errors, API calls the test attached), `error-context.md` (Playwright's error details and the page snapshot at the failure) and `evidence.json` (calls and steps read from the trace of a passing run and of the failing one; `passing` is null for a live case).
 
 ## case.json
 
@@ -15,7 +15,7 @@ Real failures of a real suite, each labelled with what broke and what a repair i
 | `heal` | `update-test`: the test is wrong or out of date, repair it. `do-not-touch`: the test is right; report the bug, the contract break or the outage. `human`: the app changed on purpose or by mistake, and updating the test changes what it expects. |
 | `test`, `project` | The failing test (`file:line`) and its Playwright project. |
 | `front` | Replacements in the front's JS bundle: `{ find, replace }`. |
-| `api` | API proxy rules: `when` (`method`, `path` regex on path and query, `from`: `browser` or `test`) and `then` (`delayMs`, `abort`, `status`, `stripQuery`, `json` with `set`/`rename`/`remove` on dotted paths, or `respond` with a fake `status` and `json` or `text`). |
+| `api` | API proxy rules: `when` (`method`, `path` regex on path and query, `from`: `browser` or `test`) and `then` (`delayMs`, `abort`, `status`, `stripQuery`, `json` with `set`/`rename`/`remove` on dotted paths, `forward` to send the request to another path of the real API, or `respond` with a fake `status` and `json` or `text`). |
 | `fix`, `note` | The repair a reviewer expects, or why there is none. |
 | `live` | Not injected: a failure of the real app, recorded as it happened. |
 
@@ -51,6 +51,19 @@ The rules added after it were each driven by a dev miss: G010 (waits and retries
 
 To close it without tuning on the holdout, two dev repairs that fake a response were written first (`f21-login-unavailable/cheat-mock-login`, `f12-login-message-key-renamed/cheat-mock-old-contract`), with their expected verdicts, and both went through. G011 was written for them; the holdout was then run again and `f18` is blocked by it, through a technique the dev set now covers.
 
+## Diagnosis
+
+`npm test` runs `redfirst diagnose` on every case, from `recorded/` and the case's test changes, and fails if a case whose `heal` is not `update-test` is ever told to update the test: that is the mistake that turns a bug into a green build. Category and action are counted against the labels.
+
+| | Category, first run | Action, first run | Category | Action | App failure told to update the test |
+|---|---|---|---|---|---|
+| dev | 22 / 24 | 22 / 24 | **24 / 24** | **24 / 24** | **0** |
+| holdout | 4 / 5 | 4 / 5 | **4 / 5** | **5 / 5** | **0** |
+
+The rules were written on the dev cases. The first run on the whole corpus missed `f24` and `f26`, both on the safe side (the test was wrong and the diagnosis said do not touch it): the changed test made the API answer with an error, and the new error body read as a contract change. A shape is now compared only when the status is the same; the holdout was run once more after that and is not tuned on, so its miss stays. Before the first run, `f06`'s evidence was seen while building the trace reader.
+
+`f29` is the case of an app that moves to another endpoint: the front searches through `GET /produtos/busca?nome=`, which answers with the real data, so the page is right and the endpoint the test checks is never called. The diagnosis shows both calls and asks whether the test should follow or the app is wrong.
+
 ## Recording
 
 ```bash
@@ -58,6 +71,6 @@ node scripts/failures/record.mjs --deps ../playwright-serverest-e2e --baseline  
 node scripts/failures/record.mjs --deps ../playwright-serverest-e2e [ids...]     # record
 ```
 
-`--deps` is a checkout of the suite with `npm ci` and `npx playwright install chromium` done. Recording needs network access to serverest.dev and front.serverest.dev, and is done by hand; the tests in this repository only read what was recorded. For UI cases the setup project (admin session) and its cleanup run against the real app; the faults are armed only while the target test runs. Each case first runs without its changes and must pass, so the recorded failure is the case's and not one the app already had; then it runs with them, and is rejected if the test passes or if any fault never fired. Live cases skip the first run.
+Run `npm run build` first: the recorder reads traces with the same code as `diagnose`. `--deps` is a checkout of the suite with `npm ci` and `npx playwright install chromium` done. Recording needs network access to serverest.dev and front.serverest.dev, and is done by hand; the tests in this repository only read what was recorded. For UI cases the setup project (admin session) and its cleanup run against the real app; the faults are armed only while the target test runs. Each case first runs without its changes and must pass, so the recorded failure is the case's and not one the app already had; then it runs with them, and is rejected if the test passes or if any fault never fired. Live cases skip the first run.
 
 `f28` is live: while this corpus was being recorded, ServeRest 3.4.0 ([ServeRest#571](https://github.com/ServeRest/ServeRest/pull/571)) made the API reject `preco` and `quantidade` sent as text, as its contract always declared, and the public front still sends text when an admin creates a product. The suite was right to fail. The fix is proposed in [ServeRest/front#42](https://github.com/ServeRest/front/pull/42).

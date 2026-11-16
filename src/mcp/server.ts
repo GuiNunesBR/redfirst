@@ -2,6 +2,7 @@ import path from 'node:path';
 import { McpServer, type CallToolResult } from '@modelcontextprotocol/server';
 import { StdioServerTransport } from '@modelcontextprotocol/server/stdio';
 import { z } from 'zod';
+import { diagnoseProject, formatDiagnosis } from '../diagnose/run.js';
 import { format } from '../report/format.js';
 import { gateProject, lintProject, UsageError, type Report } from '../run.js';
 
@@ -91,6 +92,36 @@ export function createServer(root: string, version: string): McpServer {
             framework: input.framework,
           }),
         );
+      } catch (error) {
+        return failure(error);
+      }
+    },
+  );
+
+  server.registerTool(
+    'classify_failure',
+    {
+      title: 'Diagnose a failing test',
+      description:
+        'Reads a Playwright JSON report with traces and says, for each failed test, why it failed with the ' +
+        'evidence (the calls and steps of the run, and what changed since a passing run), the probable cause, ' +
+        'what a fix may and must not do, the questions only a human can answer, and a bug report draft when ' +
+        'the app is at fault. Run it before you change a failing test. If the action is not update-test, do not ' +
+        'change the test: report and ask.',
+      inputSchema: z.object({
+        report: z.string().min(1).describe('JSON report of the failing run, relative to the project root.'),
+        passing: z.string().min(1).optional().describe('JSON report of a run where the tests passed, with traces.'),
+        base: z.string().min(1).optional().describe('Git ref of the passing run, to show test code changed since then.'),
+      }),
+      annotations: READ_ONLY,
+    },
+    async (input) => {
+      try {
+        const [report, passing] = inside(root, [input.report, ...(input.passing ? [input.passing] : [])]) ?? [];
+        const diagnoses = diagnoseProject(root, { report: report!, passing, base: input.base });
+        return {
+          content: [{ type: 'text', text: diagnoses.length ? diagnoses.map(formatDiagnosis).join('\n\n') : 'No failed tests in the report.' }],
+        };
       } catch (error) {
         return failure(error);
       }

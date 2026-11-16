@@ -4,6 +4,7 @@ import path from 'node:path';
 import { parseArgs } from 'node:util';
 import type { Framework } from './core/types.js';
 import type { GateMode } from './gate/gate.js';
+import { diagnoseProject, formatDiagnosis } from './diagnose/run.js';
 import { format, FORMATS, type Format } from './report/format.js';
 import { gateProject, lintProject, UsageError, type Report } from './run.js';
 
@@ -15,6 +16,8 @@ Usage:
                 [--allow-removal] [--format text|json|github] [--strict] [--config file]
                 [--allow-protected] [--allow-dependencies]   (human overrides, after review)
   redfirst gate --base-dir <dir> --head-dir <dir> [same options]
+  redfirst diagnose --report <playwright json> [--passing <json>] [--base <ref>] [--format text|json]
+                                               why each test in the report failed, and what a fix may do
   redfirst mcp                                 MCP server on stdio, for the project in the working directory
 
 Exit codes: 0 clean, 1 violations found, 2 usage or internal error.
@@ -97,6 +100,20 @@ function gate(args: string[], cwd: string): number {
   return print(result, as);
 }
 
+function diagnose(args: string[], cwd: string): number {
+  const { values } = parseArgs({
+    args,
+    options: { report: { type: 'string' }, passing: { type: 'string' }, base: { type: 'string' }, format: { type: 'string' } },
+    strict: true,
+  });
+  if (!values.report) throw new UsageError('diagnose needs --report <Playwright JSON report>.');
+  if (values.format !== undefined && values.format !== 'text' && values.format !== 'json') throw new UsageError(`--format must be text or json, got ${values.format}`);
+  const diagnoses = diagnoseProject(cwd, { report: values.report, passing: values.passing, base: values.base });
+  if (values.format === 'json') console.log(JSON.stringify(diagnoses, null, 2));
+  else console.log(diagnoses.length ? diagnoses.map(formatDiagnosis).join('\n\n') : 'diagnose: no failed tests in the report.');
+  return 0;
+}
+
 async function mcp(args: string[], cwd: string): Promise<number> {
   if (args.length) throw new UsageError(`mcp takes no arguments, got ${args.join(' ')}`);
   // Loaded here so lint and gate never pay for the MCP SDK.
@@ -110,6 +127,7 @@ export async function main(argv: string[], cwd = process.cwd()): Promise<number>
   try {
     if (command === 'lint') return await lint(rest, cwd);
     if (command === 'gate') return gate(rest, cwd);
+    if (command === 'diagnose') return diagnose(rest, cwd);
     if (command === 'mcp') return await mcp(rest, cwd);
     if (command === '--version' || command === '-v') {
       console.log(version());

@@ -18,7 +18,8 @@ A green test that can't fail is a lie. Read the feature and the existing tests b
 - Never delete, loosen or skip an assertion, or change an expected value, to make a test pass.
 - Never add fixed sleeps, `.only`, a `catch` that hides a failure, or a skip without an issue link.
 - Never edit CI, test/lint config, thresholds, npm scripts or the gate, and never add a dependency, without explicit human approval. Propose the change instead.
-- Heal only locators and waits. If behavior changed, stop and report: bug or requirement change is a human's call. Leave the test red.
+- Heal only the test's own mistakes (locator drift, a wait for the wrong condition, broken test code or data). If behavior changed or the app got slower, stop and report: bug or requirement change is a human's call. Leave the test red.
+- Before healing, run `npx redfirst diagnose --report <json>` if available; change the test only when its action is `update-test`.
 - Run changed tests 3 times before calling them done.
 - If available, run `npx redfirst lint` and `npx redfirst gate --base <branch>`; fix findings, don't silence them.
 

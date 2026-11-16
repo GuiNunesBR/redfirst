@@ -26,7 +26,8 @@ Each of these turns a red build green without fixing anything. Knowing the Playw
 | `redfirst lint` | 13 deterministic rules (TL000–TL012) for Playwright and Cypress test files, using the TypeScript AST. |
 | `redfirst gate` | Compares the tests at a base and a head and fails when the change weakens them, or touches the files that decide whether tests run (G001–G011). |
 | [`hooks`](hooks) | Agent hooks: block edits to protected files; lint every test file the agent edits and send the errors back. |
-| `redfirst mcp` | An MCP server with `lint` and `gate` as tools, for any agent that speaks MCP. |
+| `redfirst diagnose` | Reads a failing Playwright run and its traces, compares it with a passing run, and says why the test failed and whether a fix may touch the test. |
+| `redfirst mcp` | An MCP server with `lint`, `gate` and `classify_failure` as tools, for any agent that speaks MCP. |
 | Plugin manifests | Install the skill, the command and the hooks as a plugin in Claude Code, Codex or Grok Build. |
 | [`commands/redfirst-review.md`](commands/redfirst-review.md) | A terse senior-SDET review of a test diff. |
 
@@ -95,9 +96,25 @@ gate: FAIL (2 errors, 2 warnings in 1 file)
 
 `--mode heal` makes G005 an error: healing must never change what is expected. `--base-dir`/`--head-dir` compare two folders instead of git refs. Human overrides, after review: `--allow-removal`, `--allow-protected`, `--allow-dependencies`.
 
+### Diagnose
+
+```text
+$ npx redfirst diagnose --report red.json --passing green.json
+users.spec.ts:3 lists the users
+  failed: Error: page.waitForResponse: Timeout 5000ms exceeded. at tests/users.spec.ts:7
+  diagnosis: product-change (high confidence); action: human
+  changed since the passing run:
+    - The app called GET /v2/people (200) where the passing run called GET /users (200), and the answer has the same shape.
+  questions for a human:
+    - Is the new endpoint intended? Then the test should follow it, after a human says so.
+    - Or did the app call the wrong endpoint? Then it is a bug to report and the test stays as it is.
+```
+
+The evidence comes from the traces: each call's endpoint, status, time and body shape, the test's steps, and what changed since the passing run (endpoints, statuses, shapes, slowness, faked answers, test code with `--base`). The action is `update-test` only when the evidence points at the test; otherwise it is `do-not-touch`, with a bug report draft, or `human`, with the questions to ask. Details and limits in [docs/diagnose.md](docs/diagnose.md).
+
 ### MCP server
 
-`redfirst mcp` serves `lint` and `gate` as read-only tools over stdio, for the project in the directory it starts in. The model of the agent does the reasoning; the server only runs the checks, offline.
+`redfirst mcp` serves `lint`, `gate` and `classify_failure` as read-only tools over stdio, for the project in the directory it starts in. The model of the agent does the reasoning; the server only runs the checks, offline.
 
 ```bash
 claude mcp add --scope project redfirst -- npx --no redfirst mcp    # Claude Code (Grok Build reads it too)
@@ -155,7 +172,7 @@ The tool was also run on two real suites. Findings, false positives and what cha
 
 ## Limits
 
-- Static analysis only: redfirst reads the code; it does not run the tests or the app.
+- Lint and gate are static: they read the code; redfirst does not run the tests or the app. `diagnose` reads the reports and traces of runs you made.
 - Tests are matched by title, so a renamed or moved test shows up as removed.
 - Assertions inside helper functions are not followed; a `verify…`/`check…` call counts as one opaque assertion.
 - A gate guards the integrity of the tests, not the correctness of the requirements. A rule that was wrong on purpose passes every validator. That is why the skill starts at rung 0 and the review command asks a human to look at the expectation.

@@ -6,6 +6,7 @@ import { Client, InMemoryTransport } from '@modelcontextprotocol/client';
 import { StdioClientTransport } from '@modelcontextprotocol/client/stdio';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { createServer } from '../src/mcp/server.js';
+import { writeRun } from './support/trace.js';
 
 const ROOT = path.resolve(import.meta.dirname, '..');
 
@@ -30,9 +31,9 @@ describe('MCP server', () => {
   });
   afterAll(() => client.close());
 
-  it('offers lint and gate, read-only, without the human overrides', async () => {
+  it('offers lint, gate and classify_failure, read-only, without the human overrides', async () => {
     const { tools } = await client.listTools();
-    expect(tools.map((t) => t.name).sort()).toEqual(['gate', 'lint']);
+    expect(tools.map((t) => t.name).sort()).toEqual(['classify_failure', 'gate', 'lint']);
     for (const tool of tools) expect(tool.annotations?.readOnlyHint).toBe(true);
     const gate = tools.find((t) => t.name === 'gate')!;
     expect(Object.keys(gate.inputSchema.properties ?? {}).sort()).toEqual(['base', 'framework', 'head', 'mode', 'paths']);
@@ -56,6 +57,12 @@ describe('MCP server', () => {
       expect(result.isError, p).toBe(true);
       expect(textOf(result)).toContain('outside the project');
     }
+  });
+
+  it('refuses a report outside the project', async () => {
+    const result = await client.callTool({ name: 'classify_failure', arguments: { report: '../report.json' } });
+    expect(result.isError).toBe(true);
+    expect(textOf(result)).toContain('outside the project');
   });
 
   it('refuses a ref that git would read as an option', async () => {
@@ -92,6 +99,35 @@ describe('MCP gate on a git repository', () => {
     expect(text).toContain('G003');
     expect(text).toContain('gate: FAIL');
   }, 30_000);
+});
+
+describe('MCP classify_failure on a report with traces', () => {
+  let dir: string;
+  let client: Client;
+  beforeAll(async () => {
+    dir = mkdtempSync(path.join(tmpdir(), 'redfirst-diagnose-'));
+    writeRun(path.join(dir, 'green'), '/users', false);
+    writeRun(path.join(dir, 'red'), '/v2/people', true);
+    client = await connect(dir);
+  });
+  afterAll(async () => {
+    await client.close();
+    rmSync(dir, { recursive: true, force: true });
+  });
+
+  it('shows the app moved to another endpoint and asks instead of telling the agent to fix the test', async () => {
+    const text = textOf(await client.callTool({ name: 'classify_failure', arguments: { report: 'red/report.json', passing: 'green/report.json' } }));
+    expect(text).toContain('diagnosis: product-change (high confidence); action: human');
+    expect(text).toContain('The app called GET /v2/people (200) where the passing run called GET /users (200), and the answer has the same shape.');
+    expect(text).toMatch(/wrong endpoint/);
+    expect(text).not.toContain('action: update-test');
+  });
+
+  it('says what it cannot tell without a passing run', async () => {
+    const text = textOf(await client.callTool({ name: 'classify_failure', arguments: { report: 'red/report.json' } }));
+    expect(text).toContain('No passing run to compare with');
+    expect(text).not.toContain('action: update-test');
+  });
 });
 
 describe('redfirst mcp over stdio', () => {
