@@ -1,0 +1,8 @@
+{
+  "description": "A change to the test passes the admin's name as the password.",
+  "category": "test-bug",
+  "heal": "update-test",
+  "test": "tests/e2e/login.spec.ts:10",
+  "project": "chromium",
+  "fix": "Log in with admin.password."
+}

@@ -1,0 +1,19 @@
+{
+  "description": "The connection drops on GET /usuarios/{id}.",
+  "category": "environment",
+  "heal": "do-not-touch",
+  "test": "tests/api/usuarios.spec.ts:38",
+  "project": "api",
+  "api": [
+    {
+      "when": {
+        "method": "GET",
+        "path": "^/usuarios/[^/?]+$",
+        "from": "test"
+      },
+      "then": {
+        "abort": true
+      }
+    }
+  ]
+}

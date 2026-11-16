@@ -1,0 +1,24 @@
+{
+  "description": "DELETE /usuarios/{id} answers success but the user still exists.",
+  "category": "product-bug",
+  "heal": "do-not-touch",
+  "test": "tests/api/usuarios.spec.ts:52",
+  "project": "api",
+  "api": [
+    {
+      "when": {
+        "method": "DELETE",
+        "path": "^/usuarios/[^/?]+$",
+        "from": "test"
+      },
+      "then": {
+        "respond": {
+          "status": 200,
+          "json": {
+            "message": "Registro excluído com sucesso"
+          }
+        }
+      }
+    }
+  ]
+}

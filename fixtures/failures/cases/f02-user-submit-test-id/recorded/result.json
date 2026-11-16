@@ -1,0 +1,48 @@
+{
+  "recordedAt": "2026-11-16",
+  "test": {
+    "file": "tests/e2e/usuarios-admin.spec.ts",
+    "line": 8,
+    "title": "cadastra um cliente pelo painel e o encontra na listagem",
+    "project": "chromium"
+  },
+  "status": "failed",
+  "durationMs": 17417,
+  "errors": [
+    {
+      "message": "Error: O front não chamou POST /usuarios\n\n   at ../src/helpers/evidencias.ts:81\n\n  79 |   let relogio: NodeJS.Timeout | undefined;\n  80 |   const limite = new Promise<never>((_, reject) => {\n> 81 |     relogio = setTimeout(() => reject(new Error(`O front não chamou ${metodo} ${caminho}`)), 10_000);\n     |                                       ^\n  82 |   });\n  83 |\n  84 |   await page.route(casa, interceptar);\n    at Timeout._onTimeout (src/helpers/evidencias.ts:81:39)",
+      "location": {
+        "file": "src/helpers/evidencias.ts",
+        "line": 81,
+        "column": 39
+      }
+    },
+    {
+      "message": "Error: page.unroute: Target page, context or browser has been closed\n\n   at ../src/helpers/evidencias.ts:90\n\n  88 |   } finally {\n  89 |     clearTimeout(relogio);\n> 90 |     await page.unroute(casa, interceptar);\n     |                ^\n  91 |   }\n  92 | }\n  93 |\n    at capturarRespostaDoFront (src/helpers/evidencias.ts:90:16)\n    at tests/e2e/usuarios-admin.spec.ts:17:22",
+      "location": {
+        "file": "src/helpers/evidencias.ts",
+        "line": 90,
+        "column": 16
+      }
+    }
+  ],
+  "apiCalls": [
+    {
+      "name": "API GET /usuarios?email=qa.mwjamh8qhsyv%40teste.com → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "GET",
+          "url": "http://127.0.0.1:64809/usuarios?email=qa.mwjamh8qhsyv%40teste.com",
+          "corpo": null
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "quantidade": 0,
+            "usuarios": []
+          }
+        }
+      }
+    }
+  ]
+}

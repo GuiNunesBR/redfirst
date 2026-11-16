@@ -1,0 +1,155 @@
+{
+  "recordedAt": "2026-11-16",
+  "test": {
+    "file": "tests/api/produtos.spec.ts",
+    "line": 6,
+    "title": "admin cadastra produto e consulta pelo id",
+    "project": "api"
+  },
+  "status": "failed",
+  "durationMs": 3524,
+  "errors": [
+    {
+      "message": "Error: Contrato inválido:\n✖ Invalid input: expected number, received string\n  → at preco\n\n   at ../src/api/schemas.ts:46\n\n  44 |   const resultado = schema.safeParse(dados);\n  45 |   if (!resultado.success) {\n> 46 |     throw new Error(`Contrato inválido:\\n${z.prettifyError(resultado.error)}`);\n     |           ^\n  47 |   }\n  48 |   return resultado.data;\n  49 | }\n    at validar (src/api/schemas.ts:46:11)\n    at tests/api/produtos.spec.ts:17:12",
+      "location": {
+        "file": "src/api/schemas.ts",
+        "line": 46,
+        "column": 11
+      }
+    }
+  ],
+  "apiCalls": [
+    {
+      "name": "API POST /usuarios → 201",
+      "body": {
+        "requisicao": {
+          "metodo": "POST",
+          "url": "http://127.0.0.1:59775/usuarios",
+          "corpo": {
+            "nome": "Ronald Murphy",
+            "email": "qa.mwja606usk9r@teste.com",
+            "password": "VXcduRFM21",
+            "administrador": "true"
+          }
+        },
+        "resposta": {
+          "status": 201,
+          "corpo": {
+            "message": "Cadastro realizado com sucesso",
+            "_id": "GSGiGSKaSDoLzLoF"
+          }
+        }
+      }
+    },
+    {
+      "name": "API POST /login → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "POST",
+          "url": "http://127.0.0.1:59775/login",
+          "corpo": {
+            "email": "qa.mwja606usk9r@teste.com",
+            "password": "VXcduRFM21"
+          }
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "message": "Login realizado com sucesso",
+            "authorization": "Bearer <token>"
+          }
+        }
+      }
+    },
+    {
+      "name": "API POST /produtos → 201",
+      "body": {
+        "requisicao": {
+          "metodo": "POST",
+          "url": "http://127.0.0.1:59775/produtos",
+          "corpo": {
+            "nome": "Produto mwja6150mhqr",
+            "preco": 2082,
+            "descricao": "New plum Keyboard with ergonomic design for agitated comfort",
+            "quantidade": 31
+          }
+        },
+        "resposta": {
+          "status": 201,
+          "corpo": {
+            "message": "Cadastro realizado com sucesso",
+            "_id": "wiT036a942UBUcAc"
+          }
+        }
+      }
+    },
+    {
+      "name": "API GET /produtos/wiT036a942UBUcAc → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "GET",
+          "url": "http://127.0.0.1:59775/produtos/wiT036a942UBUcAc",
+          "corpo": null
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "nome": "Produto mwja6150mhqr",
+            "preco": "470",
+            "descricao": "New plum Keyboard with ergonomic design for agitated comfort",
+            "quantidade": 31,
+            "_id": "wiT036a942UBUcAc"
+          }
+        }
+      }
+    },
+    {
+      "name": "API DELETE /carrinhos/cancelar-compra → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "DELETE",
+          "url": "http://127.0.0.1:59775/carrinhos/cancelar-compra",
+          "corpo": null
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "message": "Não foi encontrado carrinho para esse usuário"
+          }
+        }
+      }
+    },
+    {
+      "name": "API DELETE /produtos/wiT036a942UBUcAc → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "DELETE",
+          "url": "http://127.0.0.1:59775/produtos/wiT036a942UBUcAc",
+          "corpo": null
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "message": "Registro excluído com sucesso"
+          }
+        }
+      }
+    },
+    {
+      "name": "API DELETE /usuarios/GSGiGSKaSDoLzLoF → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "DELETE",
+          "url": "http://127.0.0.1:59775/usuarios/GSGiGSKaSDoLzLoF",
+          "corpo": null
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "message": "Registro excluído com sucesso"
+          }
+        }
+      }
+    }
+  ]
+}

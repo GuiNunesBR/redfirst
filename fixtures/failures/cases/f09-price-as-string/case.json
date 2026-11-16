@@ -1,0 +1,23 @@
+{
+  "description": "GET /produtos/{id} returns preco as a string.",
+  "category": "contract",
+  "heal": "do-not-touch",
+  "test": "tests/api/produtos.spec.ts:6",
+  "project": "api",
+  "api": [
+    {
+      "when": {
+        "method": "GET",
+        "path": "^/produtos/[^/?]+$",
+        "from": "test"
+      },
+      "then": {
+        "json": {
+          "set": {
+            "preco": "470"
+          }
+        }
+      }
+    }
+  ]
+}

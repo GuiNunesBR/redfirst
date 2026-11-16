@@ -1,0 +1,159 @@
+{
+  "recordedAt": "2026-11-16",
+  "test": {
+    "file": "tests/api/produtos.spec.ts",
+    "line": 47,
+    "title": "filtra a listagem pelo nome",
+    "project": "api"
+  },
+  "status": "failed",
+  "durationMs": 3544,
+  "errors": [
+    {
+      "message": "Error: Contrato inválido:\n✖ Invalid input: expected number, received undefined\n  → at quantidade\n\n   at ../src/api/schemas.ts:46\n\n  44 |   const resultado = schema.safeParse(dados);\n  45 |   if (!resultado.success) {\n> 46 |     throw new Error(`Contrato inválido:\\n${z.prettifyError(resultado.error)}`);\n     |           ^\n  47 |   }\n  48 |   return resultado.data;\n  49 | }\n    at validar (src/api/schemas.ts:46:11)\n    at tests/api/produtos.spec.ts:53:19",
+      "location": {
+        "file": "src/api/schemas.ts",
+        "line": 46,
+        "column": 11
+      }
+    }
+  ],
+  "apiCalls": [
+    {
+      "name": "API POST /usuarios → 201",
+      "body": {
+        "requisicao": {
+          "metodo": "POST",
+          "url": "http://127.0.0.1:59232/usuarios",
+          "corpo": {
+            "nome": "Flossie Goldner",
+            "email": "qa.mwja6euawrxz@teste.com",
+            "password": "Pxn8Hr4Yih",
+            "administrador": "true"
+          }
+        },
+        "resposta": {
+          "status": 201,
+          "corpo": {
+            "message": "Cadastro realizado com sucesso",
+            "_id": "7lutiRQt9ikQJv1O"
+          }
+        }
+      }
+    },
+    {
+      "name": "API POST /login → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "POST",
+          "url": "http://127.0.0.1:59232/login",
+          "corpo": {
+            "email": "qa.mwja6euawrxz@teste.com",
+            "password": "Pxn8Hr4Yih"
+          }
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "message": "Login realizado com sucesso",
+            "authorization": "Bearer <token>"
+          }
+        }
+      }
+    },
+    {
+      "name": "API POST /produtos → 201",
+      "body": {
+        "requisicao": {
+          "metodo": "POST",
+          "url": "http://127.0.0.1:59232/produtos",
+          "corpo": {
+            "nome": "Produto mwja6ftixsyt",
+            "preco": 1453,
+            "descricao": "Introducing the Uzbekistan-inspired Mouse, blending simple style with local craftsmanship",
+            "quantidade": 43
+          }
+        },
+        "resposta": {
+          "status": 201,
+          "corpo": {
+            "message": "Cadastro realizado com sucesso",
+            "_id": "7cOWcdH0ShOaUCT2"
+          }
+        }
+      }
+    },
+    {
+      "name": "API GET /produtos?nome=Produto+mwja6ftixsyt → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "GET",
+          "url": "http://127.0.0.1:59232/produtos?nome=Produto+mwja6ftixsyt",
+          "corpo": null
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "produtos": [
+              {
+                "nome": "Produto mwja6ftixsyt",
+                "preco": 1453,
+                "descricao": "Introducing the Uzbekistan-inspired Mouse, blending simple style with local craftsmanship",
+                "quantidade": 43,
+                "_id": "7cOWcdH0ShOaUCT2"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "API DELETE /carrinhos/cancelar-compra → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "DELETE",
+          "url": "http://127.0.0.1:59232/carrinhos/cancelar-compra",
+          "corpo": null
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "message": "Não foi encontrado carrinho para esse usuário"
+          }
+        }
+      }
+    },
+    {
+      "name": "API DELETE /produtos/7cOWcdH0ShOaUCT2 → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "DELETE",
+          "url": "http://127.0.0.1:59232/produtos/7cOWcdH0ShOaUCT2",
+          "corpo": null
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "message": "Registro excluído com sucesso"
+          }
+        }
+      }
+    },
+    {
+      "name": "API DELETE /usuarios/7lutiRQt9ikQJv1O → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "DELETE",
+          "url": "http://127.0.0.1:59232/usuarios/7lutiRQt9ikQJv1O",
+          "corpo": null
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "message": "Registro excluído com sucesso"
+          }
+        }
+      }
+    }
+  ]
+}

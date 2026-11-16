@@ -1,0 +1,23 @@
+{
+  "description": "POST /usuarios returns id instead of _id.",
+  "category": "contract",
+  "heal": "do-not-touch",
+  "test": "tests/api/usuarios.spec.ts:6",
+  "project": "api",
+  "api": [
+    {
+      "when": {
+        "method": "POST",
+        "path": "^/usuarios$",
+        "from": "test"
+      },
+      "then": {
+        "json": {
+          "rename": {
+            "_id": "id"
+          }
+        }
+      }
+    }
+  ]
+}

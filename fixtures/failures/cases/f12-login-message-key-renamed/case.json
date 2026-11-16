@@ -1,0 +1,23 @@
+{
+  "description": "POST /login answers the page with mensagem instead of message; the front still logs in.",
+  "category": "contract",
+  "heal": "do-not-touch",
+  "test": "tests/e2e/login.spec.ts:10",
+  "project": "chromium",
+  "api": [
+    {
+      "when": {
+        "method": "POST",
+        "path": "^/login$",
+        "from": "browser"
+      },
+      "then": {
+        "json": {
+          "rename": {
+            "message": "mensagem"
+          }
+        }
+      }
+    }
+  ]
+}

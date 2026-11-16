@@ -1,0 +1,22 @@
+{
+  "description": "The API answers the page's login with 503 Service Unavailable.",
+  "category": "environment",
+  "heal": "do-not-touch",
+  "test": "tests/e2e/login.spec.ts:10",
+  "project": "chromium",
+  "api": [
+    {
+      "when": {
+        "method": "POST",
+        "path": "^/login$",
+        "from": "browser"
+      },
+      "then": {
+        "respond": {
+          "status": 503,
+          "text": "<html><body><h1>503 Service Temporarily Unavailable</h1></body></html>"
+        }
+      }
+    }
+  ]
+}

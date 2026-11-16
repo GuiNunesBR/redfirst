@@ -1,0 +1,119 @@
+{
+  "recordedAt": "2026-11-16",
+  "test": {
+    "file": "tests/api/produtos.spec.ts",
+    "line": 40,
+    "title": "rejeita preço negativo",
+    "project": "api"
+  },
+  "status": "failed",
+  "durationMs": 2239,
+  "errors": [
+    {
+      "message": "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: 400\nReceived: 201\n\n  41 |     const resposta = await api.criarProduto(novoProduto({ preco: -1 }), admin.token);\n  42 |\n> 43 |     expect(resposta.status()).toBe(400);\n     |                               ^\n  44 |     expect(await resposta.json()).toEqual({ preco: 'preco deve ser um número positivo' });\n  45 |   });\n  46 |\n    at tests/api/produtos.spec.ts:43:31",
+      "location": {
+        "file": "tests/api/produtos.spec.ts",
+        "line": 43,
+        "column": 31
+      }
+    }
+  ],
+  "apiCalls": [
+    {
+      "name": "API POST /usuarios → 201",
+      "body": {
+        "requisicao": {
+          "metodo": "POST",
+          "url": "http://127.0.0.1:58738/usuarios",
+          "corpo": {
+            "nome": "Rashawn Hauck",
+            "email": "qa.mwja87ze4im1@teste.com",
+            "password": "jDplqejLlx",
+            "administrador": "true"
+          }
+        },
+        "resposta": {
+          "status": 201,
+          "corpo": {
+            "message": "Cadastro realizado com sucesso",
+            "_id": "eMptSlWAlBrc7FQ8"
+          }
+        }
+      }
+    },
+    {
+      "name": "API POST /login → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "POST",
+          "url": "http://127.0.0.1:58738/login",
+          "corpo": {
+            "email": "qa.mwja87ze4im1@teste.com",
+            "password": "jDplqejLlx"
+          }
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "message": "Login realizado com sucesso",
+            "authorization": "Bearer <token>"
+          }
+        }
+      }
+    },
+    {
+      "name": "API POST /produtos → 201",
+      "body": {
+        "requisicao": {
+          "metodo": "POST",
+          "url": "http://127.0.0.1:58738/produtos",
+          "corpo": {
+            "nome": "Produto mwja88xhaaso",
+            "preco": -1,
+            "descricao": "Stylish Hat designed to make you stand out with powerless looks",
+            "quantidade": 46
+          }
+        },
+        "resposta": {
+          "status": 201,
+          "corpo": {
+            "message": "Cadastro realizado com sucesso",
+            "_id": "aBcDeFgH12345678"
+          }
+        }
+      }
+    },
+    {
+      "name": "API DELETE /carrinhos/cancelar-compra → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "DELETE",
+          "url": "http://127.0.0.1:58738/carrinhos/cancelar-compra",
+          "corpo": null
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "message": "Não foi encontrado carrinho para esse usuário"
+          }
+        }
+      }
+    },
+    {
+      "name": "API DELETE /usuarios/eMptSlWAlBrc7FQ8 → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "DELETE",
+          "url": "http://127.0.0.1:58738/usuarios/eMptSlWAlBrc7FQ8",
+          "corpo": null
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "message": "Registro excluído com sucesso"
+          }
+        }
+      }
+    }
+  ]
+}

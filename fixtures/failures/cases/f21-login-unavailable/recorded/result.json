@@ -1,0 +1,114 @@
+{
+  "recordedAt": "2026-11-16",
+  "test": {
+    "file": "tests/e2e/login.spec.ts",
+    "line": 10,
+    "title": "admin entra e vê a home administrativa",
+    "project": "chromium"
+  },
+  "status": "failed",
+  "durationMs": 11088,
+  "errors": [
+    {
+      "message": "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: 200\nReceived: 503\n\n  14 |     const resposta = await capturarApi('POST', '/login', () => login.entrar(admin.email, admin.password));\n  15 |\n> 16 |     expect(resposta.status).toBe(200);\n     |                             ^\n  17 |     expect(validar(LoginSchema, resposta.corpo).message).toBe('Login realizado com sucesso');\n  18 |     await expect(page).toHaveURL(/\\/admin\\/home$/);\n  19 |     await expect(new AdminHomePage(page).saudacao).toContainText(`Bem Vindo ${admin.nome}`);\n    at tests/e2e/login.spec.ts:16:29",
+      "location": {
+        "file": "tests/e2e/login.spec.ts",
+        "line": 16,
+        "column": 29
+      }
+    }
+  ],
+  "apiCalls": [
+    {
+      "name": "API POST /usuarios → 201",
+      "body": {
+        "requisicao": {
+          "metodo": "POST",
+          "url": "http://127.0.0.1:58460/usuarios",
+          "corpo": {
+            "nome": "Junior Leuschke",
+            "email": "qa.mwjacw71w2z4@teste.com",
+            "password": "i6fb3ovD0O",
+            "administrador": "true"
+          }
+        },
+        "resposta": {
+          "status": 201,
+          "corpo": {
+            "message": "Cadastro realizado com sucesso",
+            "_id": "5uHgb6Wd6eczvZWK"
+          }
+        }
+      }
+    },
+    {
+      "name": "API POST /login → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "POST",
+          "url": "http://127.0.0.1:58460/login",
+          "corpo": {
+            "email": "qa.mwjacw71w2z4@teste.com",
+            "password": "i6fb3ovD0O"
+          }
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "message": "Login realizado com sucesso",
+            "authorization": "Bearer <token>"
+          }
+        }
+      }
+    },
+    {
+      "name": "Front POST /login → 503",
+      "body": {
+        "requisicao": {
+          "metodo": "POST",
+          "url": "http://127.0.0.1:58460/login",
+          "corpo": {
+            "email": "qa.mwjacw71w2z4@teste.com",
+            "password": "i6fb3ovD0O"
+          }
+        },
+        "resposta": {
+          "status": 503,
+          "corpo": "<html><body><h1>503 Service Temporarily Unavailable</h1></body></html>"
+        }
+      }
+    },
+    {
+      "name": "API DELETE /carrinhos/cancelar-compra → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "DELETE",
+          "url": "http://127.0.0.1:58460/carrinhos/cancelar-compra",
+          "corpo": null
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "message": "Não foi encontrado carrinho para esse usuário"
+          }
+        }
+      }
+    },
+    {
+      "name": "API DELETE /usuarios/5uHgb6Wd6eczvZWK → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "DELETE",
+          "url": "http://127.0.0.1:58460/usuarios/5uHgb6Wd6eczvZWK",
+          "corpo": null
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "message": "Registro excluído com sucesso"
+          }
+        }
+      }
+    }
+  ]
+}

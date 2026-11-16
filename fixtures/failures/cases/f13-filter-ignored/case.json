@@ -1,0 +1,19 @@
+{
+  "description": "GET /produtos ignores the nome filter and returns every product.",
+  "category": "product-bug",
+  "heal": "do-not-touch",
+  "test": "tests/api/produtos.spec.ts:47",
+  "project": "api",
+  "api": [
+    {
+      "when": {
+        "method": "GET",
+        "path": "^/produtos\\?nome=",
+        "from": "test"
+      },
+      "then": {
+        "stripQuery": true
+      }
+    }
+  ]
+}

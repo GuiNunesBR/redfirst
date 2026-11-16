@@ -1,0 +1,116 @@
+{
+  "recordedAt": "2026-11-16",
+  "test": {
+    "file": "tests/e2e/login.spec.ts",
+    "line": 10,
+    "title": "admin entra e vê a home administrativa",
+    "project": "chromium"
+  },
+  "status": "failed",
+  "durationMs": 11727,
+  "errors": [
+    {
+      "message": "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: 200\nReceived: 401\n\n  14 |     const resposta = await capturarApi('POST', '/login', () => login.entrar(admin.email, admin.nome));\n  15 |\n> 16 |     expect(resposta.status).toBe(200);\n     |                             ^\n  17 |     expect(validar(LoginSchema, resposta.corpo).message).toBe('Login realizado com sucesso');\n  18 |     await expect(page).toHaveURL(/\\/admin\\/home$/);\n  19 |     await expect(new AdminHomePage(page).saudacao).toContainText(`Bem Vindo ${admin.nome}`);\n    at tests/e2e/login.spec.ts:16:29",
+      "location": {
+        "file": "tests/e2e/login.spec.ts",
+        "line": 16,
+        "column": 29
+      }
+    }
+  ],
+  "apiCalls": [
+    {
+      "name": "API POST /usuarios → 201",
+      "body": {
+        "requisicao": {
+          "metodo": "POST",
+          "url": "http://127.0.0.1:57333/usuarios",
+          "corpo": {
+            "nome": "Ross Beer",
+            "email": "qa.mwjae6wo2mke@teste.com",
+            "password": "ds2TBviyUg",
+            "administrador": "true"
+          }
+        },
+        "resposta": {
+          "status": 201,
+          "corpo": {
+            "message": "Cadastro realizado com sucesso",
+            "_id": "3kTIAdA4XspK10KS"
+          }
+        }
+      }
+    },
+    {
+      "name": "API POST /login → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "POST",
+          "url": "http://127.0.0.1:57333/login",
+          "corpo": {
+            "email": "qa.mwjae6wo2mke@teste.com",
+            "password": "ds2TBviyUg"
+          }
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "message": "Login realizado com sucesso",
+            "authorization": "Bearer <token>"
+          }
+        }
+      }
+    },
+    {
+      "name": "Front POST /login → 401",
+      "body": {
+        "requisicao": {
+          "metodo": "POST",
+          "url": "http://127.0.0.1:57333/login",
+          "corpo": {
+            "email": "qa.mwjae6wo2mke@teste.com",
+            "password": "Ross Beer"
+          }
+        },
+        "resposta": {
+          "status": 401,
+          "corpo": {
+            "message": "Email e/ou senha inválidos"
+          }
+        }
+      }
+    },
+    {
+      "name": "API DELETE /carrinhos/cancelar-compra → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "DELETE",
+          "url": "http://127.0.0.1:57333/carrinhos/cancelar-compra",
+          "corpo": null
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "message": "Não foi encontrado carrinho para esse usuário"
+          }
+        }
+      }
+    },
+    {
+      "name": "API DELETE /usuarios/3kTIAdA4XspK10KS → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "DELETE",
+          "url": "http://127.0.0.1:57333/usuarios/3kTIAdA4XspK10KS",
+          "corpo": null
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "message": "Registro excluído com sucesso"
+          }
+        }
+      }
+    }
+  ]
+}

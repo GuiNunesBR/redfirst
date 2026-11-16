@@ -1,0 +1,19 @@
+{
+  "description": "The user list endpoint answers the page after 9 s.",
+  "category": "timing",
+  "heal": "do-not-touch",
+  "test": "tests/e2e/usuarios-admin.spec.ts:8",
+  "project": "chromium",
+  "api": [
+    {
+      "when": {
+        "method": "GET",
+        "path": "^/usuarios$",
+        "from": "browser"
+      },
+      "then": {
+        "delayMs": 9000
+      }
+    }
+  ]
+}

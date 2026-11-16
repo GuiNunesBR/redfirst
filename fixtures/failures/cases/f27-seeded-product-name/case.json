@@ -1,0 +1,8 @@
+{
+  "description": "A change to the test creates a product named Logitech MX Vertical, which already exists on the shared API.",
+  "category": "data",
+  "heal": "update-test",
+  "test": "tests/api/produtos.spec.ts:6",
+  "project": "api",
+  "fix": "Generate a unique name, as novoProduto() does."
+}

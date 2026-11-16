@@ -1,0 +1,9 @@
+{
+  "description": "Not injected: the live front sends preco and quantidade as text when an admin creates a product, and the API rejects them with 400.",
+  "category": "product-bug",
+  "heal": "do-not-touch",
+  "test": "tests/e2e/produtos-admin.spec.ts:9",
+  "project": "chromium",
+  "live": true,
+  "note": "Found while building this corpus: the suite's test was right to fail."
+}

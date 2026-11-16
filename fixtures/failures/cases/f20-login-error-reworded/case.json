@@ -1,0 +1,23 @@
+{
+  "description": "The invalid-login message changed to Credenciais inválidas.",
+  "category": "product-change",
+  "heal": "human",
+  "test": "tests/e2e/login.spec.ts:23",
+  "project": "chromium",
+  "api": [
+    {
+      "when": {
+        "method": "POST",
+        "path": "^/login$",
+        "from": "browser"
+      },
+      "then": {
+        "json": {
+          "set": {
+            "message": "Credenciais inválidas"
+          }
+        }
+      }
+    }
+  ]
+}

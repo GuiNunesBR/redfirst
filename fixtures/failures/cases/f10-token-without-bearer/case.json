@@ -1,0 +1,23 @@
+{
+  "description": "POST /login returns the token without the Bearer prefix.",
+  "category": "contract",
+  "heal": "do-not-touch",
+  "test": "tests/api/login.spec.ts:6",
+  "project": "api",
+  "api": [
+    {
+      "when": {
+        "method": "POST",
+        "path": "^/login$",
+        "from": "test"
+      },
+      "then": {
+        "json": {
+          "set": {
+            "authorization": "eyJhbGciOiJIUzI1NiJ9.e30.token-sem-prefixo"
+          }
+        }
+      }
+    }
+  ]
+}

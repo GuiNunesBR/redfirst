@@ -1,0 +1,20 @@
+{
+  "description": "Login answers the page after 12 s: the front did call it, after the 10 s capture deadline.",
+  "category": "timing",
+  "heal": "do-not-touch",
+  "test": "tests/e2e/login.spec.ts:10",
+  "project": "chromium",
+  "api": [
+    {
+      "when": {
+        "method": "POST",
+        "path": "^/login$",
+        "from": "browser"
+      },
+      "then": {
+        "delayMs": 12000
+      }
+    }
+  ],
+  "note": "The error says the front did not call POST /login; the request was made and was slow."
+}

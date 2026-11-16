@@ -1,0 +1,13 @@
+{
+  "description": "The shopping list shows the unit price instead of price times quantity.",
+  "category": "product-bug",
+  "heal": "do-not-touch",
+  "test": "tests/e2e/loja.spec.ts:11",
+  "project": "chromium",
+  "front": [
+    {
+      "find": "\"Pre\\xe7o R$\",e.preco*e.amount",
+      "replace": "\"Pre\\xe7o R$\",e.preco"
+    }
+  ]
+}

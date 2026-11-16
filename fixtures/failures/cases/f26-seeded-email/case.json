@@ -1,0 +1,8 @@
+{
+  "description": "A change to the test signs up with fulano@qa.com, which already exists on the shared API.",
+  "category": "data",
+  "heal": "update-test",
+  "test": "tests/api/usuarios.spec.ts:6",
+  "project": "api",
+  "fix": "Generate a unique email, as novoUsuario() does."
+}

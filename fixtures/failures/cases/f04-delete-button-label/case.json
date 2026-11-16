@@ -1,0 +1,14 @@
+{
+  "description": "The app relabelled the product list's delete button from Excluir to Remover.",
+  "category": "locator",
+  "heal": "update-test",
+  "test": "tests/e2e/produtos-admin.spec.ts:32",
+  "project": "chromium",
+  "front": [
+    {
+      "find": "return e.removeProduct(a._id)}},\"Excluir\"",
+      "replace": "return e.removeProduct(a._id)}},\"Remover\""
+    }
+  ],
+  "fix": "ListarProdutosPage.excluir clicks the button named Remover."
+}

@@ -1,0 +1,143 @@
+{
+  "recordedAt": "2026-11-16",
+  "test": {
+    "file": "tests/e2e/produtos-admin.spec.ts",
+    "line": 32,
+    "title": "exclui um produto pela listagem",
+    "project": "chromium"
+  },
+  "status": "failed",
+  "durationMs": 22171,
+  "errors": [
+    {
+      "message": "Error: O front não chamou DELETE /produtos/P7qYQ1yj4k4nN152\n\n   at ../src/helpers/evidencias.ts:81\n\n  79 |   let relogio: NodeJS.Timeout | undefined;\n  80 |   const limite = new Promise<never>((_, reject) => {\n> 81 |     relogio = setTimeout(() => reject(new Error(`O front não chamou ${metodo} ${caminho}`)), 10_000);\n     |                                       ^\n  82 |   });\n  83 |\n  84 |   await page.route(casa, interceptar);\n    at Timeout._onTimeout (src/helpers/evidencias.ts:81:39)",
+      "location": {
+        "file": "src/helpers/evidencias.ts",
+        "line": 81,
+        "column": 39
+      }
+    },
+    {
+      "message": "Error: page.unroute: Target page, context or browser has been closed\n\n   at ../src/helpers/evidencias.ts:90\n\n  88 |   } finally {\n  89 |     clearTimeout(relogio);\n> 90 |     await page.unroute(casa, interceptar);\n     |                ^\n  91 |   }\n  92 | }\n  93 |\n    at capturarRespostaDoFront (src/helpers/evidencias.ts:90:16)\n    at tests/e2e/produtos-admin.spec.ts:43:22",
+      "location": {
+        "file": "src/helpers/evidencias.ts",
+        "line": 90,
+        "column": 16
+      }
+    }
+  ],
+  "apiCalls": [
+    {
+      "name": "API POST /usuarios → 201",
+      "body": {
+        "requisicao": {
+          "metodo": "POST",
+          "url": "http://127.0.0.1:50545/usuarios",
+          "corpo": {
+            "nome": "Mr. Favian Collier",
+            "email": "qa.mwja1uecnvyj@teste.com",
+            "password": "1TengFLk2u",
+            "administrador": "true"
+          }
+        },
+        "resposta": {
+          "status": 201,
+          "corpo": {
+            "message": "Cadastro realizado com sucesso",
+            "_id": "5iriOPyDaYlT8IfU"
+          }
+        }
+      }
+    },
+    {
+      "name": "API POST /login → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "POST",
+          "url": "http://127.0.0.1:50545/login",
+          "corpo": {
+            "email": "qa.mwja1uecnvyj@teste.com",
+            "password": "1TengFLk2u"
+          }
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "message": "Login realizado com sucesso",
+            "authorization": "Bearer <token>"
+          }
+        }
+      }
+    },
+    {
+      "name": "API POST /produtos → 201",
+      "body": {
+        "requisicao": {
+          "metodo": "POST",
+          "url": "http://127.0.0.1:50545/produtos",
+          "corpo": {
+            "nome": "Produto mwja1vedtqwo",
+            "preco": 2761,
+            "descricao": "Experience the indigo brilliance of our Bacon, perfect for pure environments",
+            "quantidade": 13
+          }
+        },
+        "resposta": {
+          "status": 201,
+          "corpo": {
+            "message": "Cadastro realizado com sucesso",
+            "_id": "P7qYQ1yj4k4nN152"
+          }
+        }
+      }
+    },
+    {
+      "name": "API DELETE /carrinhos/cancelar-compra → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "DELETE",
+          "url": "http://127.0.0.1:50545/carrinhos/cancelar-compra",
+          "corpo": null
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "message": "Não foi encontrado carrinho para esse usuário"
+          }
+        }
+      }
+    },
+    {
+      "name": "API DELETE /produtos/P7qYQ1yj4k4nN152 → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "DELETE",
+          "url": "http://127.0.0.1:50545/produtos/P7qYQ1yj4k4nN152",
+          "corpo": null
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "message": "Registro excluído com sucesso"
+          }
+        }
+      }
+    },
+    {
+      "name": "API DELETE /usuarios/5iriOPyDaYlT8IfU → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "DELETE",
+          "url": "http://127.0.0.1:50545/usuarios/5iriOPyDaYlT8IfU",
+          "corpo": null
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "message": "Registro excluído com sucesso"
+          }
+        }
+      }
+    }
+  ]
+}

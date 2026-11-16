@@ -1,0 +1,14 @@
+{
+  "description": "The app renamed the admin user form's submit test id from cadastrarUsuario to salvarUsuario.",
+  "category": "locator",
+  "heal": "update-test",
+  "test": "tests/e2e/usuarios-admin.spec.ts:8",
+  "project": "chromium",
+  "front": [
+    {
+      "find": "\"data-testid\":\"cadastrarUsuario\"",
+      "replace": "\"data-testid\":\"salvarUsuario\""
+    }
+  ],
+  "fix": "CadastrarUsuarioAdminPage.cadastrarBotao uses getByTestId('salvarUsuario') or the button's role and name."
+}

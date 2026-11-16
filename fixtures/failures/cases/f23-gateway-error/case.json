@@ -1,0 +1,22 @@
+{
+  "description": "A gateway answers POST /usuarios with a 502 HTML page.",
+  "category": "environment",
+  "heal": "do-not-touch",
+  "test": "tests/api/usuarios.spec.ts:6",
+  "project": "api",
+  "api": [
+    {
+      "when": {
+        "method": "POST",
+        "path": "^/usuarios$",
+        "from": "test"
+      },
+      "then": {
+        "respond": {
+          "status": 502,
+          "text": "<html><body><h1>502 Bad Gateway</h1></body></html>"
+        }
+      }
+    }
+  ]
+}

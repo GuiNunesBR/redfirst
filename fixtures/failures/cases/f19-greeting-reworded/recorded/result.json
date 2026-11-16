@@ -1,0 +1,117 @@
+{
+  "recordedAt": "2026-11-16",
+  "test": {
+    "file": "tests/e2e/login.spec.ts",
+    "line": 10,
+    "title": "admin entra e vê a home administrativa",
+    "project": "chromium"
+  },
+  "status": "failed",
+  "durationMs": 17485,
+  "errors": [
+    {
+      "message": "Error: expect(locator).toContainText(expected) failed\n\nLocator: getByRole('heading', { name: /Bem Vindo/ })\nExpected substring: \"Bem Vindo Adolphus Langworth\"\nTimeout: 7000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toContainText\" getByRole('heading', { name: /Bem Vindo/ }) with timeout 7000ms\n  - waiting for getByRole('heading', { name: /Bem Vindo/ })\n\n\n  17 |     expect(validar(LoginSchema, resposta.corpo).message).toBe('Login realizado com sucesso');\n  18 |     await expect(page).toHaveURL(/\\/admin\\/home$/);\n> 19 |     await expect(new AdminHomePage(page).saudacao).toContainText(`Bem Vindo ${admin.nome}`);\n     |                                                    ^\n  20 |     await evidencia('home administrativa após o login');\n  21 |   });\n  22 |\n    at tests/e2e/login.spec.ts:19:52",
+      "location": {
+        "file": "tests/e2e/login.spec.ts",
+        "line": 19,
+        "column": 52
+      }
+    }
+  ],
+  "apiCalls": [
+    {
+      "name": "API POST /usuarios → 201",
+      "body": {
+        "requisicao": {
+          "metodo": "POST",
+          "url": "http://127.0.0.1:57684/usuarios",
+          "corpo": {
+            "nome": "Adolphus Langworth",
+            "email": "qa.mwjaaxynoqka@teste.com",
+            "password": "C3KBMIjMLV",
+            "administrador": "true"
+          }
+        },
+        "resposta": {
+          "status": 201,
+          "corpo": {
+            "message": "Cadastro realizado com sucesso",
+            "_id": "uO2nhghEGzokD1qb"
+          }
+        }
+      }
+    },
+    {
+      "name": "API POST /login → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "POST",
+          "url": "http://127.0.0.1:57684/login",
+          "corpo": {
+            "email": "qa.mwjaaxynoqka@teste.com",
+            "password": "C3KBMIjMLV"
+          }
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "message": "Login realizado com sucesso",
+            "authorization": "Bearer <token>"
+          }
+        }
+      }
+    },
+    {
+      "name": "Front POST /login → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "POST",
+          "url": "http://127.0.0.1:57684/login",
+          "corpo": {
+            "email": "qa.mwjaaxynoqka@teste.com",
+            "password": "C3KBMIjMLV"
+          }
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "message": "Login realizado com sucesso",
+            "authorization": "Bearer <token>"
+          }
+        }
+      }
+    },
+    {
+      "name": "API DELETE /carrinhos/cancelar-compra → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "DELETE",
+          "url": "http://127.0.0.1:57684/carrinhos/cancelar-compra",
+          "corpo": null
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "message": "Não foi encontrado carrinho para esse usuário"
+          }
+        }
+      }
+    },
+    {
+      "name": "API DELETE /usuarios/uO2nhghEGzokD1qb → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "DELETE",
+          "url": "http://127.0.0.1:57684/usuarios/uO2nhghEGzokD1qb",
+          "corpo": null
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "message": "Registro excluído com sucesso"
+          }
+        }
+      }
+    }
+  ]
+}

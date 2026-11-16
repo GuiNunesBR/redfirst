@@ -1,0 +1,202 @@
+{
+  "recordedAt": "2026-11-16",
+  "test": {
+    "file": "tests/api/produtos.spec.ts",
+    "line": 47,
+    "title": "filtra a listagem pelo nome",
+    "project": "api"
+  },
+  "status": "failed",
+  "durationMs": 3210,
+  "errors": [
+    {
+      "message": "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: 1\nReceived: 7\n\n  53 |     const lista = validar(ListaProdutosSchema, await (await api.listarProdutos({ nome: produto.nome })).json());\n  54 |\n> 55 |     expect(lista.quantidade).toBe(1);\n     |                              ^\n  56 |     expect(lista.produtos[0]._id).toBe(_id);\n  57 |   });\n  58 |\n    at tests/api/produtos.spec.ts:55:30",
+      "location": {
+        "file": "tests/api/produtos.spec.ts",
+        "line": 55,
+        "column": 30
+      }
+    }
+  ],
+  "apiCalls": [
+    {
+      "name": "API POST /usuarios → 201",
+      "body": {
+        "requisicao": {
+          "metodo": "POST",
+          "url": "http://127.0.0.1:52538/usuarios",
+          "corpo": {
+            "nome": "Dejuan Oberbrunner",
+            "email": "qa.mwja7lzcjyx1@teste.com",
+            "password": "aZhi1bYpgh",
+            "administrador": "true"
+          }
+        },
+        "resposta": {
+          "status": 201,
+          "corpo": {
+            "message": "Cadastro realizado com sucesso",
+            "_id": "dEy7cyrp2T9lkOxI"
+          }
+        }
+      }
+    },
+    {
+      "name": "API POST /login → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "POST",
+          "url": "http://127.0.0.1:52538/login",
+          "corpo": {
+            "email": "qa.mwja7lzcjyx1@teste.com",
+            "password": "aZhi1bYpgh"
+          }
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "message": "Login realizado com sucesso",
+            "authorization": "Bearer <token>"
+          }
+        }
+      }
+    },
+    {
+      "name": "API POST /produtos → 201",
+      "body": {
+        "requisicao": {
+          "metodo": "POST",
+          "url": "http://127.0.0.1:52538/produtos",
+          "corpo": {
+            "nome": "Produto mwja7mswclwt",
+            "preco": 1720,
+            "descricao": "The violet Gloves combines Syrian Arab Republic aesthetics with Nobelium-based durability",
+            "quantidade": 48
+          }
+        },
+        "resposta": {
+          "status": 201,
+          "corpo": {
+            "message": "Cadastro realizado com sucesso",
+            "_id": "SCMr1CPGG04J9VQa"
+          }
+        }
+      }
+    },
+    {
+      "name": "API GET /produtos?nome=Produto+mwja7mswclwt → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "GET",
+          "url": "http://127.0.0.1:52538/produtos?nome=Produto+mwja7mswclwt",
+          "corpo": null
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "quantidade": 7,
+            "produtos": [
+              {
+                "nome": "Logitech MX Vertical",
+                "preco": 470,
+                "descricao": "Mouse",
+                "quantidade": 384,
+                "_id": "BeeJh5lz3k6kSIzA"
+              },
+              {
+                "nome": "Combo Teclado e Mouse Sem Fio Logitech MK250",
+                "preco": 160,
+                "descricao": "Combo Teclado e Mouse",
+                "quantidade": 179,
+                "_id": "HZDXlBQxMYbzWJ2R"
+              },
+              {
+                "nome": "Samsung 60 polegadas",
+                "preco": 5240,
+                "descricao": "TV",
+                "quantidade": 49978,
+                "_id": "K6leHdftCeOJj8BJ"
+              },
+              {
+                "nome": "Produto mwja7mswclwt",
+                "preco": 1720,
+                "descricao": "The violet Gloves combines Syrian Arab Republic aesthetics with Nobelium-based durability",
+                "quantidade": 48,
+                "_id": "SCMr1CPGG04J9VQa"
+              },
+              {
+                "nome": "Garrafa de Café",
+                "preco": 1000,
+                "descricao": "Garrafa de Café",
+                "quantidade": 5,
+                "_id": "WaNH7bS4OwvkqF8I"
+              },
+              {
+                "nome": "Garrafa de Café Ben 10",
+                "preco": 1000,
+                "descricao": "Obtenha a energia de todos os aliens do Omnitrix com esta garrafa",
+                "quantidade": 1,
+                "_id": "qUViWcx98Lc1H5Si"
+              },
+              {
+                "nome": "Agria MX Vertical",
+                "preco": 470,
+                "descricao": "Mouse",
+                "quantidade": 381,
+                "_id": "s3egH2lUNJQb2skB"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "API DELETE /carrinhos/cancelar-compra → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "DELETE",
+          "url": "http://127.0.0.1:52538/carrinhos/cancelar-compra",
+          "corpo": null
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "message": "Não foi encontrado carrinho para esse usuário"
+          }
+        }
+      }
+    },
+    {
+      "name": "API DELETE /produtos/SCMr1CPGG04J9VQa → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "DELETE",
+          "url": "http://127.0.0.1:52538/produtos/SCMr1CPGG04J9VQa",
+          "corpo": null
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "message": "Registro excluído com sucesso"
+          }
+        }
+      }
+    },
+    {
+      "name": "API DELETE /usuarios/dEy7cyrp2T9lkOxI → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "DELETE",
+          "url": "http://127.0.0.1:52538/usuarios/dEy7cyrp2T9lkOxI",
+          "corpo": null
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "message": "Registro excluído com sucesso"
+          }
+        }
+      }
+    }
+  ]
+}

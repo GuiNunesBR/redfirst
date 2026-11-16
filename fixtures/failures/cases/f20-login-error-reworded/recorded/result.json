@@ -1,0 +1,42 @@
+{
+  "recordedAt": "2026-11-16",
+  "test": {
+    "file": "tests/e2e/login.spec.ts",
+    "line": 23,
+    "title": "mostra erro com credenciais inválidas",
+    "project": "chromium"
+  },
+  "status": "failed",
+  "durationMs": 6697,
+  "errors": [
+    {
+      "message": "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: \"Email e/ou senha inválidos\"\nReceived: \"Credenciais inválidas\"\n\n  28 |\n  29 |     expect(resposta.status).toBe(401);\n> 30 |     expect(validar(MensagemSchema, resposta.corpo).message).toBe('Email e/ou senha inválidos');\n     |                                                             ^\n  31 |     await expect(login.alerta).toContainText('Email e/ou senha inválidos');\n  32 |     await expect(page).toHaveURL(/\\/login$/);\n  33 |     await evidencia('alerta de credenciais inválidas');\n    at tests/e2e/login.spec.ts:30:61",
+      "location": {
+        "file": "tests/e2e/login.spec.ts",
+        "line": 30,
+        "column": 61
+      }
+    }
+  ],
+  "apiCalls": [
+    {
+      "name": "Front POST /login → 401",
+      "body": {
+        "requisicao": {
+          "metodo": "POST",
+          "url": "http://127.0.0.1:52570/login",
+          "corpo": {
+            "email": "nao.existe@teste.com",
+            "password": "senha-errada"
+          }
+        },
+        "resposta": {
+          "status": 401,
+          "corpo": {
+            "message": "Credenciais inválidas"
+          }
+        }
+      }
+    }
+  ]
+}

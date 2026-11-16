@@ -1,0 +1,135 @@
+{
+  "recordedAt": "2026-11-16",
+  "test": {
+    "file": "tests/e2e/produtos-admin.spec.ts",
+    "line": 32,
+    "title": "exclui um produto pela listagem",
+    "project": "chromium"
+  },
+  "status": "failed",
+  "durationMs": 17209,
+  "errors": [
+    {
+      "message": "Error: expect(locator).toBeVisible() failed\n\nLocator: getByRole('row').filter({ hasText: 'Produto mwjaoryxsnmf' })\nExpected: visible\nTimeout: 7000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" getByRole('row').filter({ hasText: 'Produto mwjaoryxsnmf' }) with timeout 7000ms\n  - waiting for getByRole('row').filter({ hasText: 'Produto mwjaoryxsnmf' })\n\n\n  38 |     const listagem = new ListarProdutosPage(page);\n  39 |     await listagem.abrir();\n> 40 |     await expect(listagem.linhaDe(produto.nome)).toBeVisible();\n     |                                                  ^\n  41 |     await evidencia('produto antes da exclusão');\n  42 |\n  43 |     const resposta = await capturarApi('DELETE', `/produtos/${_id}`, () => listagem.excluir(produto.nome));\n    at tests/e2e/produtos-admin.spec.ts:40:50",
+      "location": {
+        "file": "tests/e2e/produtos-admin.spec.ts",
+        "line": 40,
+        "column": 50
+      }
+    }
+  ],
+  "apiCalls": [
+    {
+      "name": "API POST /usuarios → 201",
+      "body": {
+        "requisicao": {
+          "metodo": "POST",
+          "url": "http://127.0.0.1:62498/usuarios",
+          "corpo": {
+            "nome": "Reed Stracke IV",
+            "email": "qa.mwjaor16sfpa@teste.com",
+            "password": "zzr5CathUT",
+            "administrador": "true"
+          }
+        },
+        "resposta": {
+          "status": 201,
+          "corpo": {
+            "message": "Cadastro realizado com sucesso",
+            "_id": "fTxUTjChRRWzF5pn"
+          }
+        }
+      }
+    },
+    {
+      "name": "API POST /login → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "POST",
+          "url": "http://127.0.0.1:62498/login",
+          "corpo": {
+            "email": "qa.mwjaor16sfpa@teste.com",
+            "password": "zzr5CathUT"
+          }
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "message": "Login realizado com sucesso",
+            "authorization": "Bearer <token>"
+          }
+        }
+      }
+    },
+    {
+      "name": "API POST /produtos → 201",
+      "body": {
+        "requisicao": {
+          "metodo": "POST",
+          "url": "http://127.0.0.1:62498/produtos",
+          "corpo": {
+            "nome": "Produto mwjaoryxsnmf",
+            "preco": 1557,
+            "descricao": "Our koala-friendly Sausages ensures amused comfort for your pets",
+            "quantidade": 7
+          }
+        },
+        "resposta": {
+          "status": 201,
+          "corpo": {
+            "message": "Cadastro realizado com sucesso",
+            "_id": "1gUhjZaxj1rQ9cs8"
+          }
+        }
+      }
+    },
+    {
+      "name": "API DELETE /carrinhos/cancelar-compra → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "DELETE",
+          "url": "http://127.0.0.1:62498/carrinhos/cancelar-compra",
+          "corpo": null
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "message": "Não foi encontrado carrinho para esse usuário"
+          }
+        }
+      }
+    },
+    {
+      "name": "API DELETE /produtos/1gUhjZaxj1rQ9cs8 → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "DELETE",
+          "url": "http://127.0.0.1:62498/produtos/1gUhjZaxj1rQ9cs8",
+          "corpo": null
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "message": "Registro excluído com sucesso"
+          }
+        }
+      }
+    },
+    {
+      "name": "API DELETE /usuarios/fTxUTjChRRWzF5pn → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "DELETE",
+          "url": "http://127.0.0.1:62498/usuarios/fTxUTjChRRWzF5pn",
+          "corpo": null
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "message": "Registro excluído com sucesso"
+          }
+        }
+      }
+    }
+  ]
+}

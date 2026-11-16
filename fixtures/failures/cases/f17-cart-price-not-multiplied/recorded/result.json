@@ -1,0 +1,234 @@
+{
+  "recordedAt": "2026-11-16",
+  "test": {
+    "file": "tests/e2e/loja.spec.ts",
+    "line": 11,
+    "title": "busca um produto e monta a lista de compras",
+    "project": "chromium"
+  },
+  "status": "failed",
+  "durationMs": 22965,
+  "errors": [
+    {
+      "message": "Error: expect(locator).toHaveText(expected) failed\n\nLocator:  getByText(/^Preço R\\$/)\nExpected: \"Preço R$7350\"\nReceived: \"Preço R$3675\"\nTimeout:  7000ms\n\nCall log:\n  - Expect \"toHaveText\" getByText(/^Preço R\\$/) with timeout 7000ms\n  - waiting for getByText(/^Preço R\\$/)\n    18 × locator resolved to <p>Preço R$3675</p>\n       - unexpected value \"Preço R$3675\"\n\n\n  40 |\n  41 |     await expect(lista.quantidade).toHaveText('Total: 2');\n> 42 |     await expect(lista.preco).toHaveText(`Preço R$${produto.preco * 2}`);\n     |                               ^\n  43 |     await evidencia('lista de compras com duas unidades');\n  44 |   });\n  45 | });\n    at tests/e2e/loja.spec.ts:42:31",
+      "location": {
+        "file": "tests/e2e/loja.spec.ts",
+        "line": 42,
+        "column": 31
+      }
+    }
+  ],
+  "apiCalls": [
+    {
+      "name": "API POST /usuarios → 201",
+      "body": {
+        "requisicao": {
+          "metodo": "POST",
+          "url": "http://127.0.0.1:49226/usuarios",
+          "corpo": {
+            "nome": "Dr. Earl Legros",
+            "email": "qa.mwja8strpkpt@teste.com",
+            "password": "KK1b82cZ6_",
+            "administrador": "true"
+          }
+        },
+        "resposta": {
+          "status": 201,
+          "corpo": {
+            "message": "Cadastro realizado com sucesso",
+            "_id": "uB8NJeSgAUo1XNnm"
+          }
+        }
+      }
+    },
+    {
+      "name": "API POST /login → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "POST",
+          "url": "http://127.0.0.1:49226/login",
+          "corpo": {
+            "email": "qa.mwja8strpkpt@teste.com",
+            "password": "KK1b82cZ6_"
+          }
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "message": "Login realizado com sucesso",
+            "authorization": "Bearer <token>"
+          }
+        }
+      }
+    },
+    {
+      "name": "API POST /usuarios → 201",
+      "body": {
+        "requisicao": {
+          "metodo": "POST",
+          "url": "http://127.0.0.1:49226/usuarios",
+          "corpo": {
+            "nome": "Sadye Robel",
+            "email": "qa.mwja8tv8xrhp@teste.com",
+            "password": "ejz66nAE8T",
+            "administrador": "false"
+          }
+        },
+        "resposta": {
+          "status": 201,
+          "corpo": {
+            "message": "Cadastro realizado com sucesso",
+            "_id": "HtBIvkRqgYYAOExF"
+          }
+        }
+      }
+    },
+    {
+      "name": "API POST /login → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "POST",
+          "url": "http://127.0.0.1:49226/login",
+          "corpo": {
+            "email": "qa.mwja8tv8xrhp@teste.com",
+            "password": "ejz66nAE8T"
+          }
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "message": "Login realizado com sucesso",
+            "authorization": "Bearer <token>"
+          }
+        }
+      }
+    },
+    {
+      "name": "API POST /produtos → 201",
+      "body": {
+        "requisicao": {
+          "metodo": "POST",
+          "url": "http://127.0.0.1:49226/produtos",
+          "corpo": {
+            "nome": "Produto mwja8uhpi8hk",
+            "preco": 3675,
+            "descricao": "Savor the rich essence in our Chicken, designed for honorable culinary adventures",
+            "quantidade": 41
+          }
+        },
+        "resposta": {
+          "status": 201,
+          "corpo": {
+            "message": "Cadastro realizado com sucesso",
+            "_id": "DrgzlPGkBJCurZun"
+          }
+        }
+      }
+    },
+    {
+      "name": "Front GET /produtos?nome=Produto%20mwja8uhpi8hk → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "GET",
+          "url": "http://127.0.0.1:49226/produtos?nome=Produto%20mwja8uhpi8hk",
+          "corpo": null
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "quantidade": 1,
+            "produtos": [
+              {
+                "nome": "Produto mwja8uhpi8hk",
+                "preco": 3675,
+                "descricao": "Savor the rich essence in our Chicken, designed for honorable culinary adventures",
+                "quantidade": 41,
+                "_id": "DrgzlPGkBJCurZun"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "API DELETE /carrinhos/cancelar-compra → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "DELETE",
+          "url": "http://127.0.0.1:49226/carrinhos/cancelar-compra",
+          "corpo": null
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "message": "Não foi encontrado carrinho para esse usuário"
+          }
+        }
+      }
+    },
+    {
+      "name": "API DELETE /carrinhos/cancelar-compra → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "DELETE",
+          "url": "http://127.0.0.1:49226/carrinhos/cancelar-compra",
+          "corpo": null
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "message": "Não foi encontrado carrinho para esse usuário"
+          }
+        }
+      }
+    },
+    {
+      "name": "API DELETE /produtos/DrgzlPGkBJCurZun → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "DELETE",
+          "url": "http://127.0.0.1:49226/produtos/DrgzlPGkBJCurZun",
+          "corpo": null
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "message": "Registro excluído com sucesso"
+          }
+        }
+      }
+    },
+    {
+      "name": "API DELETE /usuarios/uB8NJeSgAUo1XNnm → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "DELETE",
+          "url": "http://127.0.0.1:49226/usuarios/uB8NJeSgAUo1XNnm",
+          "corpo": null
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "message": "Registro excluído com sucesso"
+          }
+        }
+      }
+    },
+    {
+      "name": "API DELETE /usuarios/HtBIvkRqgYYAOExF → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "DELETE",
+          "url": "http://127.0.0.1:49226/usuarios/HtBIvkRqgYYAOExF",
+          "corpo": null
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "message": "Registro excluído com sucesso"
+          }
+        }
+      }
+    }
+  ]
+}

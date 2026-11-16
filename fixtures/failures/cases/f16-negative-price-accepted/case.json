@@ -1,0 +1,25 @@
+{
+  "description": "POST /produtos accepts a negative price.",
+  "category": "product-bug",
+  "heal": "do-not-touch",
+  "test": "tests/api/produtos.spec.ts:40",
+  "project": "api",
+  "api": [
+    {
+      "when": {
+        "method": "POST",
+        "path": "^/produtos$",
+        "from": "test"
+      },
+      "then": {
+        "respond": {
+          "status": 201,
+          "json": {
+            "message": "Cadastro realizado com sucesso",
+            "_id": "aBcDeFgH12345678"
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,118 @@
+{
+  "recordedAt": "2026-11-16",
+  "test": {
+    "file": "tests/api/produtos.spec.ts",
+    "line": 6,
+    "title": "admin cadastra produto e consulta pelo id",
+    "project": "api"
+  },
+  "status": "failed",
+  "durationMs": 2673,
+  "errors": [
+    {
+      "message": "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: 201\nReceived: 400\n\n   9 |     const criado = await api.criarProduto(produto, admin.token);\n  10 |\n> 11 |     expect(criado.status()).toBe(201);\n     |                             ^\n  12 |     const { _id } = validar(CadastroSchema, await criado.json());\n  13 |     limpeza.produto(_id, admin.token);\n  14 |\n    at tests/api/produtos.spec.ts:11:29",
+      "location": {
+        "file": "tests/api/produtos.spec.ts",
+        "line": 11,
+        "column": 29
+      }
+    }
+  ],
+  "apiCalls": [
+    {
+      "name": "API POST /usuarios → 201",
+      "body": {
+        "requisicao": {
+          "metodo": "POST",
+          "url": "http://127.0.0.1:51931/usuarios",
+          "corpo": {
+            "nome": "Vaughn Franey",
+            "email": "qa.mwjafxc8318j@teste.com",
+            "password": "qHVogZh8sW",
+            "administrador": "true"
+          }
+        },
+        "resposta": {
+          "status": 201,
+          "corpo": {
+            "message": "Cadastro realizado com sucesso",
+            "_id": "C1TXhYM6Dwov0tuB"
+          }
+        }
+      }
+    },
+    {
+      "name": "API POST /login → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "POST",
+          "url": "http://127.0.0.1:51931/login",
+          "corpo": {
+            "email": "qa.mwjafxc8318j@teste.com",
+            "password": "qHVogZh8sW"
+          }
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "message": "Login realizado com sucesso",
+            "authorization": "Bearer <token>"
+          }
+        }
+      }
+    },
+    {
+      "name": "API POST /produtos → 400",
+      "body": {
+        "requisicao": {
+          "metodo": "POST",
+          "url": "http://127.0.0.1:51931/produtos",
+          "corpo": {
+            "nome": "Logitech MX Vertical",
+            "preco": 924,
+            "descricao": "New Salad model with 51 GB RAM, 519 GB storage, and rowdy features",
+            "quantidade": 34
+          }
+        },
+        "resposta": {
+          "status": 400,
+          "corpo": {
+            "message": "Já existe produto com esse nome"
+          }
+        }
+      }
+    },
+    {
+      "name": "API DELETE /carrinhos/cancelar-compra → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "DELETE",
+          "url": "http://127.0.0.1:51931/carrinhos/cancelar-compra",
+          "corpo": null
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "message": "Não foi encontrado carrinho para esse usuário"
+          }
+        }
+      }
+    },
+    {
+      "name": "API DELETE /usuarios/C1TXhYM6Dwov0tuB → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "DELETE",
+          "url": "http://127.0.0.1:51931/usuarios/C1TXhYM6Dwov0tuB",
+          "corpo": null
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "message": "Registro excluído com sucesso"
+          }
+        }
+      }
+    }
+  ]
+}

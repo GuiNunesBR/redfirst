@@ -1,0 +1,81 @@
+{
+  "recordedAt": "2026-11-16",
+  "test": {
+    "file": "tests/api/login.spec.ts",
+    "line": 18,
+    "title": "rejeita senha incorreta",
+    "project": "api"
+  },
+  "status": "failed",
+  "durationMs": 1422,
+  "errors": [
+    {
+      "message": "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: 401\nReceived: 200\n\n  23 |     const resposta = await api.login(usuario.email, 'senha-errada');\n  24 |\n> 25 |     expect(resposta.status()).toBe(401);\n     |                               ^\n  26 |     expect(validar(MensagemSchema, await resposta.json()).message).toBe('Email e/ou senha inválidos');\n  27 |   });\n  28 |\n    at tests/api/login.spec.ts:25:31",
+      "location": {
+        "file": "tests/api/login.spec.ts",
+        "line": 25,
+        "column": 31
+      }
+    }
+  ],
+  "apiCalls": [
+    {
+      "name": "API POST /usuarios → 201",
+      "body": {
+        "requisicao": {
+          "metodo": "POST",
+          "url": "http://127.0.0.1:56230/usuarios",
+          "corpo": {
+            "nome": "Mr. Nestor Rolfson",
+            "email": "qa.mwja81cdoi5h@teste.com",
+            "password": "32XSU54bMc",
+            "administrador": "false"
+          }
+        },
+        "resposta": {
+          "status": 201,
+          "corpo": {
+            "message": "Cadastro realizado com sucesso",
+            "_id": "vHlPgeJsHLfFsxKN"
+          }
+        }
+      }
+    },
+    {
+      "name": "API POST /login → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "POST",
+          "url": "http://127.0.0.1:56230/login",
+          "corpo": {
+            "email": "qa.mwja81cdoi5h@teste.com",
+            "password": "senha-errada"
+          }
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "message": "Login realizado com sucesso",
+            "authorization": "Bearer <token>"
+          }
+        }
+      }
+    },
+    {
+      "name": "API DELETE /usuarios/vHlPgeJsHLfFsxKN → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "DELETE",
+          "url": "http://127.0.0.1:56230/usuarios/vHlPgeJsHLfFsxKN",
+          "corpo": null
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "message": "Registro excluído com sucesso"
+          }
+        }
+      }
+    }
+  ]
+}

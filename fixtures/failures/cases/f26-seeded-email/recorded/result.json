@@ -1,0 +1,44 @@
+{
+  "recordedAt": "2026-11-16",
+  "test": {
+    "file": "tests/api/usuarios.spec.ts",
+    "line": 6,
+    "title": "cadastra usuário com sucesso e respeita o contrato",
+    "project": "api"
+  },
+  "status": "failed",
+  "durationMs": 1030,
+  "errors": [
+    {
+      "message": "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: 201\nReceived: 400\n\n   7 |     const resposta = await api.criarUsuario(novoUsuario({ email: 'fulano@qa.com' }));\n   8 |\n>  9 |     expect(resposta.status()).toBe(201);\n     |                               ^\n  10 |     const corpo = validar(CadastroSchema, await resposta.json());\n  11 |     limpeza.usuario(corpo._id);\n  12 |     expect(corpo.message).toBe('Cadastro realizado com sucesso');\n    at tests/api/usuarios.spec.ts:9:31",
+      "location": {
+        "file": "tests/api/usuarios.spec.ts",
+        "line": 9,
+        "column": 31
+      }
+    }
+  ],
+  "apiCalls": [
+    {
+      "name": "API POST /usuarios → 400",
+      "body": {
+        "requisicao": {
+          "metodo": "POST",
+          "url": "http://127.0.0.1:56302/usuarios",
+          "corpo": {
+            "nome": "Camilla Kessler",
+            "email": "fulano@qa.com",
+            "password": "65Mb64SwJh",
+            "administrador": "false"
+          }
+        },
+        "resposta": {
+          "status": 400,
+          "corpo": {
+            "message": "Este email já está sendo usado"
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "description": "GET /produtos?nome= no longer returns the quantidade field.",
+  "category": "contract",
+  "heal": "do-not-touch",
+  "test": "tests/api/produtos.spec.ts:47",
+  "project": "api",
+  "api": [
+    {
+      "when": {
+        "method": "GET",
+        "path": "^/produtos\\?",
+        "from": "test"
+      },
+      "then": {
+        "json": {
+          "remove": [
+            "quantidade"
+          ]
+        }
+      }
+    }
+  ]
+}

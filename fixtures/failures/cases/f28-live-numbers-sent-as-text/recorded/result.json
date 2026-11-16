@@ -1,0 +1,136 @@
+{
+  "recordedAt": "2026-11-16",
+  "test": {
+    "file": "tests/e2e/produtos-admin.spec.ts",
+    "line": 9,
+    "title": "cadastra um produto e o encontra na listagem",
+    "project": "chromium"
+  },
+  "status": "failed",
+  "durationMs": 11833,
+  "errors": [
+    {
+      "message": "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: 201\nReceived: 400\n\n  18 |     const resposta = await capturarApi('POST', '/produtos', () => cadastro.enviar());\n  19 |\n> 20 |     expect(resposta.status).toBe(201);\n     |                             ^\n  21 |     const { _id } = validar(CadastroSchema, resposta.corpo);\n  22 |     await expect(page).toHaveURL(/\\/admin\\/listarprodutos$/);\n  23 |     const linha = new ListarProdutosPage(page).linhaDe(produto.nome);\n    at tests/e2e/produtos-admin.spec.ts:20:29",
+      "location": {
+        "file": "tests/e2e/produtos-admin.spec.ts",
+        "line": 20,
+        "column": 29
+      }
+    }
+  ],
+  "apiCalls": [
+    {
+      "name": "API POST /usuarios → 201",
+      "body": {
+        "requisicao": {
+          "metodo": "POST",
+          "url": "http://127.0.0.1:53376/usuarios",
+          "corpo": {
+            "nome": "Eden Terry",
+            "email": "qa.mwjasg9vkjzk@teste.com",
+            "password": "kPDI0TKkPQ",
+            "administrador": "true"
+          }
+        },
+        "resposta": {
+          "status": 201,
+          "corpo": {
+            "message": "Cadastro realizado com sucesso",
+            "_id": "cPzsLE9mYgArWf3y"
+          }
+        }
+      }
+    },
+    {
+      "name": "API POST /login → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "POST",
+          "url": "http://127.0.0.1:53376/login",
+          "corpo": {
+            "email": "qa.mwjasg9vkjzk@teste.com",
+            "password": "kPDI0TKkPQ"
+          }
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "message": "Login realizado com sucesso",
+            "authorization": "Bearer <token>"
+          }
+        }
+      }
+    },
+    {
+      "name": "Front POST /produtos → 400",
+      "body": {
+        "requisicao": {
+          "metodo": "POST",
+          "url": "http://127.0.0.1:53376/produtos",
+          "corpo": {
+            "nome": "Produto mwjashetlt6u",
+            "preco": "3916",
+            "descricao": "Discover the parrot-like agility of our Ball, perfect for optimal users",
+            "quantidade": "30"
+          }
+        },
+        "resposta": {
+          "status": 400,
+          "corpo": {
+            "preco": "preco deve ser um número",
+            "quantidade": "quantidade deve ser um número"
+          }
+        }
+      }
+    },
+    {
+      "name": "API GET /produtos?nome=Produto+mwjashetlt6u → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "GET",
+          "url": "http://127.0.0.1:53376/produtos?nome=Produto+mwjashetlt6u",
+          "corpo": null
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "quantidade": 0,
+            "produtos": []
+          }
+        }
+      }
+    },
+    {
+      "name": "API DELETE /carrinhos/cancelar-compra → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "DELETE",
+          "url": "http://127.0.0.1:53376/carrinhos/cancelar-compra",
+          "corpo": null
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "message": "Não foi encontrado carrinho para esse usuário"
+          }
+        }
+      }
+    },
+    {
+      "name": "API DELETE /usuarios/cPzsLE9mYgArWf3y → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "DELETE",
+          "url": "http://127.0.0.1:53376/usuarios/cPzsLE9mYgArWf3y",
+          "corpo": null
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "message": "Registro excluído com sucesso"
+          }
+        }
+      }
+    }
+  ]
+}

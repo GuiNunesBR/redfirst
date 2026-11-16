@@ -1,0 +1,25 @@
+{
+  "description": "POST /login accepts a wrong password.",
+  "category": "product-bug",
+  "heal": "do-not-touch",
+  "test": "tests/api/login.spec.ts:18",
+  "project": "api",
+  "api": [
+    {
+      "when": {
+        "method": "POST",
+        "path": "^/login$",
+        "from": "test"
+      },
+      "then": {
+        "respond": {
+          "status": 200,
+          "json": {
+            "message": "Login realizado com sucesso",
+            "authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.e30.x"
+          }
+        }
+      }
+    }
+  ]
+}

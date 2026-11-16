@@ -1,0 +1,14 @@
+{
+  "description": "The app renamed the login button's test id from entrar to btn-entrar.",
+  "category": "locator",
+  "heal": "update-test",
+  "test": "tests/e2e/login.spec.ts:10",
+  "project": "chromium",
+  "front": [
+    {
+      "find": "\"data-testid\":\"entrar\"",
+      "replace": "\"data-testid\":\"btn-entrar\""
+    }
+  ],
+  "fix": "LoginPage.entrarBotao uses getByTestId('btn-entrar') or getByRole('button', { name: 'Entrar' })."
+}

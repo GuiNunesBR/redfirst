@@ -1,0 +1,83 @@
+{
+  "recordedAt": "2026-11-16",
+  "test": {
+    "file": "tests/e2e/cadastro.spec.ts",
+    "line": 35,
+    "title": "não permite cadastrar um e-mail que já existe",
+    "project": "chromium"
+  },
+  "status": "failed",
+  "durationMs": 8184,
+  "errors": [
+    {
+      "message": "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: 400\nReceived: 201\n\n  44 |     const resposta = await capturarApi('POST', '/usuarios', () => cadastro.enviar());\n  45 |\n> 46 |     expect(resposta.status).toBe(400);\n     |                             ^\n  47 |     expect(validar(MensagemSchema, resposta.corpo).message).toBe('Este email já está sendo usado');\n  48 |     await expect(cadastro.alerta).toContainText('Este email já está sendo usado');\n  49 |     await evidencia('alerta de e-mail duplicado');\n    at tests/e2e/cadastro.spec.ts:46:29",
+      "location": {
+        "file": "tests/e2e/cadastro.spec.ts",
+        "line": 46,
+        "column": 29
+      }
+    }
+  ],
+  "apiCalls": [
+    {
+      "name": "API POST /usuarios → 201",
+      "body": {
+        "requisicao": {
+          "metodo": "POST",
+          "url": "http://127.0.0.1:58694/usuarios",
+          "corpo": {
+            "nome": "Andreanne Lehner",
+            "email": "qa.mwjaa4j1bswp@teste.com",
+            "password": "Mo5xzzJ1Cg",
+            "administrador": "false"
+          }
+        },
+        "resposta": {
+          "status": 201,
+          "corpo": {
+            "message": "Cadastro realizado com sucesso",
+            "_id": "HRec62erncBf8PX2"
+          }
+        }
+      }
+    },
+    {
+      "name": "Front POST /usuarios → 201",
+      "body": {
+        "requisicao": {
+          "metodo": "POST",
+          "url": "http://127.0.0.1:58694/usuarios",
+          "corpo": {
+            "nome": "Andreanne Lehner",
+            "email": "qa.mwjaa4j1bswp@teste.com",
+            "password": "Mo5xzzJ1Cg",
+            "administrador": "false"
+          }
+        },
+        "resposta": {
+          "status": 201,
+          "corpo": {
+            "message": "Cadastro realizado com sucesso",
+            "_id": "aBcDeFgH12345678"
+          }
+        }
+      }
+    },
+    {
+      "name": "API DELETE /usuarios/HRec62erncBf8PX2 → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "DELETE",
+          "url": "http://127.0.0.1:58694/usuarios/HRec62erncBf8PX2",
+          "corpo": null
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "message": "Registro excluído com sucesso"
+          }
+        }
+      }
+    }
+  ]
+}

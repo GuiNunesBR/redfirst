@@ -1,0 +1,61 @@
+{
+  "recordedAt": "2026-11-16",
+  "test": {
+    "file": "tests/api/usuarios.spec.ts",
+    "line": 38,
+    "title": "consulta usuário pelo id",
+    "project": "api"
+  },
+  "status": "failed",
+  "durationMs": 1509,
+  "errors": [
+    {
+      "message": "Error: apiRequestContext.fetch: socket hang up (ECONNRESET)\nCall log:\n  - → GET http://127.0.0.1:57323/usuarios/DRSpS2Z5gRhjCWUH\n    - user-agent: Playwright/1.65.0 (x64; windows 10.0) node/24.22\n    - accept: */*\n    - accept-encoding: gzip,deflate,br\n\n\n   at ../src/api/client.ts:49\n\n  47 |   private async enviar(metodo: 'GET' | 'POST' | 'DELETE', caminho: string, opcoes: Opcoes = {}): Promise<APIResponse> {\n  48 |     const { data, params, token } = opcoes;\n> 49 |     const resposta = await this.request.fetch(caminho, {\n     |                                         ^\n  50 |       method: metodo,\n  51 |       data,\n  52 |       params,\n    at ServeRestClient.enviar (src/api/client.ts:49:41)\n    at ServeRestClient.buscarUsuario (src/api/client.ts:67:17)\n    at tests/api/usuarios.spec.ts:44:32",
+      "location": {
+        "file": "src/api/client.ts",
+        "line": 49,
+        "column": 41
+      }
+    }
+  ],
+  "apiCalls": [
+    {
+      "name": "API POST /usuarios → 201",
+      "body": {
+        "requisicao": {
+          "metodo": "POST",
+          "url": "http://127.0.0.1:57323/usuarios",
+          "corpo": {
+            "nome": "Cristina Bruen",
+            "email": "qa.mwjadiq9kchv@teste.com",
+            "password": "YQokfjg8vN",
+            "administrador": "false"
+          }
+        },
+        "resposta": {
+          "status": 201,
+          "corpo": {
+            "message": "Cadastro realizado com sucesso",
+            "_id": "DRSpS2Z5gRhjCWUH"
+          }
+        }
+      }
+    },
+    {
+      "name": "API DELETE /usuarios/DRSpS2Z5gRhjCWUH → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "DELETE",
+          "url": "http://127.0.0.1:57323/usuarios/DRSpS2Z5gRhjCWUH",
+          "corpo": null
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "message": "Registro excluído com sucesso"
+          }
+        }
+      }
+    }
+  ]
+}

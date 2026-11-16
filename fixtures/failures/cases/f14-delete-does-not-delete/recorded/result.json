@@ -1,0 +1,81 @@
+{
+  "recordedAt": "2026-11-16",
+  "test": {
+    "file": "tests/api/usuarios.spec.ts",
+    "line": 52,
+    "title": "exclui usuário e ele deixa de existir",
+    "project": "api"
+  },
+  "status": "failed",
+  "durationMs": 1590,
+  "errors": [
+    {
+      "message": "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: 400\nReceived: 200\n\n  58 |     expect(exclusao.status()).toBe(200);\n  59 |     expect(validar(MensagemSchema, await exclusao.json()).message).toBe('Registro excluído com sucesso');\n> 60 |     expect((await api.buscarUsuario(_id)).status()).toBe(400);\n     |                                                     ^\n  61 |   });\n  62 | });\n  63 |\n    at tests/api/usuarios.spec.ts:60:53",
+      "location": {
+        "file": "tests/api/usuarios.spec.ts",
+        "line": 60,
+        "column": 53
+      }
+    }
+  ],
+  "apiCalls": [
+    {
+      "name": "API POST /usuarios → 201",
+      "body": {
+        "requisicao": {
+          "metodo": "POST",
+          "url": "http://127.0.0.1:57193/usuarios",
+          "corpo": {
+            "nome": "Jordy Terry-Bechtelar",
+            "email": "qa.mwja7uclbyvo@teste.com",
+            "password": "LDwUpDHhQT",
+            "administrador": "false"
+          }
+        },
+        "resposta": {
+          "status": 201,
+          "corpo": {
+            "message": "Cadastro realizado com sucesso",
+            "_id": "Oit9AKmlYZY4qUnT"
+          }
+        }
+      }
+    },
+    {
+      "name": "API DELETE /usuarios/Oit9AKmlYZY4qUnT → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "DELETE",
+          "url": "http://127.0.0.1:57193/usuarios/Oit9AKmlYZY4qUnT",
+          "corpo": null
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "message": "Registro excluído com sucesso"
+          }
+        }
+      }
+    },
+    {
+      "name": "API GET /usuarios/Oit9AKmlYZY4qUnT → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "GET",
+          "url": "http://127.0.0.1:57193/usuarios/Oit9AKmlYZY4qUnT",
+          "corpo": null
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "nome": "Jordy Terry-Bechtelar",
+            "email": "qa.mwja7uclbyvo@teste.com",
+            "password": "LDwUpDHhQT",
+            "administrador": "false",
+            "_id": "Oit9AKmlYZY4qUnT"
+          }
+        }
+      }
+    }
+  ]
+}

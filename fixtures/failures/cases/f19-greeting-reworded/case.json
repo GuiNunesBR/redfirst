@@ -1,0 +1,14 @@
+{
+  "description": "The admin home greeting changed from Bem Vindo to Olá.",
+  "category": "product-change",
+  "heal": "human",
+  "test": "tests/e2e/login.spec.ts:10",
+  "project": "chromium",
+  "front": [
+    {
+      "find": "\"h1\",null,\"Bem Vindo  \",e",
+      "replace": "\"h1\",null,\"Olá, \",e"
+    }
+  ],
+  "note": "Updating the expected greeting changes what the test expects: someone has to confirm the new copy is intended."
+}

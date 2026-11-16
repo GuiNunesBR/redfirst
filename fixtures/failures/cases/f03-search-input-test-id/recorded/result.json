@@ -1,0 +1,217 @@
+{
+  "recordedAt": "2026-11-16",
+  "test": {
+    "file": "tests/e2e/loja.spec.ts",
+    "line": 11,
+    "title": "busca um produto e monta a lista de compras",
+    "project": "chromium"
+  },
+  "status": "failed",
+  "durationMs": 23501,
+  "errors": [
+    {
+      "message": "Error: O front não chamou GET /^\\/produtos\\?nome=/\n\n   at ../src/helpers/evidencias.ts:81\n\n  79 |   let relogio: NodeJS.Timeout | undefined;\n  80 |   const limite = new Promise<never>((_, reject) => {\n> 81 |     relogio = setTimeout(() => reject(new Error(`O front não chamou ${metodo} ${caminho}`)), 10_000);\n     |                                       ^\n  82 |   });\n  83 |\n  84 |   await page.route(casa, interceptar);\n    at Timeout._onTimeout (src/helpers/evidencias.ts:81:39)",
+      "location": {
+        "file": "src/helpers/evidencias.ts",
+        "line": 81,
+        "column": 39
+      }
+    },
+    {
+      "message": "Error: page.unroute: Target page, context or browser has been closed\n\n   at ../src/helpers/evidencias.ts:90\n\n  88 |   } finally {\n  89 |     clearTimeout(relogio);\n> 90 |     await page.unroute(casa, interceptar);\n     |                ^\n  91 |   }\n  92 | }\n  93 |\n    at capturarRespostaDoFront (src/helpers/evidencias.ts:90:16)\n    at tests/e2e/loja.spec.ts:22:22",
+      "location": {
+        "file": "src/helpers/evidencias.ts",
+        "line": 90,
+        "column": 16
+      }
+    }
+  ],
+  "apiCalls": [
+    {
+      "name": "API POST /usuarios → 201",
+      "body": {
+        "requisicao": {
+          "metodo": "POST",
+          "url": "http://127.0.0.1:61131/usuarios",
+          "corpo": {
+            "nome": "Winston Cassin",
+            "email": "qa.mwja0qlikyzi@teste.com",
+            "password": "3nNwsmygnl",
+            "administrador": "true"
+          }
+        },
+        "resposta": {
+          "status": 201,
+          "corpo": {
+            "message": "Cadastro realizado com sucesso",
+            "_id": "cA488e77Db5vajC6"
+          }
+        }
+      }
+    },
+    {
+      "name": "API POST /login → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "POST",
+          "url": "http://127.0.0.1:61131/login",
+          "corpo": {
+            "email": "qa.mwja0qlikyzi@teste.com",
+            "password": "3nNwsmygnl"
+          }
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "message": "Login realizado com sucesso",
+            "authorization": "Bearer <token>"
+          }
+        }
+      }
+    },
+    {
+      "name": "API POST /usuarios → 201",
+      "body": {
+        "requisicao": {
+          "metodo": "POST",
+          "url": "http://127.0.0.1:61131/usuarios",
+          "corpo": {
+            "nome": "Katheryn Mosciski",
+            "email": "qa.mwja0rkpzkdh@teste.com",
+            "password": "zTKp8KsF6P",
+            "administrador": "false"
+          }
+        },
+        "resposta": {
+          "status": 201,
+          "corpo": {
+            "message": "Cadastro realizado com sucesso",
+            "_id": "57fqdtrCU1DdxtBO"
+          }
+        }
+      }
+    },
+    {
+      "name": "API POST /login → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "POST",
+          "url": "http://127.0.0.1:61131/login",
+          "corpo": {
+            "email": "qa.mwja0rkpzkdh@teste.com",
+            "password": "zTKp8KsF6P"
+          }
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "message": "Login realizado com sucesso",
+            "authorization": "Bearer <token>"
+          }
+        }
+      }
+    },
+    {
+      "name": "API POST /produtos → 201",
+      "body": {
+        "requisicao": {
+          "metodo": "POST",
+          "url": "http://127.0.0.1:61131/produtos",
+          "corpo": {
+            "nome": "Produto mwja0s7e3aqz",
+            "preco": 464,
+            "descricao": "Introducing the Cyprus-inspired Ball, blending distorted style with local craftsmanship",
+            "quantidade": 19
+          }
+        },
+        "resposta": {
+          "status": 201,
+          "corpo": {
+            "message": "Cadastro realizado com sucesso",
+            "_id": "ZuYw3GSpp2DisUR5"
+          }
+        }
+      }
+    },
+    {
+      "name": "API DELETE /carrinhos/cancelar-compra → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "DELETE",
+          "url": "http://127.0.0.1:61131/carrinhos/cancelar-compra",
+          "corpo": null
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "message": "Não foi encontrado carrinho para esse usuário"
+          }
+        }
+      }
+    },
+    {
+      "name": "API DELETE /carrinhos/cancelar-compra → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "DELETE",
+          "url": "http://127.0.0.1:61131/carrinhos/cancelar-compra",
+          "corpo": null
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "message": "Não foi encontrado carrinho para esse usuário"
+          }
+        }
+      }
+    },
+    {
+      "name": "API DELETE /produtos/ZuYw3GSpp2DisUR5 → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "DELETE",
+          "url": "http://127.0.0.1:61131/produtos/ZuYw3GSpp2DisUR5",
+          "corpo": null
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "message": "Registro excluído com sucesso"
+          }
+        }
+      }
+    },
+    {
+      "name": "API DELETE /usuarios/cA488e77Db5vajC6 → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "DELETE",
+          "url": "http://127.0.0.1:61131/usuarios/cA488e77Db5vajC6",
+          "corpo": null
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "message": "Registro excluído com sucesso"
+          }
+        }
+      }
+    },
+    {
+      "name": "API DELETE /usuarios/57fqdtrCU1DdxtBO → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "DELETE",
+          "url": "http://127.0.0.1:61131/usuarios/57fqdtrCU1DdxtBO",
+          "corpo": null
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "message": "Registro excluído com sucesso"
+          }
+        }
+      }
+    }
+  ]
+}

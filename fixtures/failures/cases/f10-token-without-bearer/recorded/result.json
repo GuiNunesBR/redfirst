@@ -1,0 +1,81 @@
+{
+  "recordedAt": "2026-11-16",
+  "test": {
+    "file": "tests/api/login.spec.ts",
+    "line": 6,
+    "title": "login válido devolve token Bearer",
+    "project": "api"
+  },
+  "status": "failed",
+  "durationMs": 1843,
+  "errors": [
+    {
+      "message": "Error: Contrato inválido:\n✖ Invalid string: must start with \"Bearer \"\n  → at authorization\n\n   at ../src/api/schemas.ts:46\n\n  44 |   const resultado = schema.safeParse(dados);\n  45 |   if (!resultado.success) {\n> 46 |     throw new Error(`Contrato inválido:\\n${z.prettifyError(resultado.error)}`);\n     |           ^\n  47 |   }\n  48 |   return resultado.data;\n  49 | }\n    at validar (src/api/schemas.ts:46:11)\n    at tests/api/login.spec.ts:14:19",
+      "location": {
+        "file": "src/api/schemas.ts",
+        "line": 46,
+        "column": 11
+      }
+    }
+  ],
+  "apiCalls": [
+    {
+      "name": "API POST /usuarios → 201",
+      "body": {
+        "requisicao": {
+          "metodo": "POST",
+          "url": "http://127.0.0.1:59780/usuarios",
+          "corpo": {
+            "nome": "Royal Kuhlman",
+            "email": "qa.mwja68bcrstu@teste.com",
+            "password": "p53RzP0oSr",
+            "administrador": "false"
+          }
+        },
+        "resposta": {
+          "status": 201,
+          "corpo": {
+            "message": "Cadastro realizado com sucesso",
+            "_id": "p5wyGKBMojV7XyKh"
+          }
+        }
+      }
+    },
+    {
+      "name": "API POST /login → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "POST",
+          "url": "http://127.0.0.1:59780/login",
+          "corpo": {
+            "email": "qa.mwja68bcrstu@teste.com",
+            "password": "p53RzP0oSr"
+          }
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "message": "Login realizado com sucesso",
+            "authorization": "eyJhbGciOiJIUzI1NiJ9.e30.token-sem-prefixo"
+          }
+        }
+      }
+    },
+    {
+      "name": "API DELETE /usuarios/p5wyGKBMojV7XyKh → 200",
+      "body": {
+        "requisicao": {
+          "metodo": "DELETE",
+          "url": "http://127.0.0.1:59780/usuarios/p5wyGKBMojV7XyKh",
+          "corpo": null
+        },
+        "resposta": {
+          "status": 200,
+          "corpo": {
+            "message": "Registro excluído com sucesso"
+          }
+        }
+      }
+    }
+  ]
+}

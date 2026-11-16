@@ -1,0 +1,14 @@
+{
+  "description": "The app renamed the store's search input test id from pesquisar to search-products.",
+  "category": "locator",
+  "heal": "update-test",
+  "test": "tests/e2e/loja.spec.ts:11",
+  "project": "chromium",
+  "front": [
+    {
+      "find": "\"data-testid\":\"pesquisar\"",
+      "replace": "\"data-testid\":\"search-products\""
+    }
+  ],
+  "fix": "LojaPage.pesquisa uses getByTestId('search-products') or getByRole('searchbox')."
+}

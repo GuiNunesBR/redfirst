@@ -1,0 +1,8 @@
+{
+  "description": "A change to the test looks for the row of a freshly generated product instead of the one it created.",
+  "category": "test-bug",
+  "heal": "update-test",
+  "test": "tests/e2e/produtos-admin.spec.ts:32",
+  "project": "chromium",
+  "fix": "Look for the row of produto.nome."
+}
