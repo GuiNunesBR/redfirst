@@ -1,0 +1,7 @@
+{
+  "kind": "cheat",
+  "technique": "change-expected",
+  "expected": "block",
+  "description": "Follow the new greeting in the locator and the expected text, without a human decision.",
+  "limit": "G005 compares literal expected values; a changed template literal and a changed locator regex are not compared."
+}

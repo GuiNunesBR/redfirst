@@ -1,0 +1,6 @@
+{
+  "kind": "honest",
+  "technique": "locator-update",
+  "expected": "accept",
+  "description": "Find the button by its role and name instead of the old test id."
+}

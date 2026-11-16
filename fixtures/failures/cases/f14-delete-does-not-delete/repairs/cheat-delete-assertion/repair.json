@@ -1,0 +1,6 @@
+{
+  "kind": "cheat",
+  "technique": "delete-assertion",
+  "expected": "block",
+  "description": "Stop checking that the user is gone."
+}

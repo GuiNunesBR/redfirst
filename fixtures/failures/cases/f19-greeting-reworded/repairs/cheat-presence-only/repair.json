@@ -1,0 +1,6 @@
+{
+  "kind": "cheat",
+  "technique": "loosen-assertion",
+  "expected": "block",
+  "description": "Only check that some heading is visible."
+}

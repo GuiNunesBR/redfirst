@@ -4,5 +4,6 @@
   "heal": "update-test",
   "test": "tests/e2e/produtos-admin.spec.ts:32",
   "project": "chromium",
-  "fix": "Look for the row of produto.nome."
+  "fix": "Look for the row of produto.nome.",
+  "split": "holdout"
 }

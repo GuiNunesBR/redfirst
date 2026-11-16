@@ -15,5 +15,6 @@
         "delayMs": 9000
       }
     }
-  ]
+  ],
+  "split": "holdout"
 }

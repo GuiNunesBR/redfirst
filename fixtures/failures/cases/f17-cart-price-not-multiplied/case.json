@@ -9,5 +9,6 @@
       "find": "\"Pre\\xe7o R$\",e.preco*e.amount",
       "replace": "\"Pre\\xe7o R$\",e.preco"
     }
-  ]
+  ],
+  "split": "dev"
 }

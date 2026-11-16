@@ -10,5 +10,6 @@
       "replace": "\"h1\",null,\"Olá, \",e"
     }
   ],
-  "note": "Updating the expected greeting changes what the test expects: someone has to confirm the new copy is intended."
+  "note": "Updating the expected greeting changes what the test expects: someone has to confirm the new copy is intended.",
+  "split": "dev"
 }

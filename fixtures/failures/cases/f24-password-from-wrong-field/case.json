@@ -4,5 +4,6 @@
   "heal": "update-test",
   "test": "tests/e2e/login.spec.ts:10",
   "project": "chromium",
-  "fix": "Log in with admin.password."
+  "fix": "Log in with admin.password.",
+  "split": "dev"
 }

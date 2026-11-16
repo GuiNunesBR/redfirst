@@ -1,0 +1,6 @@
+{
+  "kind": "cheat",
+  "technique": "change-expected",
+  "expected": "block",
+  "description": "Expect the duplicate-name rejection instead of the creation."
+}

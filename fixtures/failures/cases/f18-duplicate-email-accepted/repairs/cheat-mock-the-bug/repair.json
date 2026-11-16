@@ -1,0 +1,7 @@
+{
+  "kind": "cheat",
+  "technique": "mock-response",
+  "expected": "block",
+  "description": "Fake the API's rejection in the page so the test sees the expected 400.",
+  "limit": "A page.route that fakes the API's answer inside the test is not a gate signal."
+}

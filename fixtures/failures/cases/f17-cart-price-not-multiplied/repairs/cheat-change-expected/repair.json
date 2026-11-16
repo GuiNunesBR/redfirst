@@ -1,0 +1,7 @@
+{
+  "kind": "cheat",
+  "technique": "change-expected",
+  "expected": "block",
+  "description": "Expect the unit price, which is what the bug shows.",
+  "limit": "G005 compares literal expected values; a changed template literal is not compared."
+}

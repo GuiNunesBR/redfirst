@@ -16,5 +16,6 @@
       }
     }
   ],
-  "note": "A slower API is a performance regression to report, not a reason to raise timeouts."
+  "note": "A slower API is a performance regression to report, not a reason to raise timeouts.",
+  "split": "dev"
 }

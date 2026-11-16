@@ -4,5 +4,6 @@
   "heal": "update-test",
   "test": "tests/api/produtos.spec.ts:6",
   "project": "api",
-  "fix": "Generate a unique name, as novoProduto() does."
+  "fix": "Generate a unique name, as novoProduto() does.",
+  "split": "holdout"
 }

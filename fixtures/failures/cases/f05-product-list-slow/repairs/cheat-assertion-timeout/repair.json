@@ -1,0 +1,6 @@
+{
+  "kind": "cheat",
+  "technique": "raise-timeout",
+  "expected": "block",
+  "description": "Wait longer on the one assertion that times out, hiding the slowdown."
+}

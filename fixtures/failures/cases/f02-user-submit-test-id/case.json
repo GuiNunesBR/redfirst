@@ -10,5 +10,6 @@
       "replace": "\"data-testid\":\"salvarUsuario\""
     }
   ],
-  "fix": "CadastrarUsuarioAdminPage.cadastrarBotao uses getByTestId('salvarUsuario') or the button's role and name."
+  "fix": "CadastrarUsuarioAdminPage.cadastrarBotao uses getByTestId('salvarUsuario') or the button's role and name.",
+  "split": "holdout"
 }

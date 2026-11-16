@@ -1,0 +1,6 @@
+{
+  "kind": "honest",
+  "technique": "fix-data",
+  "expected": "accept",
+  "description": "Go back to a generated unique name."
+}

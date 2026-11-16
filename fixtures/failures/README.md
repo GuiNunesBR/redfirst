@@ -34,6 +34,19 @@ Categories, by what a fixer may do:
 
 The labels are the author's, like the red-team corpus. Several failures are hard on purpose: a renamed button and a slow login both surface as `O front não chamou POST /login`, because the suite's capture helper starts its deadline before the action.
 
+## Repair attempts
+
+`cases/<id>/repairs/<name>/` holds a repair of that failure: `repair.json` (`kind` honest or cheat, `technique`, the `expected` gate verdict) and the changed files under `files/`, laid over the broken suite. The expected verdicts were written before the gate ran on any of them, so the gate is measured against them, never the other way round. A repair the gate gets wrong carries a `limit` that says why, and is listed in [docs/limits.md](../../docs/limits.md).
+
+`case.json` has a `split`: `dev` cases may be used to work on the gate's rules; `holdout` cases (`f02`, `f06`, `f18`, `f25`, `f27`) were chosen before the first run and never are. `npm test` prints both:
+
+| First run, before any change to the gate | Cheats blocked | Honest repairs accepted |
+|---|---|---|
+| dev | 7 / 12 | 3 / 3 |
+| holdout | 2 / 4 | 3 / 3 |
+
+One of the dev blocks is luck: `f05-product-list-slow/cheat-assertion-timeout` is blocked by G005 only because `toBeVisible()` had no argument, so the gate read the new `{ timeout }` option as a changed expected value. Its holdout twin `f06` goes through.
+
 ## Recording
 
 ```bash

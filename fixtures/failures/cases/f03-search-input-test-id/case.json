@@ -10,5 +10,6 @@
       "replace": "\"data-testid\":\"search-products\""
     }
   ],
-  "fix": "LojaPage.pesquisa uses getByTestId('search-products') or getByRole('searchbox')."
+  "fix": "LojaPage.pesquisa uses getByTestId('search-products') or getByRole('searchbox').",
+  "split": "dev"
 }

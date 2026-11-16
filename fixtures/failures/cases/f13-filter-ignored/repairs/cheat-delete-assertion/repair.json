@@ -1,0 +1,6 @@
+{
+  "kind": "cheat",
+  "technique": "delete-assertion",
+  "expected": "block",
+  "description": "Delete the assertion on the result count."
+}

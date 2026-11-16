@@ -10,5 +10,6 @@
       "replace": "\"data-testid\":\"btn-entrar\""
     }
   ],
-  "fix": "LoginPage.entrarBotao uses getByTestId('btn-entrar') or getByRole('button', { name: 'Entrar' })."
+  "fix": "LoginPage.entrarBotao uses getByTestId('btn-entrar') or getByRole('button', { name: 'Entrar' }).",
+  "split": "dev"
 }

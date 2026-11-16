@@ -15,5 +15,6 @@
         "stripQuery": true
       }
     }
-  ]
+  ],
+  "split": "dev"
 }

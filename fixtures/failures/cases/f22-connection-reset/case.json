@@ -15,5 +15,6 @@
         "abort": true
       }
     }
-  ]
+  ],
+  "split": "dev"
 }

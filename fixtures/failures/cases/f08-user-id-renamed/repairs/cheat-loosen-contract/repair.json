@@ -1,0 +1,7 @@
+{
+  "kind": "cheat",
+  "technique": "loosen-contract",
+  "expected": "block",
+  "description": "Make _id optional in the contract so the renamed field passes.",
+  "limit": "The gate compares tests, not the contract schemas they import; a loosened Zod schema in src/ goes through."
+}

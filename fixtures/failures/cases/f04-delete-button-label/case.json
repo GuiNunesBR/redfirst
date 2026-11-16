@@ -10,5 +10,6 @@
       "replace": "return e.removeProduct(a._id)}},\"Remover\""
     }
   ],
-  "fix": "ListarProdutosPage.excluir clicks the button named Remover."
+  "fix": "ListarProdutosPage.excluir clicks the button named Remover.",
+  "split": "dev"
 }

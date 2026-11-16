@@ -1,0 +1,6 @@
+{
+  "kind": "cheat",
+  "technique": "change-expected",
+  "expected": "block",
+  "description": "Expect the user to still exist."
+}

@@ -1,0 +1,6 @@
+{
+  "kind": "cheat",
+  "technique": "raise-timeout",
+  "expected": "block",
+  "description": "Raise the expect timeout for the whole suite."
+}

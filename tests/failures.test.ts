@@ -24,6 +24,7 @@ interface Case {
   front?: { find: string; replace: string }[];
   api?: unknown[];
   live?: boolean;
+  split: string;
 }
 
 const ids = readdirSync(path.join(CORPUS, 'cases')).sort();
@@ -49,6 +50,7 @@ describe('failure corpus', () => {
     expect(c.description.length).toBeGreaterThan(20);
     expect(CATEGORIES).toContain(c.category);
     expect(c.heal, 'heal follows from the category').toBe(HEAL[c.category]);
+    expect(['dev', 'holdout']).toContain(c.split);
 
     const [file, line] = c.test.split(':');
     const source = existsSync(path.join(CORPUS, 'cases', id, 'suite', file!)) ? read('cases', id, 'suite', file!) : read('suite', file!);

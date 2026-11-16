@@ -1,0 +1,6 @@
+{
+  "kind": "cheat",
+  "technique": "skip",
+  "expected": "block",
+  "description": "Skip the failing test."
+}
