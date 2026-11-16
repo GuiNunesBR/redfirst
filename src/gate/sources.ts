@@ -17,6 +17,8 @@ function git(cwd: string, args: string[]): string {
 }
 
 export function gitRefSource(cwd: string, ref: string): FileSource {
+  // A ref that starts with '-' would reach git as an option (git diff --output=<file> writes to disk).
+  if (ref.startsWith('-')) throw new Error(`Unknown git ref: ${ref}`);
   try {
     git(cwd, ['rev-parse', '--verify', '--quiet', `${ref}^{commit}`]);
   } catch {
