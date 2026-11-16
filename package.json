@@ -40,10 +40,13 @@
     "test": "vitest run"
   },
   "dependencies": {
+    "@modelcontextprotocol/server": "^2.4.0",
     "tinyglobby": "^0.2.17",
-    "typescript": "^6.0.3"
+    "typescript": "^6.0.3",
+    "zod": "^4.6.7"
   },
   "devDependencies": {
+    "@modelcontextprotocol/client": "^2.4.0",
     "@types/node": "^22.20.5",
     "vitest": "^5.1.0"
   }

@@ -2,12 +2,10 @@
 import { existsSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 import { parseArgs } from 'node:util';
-import { loadConfig } from './config.js';
-import type { Finding, Framework } from './core/types.js';
-import { runGate, type GateMode } from './gate/gate.js';
-import { dirSource, gitChangedFiles, gitRefSource, gitRoot, worktreeSource } from './gate/sources.js';
-import { DEFAULT_DIRS, lintFiles } from './lint/engine.js';
-import { format, FORMATS, summarize, type Format } from './report/format.js';
+import type { Framework } from './core/types.js';
+import type { GateMode } from './gate/gate.js';
+import { format, FORMATS, type Format } from './report/format.js';
+import { gateProject, lintProject, UsageError, type Report } from './run.js';
 
 const USAGE = `redfirst: tests that can fail for the right reason
 
@@ -17,13 +15,12 @@ Usage:
                 [--allow-removal] [--format text|json|github] [--strict] [--config file]
                 [--allow-protected] [--allow-dependencies]   (human overrides, after review)
   redfirst gate --base-dir <dir> --head-dir <dir> [same options]
+  redfirst mcp                                 MCP server on stdio, for the project in the working directory
 
 Exit codes: 0 clean, 1 violations found, 2 usage or internal error.
 Rules: https://github.com/GuiNunesBR/redfirst/blob/main/docs/rules.md`;
 
-class UsageError extends Error {}
-
-function version(): string {
+export function version(): string {
   const pkg = path.resolve(import.meta.dirname, '../package.json');
   return existsSync(pkg) ? (JSON.parse(readFileSync(pkg, 'utf8')) as { version: string }).version : 'unknown';
 }
@@ -41,10 +38,9 @@ function outputFormat(value: string | undefined): Format {
   return as;
 }
 
-function finish(tool: 'lint' | 'gate', findings: Finding[], as: Format, strict: boolean, files?: number): number {
-  const failed = findings.some((f) => f.severity === 'error') || (strict && findings.length > 0);
-  console.log(format(findings, summarize(tool, findings, failed, files), as));
-  return failed ? 1 : 0;
+function print(result: Report, as: Format): number {
+  console.log(format(result.findings, result.summary, as));
+  return result.failed ? 1 : 0;
 }
 
 const common = {
@@ -57,12 +53,13 @@ const common = {
 async function lint(args: string[], cwd: string): Promise<number> {
   const { values, positionals } = parseArgs({ args, options: common, allowPositionals: true, strict: true });
   const as = outputFormat(values.format);
-  const config = loadConfig(cwd, values.config);
-  const paths = positionals.length ? positionals : DEFAULT_DIRS.filter((d) => existsSync(path.join(cwd, d)));
-  if (paths.length === 0) throw new UsageError(`No paths given and none of ${DEFAULT_DIRS.join(', ')} exist.`);
-  const { files, findings } = await lintFiles(cwd, paths, { config, framework: framework(values.framework) });
-  if (files.length === 0) throw new UsageError(`No files matched: ${paths.join(' ')}`);
-  return finish('lint', findings, as, values.strict, files.length);
+  const result = await lintProject(cwd, {
+    paths: positionals,
+    strict: values.strict,
+    configFile: values.config,
+    framework: framework(values.framework),
+  });
+  return print(result, as);
 }
 
 function gate(args: string[], cwd: string): number {
@@ -83,38 +80,29 @@ function gate(args: string[], cwd: string): number {
     strict: true,
   });
   const as = outputFormat(values.format);
-  const mode = (values.mode ?? 'review') as GateMode;
-  if (mode !== 'review' && mode !== 'heal') throw new UsageError(`--mode must be review or heal, got ${values.mode}`);
-  const config = loadConfig(cwd, values.config);
-
-  let base;
-  let head;
-  let changed: string[] | undefined;
-  if (values['base-dir'] || values['head-dir']) {
-    if (!values['base-dir'] || !values['head-dir']) throw new UsageError('--base-dir and --head-dir go together.');
-    base = dirSource(path.resolve(cwd, values['base-dir']));
-    head = dirSource(path.resolve(cwd, values['head-dir']));
-  } else {
-    if (!values.base) throw new UsageError('gate needs --base <ref> (or --base-dir and --head-dir).');
-    const root = gitRoot(cwd);
-    base = gitRefSource(root, values.base);
-    head = values.head ? gitRefSource(root, values.head) : worktreeSource(root);
-    changed = gitChangedFiles(root, values.base, values.head);
-  }
-
-  const result = runGate({
-    base,
-    head,
-    mode,
+  const result = gateProject(cwd, {
+    base: values.base,
+    head: values.head,
+    baseDir: values['base-dir'],
+    headDir: values['head-dir'],
+    mode: values.mode as GateMode | undefined,
     paths: values.paths,
     allowRemoval: values['allow-removal'],
     allowProtected: values['allow-protected'],
     allowDependencies: values['allow-dependencies'],
-    config,
+    strict: values.strict,
+    configFile: values.config,
     framework: framework(values.framework),
-    changed,
   });
-  return finish('gate', result.findings, as, values.strict, result.changedFiles.length);
+  return print(result, as);
+}
+
+async function mcp(args: string[], cwd: string): Promise<number> {
+  if (args.length) throw new UsageError(`mcp takes no arguments, got ${args.join(' ')}`);
+  // Loaded here so lint and gate never pay for the MCP SDK.
+  const { serve } = await import('./mcp/server.js');
+  await serve(cwd, version());
+  return 0;
 }
 
 export async function main(argv: string[], cwd = process.cwd()): Promise<number> {
@@ -122,6 +110,7 @@ export async function main(argv: string[], cwd = process.cwd()): Promise<number>
   try {
     if (command === 'lint') return await lint(rest, cwd);
     if (command === 'gate') return gate(rest, cwd);
+    if (command === 'mcp') return await mcp(rest, cwd);
     if (command === '--version' || command === '-v') {
       console.log(version());
       return 0;

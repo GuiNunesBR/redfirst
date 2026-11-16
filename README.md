@@ -26,6 +26,7 @@ Each of these turns a red build green without fixing anything. Knowing the Playw
 | `redfirst lint` | 13 deterministic rules (TL000–TL012) for Playwright and Cypress test files, using the TypeScript AST. |
 | `redfirst gate` | Compares the tests at a base and a head and fails when the change weakens them, or touches the files that decide whether tests run (G001–G009). |
 | [`hooks`](hooks) | Agent hooks: block edits to protected files; lint every test file the agent edits and send the errors back. |
+| `redfirst mcp` | An MCP server with `lint` and `gate` as tools, for any agent that speaks MCP. |
 | Plugin manifests | Install the skill, the command and the hooks as a plugin in Claude Code, Codex or Grok Build. |
 | [`commands/redfirst-review.md`](commands/redfirst-review.md) | A terse senior-SDET review of a test diff. |
 
@@ -91,6 +92,17 @@ gate: FAIL (2 errors, 2 warnings in 1 file)
 ```
 
 `--mode heal` makes G005 an error: healing must never change what is expected. `--base-dir`/`--head-dir` compare two folders instead of git refs. Human overrides, after review: `--allow-removal`, `--allow-protected`, `--allow-dependencies`.
+
+### MCP server
+
+`redfirst mcp` serves `lint` and `gate` as read-only tools over stdio, for the project in the directory it starts in. The model of the agent does the reasoning; the server only runs the checks, offline.
+
+```bash
+claude mcp add --scope project redfirst -- npx --no redfirst mcp    # Claude Code (Grok Build reads it too)
+codex mcp add redfirst -- npx --no redfirst mcp                     # Codex
+```
+
+`--no` keeps npx from downloading a package with that name from the registry: the server must come from the project's own install. The gate tool has no override options. Allowing a removed test, a protected file or a new dependency stays a human decision on the command line.
 
 On pull requests, run it as a required check and protect the files it guards: see [docs/protect-your-gate.md](docs/protect-your-gate.md). A gate that the agent can edit is not a gate.
 
