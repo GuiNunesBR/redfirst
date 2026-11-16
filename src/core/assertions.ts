@@ -34,9 +34,29 @@ const HELPER = /^(expect|assert|verify|check)[A-Z_]/;
 
 const sourceText = (node: ts.Node | undefined, sf: ts.SourceFile) => (node ? node.getText(sf).replace(/\s+/g, ' ') : '');
 
-function expectedOf(args: readonly ts.Expression[], sf: ts.SourceFile): string | null {
-  if (args.length === 0) return '';
-  const parts = args.map((a) => literalText(a, sf));
+/** Matchers whose argument is a value to compare, so an object argument is the expected value, not options. */
+const VALUE_MATCHERS = new Set(['toBe', 'toEqual', 'toStrictEqual', 'toMatchObject', 'toContainEqual', 'toHaveProperty']);
+const OPTION_KEYS = new Set(['timeout', 'intervals', 'ignoreCase', 'useInnerText', 'ratio']);
+
+/** A trailing `{ timeout: … }`-style options object: how long or how to wait, not what is expected. */
+function isOptions(node: ts.Expression | undefined, matcher: string): boolean {
+  return (
+    !!node &&
+    !VALUE_MATCHERS.has(matcher) &&
+    ts.isObjectLiteralExpression(node) &&
+    node.properties.length > 0 &&
+    node.properties.every((p) => ts.isPropertyAssignment(p) && OPTION_KEYS.has(p.name.getText()))
+  );
+}
+
+/**
+ * Normalized expected value: literals, and template literals by their source (`Total: ${n * 2}`), so a changed
+ * text or expression is seen. A plain variable stays unknown (null): its value is not in the diff.
+ */
+function expectedOf(args: readonly ts.Expression[], sf: ts.SourceFile, matcher = ''): string | null {
+  const values = isOptions(args[args.length - 1], matcher) ? args.slice(0, -1) : args;
+  if (values.length === 0) return '';
+  const parts = values.map((a) => literalText(a, sf) ?? (ts.isTemplateExpression(a) ? sourceText(a, sf) : null));
   return parts.every((p) => p !== null) ? parts.join(', ') : null;
 }
 
@@ -121,7 +141,7 @@ function fromCall(call: ts.CallExpression, sf: ts.SourceFile): Assertion | null 
       subject: sourceText(call.arguments[0], sf),
       negated,
       strength: strengthOf('expect', matcher, negated),
-      expected: expectedOf(args, sf),
+      expected: expectedOf(args, sf, matcher),
       args,
       async: expect.poll || names.includes('resolves') || names.includes('rejects'),
       ...position(sf, top),

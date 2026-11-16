@@ -1,7 +1,7 @@
 import type { Config } from '../config.js';
 import type { Finding, Framework, Severity } from '../core/types.js';
 import { lintText, sortFindings } from '../lint/engine.js';
-import { DISABLE_PATTERNS, isLockfile, isProtected, packageChanges, protectedSignals } from './protected.js';
+import { CONTRACT_PATHS, DISABLE_PATTERNS, isLockfile, isProtected, packageChanges, protectedSignals, waitSignals } from './protected.js';
 import { alignAssertions, snapshotFile, type TestSnapshot } from './snapshot.js';
 import type { FileSource } from './sources.js';
 
@@ -28,6 +28,20 @@ export interface GateResult {
   failed: boolean;
   changedFiles: string[];
 }
+
+/** An exact check turned into one of these accepts values it used to reject (`toBe(1)` -> `toBeGreaterThanOrEqual(1)`). */
+const EXACT_MATCHERS = new Set(['toBe', 'toEqual', 'toStrictEqual', 'toHaveText', 'toHaveValue', 'toHaveCount', 'toHaveLength', 'toHaveURL', 'toHaveTitle']);
+const LOOSE_MATCHERS = new Set([
+  'toBeGreaterThan',
+  'toBeGreaterThanOrEqual',
+  'toBeLessThan',
+  'toBeLessThanOrEqual',
+  'toBeCloseTo',
+  'toContain',
+  'toContainText',
+  'toMatch',
+  'toMatchObject',
+]);
 
 const SOURCE_FILE = /\.[cm]?[jt]sx?$/;
 const TEST_NAME = /\.(spec|test|cy)\.[cm]?[jt]sx?$/;
@@ -107,6 +121,9 @@ export function runGate(options: GateOptions): GateResult {
         if (a.strength === 'strong' && b.strength === 'weak') {
           weakened++;
           add('G003', 'error', file, b.line, `${a.matcher} on ${a.subject} became ${b.matcher}, which only checks presence.`, title);
+        } else if (EXACT_MATCHERS.has(a.matcher) && LOOSE_MATCHERS.has(b.matcher)) {
+          weakened++;
+          add('G003', 'error', file, b.line, `${a.matcher} on ${a.subject} became ${b.matcher}, which accepts more values than the exact one.`, title);
         } else if (a.matcher === b.matcher && a.expected !== null && b.expected !== null && a.expected !== b.expected) {
           add('G005', mode === 'heal' ? 'error' : 'warn', file, b.line, `Expected value of ${b.matcher} on ${b.subject} changed: ${a.expected} -> ${b.expected}. Needs a human decision.`, title);
         }
@@ -147,12 +164,29 @@ export function runGate(options: GateOptions): GateResult {
     }
   }
 
-  // G007: protected files.
+  // G010: waits and retries raised inside test code, where G007 does not look.
+  for (const file of changed.filter((f) => SOURCE_FILE.test(f) && (inScope(f) || isTestFile(f)) && !isProtected(f))) {
+    const after = head.read(file);
+    if (after === undefined) continue;
+    const signals = waitSignals(base.read(file) ?? '', after);
+    if (signals.length) {
+      const line = lineOf(after, /\b(timeout|retries|setTimeout|slow)\b/);
+      add('G010', 'error', file, line, `${signals.join('; ')}. Waiting longer or retrying hides a slower or flakier app; a human must decide.`);
+    }
+  }
+
+  // G007: protected files, and contract schemas the tests validate against.
+  const state = (file: string) => (head.read(file) === undefined ? 'deleted' : base.read(file) === undefined ? 'added' : 'changed');
   for (const file of changed.filter(isProtected)) {
     if (options.allowProtected) continue;
     const signals = protectedSignals(file, base.read(file) ?? '', head.read(file) ?? '');
-    const state = head.read(file) === undefined ? 'deleted' : base.read(file) === undefined ? 'added' : 'changed';
-    add('G007', 'error', file, 1, `Protected file ${state}${signals.length ? `: ${signals.join('; ')}` : ''}. A human must make or approve this change.`);
+    add('G007', 'error', file, 1, `Protected file ${state(file)}${signals.length ? `: ${signals.join('; ')}` : ''}. A human must make or approve this change.`);
+  }
+  const contracts = [...CONTRACT_PATHS, ...(options.config?.contracts ?? []).map(globToRegExp)];
+  for (const file of changed.filter((f) => SOURCE_FILE.test(f) && !isProtected(f) && contracts.some((re) => re.test(f)))) {
+    if (options.allowProtected) continue;
+    // Healing must not touch what responses are checked against; in review, a human is looking.
+    add('G007', mode === 'heal' ? 'error' : 'warn', file, 1, `Contract ${state(file)}. A looser schema lets broken responses pass every test that uses it; a human must approve.`);
   }
 
   // G007 (scripts) and G008 (dependencies) from package.json.

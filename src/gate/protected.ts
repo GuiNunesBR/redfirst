@@ -20,12 +20,37 @@ export const PROTECTED_PATHS: RegExp[] = [
 
 export const isProtected = (file: string) => PROTECTED_PATHS.some((re) => re.test(file));
 
+/**
+ * Contracts the tests validate against (Zod/JSON schemas). Loosening one makes every test that uses it pass a
+ * broken response. Not in the edit hook: writing a new test often means adding a schema.
+ */
+export const CONTRACT_PATHS: RegExp[] = [/(^|\/)(schemas?|contracts?)(\.[cm]?[jt]s$|\/)/, /\.(schema|contract)\.[cm]?[jt]s$/];
+
 const numbers = (expression: string) => (expression.match(/\d[\d_]*/g) ?? []).map((n) => Number(n.replace(/_/g, '')));
 const maxOf = (values: number[]) => (values.length ? Math.max(...values) : 0);
 
 function settingMax(text: string, key: string): number {
   const re = new RegExp(`\\b${key}\\s*:\\s*([^,}\\n]+)`, 'g');
   return maxOf([...text.matchAll(re)].flatMap((m) => numbers(m[1] ?? '')));
+}
+
+/** Lines that compare values (`toEqual({ timeout: 2 })`): a `timeout` there is data the test expects, not a wait. */
+const VALUE_ASSERTION = /\.(toEqual|toStrictEqual|toMatchObject|toContainEqual|toHaveProperty)\(/;
+const withoutValueAssertions = (text: string) => text.split(/\r?\n/).filter((l) => !VALUE_ASSERTION.test(l)).join('\n');
+
+/** Waits and retries raised inside test code: `{ timeout: 15_000 }`, `configure({ retries })`, `test.setTimeout`, `test.slow()`. */
+export function waitSignals(baseText: string, headText: string): string[] {
+  const base = withoutValueAssertions(baseText);
+  const head = withoutValueAssertions(headText);
+  const signals: string[] = [];
+  if (settingMax(head, 'retries') > settingMax(base, 'retries')) signals.push('retries increased');
+  for (const key of ['timeout', 'defaultCommandTimeout', 'requestTimeout', 'responseTimeout']) {
+    if (settingMax(head, key) > settingMax(base, key)) signals.push(`${key} increased`);
+  }
+  const setTimeoutMax = (text: string) => maxOf([...text.matchAll(/\b(?:test|it)\.setTimeout\(\s*([\d_]+)/g)].flatMap((m) => numbers(m[1] ?? '')));
+  if (setTimeoutMax(head) > setTimeoutMax(base)) signals.push('test.setTimeout increased');
+  if (count(head, /\btest\.slow\(/g) > count(base, /\btest\.slow\(/g)) signals.push('test.slow() added');
+  return signals;
 }
 
 const count = (text: string, re: RegExp) => (text.match(re) ?? []).length;

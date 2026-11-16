@@ -9,6 +9,8 @@ export interface Config {
   include?: string[];
   exclude?: string[];
   framework?: Framework;
+  /** Extra contract schema globs for the gate, on top of `schemas.ts`, `contracts/` and `*.schema.ts`. */
+  contracts?: string[];
 }
 
 export const CONFIG_FILE = '.redfirstrc.json';
@@ -23,5 +25,5 @@ export function loadConfig(cwd: string, file?: string): Config {
   for (const [rule, setting] of Object.entries(raw.rules ?? {})) {
     if (!['off', 'warn', 'error'].includes(setting)) throw new Error(`Invalid setting for ${rule} in ${target}: ${setting}`);
   }
-  return { rules: raw.rules ?? {}, include: raw.include, exclude: raw.exclude, framework: raw.framework };
+  return { rules: raw.rules ?? {}, include: raw.include, exclude: raw.exclude, framework: raw.framework, contracts: raw.contracts };
 }

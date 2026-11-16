@@ -74,6 +74,14 @@ test('adds', async ({ page }) => {
     const result = gate({ [FILE]: page("await expect(page.getByTestId('total')).toBeVisible();") }, { [FILE]: page("await expect(page.getByTestId('total')).toHaveText('R$ 10');") });
     expect(result.rules).toEqual([]);
   });
+  it('flags an exact check turned into a range', () => {
+    const result = gate({ [FILE]: spec('  expect(list.length).toBe(1);') }, { [FILE]: spec('  expect(list.length).toBeGreaterThanOrEqual(1);') });
+    expect(result.rules).toEqual(['G003:error']);
+    expect(result.findings[0]!.message).toBe('toBe on list.length became toBeGreaterThanOrEqual, which accepts more values than the exact one.');
+  });
+  it('accepts a range turned into an exact check', () => {
+    expect(gate({ [FILE]: spec('  expect(list.length).toBeGreaterThanOrEqual(1);') }, { [FILE]: spec('  expect(list.length).toBe(1);') }).rules).toEqual([]);
+  });
 });
 
 describe('G004 skip-or-only-introduced', () => {
@@ -106,6 +114,22 @@ describe('G005 expected-value-changed', () => {
     const b = spec('  expect(response.status()).toBe(otherStatus);');
     expect(gate({ [FILE]: a }, { [FILE]: b }).rules).toEqual([]);
   });
+  it('compares template literals by their text and expressions', () => {
+    const a = spec('  await expect(total).toHaveText(`R$ ${price * 2}`);');
+    const b = spec('  await expect(total).toHaveText(`R$ ${price}`);');
+    expect(gate({ [FILE]: a }, { [FILE]: b }, { mode: 'heal' }).rules).toEqual(['G005:error']);
+    expect(gate({ [FILE]: a }, { [FILE]: a }, { mode: 'heal' }).rules).toEqual([]);
+  });
+  it('does not read a timeout option as an expected value', () => {
+    const a = spec("  await expect(page.getByTestId('row')).toBeVisible();");
+    const b = spec("  await expect(page.getByTestId('row')).toBeVisible({ timeout: 5_000 });");
+    expect(gate({ [FILE]: a }, { [FILE]: b }).rules).not.toContain('G005:warn');
+  });
+  it('still compares an object passed to a value matcher', () => {
+    const a = spec('  expect(config).toEqual({ timeout: 1 });');
+    const b = spec('  expect(config).toEqual({ timeout: 2 });');
+    expect(gate({ [FILE]: a }, { [FILE]: b }).rules).toEqual(['G005:warn']);
+  });
 });
 
 describe('G006 new-lint-errors', () => {
@@ -133,6 +157,38 @@ describe('G007 protected-file-changed', () => {
   });
   it('ignores files that are not protected', () => {
     expect(gate({ 'src/app.ts': 'a' }, { 'src/app.ts': 'b' }).rules).toEqual([]);
+  });
+  it('flags a changed contract schema: an error when healing, a warning in review', () => {
+    const schema = (id: string) => `export const Created = z.object({ _id: ${id} });\n`;
+    const before = { 'src/api/schemas.ts': schema('z.string().min(1)') };
+    const after = { 'src/api/schemas.ts': schema('z.string().optional()') };
+    expect(gate(before, after, { mode: 'heal' }).rules).toEqual(['G007:error']);
+    expect(gate(before, after).rules).toEqual(['G007:warn']);
+    expect(gate(before, after, { mode: 'heal', allowProtected: true }).rules).toEqual([]);
+  });
+  it('takes extra contract globs from the config', () => {
+    const files = (v: string) => ({ 'src/types/order.ts': v });
+    expect(gate(files('a'), files('b'), { mode: 'heal' }).rules).toEqual([]);
+    expect(gate(files('a'), files('b'), { mode: 'heal', config: { rules: {}, contracts: ['src/types/**'] } }).rules).toEqual(['G007:error']);
+  });
+});
+
+describe('G010 wait-or-retry-raised', () => {
+  const timed = (options: string) => spec(`  await expect(page.getByTestId('row')).toBeVisible(${options});`);
+  it('flags a timeout raised on an assertion', () => {
+    const result = gate({ [FILE]: timed('{ timeout: 5_000 }') }, { [FILE]: timed('{ timeout: 15_000 }') });
+    expect(result.rules).toEqual(['G010:error']);
+    expect(result.findings[0]!.message).toContain('timeout increased');
+  });
+  it('flags retries and slow marks added in a test file', () => {
+    const retries = spec(STRONG).replace("test('creates", "test.describe.configure({ retries: 3 });\n\ntest('creates");
+    expect(gate({ [FILE]: spec(STRONG) }, { [FILE]: retries }).rules).toEqual(['G010:error']);
+    const slow = spec(`  test.slow();\n${STRONG}`);
+    expect(gate({ [FILE]: spec(STRONG) }, { [FILE]: slow }).rules).toEqual(['G010:error']);
+  });
+  it('accepts a timeout that went down or stayed the same', () => {
+    expect(gate({ [FILE]: timed('{ timeout: 15_000 }') }, { [FILE]: timed('{ timeout: 5_000 }') }).rules).toEqual([]);
+    expect(gate({ [FILE]: timed('{ timeout: 5_000 }') }, { [FILE]: `${timed('{ timeout: 5_000 }')}// note\n` }).rules).toEqual([]);
   });
 });
 

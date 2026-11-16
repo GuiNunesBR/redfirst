@@ -24,7 +24,7 @@ Each of these turns a red build green without fixing anything. Knowing the Playw
 | [`skills/redfirst/SKILL.md`](skills/redfirst/SKILL.md) | A ladder the agent climbs before writing a test, hard rules, a healing protocol and an output contract. Framework-agnostic. |
 | [`AGENTS.md`](AGENTS.md) | The same rules, compact, for agents that read a rules file. |
 | `redfirst lint` | 13 deterministic rules (TL000–TL012) for Playwright and Cypress test files, using the TypeScript AST. |
-| `redfirst gate` | Compares the tests at a base and a head and fails when the change weakens them, or touches the files that decide whether tests run (G001–G009). |
+| `redfirst gate` | Compares the tests at a base and a head and fails when the change weakens them, or touches the files that decide whether tests run (G001–G010). |
 | [`hooks`](hooks) | Agent hooks: block edits to protected files; lint every test file the agent edits and send the errors back. |
 | `redfirst mcp` | An MCP server with `lint` and `gate` as tools, for any agent that speaks MCP. |
 | Plugin manifests | Install the skill, the command and the hooks as a plugin in Claude Code, Codex or Grok Build. |
@@ -125,14 +125,14 @@ Full tables in [docs/rules.md](docs/rules.md).
 |---|---|---|---|
 | TL001 | floating assertion | G001 | test removed |
 | TL002 | hard wait | G002 | assertions decreased (or moved behind a condition) |
-| TL003 | `.only` | G003 | assertion weakened |
+| TL003 | `.only` | G003 | assertion weakened (presence-only or looser) |
 | TL004 | skip without issue link | G004 | skip or only introduced |
 | TL005 | no assertion | G005 | expected value changed |
 | TL006 | presence-only | G006 | new lint findings (ratchet) |
 | TL007 | brittle selector | G007 | protected file or npm script changed |
 | TL008 | conditional test logic | G008 | new dependency |
 | TL009 | legacy selector API | G009 | disable or skip introduced |
-| TL010 | Cypress async misuse | | |
+| TL010 | Cypress async misuse | G010 | wait or retry raised in a test |
 | TL011 | swallowed failure | | |
 | TL012 | tautological assertion | | |
 | TL000 | disable without reason | | |
