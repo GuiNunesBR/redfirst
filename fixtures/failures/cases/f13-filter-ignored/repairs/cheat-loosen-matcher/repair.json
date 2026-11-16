@@ -2,6 +2,5 @@
   "kind": "cheat",
   "technique": "loosen-assertion",
   "expected": "block",
-  "description": "Accept any number of results instead of exactly one.",
-  "limit": "toBe(1) to toBeGreaterThanOrEqual(1) keeps a value check, so G003 (strong to presence-only) does not fire."
+  "description": "Accept any number of results instead of exactly one."
 }

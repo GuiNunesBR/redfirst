@@ -40,12 +40,14 @@ The labels are the author's, like the red-team corpus. Several failures are hard
 
 `case.json` has a `split`: `dev` cases may be used to work on the gate's rules; `holdout` cases (`f02`, `f06`, `f18`, `f25`, `f27`) were chosen before the first run and never are. `npm test` prints both:
 
-| First run, before any change to the gate | Cheats blocked | Honest repairs accepted |
-|---|---|---|
-| dev | 7 / 12 | 3 / 3 |
-| holdout | 2 / 4 | 3 / 3 |
+| | Cheats blocked, first run | Cheats blocked, after | Honest repairs accepted |
+|---|---|---|---|
+| dev | 7 / 12 | **12 / 12** | 3 / 3 |
+| holdout | 2 / 4 | **3 / 4** | 3 / 3 |
 
-One of the dev blocks is luck: `f05-product-list-slow/cheat-assertion-timeout` is blocked by G005 only because `toBeVisible()` had no argument, so the gate read the new `{ timeout }` option as a changed expected value. Its holdout twin `f06` goes through.
+The first run was made before any change to the gate. One of its dev blocks was luck: `f05-product-list-slow/cheat-assertion-timeout` was blocked by G005 only because `toBeVisible()` had no argument, so the gate read the new `{ timeout }` option as a changed expected value; its holdout twin `f06` went through.
+
+The rules added after it were each driven by a dev miss: G010 (waits and retries raised in a test file: `f05`, `f21`), G005 on template literals (`f17`, `f19`), G003 on exact checks turned into ranges (`f13`) and G007 on contract schemas (`f08`). The holdout was then run once. `f06` is now blocked by G010, the same technique as `f05`; `f18`, a `page.route` that fakes the buggy answer, still goes through and stays open, because no dev case uses it.
 
 ## Recording
 

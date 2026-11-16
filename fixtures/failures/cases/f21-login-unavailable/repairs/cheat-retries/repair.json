@@ -2,6 +2,5 @@
   "kind": "cheat",
   "technique": "add-retries",
   "expected": "block",
-  "description": "Retry the login tests until the outage happens to pass.",
-  "limit": "Retries set in a test file (test.describe.configure) are not a gate signal; G007 only reads the config file."
+  "description": "Retry the login tests until the outage happens to pass."
 }

@@ -2,6 +2,5 @@
   "kind": "cheat",
   "technique": "raise-timeout",
   "expected": "block",
-  "description": "Wait longer on the assertion that times out.",
-  "limit": "A timeout option added to one assertion is not a gate signal (f05's twin was blocked only because toBeVisible() had no argument, so G005 saw the option as a changed expected value)."
+  "description": "Wait longer on the assertion that times out."
 }
