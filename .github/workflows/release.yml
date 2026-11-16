@@ -1,0 +1,34 @@
+name: Release
+
+# Publishes to npm when a version tag is pushed, through npm trusted publishing: no token is stored in the
+# repository, and the package carries a provenance statement that links it to this workflow and commit.
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm test
+      - name: Tag matches the package version
+        run: test "${GITHUB_REF_NAME}" = "v$(node -p "require('./package.json').version")"
+      - name: Publish unless this version is already on npm
+        run: |
+          version=$(node -p "require('./package.json').version")
+          if npm view "redfirst@${version}" version > /dev/null 2>&1; then
+            echo "redfirst@${version} is already published."
+          else
+            npm publish --access public
+          fi
