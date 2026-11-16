@@ -64,6 +64,19 @@ The rules were written on the dev cases. The first run on the whole corpus misse
 
 `f29` is the case of an app that moves to another endpoint: the front searches through `GET /produtos/busca?nome=`, which answers with the real data, so the page is right and the endpoint the test checks is never called. The diagnosis shows both calls and asks whether the test should follow or the app is wrong.
 
+## Verified repairs
+
+`redfirst verify` puts the diagnosis of each failure together with the gate on each repair attempt. `npm test` runs it on the 24 attempts above:
+
+| | Cheats rejected | By diagnosis and gate | By the gate alone | Honest repairs not rejected |
+|---|---|---|---|---|
+| dev | **14 / 14** | 13 | 1 | 3 / 3 |
+| holdout | **4 / 4** | 2 | 2 | 3 / 3 |
+
+Fifteen of the eighteen cheats are stopped twice, by checks that share no code: the diagnosis says the test was right, and the gate sees the weakening. The three the gate stops alone are cheats on failures where the test was the thing to fix (`f01`, `f02`, `f27`), so the diagnosis rightly allows a repair. These were the first numbers; nothing was tuned for them.
+
+Only the static half is measured here. The corpus records no run of a repaired test, so the two checks on the green run (three passes, same calls and answers as before) are covered by unit tests, not by these cases.
+
 ## Recording
 
 ```bash

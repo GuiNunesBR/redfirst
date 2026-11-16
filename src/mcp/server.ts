@@ -3,6 +3,8 @@ import { McpServer, type CallToolResult } from '@modelcontextprotocol/server';
 import { StdioServerTransport } from '@modelcontextprotocol/server/stdio';
 import { z } from 'zod';
 import { diagnoseProject, formatDiagnosis } from '../diagnose/run.js';
+import { verifyProject } from '../verify/run.js';
+import { formatVerification } from '../verify/verify.js';
 import { format } from '../report/format.js';
 import { gateProject, lintProject, UsageError, type Report } from '../run.js';
 
@@ -122,6 +124,36 @@ export function createServer(root: string, version: string): McpServer {
         return {
           content: [{ type: 'text', text: diagnoses.length ? diagnoses.map(formatDiagnosis).join('\n\n') : 'No failed tests in the report.' }],
         };
+      } catch (error) {
+        return failure(error);
+      }
+    },
+  );
+
+  server.registerTool(
+    'verify_fix',
+    {
+      title: 'Verify a repaired test',
+      description:
+        'Judges a repair of failing tests with four checks: the failure was the test\'s to fix (from the failing ' +
+        'report), the change weakened nothing (the gate in heal mode), the repaired tests pass three times, and ' +
+        'the green run still sends the app the same calls, gets the same answers and runs as many assertions as ' +
+        'the last passing run, with no faked answer. Run it before you say a failing test is fixed. Anything but ' +
+        'VERIFIED means it is not; a rejected repair is for a human, and there is no override here.',
+      inputSchema: z.object({
+        base: z.string().min(1).describe('Git ref the failing run ran on, for example HEAD. The repair is what changed since.'),
+        report: z.string().min(1).optional().describe('JSON report of the repaired tests, run with --repeat-each=3 --trace=on.'),
+        failing: z.string().min(1).optional().describe('JSON report of the failing run, with traces.'),
+        passing: z.string().min(1).optional().describe('JSON report of the last passing run before the failure, with traces.'),
+        green: z.string().min(1).optional().describe('Git ref of that passing run.'),
+      }),
+      annotations: READ_ONLY,
+    },
+    async (input) => {
+      try {
+        inside(root, [input.report, input.failing, input.passing].filter((p): p is string => p !== undefined));
+        const verifications = verifyProject(root, { base: input.base, report: input.report, failing: input.failing, passing: input.passing, green: input.green });
+        return { content: [{ type: 'text', text: verifications.map(formatVerification).join('\n\n') }] };
       } catch (error) {
         return failure(error);
       }

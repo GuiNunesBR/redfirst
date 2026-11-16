@@ -2,7 +2,7 @@
 
 V0 is judgment (the skill) plus deterministic enforcement (lint, gate, hooks, MCP server) plus a measured red-team corpus. V1, in this order:
 
-0. **Verified healing.** `classify_failure` (and `redfirst diagnose`) is in: it reads a Playwright report and traces, compares with a passing run and says what broke and what a fix may do, measured on the [failure corpus](../fixtures/failures) (29 recorded failures in eight categories). Next: `verify_fix`, which runs the repaired test and the gate in heal mode, and a comparison of the passing run's UI, not only its calls.
+0. **Verified healing.** `classify_failure` (and `redfirst diagnose`) is in: it reads a Playwright report and traces, compares with a passing run and says what broke and what a fix may do, measured on the [failure corpus](../fixtures/failures) (29 recorded failures in eight categories). `verify_fix` (and `redfirst verify`) is in too: diagnosis, gate in heal mode, three green runs and the green run's evidence against the last passing one. Next: record the repaired runs of the corpus's 24 repair attempts, so the two checks on the green run are measured and not only unit-tested; then compare the passing run's UI, not only its calls.
 
 1. **Mutation of network responses and state.** Change API responses during a test run (field removed, status swapped, value changed, empty list, delay) and check that the tests notice. Count a mutant as killed only when a test fails because of it, with retries off. Mutations happen on the client side (interception), so shared environments are not touched.
 2. **Live red team.** An agent opens dozens of pull requests that try to get green by cheating, and we measure how many the gate blocks, next to the static corpus in `fixtures/redteam`.

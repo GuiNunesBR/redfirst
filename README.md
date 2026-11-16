@@ -27,7 +27,8 @@ Each of these turns a red build green without fixing anything. Knowing the Playw
 | `redfirst gate` | Compares the tests at a base and a head and fails when the change weakens them, or touches the files that decide whether tests run (G001–G011). |
 | [`hooks`](hooks) | Agent hooks: block edits to protected files; lint every test file the agent edits and send the errors back. |
 | `redfirst diagnose` | Reads a failing Playwright run and its traces, compares it with a passing run, and says why the test failed and whether a fix may touch the test. |
-| `redfirst mcp` | An MCP server with `lint`, `gate` and `classify_failure` as tools, for any agent that speaks MCP. |
+| `redfirst verify` | Judges a repair: the failure was the test's to fix, nothing was weakened, the test is green three times, and the green run still gets the same answers from the app. |
+| `redfirst mcp` | An MCP server with `lint`, `gate`, `classify_failure` and `verify_fix` as tools, for any agent that speaks MCP. |
 | Plugin manifests | Install the skill, the command and the hooks as a plugin in Claude Code, Codex or Grok Build. |
 | [`commands/redfirst-review.md`](commands/redfirst-review.md) | A terse senior-SDET review of a test diff. |
 
@@ -118,16 +119,30 @@ users.spec.ts:3 lists the users
 
 The evidence comes from the traces: each call's endpoint, status, time and body shape, the test's steps, and what changed since the passing run (endpoints, statuses, shapes, slowness, faked answers, test code with `--base`). The action is `update-test` only when the evidence points at the test; otherwise it is `do-not-touch`, with a bug report draft, or `human`, with the questions to ask. Details and limits in [docs/diagnose.md](docs/diagnose.md).
 
+### Verify
+
+```text
+$ npx redfirst verify --base HEAD --failing red.json --passing green.json --report after.json
+users.spec.ts:3 lists the users
+  ok      diagnosis: The failure was diagnosed as locator (medium confidence), action update-test.
+  ok      gate: Nothing removed, weakened, skipped, slowed down or faked in the test code.
+  ok      green: Passed 3 of 3 runs.
+  ok      evidence: Same calls and answers as the last passing run, no faked answer, assertions run: 1 (1 then).
+  verdict: VERIFIED
+```
+
+Four independent checks on a repair; one failure rejects it, and a check that cannot be made leaves it `INCOMPLETE`, never verified. `--base` is the ref the failing run ran on, `--report` the repaired tests run with `--repeat-each=3 --trace=on`. Exit code 0 only when every test is verified. Details in [docs/diagnose.md](docs/diagnose.md#verifying-a-repair).
+
 ### MCP server
 
-`redfirst mcp` serves `lint`, `gate` and `classify_failure` as read-only tools over stdio, for the project in the directory it starts in. The model of the agent does the reasoning; the server only runs the checks, offline.
+`redfirst mcp` serves `lint`, `gate`, `classify_failure` and `verify_fix` as read-only tools over stdio, for the project in the directory it starts in. The model of the agent does the reasoning; the server only runs the checks, offline.
 
 ```bash
 claude mcp add --scope project redfirst -- npx --no redfirst mcp    # Claude Code (Grok Build reads it too)
 codex mcp add redfirst -- npx --no redfirst mcp                     # Codex
 ```
 
-`--no` keeps npx from downloading a package with that name from the registry: the server must come from the project's own install. The gate tool has no override options. Allowing a removed test, a protected file or a new dependency stays a human decision on the command line.
+`--no` keeps npx from downloading a package with that name from the registry: the server must come from the project's own install. The gate and verify tools have no override options. Allowing a removed test, a protected file, a new dependency or a change of the app stays a human decision on the command line.
 
 On pull requests, run it as a required check and protect the files it guards: see [docs/protect-your-gate.md](docs/protect-your-gate.md). A gate that the agent can edit is not a gate.
 

@@ -44,9 +44,29 @@ For each failed test:
 
 The action is `update-test` only when the evidence points at the test (a locator that stopped matching while the app behaved as before, or test code that changed). Anything that points at the app, or at nothing in particular, is `do-not-touch` or `human`. A wrong `human` costs a question; a wrong `update-test` turns a bug into a green build.
 
+## Verifying a repair
+
+`redfirst verify` (MCP tool `verify_fix`) judges the repair after it is made:
+
+```bash
+npx playwright test tests/users.spec.ts --repeat-each=3 --trace=on --reporter=json > after.json
+npx redfirst verify --base HEAD --failing red.json --passing green.json --report after.json
+```
+
+| Check | Fails when |
+|---|---|
+| diagnosis | The failure was diagnosed `do-not-touch` or `human` and the repair changed test code. A failure of the app that went away without touching the test passes. |
+| gate | The gate in heal mode, from `--base` to the working tree, finds an error: an assertion removed or weakened, an expected value changed, a skip, a longer wait, a faked response, a protected file. |
+| green | A run of the repaired test did not pass. Fewer than three passing runs (`--runs` to change) is `unknown`, not a pass. |
+| evidence | In the green run, an answer came from the test's own `route.fulfill`; fewer assertions ran than in the last passing run; or the app still answers differently (status, shape, endpoint, slowness) and the test is green anyway. |
+
+The verdict is `VERIFIED` only when all four pass, `REJECTED` when one fails, and `INCOMPLETE` when nothing failed but something could not be checked (no report of the repaired test, no trace, no diagnosis). `--base` is the ref the failing run ran on; `--green` is the ref of the passing run, when test code changed between the two.
+
+`--accept-app-change` is the human override for a `human` diagnosis: someone decided the app changed on purpose, so the test may follow and the app may answer differently than before. It is not in the MCP tool, and it never lifts a `do-not-touch`.
+
 ## Measured
 
-[`fixtures/failures`](../fixtures/failures) has 29 recorded failures of a real suite with their evidence. `npm test` diagnoses every one and fails if an app failure is ever told to update the test. Results are in the corpus README.
+[`fixtures/failures`](../fixtures/failures) has 29 recorded failures of a real suite with their evidence. `npm test` diagnoses every one and fails if an app failure is ever told to update the test. Results are in the corpus README, with the repair attempts: `verify` rejects all 18 cheats, 15 of them by the diagnosis and the gate independently, and none of the 6 honest repairs. That measures the two static checks; the corpus has no recorded runs of repaired tests yet, so `green` and `evidence` are covered by unit tests only.
 
 ## Limits
 

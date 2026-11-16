@@ -34,7 +34,7 @@ Read the feature and the existing tests first. Then climb, and stop at the first
 1. **Reproduce** the failure and read the error, the trace or the screenshot.
 2. **Classify** it: locator drift, test or data bug, timing, contract change, real bug, product change or environment. If redfirst is installed, run `npx redfirst diagnose --report <json> --passing <json of a green run>` (or the `classify_failure` tool) and read its evidence; change the test only when its action is `update-test`.
 3. **Fix only the test's own mistakes.** Same assertions, same expected values (`redfirst gate --mode heal` enforces this).
-4. **Re-run three times.**
+4. **Re-run three times.** With redfirst installed, `npx redfirst verify --base <ref> --failing <json> --passing <json> --report <json of the three runs>` (or the `verify_fix` tool) must say `VERIFIED` before you call it fixed.
 5. **Show the diff.**
 6. **Real bug:** leave the test red and write a short bug note (steps, expected, actual, evidence).
 7. **Environment:** say what is broken. Do not add retries or longer timeouts to hide it.

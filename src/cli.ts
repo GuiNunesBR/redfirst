@@ -5,6 +5,8 @@ import { parseArgs } from 'node:util';
 import type { Framework } from './core/types.js';
 import type { GateMode } from './gate/gate.js';
 import { diagnoseProject, formatDiagnosis } from './diagnose/run.js';
+import { verifyProject } from './verify/run.js';
+import { formatVerification } from './verify/verify.js';
 import { AGENTS, formatInit, initProject, type Agent } from './init.js';
 import { format, FORMATS, type Format } from './report/format.js';
 import { gateProject, lintProject, UsageError, type Report } from './run.js';
@@ -19,6 +21,10 @@ Usage:
   redfirst gate --base-dir <dir> --head-dir <dir> [same options]
   redfirst diagnose --report <playwright json> [--passing <json>] [--base <ref>] [--format text|json]
                                                why each test in the report failed, and what a fix may do
+  redfirst verify --base <ref of the failing run> [--report <json after the fix>] [--failing <json>]
+                  [--passing <json>] [--green <ref of the passing run>] [--runs 3] [--format text|json]
+                  [--accept-app-change]        (human override, after review)
+                                               whether a repair fixed the test without weakening it
   redfirst init [--agent claude,codex,grok] [--dry-run]
                                                set the project up for the agents (plugin, MCP, AGENTS.md)
   redfirst mcp                                 MCP server on stdio, for the project in the working directory
@@ -126,6 +132,38 @@ function diagnose(args: string[], cwd: string): number {
   return 0;
 }
 
+function verifyFix(args: string[], cwd: string): number {
+  const { values } = parseArgs({
+    args,
+    options: {
+      base: { type: 'string' },
+      report: { type: 'string' },
+      failing: { type: 'string' },
+      passing: { type: 'string' },
+      green: { type: 'string' },
+      runs: { type: 'string' },
+      format: { type: 'string' },
+      'accept-app-change': { type: 'boolean', default: false },
+    },
+    strict: true,
+  });
+  if (values.format !== undefined && values.format !== 'text' && values.format !== 'json') throw new UsageError(`--format must be text or json, got ${values.format}`);
+  const runs = values.runs === undefined ? undefined : Number(values.runs);
+  if (runs !== undefined && (!Number.isInteger(runs) || runs < 1)) throw new UsageError(`--runs must be a positive whole number, got ${values.runs}`);
+  const verifications = verifyProject(cwd, {
+    base: values.base,
+    report: values.report,
+    failing: values.failing,
+    passing: values.passing,
+    green: values.green,
+    runs,
+    acceptAppChange: values['accept-app-change'],
+  });
+  if (values.format === 'json') console.log(JSON.stringify(verifications, null, 2));
+  else console.log(verifications.map(formatVerification).join('\n\n'));
+  return verifications.every((v) => v.verdict === 'verified') ? 0 : 1;
+}
+
 async function mcp(args: string[], cwd: string): Promise<number> {
   if (args.length) throw new UsageError(`mcp takes no arguments, got ${args.join(' ')}`);
   // Loaded here so lint and gate never pay for the MCP SDK.
@@ -141,6 +179,7 @@ export async function main(argv: string[], cwd = process.cwd()): Promise<number>
     if (command === 'gate') return gate(rest, cwd);
     if (command === 'init') return init(rest, cwd);
     if (command === 'diagnose') return diagnose(rest, cwd);
+    if (command === 'verify') return verifyFix(rest, cwd);
     if (command === 'mcp') return await mcp(rest, cwd);
     if (command === '--version' || command === '-v') {
       console.log(version());

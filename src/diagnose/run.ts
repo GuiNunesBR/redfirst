@@ -11,6 +11,8 @@ export interface DiagnoseRequest {
   passing?: string;
   /** Git ref of the passing run: test code changed since then is part of the evidence. */
   base?: string;
+  /** Git ref the failing run ran on, when it is not the working tree. */
+  head?: string;
 }
 
 interface Attachment {
@@ -39,14 +41,15 @@ function* specsOf(suite: Suite): Generator<Spec> {
   for (const child of suite.suites ?? []) yield* specsOf(child);
 }
 
-interface Run {
+export interface Run {
   spec: Spec;
   project: string;
   result: Result;
   dir: string;
 }
 
-function runsOf(file: string): Run[] {
+/** Every run of every test in a Playwright JSON report (one per project and repeat). */
+export function runsOf(file: string): Run[] {
   if (!existsSync(file)) throw new Error(`${file} does not exist.`);
   const report = JSON.parse(readFileSync(file, 'utf8')) as { suites?: Suite[] };
   const dir = path.dirname(file);
@@ -62,18 +65,18 @@ function attachment(run: Run, name: string): string | undefined {
   return existsSync(file) ? file : undefined;
 }
 
-function evidence(run: Run): Evidence | undefined {
+export function evidence(run: Run): Evidence | undefined {
   const trace = attachment(run, 'trace');
   return trace ? evidenceOf(trace) : undefined;
 }
 
-const key = (run: Run) => `${run.project} ${run.spec.file} ${run.spec.title}`;
+export const key = (run: Run) => `${run.project} ${run.spec.file} ${run.spec.title}`;
 const plain = (text: string) => text.replace(/\u001b\[[0-9;]*m/g, '');
 
 /** Changed lines per test file since `base`, from `git diff -U0`. */
-function testChanges(cwd: string, base: string): FailureInput['testChanges'] {
-  if (base.startsWith('-')) throw new Error(`Unknown git ref: ${base}`);
-  const diff = execFileSync('git', ['diff', '-U0', '--no-color', base, '--', '.'], { cwd, encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 });
+export function testChanges(cwd: string, base: string, head?: string): NonNullable<FailureInput['testChanges']> {
+  for (const ref of [base, head]) if (ref?.startsWith('-')) throw new Error(`Unknown git ref: ${ref}`);
+  const diff = execFileSync('git', ['diff', '-U0', '--no-color', base, ...(head ? [head] : []), '--', '.'], { cwd, encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 });
   const changes: NonNullable<FailureInput['testChanges']> = [];
   let current: (typeof changes)[number] | undefined;
   for (const line of diff.split('\n')) {
@@ -91,7 +94,7 @@ function testChanges(cwd: string, base: string): FailureInput['testChanges'] {
 export function diagnoseProject(cwd: string, request: DiagnoseRequest): Diagnosis[] {
   const failed = runsOf(path.resolve(cwd, request.report)).filter((r) => !['passed', 'skipped'].includes(r.result.status));
   const passed = new Map(request.passing ? runsOf(path.resolve(cwd, request.passing)).filter((r) => r.result.status === 'passed').map((r) => [key(r), r]) : []);
-  const changes = request.base ? testChanges(cwd, request.base) : [];
+  const changes = request.base ? testChanges(cwd, request.base, request.head) : [];
   return failed.map((run) => {
     const reference = passed.get(key(run));
     const failing = evidence(run);

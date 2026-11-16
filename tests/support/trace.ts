@@ -39,27 +39,50 @@ export function zip(entries: Record<string, string>): Buffer {
 
 const jsonl = (events: unknown[]) => events.map((e) => JSON.stringify(e)).join('\n');
 
+export interface RunOptions {
+  /**
+   * How the test fails: `wait` is the test's wait for the old endpoint timing out, `click` is a click whose
+   * locator finds nothing. Default: it passes.
+   */
+  failure?: 'wait' | 'click';
+  /** Runs of the test in the report, as `--repeat-each` writes them. */
+  repeats?: number;
+  /** The test answers the page's request itself instead of letting the app do it. */
+  faked?: boolean;
+}
+
 /**
  * A Playwright-like report of one UI test, "lists the users", and its trace: the page loads the list from
- * `endpoint` and shows it. `failed` records the test's wait for the old endpoint timing out.
+ * `endpoint`, the test clicks a row and asserts on the list.
  */
-export function writeRun(dir: string, endpoint: string, failed: boolean): string {
+export function writeRun(dir: string, endpoint: string, options: RunOptions = {}): string {
   mkdirSync(dir, { recursive: true });
+  const click = options.failure === 'click';
   const body = JSON.stringify({ users: [{ id: 'aB3dE5gH7jK9mN1p', name: 'Ana' }] });
   const trace = zip({
     'test.trace': jsonl([
       { type: 'before', callId: 'c1', method: 'pw:api', title: 'Navigate', startTime: 1 },
       { type: 'after', callId: 'c1', endTime: 100 },
-      { type: 'before', callId: 'c2', method: 'expect', title: 'Expect "toHaveCount"', startTime: 101 },
-      { type: 'after', callId: 'c2', endTime: 150 },
+      { type: 'before', callId: 'c2', method: 'pw:api', title: 'Click', startTime: 101 },
+      click ? { type: 'after', callId: 'c2', endTime: 5101, error: { message: 'TimeoutError: locator.click: Timeout 5000ms exceeded.' } } : { type: 'after', callId: 'c2', endTime: 120 },
+      ...(click
+        ? []
+        : [
+            { type: 'before', callId: 'c3', method: 'expect', title: 'Expect "toHaveCount"', startTime: 121 },
+            { type: 'after', callId: 'c3', endTime: 150 },
+          ]),
     ]),
-    '0-trace.trace': jsonl([{ type: 'before', callId: 'c2', params: { selector: 'internal:role=row' } }]),
+    '0-trace.trace': jsonl([
+      { type: 'before', callId: 'c2', params: { selector: 'internal:testid=[data-testid="row"s]' } },
+      { type: 'before', callId: 'c3', params: { selector: 'internal:role=row' } },
+    ]),
     '0-trace.network': jsonl([
       {
         type: 'resource-snapshot',
         snapshot: {
           pageref: 'page@1',
           _resourceType: 'fetch',
+          _wasFulfilled: options.faked,
           startedDateTime: '2026-01-01T00:00:00.050Z',
           time: 40,
           request: { method: 'GET', url: `http://app.test${endpoint}`, headers: [] },
@@ -70,12 +93,16 @@ export function writeRun(dir: string, endpoint: string, failed: boolean): string
     'resources/list.json': body,
   });
   writeFileSync(path.join(dir, 'trace.zip'), trace);
+  const message = click
+    ? 'TimeoutError: locator.click: Timeout 5000ms exceeded.\nCall log:\n  - waiting for getByTestId(\'row\')'
+    : 'Error: page.waitForResponse: Timeout 5000ms exceeded.';
   const result = {
-    status: failed ? 'failed' : 'passed',
-    errors: failed ? [{ message: 'Error: page.waitForResponse: Timeout 5000ms exceeded.', location: { file: 'tests/users.spec.ts', line: 7 } }] : [],
+    status: options.failure ? 'failed' : 'passed',
+    errors: options.failure ? [{ message, location: { file: 'tests/users.spec.ts', line: 7 } }] : [],
     attachments: [{ name: 'trace', path: 'trace.zip', contentType: 'application/zip' }],
   };
-  const report = { suites: [{ specs: [{ title: 'lists the users', file: 'users.spec.ts', line: 3, tests: [{ projectName: 'chromium', results: [result] }] }] }] };
+  const tests = Array.from({ length: options.repeats ?? 1 }, () => ({ projectName: 'chromium', results: [result] }));
+  const report = { suites: [{ specs: [{ title: 'lists the users', file: 'users.spec.ts', line: 3, tests }] }] };
   const file = path.join(dir, 'report.json');
   writeFileSync(file, JSON.stringify(report));
   return file;
