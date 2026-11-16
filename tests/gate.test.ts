@@ -97,6 +97,15 @@ describe('G004 skip-or-only-introduced', () => {
     const skipped = spec(STRONG).replace("test('creates", "// see #12\ntest.skip('creates");
     expect(gate({ [FILE]: skipped }, { [FILE]: skipped }).rules).toEqual([]);
   });
+  it('flags a new .fail, which turns a failure into a pass', () => {
+    const result = gate({ [FILE]: spec(STRONG) }, { [FILE]: spec(STRONG).replace("test('creates", "test.fail('creates") });
+    expect(result.rules).toEqual(expect.arrayContaining(['G004:error', 'G009:error']));
+    expect(result.findings.find((f) => f.rule === 'G004')!.message).toBe('Test gained .fail, which turns its failure into a pass.');
+  });
+  it('accepts an unchanged .fail', () => {
+    const failing = spec(STRONG).replace("test('creates", "test.fail('creates");
+    expect(gate({ [FILE]: failing }, { [FILE]: failing }).rules).toEqual([]);
+  });
 });
 
 describe('G005 expected-value-changed', () => {

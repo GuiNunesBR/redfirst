@@ -13,8 +13,10 @@ export interface TestBlock {
   only: boolean;
   skip: boolean;
   fixme: boolean;
+  /** `test.fail(...)`: expected to fail, so a failure counts as a pass. */
+  fail: boolean;
   /** Same flags, including the ones inherited from enclosing describes. */
-  effective: { only: boolean; skip: boolean; fixme: boolean };
+  effective: { only: boolean; skip: boolean; fixme: boolean; fail: boolean };
 }
 
 /** A skip/fixme call without a callback, e.g. `test.skip(isMobile, 'reason')` inside a test or describe. */
@@ -52,6 +54,7 @@ interface BlockShape {
   only: boolean;
   skip: boolean;
   fixme: boolean;
+  fail: boolean;
 }
 
 function blockShape(chain: string[], roots: Set<string>): BlockShape | null {
@@ -64,6 +67,7 @@ function blockShape(chain: string[], roots: Set<string>): BlockShape | null {
       only: members.includes('only') || root === 'fdescribe',
       skip: members.includes('skip') || root.startsWith('x'),
       fixme: members.includes('fixme'),
+      fail: false,
     };
   }
   if (!roots.has(root)) return null;
@@ -71,7 +75,7 @@ function blockShape(chain: string[], roots: Set<string>): BlockShape | null {
   if (describeAt >= 0) {
     const rest = members.slice(describeAt + 1);
     if (describeAt > 0 || !rest.every((m) => DESCRIBE_MODIFIERS.has(m))) return null;
-    return { kind: 'describe', only: rest.includes('only'), skip: rest.includes('skip'), fixme: rest.includes('fixme') };
+    return { kind: 'describe', only: rest.includes('only'), skip: rest.includes('skip'), fixme: rest.includes('fixme'), fail: false };
   }
   if (!members.every((m) => TEST_MODIFIERS.has(m))) return null;
   return {
@@ -79,6 +83,7 @@ function blockShape(chain: string[], roots: Set<string>): BlockShape | null {
     only: members.includes('only') || root === 'fit',
     skip: members.includes('skip') || root === 'xit' || root === 'xspecify',
     fixme: members.includes('fixme'),
+    fail: members.includes('fail'),
   };
 }
 
@@ -111,6 +116,7 @@ export function findBlocks(sf: ts.SourceFile): { blocks: TestBlock[]; inlineSkip
             only: shape.only || !!parent?.effective.only,
             skip: shape.skip || !!parent?.effective.skip,
             fixme: shape.fixme || !!parent?.effective.fixme,
+            fail: shape.fail,
           },
         };
         blocks.push(block);

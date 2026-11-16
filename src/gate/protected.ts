@@ -118,5 +118,5 @@ export const DISABLE_PATTERNS: { label: string; re: RegExp }[] = [
   { label: '@ts-ignore', re: /@ts-ignore/g },
   { label: '@ts-expect-error', re: /@ts-expect-error/g },
   { label: '@ts-nocheck', re: /@ts-nocheck/g },
-  { label: 'skip/fixme', re: /\b(test|it|describe|context)\.(skip|fixme)\s*\(|\b(xit|xdescribe|xcontext)\s*\(/g },
+  { label: 'skip/fixme/fail', re: /\b(test|it|describe|context)\.(skip|fixme|fail)\s*\(|\b(xit|xdescribe|xcontext)\s*\(/g },
 ];

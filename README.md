@@ -126,7 +126,7 @@ Full tables in [docs/rules.md](docs/rules.md).
 | TL001 | floating assertion | G001 | test removed |
 | TL002 | hard wait | G002 | assertions decreased (or moved behind a condition) |
 | TL003 | `.only` | G003 | assertion weakened (presence-only or looser) |
-| TL004 | skip without issue link | G004 | skip or only introduced |
+| TL004 | skip without issue link | G004 | skip, only or fail introduced |
 | TL005 | no assertion | G005 | expected value changed |
 | TL006 | presence-only | G006 | new lint findings (ratchet) |
 | TL007 | brittle selector | G007 | protected file or npm script changed |

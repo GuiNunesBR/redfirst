@@ -38,6 +38,7 @@ export interface TestSnapshot {
   only: boolean;
   skip: boolean;
   fixme: boolean;
+  fail: boolean;
 }
 
 /** Tests of a file keyed by full title. Repeated titles get a `#2`, `#3` suffix so each stays distinct. */

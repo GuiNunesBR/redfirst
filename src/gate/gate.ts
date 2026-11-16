@@ -136,8 +136,9 @@ export function runGate(options: GateOptions): GateResult {
         const detail = lost.length ? `${lost.join(', ')} is gone` : 'fewer value checks';
         add('G003', 'error', file, now.line, `Strong assertions went from ${strongBefore.length} to ${strongAfter.length} (${detail}${weak.length ? `; presence-only now: ${weak.join(', ')}` : ''}).`, title);
       }
-      for (const flag of ['skip', 'fixme', 'only'] as const) {
-        if (now[flag] && !was[flag]) add('G004', 'error', file, now.line, `Test gained .${flag}.`, title);
+      for (const flag of ['skip', 'fixme', 'only', 'fail'] as const) {
+        const why = flag === 'fail' ? ', which turns its failure into a pass' : '';
+        if (now[flag] && !was[flag]) add('G004', 'error', file, now.line, `Test gained .${flag}${why}.`, title);
       }
     }
   }

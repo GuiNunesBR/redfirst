@@ -29,5 +29,7 @@ Each commit compared with the one before it.
 | CI moved to the Playwright container image | Playwright | FAIL: G007, "a workflow step was removed" | Correct by design: the signal was accurate (setup and browser-install steps were removed on purpose). A human approves it. |
 | CI actions updated | Cypress | FAIL: G007 | Correct by design. |
 | Accessibility tests added | both | FAIL: G007 (new `test:a11y` script), G008 (new axe dependency); G006 warnings for the TL007/TL008 findings above | Correct by design: a new script and a new dependency need a human. The warnings match the lint findings. |
+| Capture helper: the deadline starts after the action | Playwright | PASS | Correct. |
+| Product sign-up marked `test.fail` while ServeRest is broken (ServeRest/front#42) | Playwright | PASS before the fix below; now FAIL: G004, G009 | It was a human decision, with a link, but the gate did not see it: `test.fail` turns a failing test green, which is what an agent trying to get green would reach for. Now a human approves it like a skip. |
 
-What this changed in redfirst: G008 had no human override, so `--allow-dependencies` was added next to `--allow-protected`, and [protect-your-gate.md](protect-your-gate.md) shows how to wire both to a review label in CI.
+What this changed in redfirst: a new `.fail` is now G004 and G009, like `.skip`. Earlier, G008 had no human override, so `--allow-dependencies` was added next to `--allow-protected`, and [protect-your-gate.md](protect-your-gate.md) shows how to wire both to a review label in CI.
