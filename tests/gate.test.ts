@@ -110,8 +110,10 @@ describe('G004 skip-or-only-introduced', () => {
 
 describe('G005 expected-value-changed', () => {
   const changed = spec(STRONG.replace('toBe(201)', 'toBe(200)'));
-  it('warns in review mode', () => {
-    expect(gate({ [FILE]: spec(STRONG) }, { [FILE]: changed }).rules).toEqual(['G005:warn']);
+  it('warns in review mode, with the line before and after', () => {
+    const result = gate({ [FILE]: spec(STRONG) }, { [FILE]: changed });
+    expect(result.rules).toEqual(['G005:warn']);
+    expect(result.findings[0]!.diff).toEqual({ before: 'expect(response.status()).toBe(201);', after: 'expect(response.status()).toBe(200);' });
   });
   it('fails in heal mode', () => {
     const result = gate({ [FILE]: spec(STRONG) }, { [FILE]: changed }, { mode: 'heal' });
@@ -167,12 +169,12 @@ describe('G007 protected-file-changed', () => {
   it('ignores files that are not protected', () => {
     expect(gate({ 'src/app.ts': 'a' }, { 'src/app.ts': 'b' }).rules).toEqual([]);
   });
-  it('flags a changed contract schema: an error when healing, a warning in review', () => {
+  it('flags a changed contract schema as an error in both modes', () => {
     const schema = (id: string) => `export const Created = z.object({ _id: ${id} });\n`;
     const before = { 'src/api/schemas.ts': schema('z.string().min(1)') };
     const after = { 'src/api/schemas.ts': schema('z.string().optional()') };
     expect(gate(before, after, { mode: 'heal' }).rules).toEqual(['G007:error']);
-    expect(gate(before, after).rules).toEqual(['G007:warn']);
+    expect(gate(before, after).rules).toEqual(['G007:error']);
     expect(gate(before, after, { mode: 'heal', allowProtected: true }).rules).toEqual([]);
   });
   it('takes extra contract globs from the config', () => {

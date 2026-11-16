@@ -20,11 +20,13 @@ export function summarize(tool: Summary['tool'], findings: Finding[], failed: bo
   return { tool, errors, warnings, files, verdict: `${tool}: ${failed ? 'FAIL' : 'PASS'} (${counts}${scope})` };
 }
 
+const diffLines = (f: Finding) => (f.diff ? [`    - ${f.diff.before}`, `    + ${f.diff.after}`] : []);
+
 function text(findings: Finding[], summary: Summary): string {
-  const lines = findings.map((f) => {
+  const lines = findings.flatMap((f) => {
     const where = `${f.file}:${f.line}:${f.column}`;
     const test = f.test ? ` [${f.test}]` : '';
-    return `${where}  ${f.severity.padEnd(5)}  ${f.rule}  ${f.message}${test}`;
+    return [`${where}  ${f.severity.padEnd(5)}  ${f.rule}  ${f.message}${test}`, ...diffLines(f)];
   });
   return [...lines, ...(lines.length ? [''] : []), summary.verdict].join('\n');
 }
@@ -43,7 +45,7 @@ function github(findings: Finding[], summary: Summary): string {
     const level = f.severity === 'error' ? 'error' : 'warning';
     const props = `file=${escapeProperty(f.file)},line=${f.line},col=${f.column},title=${escapeProperty(`redfirst ${f.rule}`)}`;
     const test = f.test ? ` [${f.test}]` : '';
-    return `::${level} ${props}::${escapeData(f.message + test)}`;
+    return `::${level} ${props}::${escapeData([f.message + test, ...diffLines(f)].join('\n'))}`;
   });
   return [...lines, summary.verdict].join('\n');
 }

@@ -80,8 +80,9 @@ export function runGate(options: GateOptions): GateResult {
   const mode = options.mode ?? 'review';
   const { base, head } = options;
   const findings: Finding[] = [];
-  const add = (rule: string, severity: Severity, file: string, line: number, message: string, test?: string) =>
-    findings.push({ rule, severity, file, line, column: 1, message, test });
+  const add = (rule: string, severity: Severity, file: string, line: number, message: string, test?: string, diff?: Finding['diff']) =>
+    findings.push({ rule, severity, file, line, column: 1, message, test, ...(diff ? { diff } : {}) });
+  const sourceLine = (text: string | undefined, line: number) => (text?.split(/\r?\n/)[line - 1] ?? '').trim();
 
   const changed =
     options.changed ??
@@ -125,7 +126,11 @@ export function runGate(options: GateOptions): GateResult {
           weakened++;
           add('G003', 'error', file, b.line, `${a.matcher} on ${a.subject} became ${b.matcher}, which accepts more values than the exact one.`, title);
         } else if (a.matcher === b.matcher && a.expected !== null && b.expected !== null && a.expected !== b.expected) {
-          add('G005', mode === 'heal' ? 'error' : 'warn', file, b.line, `Expected value of ${b.matcher} on ${b.subject} changed: ${a.expected} -> ${b.expected}. Needs a human decision.`, title);
+          // Shown with the lines themselves: a human validates the new expectation against the requirement.
+          add('G005', mode === 'heal' ? 'error' : 'warn', file, b.line, `Expected value of ${b.matcher} on ${b.subject} changed: ${a.expected} -> ${b.expected}. Needs a human decision.`, title, {
+            before: sourceLine(before, a.line),
+            after: sourceLine(after, b.line),
+          });
         }
       }
       // Removals are G002; G003 is about strong checks that turned weak, even when the subject text changed too.
@@ -186,8 +191,8 @@ export function runGate(options: GateOptions): GateResult {
   const contracts = [...CONTRACT_PATHS, ...(options.config?.contracts ?? []).map(globToRegExp)];
   for (const file of changed.filter((f) => SOURCE_FILE.test(f) && !isProtected(f) && contracts.some((re) => re.test(f)))) {
     if (options.allowProtected) continue;
-    // Healing must not touch what responses are checked against; in review, a human is looking.
-    add('G007', mode === 'heal' ? 'error' : 'warn', file, 1, `Contract ${state(file)}. A looser schema lets broken responses pass every test that uses it; a human must approve.`);
+    // An error in both modes: a warning could let a looser schema through unread.
+    add('G007', 'error', file, 1, `Contract ${state(file)}. A looser schema lets broken responses pass every test that uses it; a human must approve.`);
   }
 
   // G007 (scripts) and G008 (dependencies) from package.json.

@@ -87,6 +87,8 @@ tests/cart.spec.ts:6:1  error  G006  New TL001: toHaveText() is not awaited, so 
 tests/cart.spec.ts:7:1  warn   G006  New TL007: .nth() picks an element by position. [cart › adds an item]
 tests/cart.spec.ts:10:1  error  G003  toHaveText on page.getByTestId('total') became toBeVisible, which only checks presence. [cart › adds an item]
 tests/cart.spec.ts:15:1  warn   G005  Expected value of toBe on response.status() changed: 201 -> 200. Needs a human decision. [cart › creates the order]
+    - expect(response.status()).toBe(201);
+    + expect(response.status()).toBe(200);
 
 gate: FAIL (2 errors, 2 warnings in 1 file)
 ```
