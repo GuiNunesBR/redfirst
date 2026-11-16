@@ -7,10 +7,10 @@
     "project": "chromium"
   },
   "status": "failed",
-  "durationMs": 22965,
+  "durationMs": 19834,
   "errors": [
     {
-      "message": "Error: expect(locator).toHaveText(expected) failed\n\nLocator:  getByText(/^Preço R\\$/)\nExpected: \"Preço R$7350\"\nReceived: \"Preço R$3675\"\nTimeout:  7000ms\n\nCall log:\n  - Expect \"toHaveText\" getByText(/^Preço R\\$/) with timeout 7000ms\n  - waiting for getByText(/^Preço R\\$/)\n    18 × locator resolved to <p>Preço R$3675</p>\n       - unexpected value \"Preço R$3675\"\n\n\n  40 |\n  41 |     await expect(lista.quantidade).toHaveText('Total: 2');\n> 42 |     await expect(lista.preco).toHaveText(`Preço R$${produto.preco * 2}`);\n     |                               ^\n  43 |     await evidencia('lista de compras com duas unidades');\n  44 |   });\n  45 | });\n    at tests/e2e/loja.spec.ts:42:31",
+      "message": "Error: expect(locator).toHaveText(expected) failed\n\nLocator:  getByText(/^Preço R\\$/)\nExpected: \"Preço R$7814\"\nReceived: \"Preço R$3907\"\nTimeout:  7000ms\n\nCall log:\n  - Expect \"toHaveText\" getByText(/^Preço R\\$/) with timeout 7000ms\n  - waiting for getByText(/^Preço R\\$/)\n    18 × locator resolved to <p>Preço R$3907</p>\n       - unexpected value \"Preço R$3907\"\n\n\n  40 |\n  41 |     await expect(lista.quantidade).toHaveText('Total: 2');\n> 42 |     await expect(lista.preco).toHaveText(`Preço R$${produto.preco * 2}`);\n     |                               ^\n  43 |     await evidencia('lista de compras com duas unidades');\n  44 |   });\n  45 | });\n    at tests/e2e/loja.spec.ts:42:31",
       "location": {
         "file": "tests/e2e/loja.spec.ts",
         "line": 42,
@@ -24,11 +24,11 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:49226/usuarios",
+          "url": "http://127.0.0.1:60116/usuarios",
           "corpo": {
-            "nome": "Dr. Earl Legros",
-            "email": "qa.mwja8strpkpt@teste.com",
-            "password": "KK1b82cZ6_",
+            "nome": "Roman VonRueden",
+            "email": "qa.mwjjivmvgjd3@teste.com",
+            "password": "33nv5CAGdw",
             "administrador": "true"
           }
         },
@@ -36,7 +36,7 @@
           "status": 201,
           "corpo": {
             "message": "Cadastro realizado com sucesso",
-            "_id": "uB8NJeSgAUo1XNnm"
+            "_id": "lke7Aw3swJ1i08ny"
           }
         }
       }
@@ -46,10 +46,10 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:49226/login",
+          "url": "http://127.0.0.1:60116/login",
           "corpo": {
-            "email": "qa.mwja8strpkpt@teste.com",
-            "password": "KK1b82cZ6_"
+            "email": "qa.mwjjivmvgjd3@teste.com",
+            "password": "33nv5CAGdw"
           }
         },
         "resposta": {
@@ -66,11 +66,11 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:49226/usuarios",
+          "url": "http://127.0.0.1:60116/usuarios",
           "corpo": {
-            "nome": "Sadye Robel",
-            "email": "qa.mwja8tv8xrhp@teste.com",
-            "password": "ejz66nAE8T",
+            "nome": "Mr. Cody King V",
+            "email": "qa.mwjjiwgizp98@teste.com",
+            "password": "cOM9faDm9i",
             "administrador": "false"
           }
         },
@@ -78,7 +78,7 @@
           "status": 201,
           "corpo": {
             "message": "Cadastro realizado com sucesso",
-            "_id": "HtBIvkRqgYYAOExF"
+            "_id": "cpxyoThlFy55wW5V"
           }
         }
       }
@@ -88,10 +88,10 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:49226/login",
+          "url": "http://127.0.0.1:60116/login",
           "corpo": {
-            "email": "qa.mwja8tv8xrhp@teste.com",
-            "password": "ejz66nAE8T"
+            "email": "qa.mwjjiwgizp98@teste.com",
+            "password": "cOM9faDm9i"
           }
         },
         "resposta": {
@@ -108,29 +108,29 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:49226/produtos",
+          "url": "http://127.0.0.1:60116/produtos",
           "corpo": {
-            "nome": "Produto mwja8uhpi8hk",
-            "preco": 3675,
-            "descricao": "Savor the rich essence in our Chicken, designed for honorable culinary adventures",
-            "quantidade": 41
+            "nome": "Produto mwjjiwxmcqdb",
+            "preco": 3907,
+            "descricao": "New salmon Chips with ergonomic design for rigid comfort",
+            "quantidade": 21
           }
         },
         "resposta": {
           "status": 201,
           "corpo": {
             "message": "Cadastro realizado com sucesso",
-            "_id": "DrgzlPGkBJCurZun"
+            "_id": "eYOIQa4KzjWj3QDd"
           }
         }
       }
     },
     {
-      "name": "Front GET /produtos?nome=Produto%20mwja8uhpi8hk → 200",
+      "name": "Front GET /produtos?nome=Produto%20mwjjiwxmcqdb → 200",
       "body": {
         "requisicao": {
           "metodo": "GET",
-          "url": "http://127.0.0.1:49226/produtos?nome=Produto%20mwja8uhpi8hk",
+          "url": "http://127.0.0.1:60116/produtos?nome=Produto%20mwjjiwxmcqdb",
           "corpo": null
         },
         "resposta": {
@@ -139,11 +139,11 @@
             "quantidade": 1,
             "produtos": [
               {
-                "nome": "Produto mwja8uhpi8hk",
-                "preco": 3675,
-                "descricao": "Savor the rich essence in our Chicken, designed for honorable culinary adventures",
-                "quantidade": 41,
-                "_id": "DrgzlPGkBJCurZun"
+                "nome": "Produto mwjjiwxmcqdb",
+                "preco": 3907,
+                "descricao": "New salmon Chips with ergonomic design for rigid comfort",
+                "quantidade": 21,
+                "_id": "eYOIQa4KzjWj3QDd"
               }
             ]
           }
@@ -155,7 +155,7 @@
       "body": {
         "requisicao": {
           "metodo": "DELETE",
-          "url": "http://127.0.0.1:49226/carrinhos/cancelar-compra",
+          "url": "http://127.0.0.1:60116/carrinhos/cancelar-compra",
           "corpo": null
         },
         "resposta": {
@@ -171,7 +171,7 @@
       "body": {
         "requisicao": {
           "metodo": "DELETE",
-          "url": "http://127.0.0.1:49226/carrinhos/cancelar-compra",
+          "url": "http://127.0.0.1:60116/carrinhos/cancelar-compra",
           "corpo": null
         },
         "resposta": {
@@ -183,11 +183,11 @@
       }
     },
     {
-      "name": "API DELETE /produtos/DrgzlPGkBJCurZun → 200",
+      "name": "API DELETE /produtos/eYOIQa4KzjWj3QDd → 200",
       "body": {
         "requisicao": {
           "metodo": "DELETE",
-          "url": "http://127.0.0.1:49226/produtos/DrgzlPGkBJCurZun",
+          "url": "http://127.0.0.1:60116/produtos/eYOIQa4KzjWj3QDd",
           "corpo": null
         },
         "resposta": {
@@ -199,11 +199,11 @@
       }
     },
     {
-      "name": "API DELETE /usuarios/uB8NJeSgAUo1XNnm → 200",
+      "name": "API DELETE /usuarios/lke7Aw3swJ1i08ny → 200",
       "body": {
         "requisicao": {
           "metodo": "DELETE",
-          "url": "http://127.0.0.1:49226/usuarios/uB8NJeSgAUo1XNnm",
+          "url": "http://127.0.0.1:60116/usuarios/lke7Aw3swJ1i08ny",
           "corpo": null
         },
         "resposta": {
@@ -215,11 +215,11 @@
       }
     },
     {
-      "name": "API DELETE /usuarios/HtBIvkRqgYYAOExF → 200",
+      "name": "API DELETE /usuarios/cpxyoThlFy55wW5V → 200",
       "body": {
         "requisicao": {
           "metodo": "DELETE",
-          "url": "http://127.0.0.1:49226/usuarios/HtBIvkRqgYYAOExF",
+          "url": "http://127.0.0.1:60116/usuarios/cpxyoThlFy55wW5V",
           "corpo": null
         },
         "resposta": {

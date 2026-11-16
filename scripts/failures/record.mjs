@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 // Records the failure corpus: runs each case's test against the public ServeRest with the case's faults,
-// and keeps what an agent would get to diagnose it (the report, the error context, the API calls).
+// and keeps what an agent would get to diagnose it (the report, the error context, the API calls), plus the
+// evidence from the trace of a passing and of the failing run: what the page and the test sent and got back.
 //
 //   node scripts/failures/record.mjs --deps <dir with node_modules/@playwright/test> [--baseline] [case ids...]
 //
@@ -12,10 +13,13 @@
 import { spawn } from 'node:child_process';
 import { cpSync, existsSync, mkdirSync, readdirSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
+import { pathToFileURL } from 'node:url';
 import { parseArgs } from 'node:util';
 import { startApiProxy, startFrontProxy } from './proxy.mjs';
 
 const CORPUS = path.resolve(import.meta.dirname, '../../fixtures/failures');
+// The same trace reader the diagnosis uses; run `npm run build` first.
+const TRACE = path.resolve(import.meta.dirname, '../../dist/diagnose/trace.js');
 const FRONT = 'https://front.serverest.dev';
 const API = 'https://serverest.dev';
 
@@ -27,6 +31,11 @@ if (!values.deps) {
   console.error('Usage: record.mjs --deps <playwright-serverest-e2e checkout> [--baseline] [case ids...]');
   process.exit(2);
 }
+if (!existsSync(TRACE)) {
+  console.error('Run npm run build first: the recorder reads traces with dist/diagnose/trace.js.');
+  process.exit(2);
+}
+const { evidenceOf } = await import(pathToFileURL(TRACE).href);
 const deps = path.resolve(values.deps);
 const cli = path.join(deps, 'node_modules', '@playwright', 'test', 'cli.js');
 if (!existsSync(cli)) {
@@ -87,9 +96,11 @@ function extract(report, workdir, file, line) {
   const result = test.results.at(-1);
   const evidence = [];
   let errorContext;
+  let trace;
   for (const a of result.attachments ?? []) {
     const body = a.body ? Buffer.from(a.body, 'base64').toString('utf8') : a.path && existsSync(a.path) ? readFileSync(a.path, 'utf8') : undefined;
-    if (a.name === 'error-context') errorContext = body;
+    if (a.name === 'trace') trace = a.path;
+    else if (a.name === 'error-context') errorContext = body;
     else if (a.contentType === 'application/json' && body) evidence.push({ name: a.name, body: JSON.parse(clean(body, workdir)) });
   }
   return {
@@ -105,6 +116,7 @@ function extract(report, workdir, file, line) {
     })),
     apiCalls: evidence,
     errorContext: errorContext && errorContextOf(clean(errorContext, workdir)),
+    trace,
   };
 }
 
@@ -147,7 +159,10 @@ async function execute(id, spec, faulted) {
       ...api.hits().flatMap((n, i) => (n ? [] : [`api rule ${i}`])),
       ...front.hits().flatMap((n, i) => (n ? [] : [`front replacement ${i}`])),
     ];
-    return { result: extract(JSON.parse(readFileSync(reportFile, 'utf8')), workdir, file, line), unused };
+    const { trace, ...result } = extract(JSON.parse(readFileSync(reportFile, 'utf8')), workdir, file, line);
+    if (!trace) throw new Error('No trace in the report.');
+    const evidence = JSON.parse(clean(JSON.stringify(evidenceOf(trace, { origin: api.url })), workdir));
+    return { result, evidence, unused };
   } finally {
     await api.close();
     await front.close();
@@ -162,13 +177,15 @@ async function record(id) {
   const spec = JSON.parse(readFileSync(path.join(dir, 'case.json'), 'utf8'));
 
   // A live case is a failure of the real app, recorded as it is: there is nothing to compare it with.
+  let passing;
   if (!spec.live) {
     const baseline = await execute(id, spec, false);
     if (baseline.result.status !== 'passed') throw new Error(`baseline ${baseline.result.status}: ${firstLine(baseline.result)}`);
     if (values.baseline) return `${id}: baseline passed`;
+    passing = baseline.evidence;
   }
 
-  const { result, unused } = await execute(id, spec, true);
+  const { result, evidence, unused } = await execute(id, spec, true);
   if (unused.length) throw new Error(`fault never fired: ${unused.join(', ')}`);
   if (result.status === 'passed') throw new Error('the test passed: the fault does not break it');
 
@@ -178,6 +195,9 @@ async function record(id) {
   const { errorContext, ...rest } = result;
   writeFileSync(path.join(out, 'result.json'), `${JSON.stringify({ recordedAt: new Date().toISOString().slice(0, 10), ...rest }, null, 2)}\n`);
   if (errorContext) writeFileSync(path.join(out, 'error-context.md'), errorContext);
+  // A live case has no passing run to compare with: the real app fails it.
+  writeFileSync(path.join(out, 'evidence.json'), `${JSON.stringify({ passing: passing ?? null, failing: evidence }, null, 2)}
+`);
   return `${id}: recorded (${result.status}) ${firstLine(result)}`;
 }
 

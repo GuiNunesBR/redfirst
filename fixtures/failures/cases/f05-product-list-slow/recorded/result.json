@@ -7,10 +7,10 @@
     "project": "chromium"
   },
   "status": "failed",
-  "durationMs": 17209,
+  "durationMs": 19595,
   "errors": [
     {
-      "message": "Error: expect(locator).toBeVisible() failed\n\nLocator: getByRole('row').filter({ hasText: 'Produto mwjaoryxsnmf' })\nExpected: visible\nTimeout: 7000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" getByRole('row').filter({ hasText: 'Produto mwjaoryxsnmf' }) with timeout 7000ms\n  - waiting for getByRole('row').filter({ hasText: 'Produto mwjaoryxsnmf' })\n\n\n  38 |     const listagem = new ListarProdutosPage(page);\n  39 |     await listagem.abrir();\n> 40 |     await expect(listagem.linhaDe(produto.nome)).toBeVisible();\n     |                                                  ^\n  41 |     await evidencia('produto antes da exclusão');\n  42 |\n  43 |     const resposta = await capturarApi('DELETE', `/produtos/${_id}`, () => listagem.excluir(produto.nome));\n    at tests/e2e/produtos-admin.spec.ts:40:50",
+      "message": "Error: expect(locator).toBeVisible() failed\n\nLocator: getByRole('row').filter({ hasText: 'Produto mwjj733hszf4' })\nExpected: visible\nTimeout: 7000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" getByRole('row').filter({ hasText: 'Produto mwjj733hszf4' }) with timeout 7000ms\n  - waiting for getByRole('row').filter({ hasText: 'Produto mwjj733hszf4' })\n\n\n  38 |     const listagem = new ListarProdutosPage(page);\n  39 |     await listagem.abrir();\n> 40 |     await expect(listagem.linhaDe(produto.nome)).toBeVisible();\n     |                                                  ^\n  41 |     await evidencia('produto antes da exclusão');\n  42 |\n  43 |     const resposta = await capturarApi('DELETE', `/produtos/${_id}`, () => listagem.excluir(produto.nome));\n    at tests/e2e/produtos-admin.spec.ts:40:50",
       "location": {
         "file": "tests/e2e/produtos-admin.spec.ts",
         "line": 40,
@@ -24,11 +24,11 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:62498/usuarios",
+          "url": "http://127.0.0.1:57956/usuarios",
           "corpo": {
-            "nome": "Reed Stracke IV",
-            "email": "qa.mwjaor16sfpa@teste.com",
-            "password": "zzr5CathUT",
+            "nome": "Dusty Bednar",
+            "email": "qa.mwjj71o1gaa5@teste.com",
+            "password": "XVguKZInb1",
             "administrador": "true"
           }
         },
@@ -36,7 +36,7 @@
           "status": 201,
           "corpo": {
             "message": "Cadastro realizado com sucesso",
-            "_id": "fTxUTjChRRWzF5pn"
+            "_id": "WnKg0mXBR2TXQNYh"
           }
         }
       }
@@ -46,10 +46,10 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:62498/login",
+          "url": "http://127.0.0.1:57956/login",
           "corpo": {
-            "email": "qa.mwjaor16sfpa@teste.com",
-            "password": "zzr5CathUT"
+            "email": "qa.mwjj71o1gaa5@teste.com",
+            "password": "XVguKZInb1"
           }
         },
         "resposta": {
@@ -66,11 +66,11 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:62498/produtos",
+          "url": "http://127.0.0.1:57956/produtos",
           "corpo": {
-            "nome": "Produto mwjaoryxsnmf",
-            "preco": 1557,
-            "descricao": "Our koala-friendly Sausages ensures amused comfort for your pets",
+            "nome": "Produto mwjj733hszf4",
+            "preco": 3716,
+            "descricao": "Discover the total new Salad with an exciting mix of Wooden ingredients",
             "quantidade": 7
           }
         },
@@ -78,7 +78,7 @@
           "status": 201,
           "corpo": {
             "message": "Cadastro realizado com sucesso",
-            "_id": "1gUhjZaxj1rQ9cs8"
+            "_id": "099Qcr2Ajzqw0u9D"
           }
         }
       }
@@ -88,7 +88,7 @@
       "body": {
         "requisicao": {
           "metodo": "DELETE",
-          "url": "http://127.0.0.1:62498/carrinhos/cancelar-compra",
+          "url": "http://127.0.0.1:57956/carrinhos/cancelar-compra",
           "corpo": null
         },
         "resposta": {
@@ -100,11 +100,11 @@
       }
     },
     {
-      "name": "API DELETE /produtos/1gUhjZaxj1rQ9cs8 → 200",
+      "name": "API DELETE /produtos/099Qcr2Ajzqw0u9D → 200",
       "body": {
         "requisicao": {
           "metodo": "DELETE",
-          "url": "http://127.0.0.1:62498/produtos/1gUhjZaxj1rQ9cs8",
+          "url": "http://127.0.0.1:57956/produtos/099Qcr2Ajzqw0u9D",
           "corpo": null
         },
         "resposta": {
@@ -116,11 +116,11 @@
       }
     },
     {
-      "name": "API DELETE /usuarios/fTxUTjChRRWzF5pn → 200",
+      "name": "API DELETE /usuarios/WnKg0mXBR2TXQNYh → 200",
       "body": {
         "requisicao": {
           "metodo": "DELETE",
-          "url": "http://127.0.0.1:62498/usuarios/fTxUTjChRRWzF5pn",
+          "url": "http://127.0.0.1:57956/usuarios/WnKg0mXBR2TXQNYh",
           "corpo": null
         },
         "resposta": {

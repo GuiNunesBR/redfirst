@@ -1,0 +1,108 @@
+{
+  "passing": {
+    "calls": [
+      {
+        "from": "page",
+        "method": "POST",
+        "endpoint": "/login",
+        "status": 401,
+        "ms": 789,
+        "request": {
+          "email": "string",
+          "password": "string"
+        },
+        "response": {
+          "message": "string"
+        },
+        "error": "{\"message\":\"Email e/ou senha inválidos\"}"
+      }
+    ],
+    "actions": [
+      {
+        "step": "Navigate",
+        "ms": 3977
+      },
+      {
+        "step": "Fill \"nao.existe@teste.com\"",
+        "target": "internal:testid=[data-testid=\"email\"s]",
+        "ms": 55
+      },
+      {
+        "step": "Fill \"senha-errada\"",
+        "target": "internal:testid=[data-testid=\"senha\"s]",
+        "ms": 64
+      },
+      {
+        "step": "Click",
+        "target": "internal:testid=[data-testid=\"entrar\"s]",
+        "ms": 105
+      },
+      {
+        "step": "Expect \"toBe\"",
+        "ms": 1
+      },
+      {
+        "step": "Expect \"toBe\"",
+        "ms": 0
+      },
+      {
+        "step": "Expect \"toContainText\"",
+        "target": ".alert",
+        "ms": 27
+      },
+      {
+        "step": "Expect \"toHaveURL\"",
+        "ms": 15
+      }
+    ]
+  },
+  "failing": {
+    "calls": [
+      {
+        "from": "page",
+        "method": "POST",
+        "endpoint": "/login",
+        "status": 401,
+        "ms": 898,
+        "request": {
+          "email": "string",
+          "password": "string"
+        },
+        "response": {
+          "message": "string"
+        },
+        "error": "{\"message\":\"Credenciais inválidas\"}"
+      }
+    ],
+    "actions": [
+      {
+        "step": "Navigate",
+        "ms": 4101
+      },
+      {
+        "step": "Fill \"nao.existe@teste.com\"",
+        "target": "internal:testid=[data-testid=\"email\"s]",
+        "ms": 185
+      },
+      {
+        "step": "Fill \"senha-errada\"",
+        "target": "internal:testid=[data-testid=\"senha\"s]",
+        "ms": 62
+      },
+      {
+        "step": "Click",
+        "target": "internal:testid=[data-testid=\"entrar\"s]",
+        "ms": 407
+      },
+      {
+        "step": "Expect \"toBe\"",
+        "ms": 3
+      },
+      {
+        "step": "Expect \"toBe\"",
+        "ms": 35,
+        "error": "Error: expect(received).toBe(expected) // Object.is equality"
+      }
+    ]
+  }
+}

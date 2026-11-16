@@ -7,7 +7,7 @@
     "project": "api"
   },
   "status": "failed",
-  "durationMs": 2673,
+  "durationMs": 2422,
   "errors": [
     {
       "message": "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: 201\nReceived: 400\n\n   9 |     const criado = await api.criarProduto(produto, admin.token);\n  10 |\n> 11 |     expect(criado.status()).toBe(201);\n     |                             ^\n  12 |     const { _id } = validar(CadastroSchema, await criado.json());\n  13 |     limpeza.produto(_id, admin.token);\n  14 |\n    at tests/api/produtos.spec.ts:11:29",
@@ -24,11 +24,11 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:51931/usuarios",
+          "url": "http://127.0.0.1:57484/usuarios",
           "corpo": {
-            "nome": "Vaughn Franey",
-            "email": "qa.mwjafxc8318j@teste.com",
-            "password": "qHVogZh8sW",
+            "nome": "Maximillia Conn",
+            "email": "qa.mwjjxfco09ij@teste.com",
+            "password": "Ol0w2irq7J",
             "administrador": "true"
           }
         },
@@ -36,7 +36,7 @@
           "status": 201,
           "corpo": {
             "message": "Cadastro realizado com sucesso",
-            "_id": "C1TXhYM6Dwov0tuB"
+            "_id": "WpVCWTJ8n25eHP0A"
           }
         }
       }
@@ -46,10 +46,10 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:51931/login",
+          "url": "http://127.0.0.1:57484/login",
           "corpo": {
-            "email": "qa.mwjafxc8318j@teste.com",
-            "password": "qHVogZh8sW"
+            "email": "qa.mwjjxfco09ij@teste.com",
+            "password": "Ol0w2irq7J"
           }
         },
         "resposta": {
@@ -66,12 +66,12 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:51931/produtos",
+          "url": "http://127.0.0.1:57484/produtos",
           "corpo": {
             "nome": "Logitech MX Vertical",
-            "preco": 924,
-            "descricao": "New Salad model with 51 GB RAM, 519 GB storage, and rowdy features",
-            "quantidade": 34
+            "preco": 2047,
+            "descricao": "Discover the breakable new Chair with an exciting mix of Granite ingredients",
+            "quantidade": 26
           }
         },
         "resposta": {
@@ -87,7 +87,7 @@
       "body": {
         "requisicao": {
           "metodo": "DELETE",
-          "url": "http://127.0.0.1:51931/carrinhos/cancelar-compra",
+          "url": "http://127.0.0.1:57484/carrinhos/cancelar-compra",
           "corpo": null
         },
         "resposta": {
@@ -99,11 +99,11 @@
       }
     },
     {
-      "name": "API DELETE /usuarios/C1TXhYM6Dwov0tuB → 200",
+      "name": "API DELETE /usuarios/WpVCWTJ8n25eHP0A → 200",
       "body": {
         "requisicao": {
           "metodo": "DELETE",
-          "url": "http://127.0.0.1:51931/usuarios/C1TXhYM6Dwov0tuB",
+          "url": "http://127.0.0.1:57484/usuarios/WpVCWTJ8n25eHP0A",
           "corpo": null
         },
         "resposta": {

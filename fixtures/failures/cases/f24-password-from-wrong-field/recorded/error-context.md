@@ -20,8 +20,8 @@ Received: 401
   - alert [ref=e8]:
     - button "Close" [ref=e9] [cursor=pointer]: ×
     - text: Email e/ou senha inválidos
-  - textbox "Digite seu email" [ref=e11]: qa.mwjae6wo2mke@teste.com
-  - textbox "Digite sua senha" [ref=e13]: Ross Beer
+  - textbox "Digite seu email" [ref=e11]: qa.mwjjujd8bc8k@teste.com
+  - textbox "Digite sua senha" [ref=e13]: Lila Harris I
   - button "Entrar" [active] [ref=e14] [cursor=pointer]
   - generic [ref=e15]:
     - text: Não é cadastrado?

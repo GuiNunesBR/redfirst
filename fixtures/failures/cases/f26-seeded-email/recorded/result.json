@@ -7,7 +7,7 @@
     "project": "api"
   },
   "status": "failed",
-  "durationMs": 1030,
+  "durationMs": 1043,
   "errors": [
     {
       "message": "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: 201\nReceived: 400\n\n   7 |     const resposta = await api.criarUsuario(novoUsuario({ email: 'fulano@qa.com' }));\n   8 |\n>  9 |     expect(resposta.status()).toBe(201);\n     |                               ^\n  10 |     const corpo = validar(CadastroSchema, await resposta.json());\n  11 |     limpeza.usuario(corpo._id);\n  12 |     expect(corpo.message).toBe('Cadastro realizado com sucesso');\n    at tests/api/usuarios.spec.ts:9:31",
@@ -24,11 +24,11 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:56302/usuarios",
+          "url": "http://127.0.0.1:54735/usuarios",
           "corpo": {
-            "nome": "Camilla Kessler",
+            "nome": "Ollie Kirlin",
             "email": "fulano@qa.com",
-            "password": "65Mb64SwJh",
+            "password": "buHeeel9yy",
             "administrador": "false"
           }
         },

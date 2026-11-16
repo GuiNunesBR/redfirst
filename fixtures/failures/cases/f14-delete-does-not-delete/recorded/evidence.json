@@ -1,0 +1,118 @@
+{
+  "passing": {
+    "calls": [
+      {
+        "from": "test",
+        "method": "POST",
+        "endpoint": "/usuarios",
+        "status": 201,
+        "ms": 655,
+        "request": {
+          "administrador": "string",
+          "email": "string",
+          "nome": "string",
+          "password": "string"
+        },
+        "response": {
+          "_id": "string",
+          "message": "string"
+        }
+      },
+      {
+        "from": "test",
+        "method": "DELETE",
+        "endpoint": "/usuarios/:id",
+        "status": 200,
+        "ms": 290,
+        "response": {
+          "message": "string"
+        }
+      },
+      {
+        "from": "test",
+        "method": "GET",
+        "endpoint": "/usuarios/:id",
+        "status": 400,
+        "ms": 307,
+        "response": {
+          "message": "string"
+        },
+        "error": "{\"message\":\"Usuário não encontrado\"}"
+      }
+    ],
+    "actions": [
+      {
+        "step": "Expect \"toBe\"",
+        "ms": 2
+      },
+      {
+        "step": "Expect \"toBe\"",
+        "ms": 0
+      },
+      {
+        "step": "Expect \"toBe\"",
+        "ms": 0
+      }
+    ]
+  },
+  "failing": {
+    "calls": [
+      {
+        "from": "test",
+        "method": "POST",
+        "endpoint": "/usuarios",
+        "status": 201,
+        "ms": 1178,
+        "request": {
+          "administrador": "string",
+          "email": "string",
+          "nome": "string",
+          "password": "string"
+        },
+        "response": {
+          "_id": "string",
+          "message": "string"
+        }
+      },
+      {
+        "from": "test",
+        "method": "DELETE",
+        "endpoint": "/usuarios/:id",
+        "status": 200,
+        "ms": 8,
+        "response": {
+          "message": "string"
+        }
+      },
+      {
+        "from": "test",
+        "method": "GET",
+        "endpoint": "/usuarios/:id",
+        "status": 200,
+        "ms": 318,
+        "response": {
+          "_id": "string",
+          "administrador": "string",
+          "email": "string",
+          "nome": "string",
+          "password": "string"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "step": "Expect \"toBe\"",
+        "ms": 4
+      },
+      {
+        "step": "Expect \"toBe\"",
+        "ms": 2
+      },
+      {
+        "step": "Expect \"toBe\"",
+        "ms": 15,
+        "error": "Error: expect(received).toBe(expected) // Object.is equality"
+      }
+    ]
+  }
+}

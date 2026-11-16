@@ -14,8 +14,8 @@ Error: O front não chamou POST /login
 ```yaml
 - generic [ref=e5]:
   - heading "Login" [level=1] [ref=e7]
-  - textbox "Digite seu email" [ref=e9]: qa.mwja53ija4dk@teste.com
-  - textbox "Digite sua senha" [ref=e11]: 4SX8A_XVnV
+  - textbox "Digite seu email" [ref=e9]: qa.mwjj9d2ttdnr@teste.com
+  - textbox "Digite sua senha" [ref=e11]: jk_pQR_eeA
   - button "Entrar" [active] [ref=e12] [cursor=pointer]
   - generic [ref=e13]:
     - text: Não é cadastrado?

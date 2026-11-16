@@ -1,0 +1,183 @@
+{
+  "passing": {
+    "calls": [
+      {
+        "from": "test",
+        "method": "POST",
+        "endpoint": "/usuarios",
+        "status": 201,
+        "ms": 683,
+        "request": {
+          "administrador": "string",
+          "email": "string",
+          "nome": "string",
+          "password": "string"
+        },
+        "response": {
+          "_id": "string",
+          "message": "string"
+        }
+      },
+      {
+        "from": "page",
+        "method": "POST",
+        "endpoint": "/usuarios",
+        "status": 400,
+        "ms": 995,
+        "request": {
+          "administrador": "string",
+          "email": "string",
+          "nome": "string",
+          "password": "string"
+        },
+        "response": {
+          "message": "string"
+        },
+        "error": "{\"message\":\"Este email já está sendo usado\"}"
+      },
+      {
+        "from": "test",
+        "method": "DELETE",
+        "endpoint": "/usuarios/:id",
+        "status": 200,
+        "ms": 373,
+        "response": {
+          "message": "string"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "step": "Navigate",
+        "ms": 7233
+      },
+      {
+        "step": "Fill \"Valentine Pollich\"",
+        "target": "internal:testid=[data-testid=\"nome\"s]",
+        "ms": 123
+      },
+      {
+        "step": "Fill \"qa.mwjjk2wfd3ni@teste.com\"",
+        "target": "internal:testid=[data-testid=\"email\"s]",
+        "ms": 41
+      },
+      {
+        "step": "Fill \"iVHauTQSJK\"",
+        "target": "internal:testid=[data-testid=\"password\"s]",
+        "ms": 34
+      },
+      {
+        "step": "Click",
+        "target": "internal:testid=[data-testid=\"cadastrar\"s]",
+        "ms": 96
+      },
+      {
+        "step": "Expect \"toBe\"",
+        "ms": 1
+      },
+      {
+        "step": "Expect \"toBe\"",
+        "ms": 0
+      },
+      {
+        "step": "Expect \"toContainText\"",
+        "target": ".alert",
+        "ms": 18
+      }
+    ]
+  },
+  "failing": {
+    "calls": [
+      {
+        "from": "test",
+        "method": "POST",
+        "endpoint": "/usuarios",
+        "status": 201,
+        "ms": 772,
+        "request": {
+          "administrador": "string",
+          "email": "string",
+          "nome": "string",
+          "password": "string"
+        },
+        "response": {
+          "_id": "string",
+          "message": "string"
+        }
+      },
+      {
+        "from": "page",
+        "method": "POST",
+        "endpoint": "/usuarios",
+        "status": 201,
+        "ms": 67,
+        "request": {
+          "administrador": "string",
+          "email": "string",
+          "nome": "string",
+          "password": "string"
+        },
+        "response": {
+          "_id": "string",
+          "message": "string"
+        }
+      },
+      {
+        "from": "page",
+        "method": "POST",
+        "endpoint": "/login",
+        "status": 200,
+        "ms": 1174,
+        "request": {
+          "email": "string",
+          "password": "string"
+        },
+        "response": {
+          "authorization": "string",
+          "message": "string"
+        }
+      },
+      {
+        "from": "test",
+        "method": "DELETE",
+        "endpoint": "/usuarios/:id",
+        "status": 200,
+        "ms": 693,
+        "response": {
+          "message": "string"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "step": "Navigate",
+        "ms": 5346
+      },
+      {
+        "step": "Fill \"Violet Kuhn\"",
+        "target": "internal:testid=[data-testid=\"nome\"s]",
+        "ms": 164
+      },
+      {
+        "step": "Fill \"qa.mwjjkzrkpdo1@teste.com\"",
+        "target": "internal:testid=[data-testid=\"email\"s]",
+        "ms": 47
+      },
+      {
+        "step": "Fill \"YaG3FShse4\"",
+        "target": "internal:testid=[data-testid=\"password\"s]",
+        "ms": 41
+      },
+      {
+        "step": "Click",
+        "target": "internal:testid=[data-testid=\"cadastrar\"s]",
+        "ms": 147
+      },
+      {
+        "step": "Expect \"toBe\"",
+        "ms": 11,
+        "error": "Error: expect(received).toBe(expected) // Object.is equality"
+      }
+    ]
+  }
+}

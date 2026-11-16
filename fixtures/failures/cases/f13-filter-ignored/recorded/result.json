@@ -7,10 +7,10 @@
     "project": "api"
   },
   "status": "failed",
-  "durationMs": 3210,
+  "durationMs": 3151,
   "errors": [
     {
-      "message": "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: 1\nReceived: 7\n\n  53 |     const lista = validar(ListaProdutosSchema, await (await api.listarProdutos({ nome: produto.nome })).json());\n  54 |\n> 55 |     expect(lista.quantidade).toBe(1);\n     |                              ^\n  56 |     expect(lista.produtos[0]._id).toBe(_id);\n  57 |   });\n  58 |\n    at tests/api/produtos.spec.ts:55:30",
+      "message": "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: 1\nReceived: 27\n\n  53 |     const lista = validar(ListaProdutosSchema, await (await api.listarProdutos({ nome: produto.nome })).json());\n  54 |\n> 55 |     expect(lista.quantidade).toBe(1);\n     |                              ^\n  56 |     expect(lista.produtos[0]._id).toBe(_id);\n  57 |   });\n  58 |\n    at tests/api/produtos.spec.ts:55:30",
       "location": {
         "file": "tests/api/produtos.spec.ts",
         "line": 55,
@@ -24,11 +24,11 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:52538/usuarios",
+          "url": "http://127.0.0.1:64128/usuarios",
           "corpo": {
-            "nome": "Dejuan Oberbrunner",
-            "email": "qa.mwja7lzcjyx1@teste.com",
-            "password": "aZhi1bYpgh",
+            "nome": "Maxie Davis Jr.",
+            "email": "qa.mwjjfqqmcn0l@teste.com",
+            "password": "DzOMWUWXA5",
             "administrador": "true"
           }
         },
@@ -36,7 +36,7 @@
           "status": 201,
           "corpo": {
             "message": "Cadastro realizado com sucesso",
-            "_id": "dEy7cyrp2T9lkOxI"
+            "_id": "r2IomeO51kfw9ytx"
           }
         }
       }
@@ -46,10 +46,10 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:52538/login",
+          "url": "http://127.0.0.1:64128/login",
           "corpo": {
-            "email": "qa.mwja7lzcjyx1@teste.com",
-            "password": "aZhi1bYpgh"
+            "email": "qa.mwjjfqqmcn0l@teste.com",
+            "password": "DzOMWUWXA5"
           }
         },
         "resposta": {
@@ -66,42 +66,84 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:52538/produtos",
+          "url": "http://127.0.0.1:64128/produtos",
           "corpo": {
-            "nome": "Produto mwja7mswclwt",
-            "preco": 1720,
-            "descricao": "The violet Gloves combines Syrian Arab Republic aesthetics with Nobelium-based durability",
-            "quantidade": 48
+            "nome": "Produto mwjjfrnawbtn",
+            "preco": 4464,
+            "descricao": "Our tiger-friendly Hat ensures windy comfort for your pets",
+            "quantidade": 42
           }
         },
         "resposta": {
           "status": 201,
           "corpo": {
             "message": "Cadastro realizado com sucesso",
-            "_id": "SCMr1CPGG04J9VQa"
+            "_id": "L1fvE10Vv296bq6Y"
           }
         }
       }
     },
     {
-      "name": "API GET /produtos?nome=Produto+mwja7mswclwt → 200",
+      "name": "API GET /produtos?nome=Produto+mwjjfrnawbtn → 200",
       "body": {
         "requisicao": {
           "metodo": "GET",
-          "url": "http://127.0.0.1:52538/produtos?nome=Produto+mwja7mswclwt",
+          "url": "http://127.0.0.1:64128/produtos?nome=Produto+mwjjfrnawbtn",
           "corpo": null
         },
         "resposta": {
           "status": 200,
           "corpo": {
-            "quantidade": 7,
+            "quantidade": 27,
             "produtos": [
+              {
+                "nome": "Produto QA 1794845156988-9829",
+                "preco": 429,
+                "descricao": "Descricao dinamica gerada em 1794845156988",
+                "quantidade": 28,
+                "_id": "5cZMksT8IlEnO1oP"
+              },
+              {
+                "nome": "Produto mwjd000qwqxi",
+                "preco": 2236,
+                "descricao": "Stylish Towels designed to make you stand out with natural looks",
+                "quantidade": 28,
+                "_id": "9ZNITlFqyKAjV6r0"
+              },
+              {
+                "nome": "Produto mwjg4mk7jdpd",
+                "preco": 4034,
+                "descricao": "The sky blue Table combines Pakistan aesthetics with Oganesson-based durability",
+                "quantidade": 6,
+                "_id": "A40ZOgUHazRCZ1NO"
+              },
+              {
+                "nome": "Produto QA 1794845444415-1313",
+                "preco": 463,
+                "descricao": "Descricao dinamica gerada em 1794845444415",
+                "quantidade": 62,
+                "_id": "AD8Y670oOdB85ilF"
+              },
+              {
+                "nome": "Produto mwjg4n4hq2ke",
+                "preco": 1571,
+                "descricao": "The lime Mouse combines Romania aesthetics with Krypton-based durability",
+                "quantidade": 10,
+                "_id": "BNFQ94almrpfxDES"
+              },
               {
                 "nome": "Logitech MX Vertical",
                 "preco": 470,
                 "descricao": "Mouse",
                 "quantidade": 384,
                 "_id": "BeeJh5lz3k6kSIzA"
+              },
+              {
+                "nome": "Produto mwjd00fddxqp",
+                "preco": 4170,
+                "descricao": "Ergonomic Keyboard made with Plastic for all-day voluminous support",
+                "quantidade": 47,
+                "_id": "E8EI6kW9sNDSjhZ7"
               },
               {
                 "nome": "Combo Teclado e Mouse Sem Fio Logitech MK250",
@@ -118,11 +160,39 @@
                 "_id": "K6leHdftCeOJj8BJ"
               },
               {
-                "nome": "Produto mwja7mswclwt",
-                "preco": 1720,
-                "descricao": "The violet Gloves combines Syrian Arab Republic aesthetics with Nobelium-based durability",
-                "quantidade": 48,
-                "_id": "SCMr1CPGG04J9VQa"
+                "nome": "Produto mwjjfrnawbtn",
+                "preco": 4464,
+                "descricao": "Our tiger-friendly Hat ensures windy comfort for your pets",
+                "quantidade": 42,
+                "_id": "L1fvE10Vv296bq6Y"
+              },
+              {
+                "nome": "NOTA NA A3",
+                "preco": 10000,
+                "descricao": "1 ponto a mais na A3 de GQS",
+                "quantidade": 1,
+                "_id": "NAt9zDtEW9QBMnJz"
+              },
+              {
+                "nome": "Rustic Wooden Chicken jWls5a",
+                "preco": 555,
+                "descricao": "New ABC 13 9370, 13.3, 5th Gen CoreA5-8250U, 8GB RAM, 256GB SSD, power UHD Graphics, OS 10 Home, OS Office A & J 2016",
+                "quantidade": 33,
+                "_id": "NHlKzv06ldiRbumi"
+              },
+              {
+                "nome": "Sleek Silk Car 7584",
+                "preco": 2442,
+                "descricao": "Optio vitae unde voluptatem voluptatum.",
+                "quantidade": 75,
+                "_id": "OZdX0eDVwdaUbuHg"
+              },
+              {
+                "nome": "E2E Produto 1794844650764-93812",
+                "preco": 312,
+                "descricao": "Produto E2E gerado em 2026-11-16T15:57:30.764Z",
+                "quantidade": 71,
+                "_id": "UnH4Q59yT1z8R1F3"
               },
               {
                 "nome": "Garrafa de Café",
@@ -132,6 +202,62 @@
                 "_id": "WaNH7bS4OwvkqF8I"
               },
               {
+                "nome": "Produto mwjczvecdk5j",
+                "preco": 4443,
+                "descricao": "Discover the panda-like agility of our Sausages, perfect for mealy users",
+                "quantidade": 8,
+                "_id": "cIc776ENsVTMZtmG"
+              },
+              {
+                "nome": "E2E Produto 1794844736652-8168",
+                "preco": 168,
+                "descricao": "Produto E2E gerado em 2026-11-16T15:58:56.652Z",
+                "quantidade": 27,
+                "_id": "fVmhXDl2IQYYzzFK"
+              },
+              {
+                "nome": "teclado qa joao 1611",
+                "preco": 100,
+                "descricao": "teste",
+                "quantidade": 5,
+                "_id": "gZ13K5eOKVDBc1Cj"
+              },
+              {
+                "nome": "Produto mwjg4glkpuvm",
+                "preco": 4529,
+                "descricao": "The sleek and diligent Shirt comes with olive LED lighting for smart functionality",
+                "quantidade": 8,
+                "_id": "jaCVTPMMGeCqxEb2"
+              },
+              {
+                "nome": "Produto mwjg68c2tahj",
+                "preco": 2673,
+                "descricao": "Stylish Keyboard designed to make you stand out with earnest looks",
+                "quantidade": 16,
+                "_id": "ki1i80Xm1sQAOowH"
+              },
+              {
+                "nome": "Refined Bronze Mouse vSDs9R",
+                "preco": 763,
+                "descricao": "New ABC 13 9370, 13.3, 5th Gen CoreA5-8250U, 8GB RAM, 256GB SSD, power UHD Graphics, OS 10 Home, OS Office A & J 2016",
+                "quantidade": 26,
+                "_id": "l2jJQCgTAoejHorp"
+              },
+              {
+                "nome": "Produto mwjd0tfvkgyo",
+                "preco": 2356,
+                "descricao": "Our salty-inspired Pants brings a taste of luxury to your paltry lifestyle",
+                "quantidade": 11,
+                "_id": "lCpcBqDgPiMIZj0F"
+              },
+              {
+                "nome": "Produto mwjg4m3rdagi",
+                "preco": 3461,
+                "descricao": "Discover the queasy new Computer with an exciting mix of Silk ingredients",
+                "quantidade": 27,
+                "_id": "ntQUjOgloY0O5DiF"
+              },
+              {
                 "nome": "Garrafa de Café Ben 10",
                 "preco": 1000,
                 "descricao": "Obtenha a energia de todos os aliens do Omnitrix com esta garrafa",
@@ -139,11 +265,25 @@
                 "_id": "qUViWcx98Lc1H5Si"
               },
               {
+                "nome": "Teclado QA Joao 1611",
+                "preco": 100,
+                "descricao": "teste",
+                "quantidade": 5,
+                "_id": "s2JPglpiR7RpHsW4"
+              },
+              {
                 "nome": "Agria MX Vertical",
                 "preco": 470,
                 "descricao": "Mouse",
                 "quantidade": 381,
                 "_id": "s3egH2lUNJQb2skB"
+              },
+              {
+                "nome": "Produto mwjd00y8cu3e",
+                "preco": 1289,
+                "descricao": "Ergonomic Pizza made with Wooden for all-day sturdy support",
+                "quantidade": 5,
+                "_id": "vpFzSLD5tEQ7nOw7"
               }
             ]
           }
@@ -155,7 +295,7 @@
       "body": {
         "requisicao": {
           "metodo": "DELETE",
-          "url": "http://127.0.0.1:52538/carrinhos/cancelar-compra",
+          "url": "http://127.0.0.1:64128/carrinhos/cancelar-compra",
           "corpo": null
         },
         "resposta": {
@@ -167,11 +307,11 @@
       }
     },
     {
-      "name": "API DELETE /produtos/SCMr1CPGG04J9VQa → 200",
+      "name": "API DELETE /produtos/L1fvE10Vv296bq6Y → 200",
       "body": {
         "requisicao": {
           "metodo": "DELETE",
-          "url": "http://127.0.0.1:52538/produtos/SCMr1CPGG04J9VQa",
+          "url": "http://127.0.0.1:64128/produtos/L1fvE10Vv296bq6Y",
           "corpo": null
         },
         "resposta": {
@@ -183,11 +323,11 @@
       }
     },
     {
-      "name": "API DELETE /usuarios/dEy7cyrp2T9lkOxI → 200",
+      "name": "API DELETE /usuarios/r2IomeO51kfw9ytx → 200",
       "body": {
         "requisicao": {
           "metodo": "DELETE",
-          "url": "http://127.0.0.1:52538/usuarios/dEy7cyrp2T9lkOxI",
+          "url": "http://127.0.0.1:64128/usuarios/r2IomeO51kfw9ytx",
           "corpo": null
         },
         "resposta": {

@@ -7,7 +7,7 @@
     "project": "chromium"
   },
   "status": "failed",
-  "durationMs": 6697,
+  "durationMs": 10098,
   "errors": [
     {
       "message": "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: \"Email e/ou senha inválidos\"\nReceived: \"Credenciais inválidas\"\n\n  28 |\n  29 |     expect(resposta.status).toBe(401);\n> 30 |     expect(validar(MensagemSchema, resposta.corpo).message).toBe('Email e/ou senha inválidos');\n     |                                                             ^\n  31 |     await expect(login.alerta).toContainText('Email e/ou senha inválidos');\n  32 |     await expect(page).toHaveURL(/\\/login$/);\n  33 |     await evidencia('alerta de credenciais inválidas');\n    at tests/e2e/login.spec.ts:30:61",
@@ -24,7 +24,7 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:52570/login",
+          "url": "http://127.0.0.1:63882/login",
           "corpo": {
             "email": "nao.existe@teste.com",
             "password": "senha-errada"

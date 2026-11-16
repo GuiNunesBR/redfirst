@@ -8,7 +8,7 @@
 ```
 Error: apiRequestContext.fetch: socket hang up (ECONNRESET)
 Call log:
-  - → GET http://127.0.0.1:57323/usuarios/DRSpS2Z5gRhjCWUH
+  - → GET http://127.0.0.1:65272/usuarios/gKWEBqGMUCeWBvRd
     - user-agent: Playwright/1.65.0 (x64; windows 10.0) node/24.22
     - accept: */*
     - accept-encoding: gzip,deflate,br

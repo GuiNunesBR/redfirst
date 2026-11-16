@@ -1,0 +1,126 @@
+{
+  "passing": null,
+  "failing": {
+    "calls": [
+      {
+        "from": "test",
+        "method": "POST",
+        "endpoint": "/usuarios",
+        "status": 201,
+        "ms": 691,
+        "request": {
+          "administrador": "string",
+          "email": "string",
+          "nome": "string",
+          "password": "string"
+        },
+        "response": {
+          "_id": "string",
+          "message": "string"
+        }
+      },
+      {
+        "from": "test",
+        "method": "POST",
+        "endpoint": "/login",
+        "status": 200,
+        "ms": 283,
+        "request": {
+          "email": "string",
+          "password": "string"
+        },
+        "response": {
+          "authorization": "string",
+          "message": "string"
+        }
+      },
+      {
+        "from": "page",
+        "method": "POST",
+        "endpoint": "/produtos",
+        "status": 400,
+        "ms": 1625,
+        "request": {
+          "descricao": "string",
+          "nome": "string",
+          "preco": "string",
+          "quantidade": "string"
+        },
+        "response": {
+          "preco": "string",
+          "quantidade": "string"
+        },
+        "error": "{\n    \"preco\": \"preco deve ser um número\",\n    \"quantidade\": \"quantidade deve ser um número\"\n}"
+      },
+      {
+        "from": "test",
+        "method": "GET",
+        "endpoint": "/produtos?nome=",
+        "status": 200,
+        "ms": 357,
+        "response": {
+          "produtos": {
+            "array": 0
+          },
+          "quantidade": "number"
+        }
+      },
+      {
+        "from": "test",
+        "method": "DELETE",
+        "endpoint": "/carrinhos/cancelar-compra",
+        "status": 200,
+        "ms": 304,
+        "response": {
+          "message": "string"
+        }
+      },
+      {
+        "from": "test",
+        "method": "DELETE",
+        "endpoint": "/usuarios/:id",
+        "status": 200,
+        "ms": 384,
+        "response": {
+          "message": "string"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "step": "Navigate",
+        "ms": 4265
+      },
+      {
+        "step": "Fill \"Produto mwjiq93j6tqy\"",
+        "target": "internal:testid=[data-testid=\"nome\"s]",
+        "ms": 175
+      },
+      {
+        "step": "Fill \"3744\"",
+        "target": "internal:testid=[data-testid=\"preco\"s]",
+        "ms": 69
+      },
+      {
+        "step": "Fill \"Ergonomic Computer made with Gold for all-day major support\"",
+        "target": "internal:testid=[data-testid=\"descricao\"s]",
+        "ms": 68
+      },
+      {
+        "step": "Fill \"16\"",
+        "target": "internal:testid=[data-testid=\"quantity\"s]",
+        "ms": 80
+      },
+      {
+        "step": "Click",
+        "target": "internal:testid=[data-testid=\"cadastarProdutos\"s]",
+        "ms": 159
+      },
+      {
+        "step": "Expect \"toBe\"",
+        "ms": 33,
+        "error": "Error: expect(received).toBe(expected) // Object.is equality"
+      }
+    ]
+  }
+}

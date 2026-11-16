@@ -8,14 +8,14 @@
 ```
 Error: expect(locator).toBeVisible() failed
 
-Locator: getByRole('row').filter({ hasText: 'Produto mwjaoryxsnmf' })
+Locator: getByRole('row').filter({ hasText: 'Produto mwjj733hszf4' })
 Expected: visible
 Timeout: 7000ms
 Error: element(s) not found
 
 Call log:
-  - Expect "toBeVisible" getByRole('row').filter({ hasText: 'Produto mwjaoryxsnmf' }) with timeout 7000ms
-  - waiting for getByRole('row').filter({ hasText: 'Produto mwjaoryxsnmf' })
+  - Expect "toBeVisible" getByRole('row').filter({ hasText: 'Produto mwjj733hszf4' }) with timeout 7000ms
+  - waiting for getByRole('row').filter({ hasText: 'Produto mwjj733hszf4' })
 
 ```
 

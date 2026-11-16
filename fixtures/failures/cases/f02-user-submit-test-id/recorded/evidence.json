@@ -1,0 +1,179 @@
+{
+  "passing": {
+    "calls": [
+      {
+        "from": "page",
+        "method": "POST",
+        "endpoint": "/usuarios",
+        "status": 201,
+        "ms": 1008,
+        "request": {
+          "administrador": "string",
+          "email": "string",
+          "nome": "string",
+          "password": "string"
+        },
+        "response": {
+          "_id": "string",
+          "message": "string"
+        }
+      },
+      {
+        "from": "page",
+        "method": "GET",
+        "endpoint": "/usuarios",
+        "status": 200,
+        "ms": 772,
+        "response": {
+          "quantidade": "number",
+          "usuarios": {
+            "array": 231,
+            "of": {
+              "_id": "string",
+              "administrador": "string",
+              "email": "string",
+              "nome": "string",
+              "password": "string"
+            }
+          }
+        }
+      },
+      {
+        "from": "test",
+        "method": "GET",
+        "endpoint": "/usuarios/:id",
+        "status": 200,
+        "ms": 696,
+        "response": {
+          "_id": "string",
+          "administrador": "string",
+          "email": "string",
+          "nome": "string",
+          "password": "string"
+        }
+      },
+      {
+        "from": "test",
+        "method": "GET",
+        "endpoint": "/usuarios?email=",
+        "status": 200,
+        "ms": 309,
+        "response": {
+          "quantidade": "number",
+          "usuarios": {
+            "array": 1,
+            "of": {
+              "_id": "string",
+              "administrador": "string",
+              "email": "string",
+              "nome": "string",
+              "password": "string"
+            }
+          }
+        }
+      },
+      {
+        "from": "test",
+        "method": "DELETE",
+        "endpoint": "/usuarios/:id",
+        "status": 200,
+        "ms": 284,
+        "response": {
+          "message": "string"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "step": "Navigate",
+        "ms": 6735
+      },
+      {
+        "step": "Fill \"Ian Zieme Sr.\"",
+        "target": "internal:testid=[data-testid=\"nome\"s]",
+        "ms": 143
+      },
+      {
+        "step": "Fill \"qa.mwjiy9cjeics@teste.com\"",
+        "target": "internal:testid=[data-testid=\"email\"s]",
+        "ms": 64
+      },
+      {
+        "step": "Fill \"wsSQpU1Mlt\"",
+        "target": "internal:testid=[data-testid=\"password\"s]",
+        "ms": 60
+      },
+      {
+        "step": "Click",
+        "target": "internal:testid=[data-testid=\"cadastrarUsuario\"s]",
+        "ms": 185
+      },
+      {
+        "step": "Expect \"toBe\"",
+        "ms": 2
+      },
+      {
+        "step": "Expect \"toHaveURL\"",
+        "ms": 40
+      },
+      {
+        "step": "Expect \"toContainText\"",
+        "target": "internal:role=row >> internal:has-text=\"qa.mwjiy9cjeics@teste.com\"i",
+        "ms": 1085
+      },
+      {
+        "step": "Expect \"toContainText\"",
+        "target": "internal:role=row >> internal:has-text=\"qa.mwjiy9cjeics@teste.com\"i",
+        "ms": 99
+      },
+      {
+        "step": "Expect \"toMatchObject\"",
+        "ms": 4
+      }
+    ]
+  },
+  "failing": {
+    "calls": [
+      {
+        "from": "test",
+        "method": "GET",
+        "endpoint": "/usuarios?email=",
+        "status": 200,
+        "ms": 819,
+        "response": {
+          "quantidade": "number",
+          "usuarios": {
+            "array": 0
+          }
+        }
+      }
+    ],
+    "actions": [
+      {
+        "step": "Navigate",
+        "ms": 4029
+      },
+      {
+        "step": "Fill \"Mr. Devin Hills\"",
+        "target": "internal:testid=[data-testid=\"nome\"s]",
+        "ms": 206
+      },
+      {
+        "step": "Fill \"qa.mwjizhk9axvo@teste.com\"",
+        "target": "internal:testid=[data-testid=\"email\"s]",
+        "ms": 169
+      },
+      {
+        "step": "Fill \"WZN4sfe_AE\"",
+        "target": "internal:testid=[data-testid=\"password\"s]",
+        "ms": 201
+      },
+      {
+        "step": "Click",
+        "target": "internal:testid=[data-testid=\"cadastrarUsuario\"s]",
+        "ms": 12435,
+        "error": "Error: locator.click: Test ended."
+      }
+    ]
+  }
+}

@@ -7,7 +7,7 @@
     "project": "chromium"
   },
   "status": "failed",
-  "durationMs": 11833,
+  "durationMs": 12147,
   "errors": [
     {
       "message": "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: 201\nReceived: 400\n\n  18 |     const resposta = await capturarApi('POST', '/produtos', () => cadastro.enviar());\n  19 |\n> 20 |     expect(resposta.status).toBe(201);\n     |                             ^\n  21 |     const { _id } = validar(CadastroSchema, resposta.corpo);\n  22 |     await expect(page).toHaveURL(/\\/admin\\/listarprodutos$/);\n  23 |     const linha = new ListarProdutosPage(page).linhaDe(produto.nome);\n    at tests/e2e/produtos-admin.spec.ts:20:29",
@@ -24,11 +24,11 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:53376/usuarios",
+          "url": "http://127.0.0.1:61909/usuarios",
           "corpo": {
-            "nome": "Eden Terry",
-            "email": "qa.mwjasg9vkjzk@teste.com",
-            "password": "kPDI0TKkPQ",
+            "nome": "Ms. Nancy Schmidt Sr.",
+            "email": "qa.mwjiq88pfqes@teste.com",
+            "password": "DoFwgDrnmn",
             "administrador": "true"
           }
         },
@@ -36,7 +36,7 @@
           "status": 201,
           "corpo": {
             "message": "Cadastro realizado com sucesso",
-            "_id": "cPzsLE9mYgArWf3y"
+            "_id": "T1vcINZEhgdEhg7X"
           }
         }
       }
@@ -46,10 +46,10 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:53376/login",
+          "url": "http://127.0.0.1:61909/login",
           "corpo": {
-            "email": "qa.mwjasg9vkjzk@teste.com",
-            "password": "kPDI0TKkPQ"
+            "email": "qa.mwjiq88pfqes@teste.com",
+            "password": "DoFwgDrnmn"
           }
         },
         "resposta": {
@@ -66,12 +66,12 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:53376/produtos",
+          "url": "http://127.0.0.1:61909/produtos",
           "corpo": {
-            "nome": "Produto mwjashetlt6u",
-            "preco": "3916",
-            "descricao": "Discover the parrot-like agility of our Ball, perfect for optimal users",
-            "quantidade": "30"
+            "nome": "Produto mwjiq93j6tqy",
+            "preco": "3744",
+            "descricao": "Ergonomic Computer made with Gold for all-day major support",
+            "quantidade": "16"
           }
         },
         "resposta": {
@@ -84,11 +84,11 @@
       }
     },
     {
-      "name": "API GET /produtos?nome=Produto+mwjashetlt6u → 200",
+      "name": "API GET /produtos?nome=Produto+mwjiq93j6tqy → 200",
       "body": {
         "requisicao": {
           "metodo": "GET",
-          "url": "http://127.0.0.1:53376/produtos?nome=Produto+mwjashetlt6u",
+          "url": "http://127.0.0.1:61909/produtos?nome=Produto+mwjiq93j6tqy",
           "corpo": null
         },
         "resposta": {
@@ -105,7 +105,7 @@
       "body": {
         "requisicao": {
           "metodo": "DELETE",
-          "url": "http://127.0.0.1:53376/carrinhos/cancelar-compra",
+          "url": "http://127.0.0.1:61909/carrinhos/cancelar-compra",
           "corpo": null
         },
         "resposta": {
@@ -117,11 +117,11 @@
       }
     },
     {
-      "name": "API DELETE /usuarios/cPzsLE9mYgArWf3y → 200",
+      "name": "API DELETE /usuarios/T1vcINZEhgdEhg7X → 200",
       "body": {
         "requisicao": {
           "metodo": "DELETE",
-          "url": "http://127.0.0.1:53376/usuarios/cPzsLE9mYgArWf3y",
+          "url": "http://127.0.0.1:61909/usuarios/T1vcINZEhgdEhg7X",
           "corpo": null
         },
         "resposta": {

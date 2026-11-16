@@ -7,7 +7,7 @@
     "project": "chromium"
   },
   "status": "failed",
-  "durationMs": 23501,
+  "durationMs": 25089,
   "errors": [
     {
       "message": "Error: O front não chamou GET /^\\/produtos\\?nome=/\n\n   at ../src/helpers/evidencias.ts:81\n\n  79 |   let relogio: NodeJS.Timeout | undefined;\n  80 |   const limite = new Promise<never>((_, reject) => {\n> 81 |     relogio = setTimeout(() => reject(new Error(`O front não chamou ${metodo} ${caminho}`)), 10_000);\n     |                                       ^\n  82 |   });\n  83 |\n  84 |   await page.route(casa, interceptar);\n    at Timeout._onTimeout (src/helpers/evidencias.ts:81:39)",
@@ -32,11 +32,11 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:61131/usuarios",
+          "url": "http://127.0.0.1:53947/usuarios",
           "corpo": {
-            "nome": "Winston Cassin",
-            "email": "qa.mwja0qlikyzi@teste.com",
-            "password": "3nNwsmygnl",
+            "nome": "Ole O'Kon",
+            "email": "qa.mwjj1nkfgjbz@teste.com",
+            "password": "RdeOHCmJMl",
             "administrador": "true"
           }
         },
@@ -44,7 +44,7 @@
           "status": 201,
           "corpo": {
             "message": "Cadastro realizado com sucesso",
-            "_id": "cA488e77Db5vajC6"
+            "_id": "s7JPO8FHoU69KfFK"
           }
         }
       }
@@ -54,10 +54,10 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:61131/login",
+          "url": "http://127.0.0.1:53947/login",
           "corpo": {
-            "email": "qa.mwja0qlikyzi@teste.com",
-            "password": "3nNwsmygnl"
+            "email": "qa.mwjj1nkfgjbz@teste.com",
+            "password": "RdeOHCmJMl"
           }
         },
         "resposta": {
@@ -74,11 +74,11 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:61131/usuarios",
+          "url": "http://127.0.0.1:53947/usuarios",
           "corpo": {
-            "nome": "Katheryn Mosciski",
-            "email": "qa.mwja0rkpzkdh@teste.com",
-            "password": "zTKp8KsF6P",
+            "nome": "Kole Pouros",
+            "email": "qa.mwjj1ojev8tu@teste.com",
+            "password": "X0cQ6BlI7z",
             "administrador": "false"
           }
         },
@@ -86,7 +86,7 @@
           "status": 201,
           "corpo": {
             "message": "Cadastro realizado com sucesso",
-            "_id": "57fqdtrCU1DdxtBO"
+            "_id": "6Sg4LkBuN4srSTb2"
           }
         }
       }
@@ -96,10 +96,10 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:61131/login",
+          "url": "http://127.0.0.1:53947/login",
           "corpo": {
-            "email": "qa.mwja0rkpzkdh@teste.com",
-            "password": "zTKp8KsF6P"
+            "email": "qa.mwjj1ojev8tu@teste.com",
+            "password": "X0cQ6BlI7z"
           }
         },
         "resposta": {
@@ -116,19 +116,19 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:61131/produtos",
+          "url": "http://127.0.0.1:53947/produtos",
           "corpo": {
-            "nome": "Produto mwja0s7e3aqz",
-            "preco": 464,
-            "descricao": "Introducing the Cyprus-inspired Ball, blending distorted style with local craftsmanship",
-            "quantidade": 19
+            "nome": "Produto mwjj1p35e9bv",
+            "preco": 2324,
+            "descricao": "Stylish Towels designed to make you stand out with wordy looks",
+            "quantidade": 34
           }
         },
         "resposta": {
           "status": 201,
           "corpo": {
             "message": "Cadastro realizado com sucesso",
-            "_id": "ZuYw3GSpp2DisUR5"
+            "_id": "OmVJip2qD8o0zi3h"
           }
         }
       }
@@ -138,7 +138,7 @@
       "body": {
         "requisicao": {
           "metodo": "DELETE",
-          "url": "http://127.0.0.1:61131/carrinhos/cancelar-compra",
+          "url": "http://127.0.0.1:53947/carrinhos/cancelar-compra",
           "corpo": null
         },
         "resposta": {
@@ -154,7 +154,7 @@
       "body": {
         "requisicao": {
           "metodo": "DELETE",
-          "url": "http://127.0.0.1:61131/carrinhos/cancelar-compra",
+          "url": "http://127.0.0.1:53947/carrinhos/cancelar-compra",
           "corpo": null
         },
         "resposta": {
@@ -166,11 +166,11 @@
       }
     },
     {
-      "name": "API DELETE /produtos/ZuYw3GSpp2DisUR5 → 200",
+      "name": "API DELETE /produtos/OmVJip2qD8o0zi3h → 200",
       "body": {
         "requisicao": {
           "metodo": "DELETE",
-          "url": "http://127.0.0.1:61131/produtos/ZuYw3GSpp2DisUR5",
+          "url": "http://127.0.0.1:53947/produtos/OmVJip2qD8o0zi3h",
           "corpo": null
         },
         "resposta": {
@@ -182,11 +182,11 @@
       }
     },
     {
-      "name": "API DELETE /usuarios/cA488e77Db5vajC6 → 200",
+      "name": "API DELETE /usuarios/s7JPO8FHoU69KfFK → 200",
       "body": {
         "requisicao": {
           "metodo": "DELETE",
-          "url": "http://127.0.0.1:61131/usuarios/cA488e77Db5vajC6",
+          "url": "http://127.0.0.1:53947/usuarios/s7JPO8FHoU69KfFK",
           "corpo": null
         },
         "resposta": {
@@ -198,11 +198,11 @@
       }
     },
     {
-      "name": "API DELETE /usuarios/57fqdtrCU1DdxtBO → 200",
+      "name": "API DELETE /usuarios/6Sg4LkBuN4srSTb2 → 200",
       "body": {
         "requisicao": {
           "metodo": "DELETE",
-          "url": "http://127.0.0.1:61131/usuarios/57fqdtrCU1DdxtBO",
+          "url": "http://127.0.0.1:53947/usuarios/6Sg4LkBuN4srSTb2",
           "corpo": null
         },
         "resposta": {

@@ -7,7 +7,7 @@
     "project": "api"
   },
   "status": "failed",
-  "durationMs": 2239,
+  "durationMs": 3192,
   "errors": [
     {
       "message": "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: 400\nReceived: 201\n\n  41 |     const resposta = await api.criarProduto(novoProduto({ preco: -1 }), admin.token);\n  42 |\n> 43 |     expect(resposta.status()).toBe(400);\n     |                               ^\n  44 |     expect(await resposta.json()).toEqual({ preco: 'preco deve ser um número positivo' });\n  45 |   });\n  46 |\n    at tests/api/produtos.spec.ts:43:31",
@@ -24,11 +24,11 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:58738/usuarios",
+          "url": "http://127.0.0.1:50211/usuarios",
           "corpo": {
-            "nome": "Rashawn Hauck",
-            "email": "qa.mwja87ze4im1@teste.com",
-            "password": "jDplqejLlx",
+            "nome": "Jackie Champlin",
+            "email": "qa.mwjjh8vjxdig@teste.com",
+            "password": "0NNoSdDrC2",
             "administrador": "true"
           }
         },
@@ -36,7 +36,7 @@
           "status": 201,
           "corpo": {
             "message": "Cadastro realizado com sucesso",
-            "_id": "eMptSlWAlBrc7FQ8"
+            "_id": "desH9x7ZnvYhdwzf"
           }
         }
       }
@@ -46,10 +46,10 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:58738/login",
+          "url": "http://127.0.0.1:50211/login",
           "corpo": {
-            "email": "qa.mwja87ze4im1@teste.com",
-            "password": "jDplqejLlx"
+            "email": "qa.mwjjh8vjxdig@teste.com",
+            "password": "0NNoSdDrC2"
           }
         },
         "resposta": {
@@ -66,12 +66,12 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:58738/produtos",
+          "url": "http://127.0.0.1:50211/produtos",
           "corpo": {
-            "nome": "Produto mwja88xhaaso",
+            "nome": "Produto mwjjha2aq6v8",
             "preco": -1,
-            "descricao": "Stylish Hat designed to make you stand out with powerless looks",
-            "quantidade": 46
+            "descricao": "Professional-grade Gloves perfect for closed training and recreational use",
+            "quantidade": 29
           }
         },
         "resposta": {
@@ -88,7 +88,7 @@
       "body": {
         "requisicao": {
           "metodo": "DELETE",
-          "url": "http://127.0.0.1:58738/carrinhos/cancelar-compra",
+          "url": "http://127.0.0.1:50211/carrinhos/cancelar-compra",
           "corpo": null
         },
         "resposta": {
@@ -100,11 +100,11 @@
       }
     },
     {
-      "name": "API DELETE /usuarios/eMptSlWAlBrc7FQ8 → 200",
+      "name": "API DELETE /usuarios/desH9x7ZnvYhdwzf → 200",
       "body": {
         "requisicao": {
           "metodo": "DELETE",
-          "url": "http://127.0.0.1:58738/usuarios/eMptSlWAlBrc7FQ8",
+          "url": "http://127.0.0.1:50211/usuarios/desH9x7ZnvYhdwzf",
           "corpo": null
         },
         "resposta": {

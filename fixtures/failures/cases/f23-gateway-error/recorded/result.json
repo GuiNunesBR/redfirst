@@ -7,7 +7,7 @@
     "project": "api"
   },
   "status": "failed",
-  "durationMs": 264,
+  "durationMs": 372,
   "errors": [
     {
       "message": "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: 201\nReceived: 502\n\n   7 |     const resposta = await api.criarUsuario(novoUsuario());\n   8 |\n>  9 |     expect(resposta.status()).toBe(201);\n     |                               ^\n  10 |     const corpo = validar(CadastroSchema, await resposta.json());\n  11 |     limpeza.usuario(corpo._id);\n  12 |     expect(corpo.message).toBe('Cadastro realizado com sucesso');\n    at tests/api/usuarios.spec.ts:9:31",
@@ -24,11 +24,11 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:57328/usuarios",
+          "url": "http://127.0.0.1:58156/usuarios",
           "corpo": {
-            "nome": "Bernardo Welch",
-            "email": "qa.mwjadpwxfakn@teste.com",
-            "password": "Y47OmD918_",
+            "nome": "Trenton Orn",
+            "email": "qa.mwjjrpzhknuh@teste.com",
+            "password": "zORHd6OZOD",
             "administrador": "false"
           }
         },

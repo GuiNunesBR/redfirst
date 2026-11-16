@@ -7,10 +7,10 @@
     "project": "chromium"
   },
   "status": "failed",
-  "durationMs": 17042,
+  "durationMs": 16155,
   "errors": [
     {
-      "message": "Error: expect(locator).toBeVisible() failed\n\nLocator: getByRole('row').filter({ hasText: 'Produto mwjar9w474o8' })\nExpected: visible\nTimeout: 7000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" getByRole('row').filter({ hasText: 'Produto mwjar9w474o8' }) with timeout 7000ms\n  - waiting for getByRole('row').filter({ hasText: 'Produto mwjar9w474o8' })\n\n\n  38 |     const listagem = new ListarProdutosPage(page);\n  39 |     await listagem.abrir();\n> 40 |     await expect(listagem.linhaDe(novoProduto().nome)).toBeVisible();\n     |                                                        ^\n  41 |     await evidencia('produto antes da exclusão');\n  42 |\n  43 |     const resposta = await capturarApi('DELETE', `/produtos/${_id}`, () => listagem.excluir(produto.nome));\n    at tests/e2e/produtos-admin.spec.ts:40:56",
+      "message": "Error: expect(locator).toBeVisible() failed\n\nLocator: getByRole('row').filter({ hasText: 'Produto mwjjwdnwvxgc' })\nExpected: visible\nTimeout: 7000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" getByRole('row').filter({ hasText: 'Produto mwjjwdnwvxgc' }) with timeout 7000ms\n  - waiting for getByRole('row').filter({ hasText: 'Produto mwjjwdnwvxgc' })\n\n\n  38 |     const listagem = new ListarProdutosPage(page);\n  39 |     await listagem.abrir();\n> 40 |     await expect(listagem.linhaDe(novoProduto().nome)).toBeVisible();\n     |                                                        ^\n  41 |     await evidencia('produto antes da exclusão');\n  42 |\n  43 |     const resposta = await capturarApi('DELETE', `/produtos/${_id}`, () => listagem.excluir(produto.nome));\n    at tests/e2e/produtos-admin.spec.ts:40:56",
       "location": {
         "file": "tests/e2e/produtos-admin.spec.ts",
         "line": 40,
@@ -24,11 +24,11 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:50718/usuarios",
+          "url": "http://127.0.0.1:53582/usuarios",
           "corpo": {
-            "nome": "Miss Oda McDermott",
-            "email": "qa.mwjar5f0moe0@teste.com",
-            "password": "lh8dC3NS62",
+            "nome": "Idell Denesik",
+            "email": "qa.mwjjw9kdzvlg@teste.com",
+            "password": "YtLGwQ2z4R",
             "administrador": "true"
           }
         },
@@ -36,7 +36,7 @@
           "status": 201,
           "corpo": {
             "message": "Cadastro realizado com sucesso",
-            "_id": "rimRtAfGtXcf6E48"
+            "_id": "W8eVe4uNvMFOw4SC"
           }
         }
       }
@@ -46,10 +46,10 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:50718/login",
+          "url": "http://127.0.0.1:53582/login",
           "corpo": {
-            "email": "qa.mwjar5f0moe0@teste.com",
-            "password": "lh8dC3NS62"
+            "email": "qa.mwjjw9kdzvlg@teste.com",
+            "password": "YtLGwQ2z4R"
           }
         },
         "resposta": {
@@ -66,19 +66,19 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:50718/produtos",
+          "url": "http://127.0.0.1:53582/produtos",
           "corpo": {
-            "nome": "Produto mwjar6csfhph",
-            "preco": 4130,
-            "descricao": "Our giraffe-friendly Ball ensures good comfort for your pets",
-            "quantidade": 20
+            "nome": "Produto mwjjwaimd1po",
+            "preco": 312,
+            "descricao": "Innovative Shoes featuring steel technology and Bamboo construction",
+            "quantidade": 11
           }
         },
         "resposta": {
           "status": 201,
           "corpo": {
             "message": "Cadastro realizado com sucesso",
-            "_id": "lG1L1lVSi8l3nGj5"
+            "_id": "Jm3zwI1bZkyHHCBM"
           }
         }
       }
@@ -88,7 +88,7 @@
       "body": {
         "requisicao": {
           "metodo": "DELETE",
-          "url": "http://127.0.0.1:50718/carrinhos/cancelar-compra",
+          "url": "http://127.0.0.1:53582/carrinhos/cancelar-compra",
           "corpo": null
         },
         "resposta": {
@@ -100,11 +100,11 @@
       }
     },
     {
-      "name": "API DELETE /produtos/lG1L1lVSi8l3nGj5 → 200",
+      "name": "API DELETE /produtos/Jm3zwI1bZkyHHCBM → 200",
       "body": {
         "requisicao": {
           "metodo": "DELETE",
-          "url": "http://127.0.0.1:50718/produtos/lG1L1lVSi8l3nGj5",
+          "url": "http://127.0.0.1:53582/produtos/Jm3zwI1bZkyHHCBM",
           "corpo": null
         },
         "resposta": {
@@ -116,11 +116,11 @@
       }
     },
     {
-      "name": "API DELETE /usuarios/rimRtAfGtXcf6E48 → 200",
+      "name": "API DELETE /usuarios/W8eVe4uNvMFOw4SC → 200",
       "body": {
         "requisicao": {
           "metodo": "DELETE",
-          "url": "http://127.0.0.1:50718/usuarios/rimRtAfGtXcf6E48",
+          "url": "http://127.0.0.1:53582/usuarios/W8eVe4uNvMFOw4SC",
           "corpo": null
         },
         "resposta": {

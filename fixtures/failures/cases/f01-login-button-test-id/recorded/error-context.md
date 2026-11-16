@@ -18,8 +18,8 @@ Error: page.unroute: Target page, context or browser has been closed
 ```yaml
 - generic [ref=e5]:
   - heading "Login" [level=1] [ref=e7]
-  - textbox "Digite seu email" [ref=e9]: qa.mwj9yihczxjs@teste.com
-  - textbox "Digite sua senha" [active] [ref=e11]: ChmAhtglR6
+  - textbox "Digite seu email" [ref=e9]: qa.mwjix5evwii5@teste.com
+  - textbox "Digite sua senha" [active] [ref=e11]: jqeUiWEx94
   - button "Entrar" [ref=e12] [cursor=pointer]
   - generic [ref=e13]:
     - text: Não é cadastrado?

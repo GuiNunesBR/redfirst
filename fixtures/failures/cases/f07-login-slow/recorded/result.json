@@ -7,7 +7,7 @@
     "project": "chromium"
   },
   "status": "failed",
-  "durationMs": 19347,
+  "durationMs": 22121,
   "errors": [
     {
       "message": "Error: O front não chamou POST /login\n\n   at ../src/helpers/evidencias.ts:81\n\n  79 |   let relogio: NodeJS.Timeout | undefined;\n  80 |   const limite = new Promise<never>((_, reject) => {\n> 81 |     relogio = setTimeout(() => reject(new Error(`O front não chamou ${metodo} ${caminho}`)), 10_000);\n     |                                       ^\n  82 |   });\n  83 |\n  84 |   await page.route(casa, interceptar);\n    at Timeout.<anonymous> (src/helpers/evidencias.ts:81:39)",
@@ -24,11 +24,11 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:61118/usuarios",
+          "url": "http://127.0.0.1:63792/usuarios",
           "corpo": {
-            "nome": "Mr. Davion Bahringer",
-            "email": "qa.mwja53ija4dk@teste.com",
-            "password": "4SX8A_XVnV",
+            "nome": "Danielle Doyle",
+            "email": "qa.mwjj9d2ttdnr@teste.com",
+            "password": "jk_pQR_eeA",
             "administrador": "true"
           }
         },
@@ -36,7 +36,7 @@
           "status": 201,
           "corpo": {
             "message": "Cadastro realizado com sucesso",
-            "_id": "FI1kx5uQa62kaoIC"
+            "_id": "8tybACs3VKFeJPP6"
           }
         }
       }
@@ -46,10 +46,10 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:61118/login",
+          "url": "http://127.0.0.1:63792/login",
           "corpo": {
-            "email": "qa.mwja53ija4dk@teste.com",
-            "password": "4SX8A_XVnV"
+            "email": "qa.mwjj9d2ttdnr@teste.com",
+            "password": "jk_pQR_eeA"
           }
         },
         "resposta": {
@@ -66,7 +66,7 @@
       "body": {
         "requisicao": {
           "metodo": "DELETE",
-          "url": "http://127.0.0.1:61118/carrinhos/cancelar-compra",
+          "url": "http://127.0.0.1:63792/carrinhos/cancelar-compra",
           "corpo": null
         },
         "resposta": {
@@ -78,11 +78,11 @@
       }
     },
     {
-      "name": "API DELETE /usuarios/FI1kx5uQa62kaoIC → 200",
+      "name": "API DELETE /usuarios/8tybACs3VKFeJPP6 → 200",
       "body": {
         "requisicao": {
           "metodo": "DELETE",
-          "url": "http://127.0.0.1:61118/usuarios/FI1kx5uQa62kaoIC",
+          "url": "http://127.0.0.1:63792/usuarios/8tybACs3VKFeJPP6",
           "corpo": null
         },
         "resposta": {

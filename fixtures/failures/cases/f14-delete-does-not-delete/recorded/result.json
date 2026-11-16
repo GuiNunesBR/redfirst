@@ -7,7 +7,7 @@
     "project": "api"
   },
   "status": "failed",
-  "durationMs": 1590,
+  "durationMs": 2622,
   "errors": [
     {
       "message": "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: 400\nReceived: 200\n\n  58 |     expect(exclusao.status()).toBe(200);\n  59 |     expect(validar(MensagemSchema, await exclusao.json()).message).toBe('Registro excluído com sucesso');\n> 60 |     expect((await api.buscarUsuario(_id)).status()).toBe(400);\n     |                                                     ^\n  61 |   });\n  62 | });\n  63 |\n    at tests/api/usuarios.spec.ts:60:53",
@@ -24,11 +24,11 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:57193/usuarios",
+          "url": "http://127.0.0.1:61662/usuarios",
           "corpo": {
-            "nome": "Jordy Terry-Bechtelar",
-            "email": "qa.mwja7uclbyvo@teste.com",
-            "password": "LDwUpDHhQT",
+            "nome": "Mose Dibbert",
+            "email": "qa.mwjjgfkomirq@teste.com",
+            "password": "GOhvB5kFqA",
             "administrador": "false"
           }
         },
@@ -36,17 +36,17 @@
           "status": 201,
           "corpo": {
             "message": "Cadastro realizado com sucesso",
-            "_id": "Oit9AKmlYZY4qUnT"
+            "_id": "nvF7pcbbp1KvN73R"
           }
         }
       }
     },
     {
-      "name": "API DELETE /usuarios/Oit9AKmlYZY4qUnT → 200",
+      "name": "API DELETE /usuarios/nvF7pcbbp1KvN73R → 200",
       "body": {
         "requisicao": {
           "metodo": "DELETE",
-          "url": "http://127.0.0.1:57193/usuarios/Oit9AKmlYZY4qUnT",
+          "url": "http://127.0.0.1:61662/usuarios/nvF7pcbbp1KvN73R",
           "corpo": null
         },
         "resposta": {
@@ -58,21 +58,21 @@
       }
     },
     {
-      "name": "API GET /usuarios/Oit9AKmlYZY4qUnT → 200",
+      "name": "API GET /usuarios/nvF7pcbbp1KvN73R → 200",
       "body": {
         "requisicao": {
           "metodo": "GET",
-          "url": "http://127.0.0.1:57193/usuarios/Oit9AKmlYZY4qUnT",
+          "url": "http://127.0.0.1:61662/usuarios/nvF7pcbbp1KvN73R",
           "corpo": null
         },
         "resposta": {
           "status": 200,
           "corpo": {
-            "nome": "Jordy Terry-Bechtelar",
-            "email": "qa.mwja7uclbyvo@teste.com",
-            "password": "LDwUpDHhQT",
+            "nome": "Mose Dibbert",
+            "email": "qa.mwjjgfkomirq@teste.com",
+            "password": "GOhvB5kFqA",
             "administrador": "false",
-            "_id": "Oit9AKmlYZY4qUnT"
+            "_id": "nvF7pcbbp1KvN73R"
           }
         }
       }

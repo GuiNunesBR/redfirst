@@ -6,7 +6,7 @@
 # Error details
 
 ```
-Error: O front não chamou DELETE /produtos/P7qYQ1yj4k4nN152
+Error: O front não chamou DELETE /produtos/BnzaPV0K8QNWyDYQ
 ```
 
 ```
@@ -48,73 +48,273 @@ Error: page.unroute: Target page, context or browser has been closed
             - columnheader "Ações" [ref=e34]
         - rowgroup [ref=e35]:
           - row [ref=e36]:
-            - cell "Logitech MX Vertical" [ref=e37]
-            - cell "470" [ref=e38]
-            - cell "Mouse" [ref=e39]
-            - cell "384" [ref=e40]
+            - cell "Produto QA 1794845156988-9829" [ref=e37]
+            - cell "429" [ref=e38]
+            - cell "Descricao dinamica gerada em 1794845156988" [ref=e39]
+            - cell "28" [ref=e40]
             - cell [ref=e41]
             - cell [ref=e42]:
               - generic [ref=e43]:
                 - button "Editar" [ref=e44] [cursor=pointer]
                 - button "Remover" [ref=e45] [cursor=pointer]
           - row [ref=e46]:
-            - cell "Combo Teclado e Mouse Sem Fio Logitech MK250" [ref=e47]
-            - cell "160" [ref=e48]
-            - cell "Combo Teclado e Mouse" [ref=e49]
-            - cell "179" [ref=e50]
+            - cell "Produto mwjd000qwqxi" [ref=e47]
+            - cell "2236" [ref=e48]
+            - cell "Stylish Towels designed to make you stand out with natural looks" [ref=e49]
+            - cell "28" [ref=e50]
             - cell [ref=e51]
             - cell [ref=e52]:
               - generic [ref=e53]:
                 - button "Editar" [ref=e54] [cursor=pointer]
                 - button "Remover" [ref=e55] [cursor=pointer]
           - row [ref=e56]:
-            - cell "Samsung 60 polegadas" [ref=e57]
-            - cell "5240" [ref=e58]
-            - cell "TV" [ref=e59]
-            - cell "49978" [ref=e60]
+            - cell "Produto mwjg4mk7jdpd" [ref=e57]
+            - cell "4034" [ref=e58]
+            - cell "The sky blue Table combines Pakistan aesthetics with Oganesson-based durability" [ref=e59]
+            - cell "6" [ref=e60]
             - cell [ref=e61]
             - cell [ref=e62]:
               - generic [ref=e63]:
                 - button "Editar" [ref=e64] [cursor=pointer]
                 - button "Remover" [ref=e65] [cursor=pointer]
           - row [ref=e66]:
-            - cell "Produto mwja1vedtqwo" [ref=e67]
-            - cell "2761" [ref=e68]
-            - cell "Experience the indigo brilliance of our Bacon, perfect for pure environments" [ref=e69]
-            - cell "13" [ref=e70]
+            - cell "Produto QA 1794845444415-1313" [ref=e67]
+            - cell "463" [ref=e68]
+            - cell "Descricao dinamica gerada em 1794845444415" [ref=e69]
+            - cell "62" [ref=e70]
             - cell [ref=e71]
             - cell [ref=e72]:
               - generic [ref=e73]:
                 - button "Editar" [ref=e74] [cursor=pointer]
                 - button "Remover" [ref=e75] [cursor=pointer]
           - row [ref=e76]:
-            - cell "Garrafa de Café" [ref=e77]
-            - cell "1000" [ref=e78]
-            - cell "Garrafa de Café" [ref=e79]
-            - cell "5" [ref=e80]
+            - cell "Produto mwjg4n4hq2ke" [ref=e77]
+            - cell "1571" [ref=e78]
+            - cell "The lime Mouse combines Romania aesthetics with Krypton-based durability" [ref=e79]
+            - cell "10" [ref=e80]
             - cell [ref=e81]
             - cell [ref=e82]:
               - generic [ref=e83]:
                 - button "Editar" [ref=e84] [cursor=pointer]
                 - button "Remover" [ref=e85] [cursor=pointer]
           - row [ref=e86]:
-            - cell "Garrafa de Café Ben 10" [ref=e87]
-            - cell "1000" [ref=e88]
-            - cell "Obtenha a energia de todos os aliens do Omnitrix com esta garrafa" [ref=e89]
-            - cell "1" [ref=e90]
+            - cell "Logitech MX Vertical" [ref=e87]
+            - cell "470" [ref=e88]
+            - cell "Mouse" [ref=e89]
+            - cell "384" [ref=e90]
             - cell [ref=e91]
             - cell [ref=e92]:
               - generic [ref=e93]:
                 - button "Editar" [ref=e94] [cursor=pointer]
                 - button "Remover" [ref=e95] [cursor=pointer]
           - row [ref=e96]:
-            - cell "Agria MX Vertical" [ref=e97]
-            - cell "470" [ref=e98]
-            - cell "Mouse" [ref=e99]
-            - cell "381" [ref=e100]
+            - cell "Produto mwjj4b799wv2" [ref=e97]
+            - cell "52" [ref=e98]
+            - cell "Ergonomic Bike made with Wooden for all-day ornery support" [ref=e99]
+            - cell "43" [ref=e100]
             - cell [ref=e101]
             - cell [ref=e102]:
               - generic [ref=e103]:
                 - button "Editar" [ref=e104] [cursor=pointer]
                 - button "Remover" [ref=e105] [cursor=pointer]
+          - row [ref=e106]:
+            - cell "Produto mwjd00fddxqp" [ref=e107]
+            - cell "4170" [ref=e108]
+            - cell "Ergonomic Keyboard made with Plastic for all-day voluminous support" [ref=e109]
+            - cell "47" [ref=e110]
+            - cell [ref=e111]
+            - cell [ref=e112]:
+              - generic [ref=e113]:
+                - button "Editar" [ref=e114] [cursor=pointer]
+                - button "Remover" [ref=e115] [cursor=pointer]
+          - row [ref=e116]:
+            - cell "Combo Teclado e Mouse Sem Fio Logitech MK250" [ref=e117]
+            - cell "160" [ref=e118]
+            - cell "Combo Teclado e Mouse" [ref=e119]
+            - cell "179" [ref=e120]
+            - cell [ref=e121]
+            - cell [ref=e122]:
+              - generic [ref=e123]:
+                - button "Editar" [ref=e124] [cursor=pointer]
+                - button "Remover" [ref=e125] [cursor=pointer]
+          - row [ref=e126]:
+            - cell "Samsung 60 polegadas" [ref=e127]
+            - cell "5240" [ref=e128]
+            - cell "TV" [ref=e129]
+            - cell "49978" [ref=e130]
+            - cell [ref=e131]
+            - cell [ref=e132]:
+              - generic [ref=e133]:
+                - button "Editar" [ref=e134] [cursor=pointer]
+                - button "Remover" [ref=e135] [cursor=pointer]
+          - row [ref=e136]:
+            - cell "NOTA NA A3" [ref=e137]
+            - cell "10000" [ref=e138]
+            - cell "1 ponto a mais na A3 de GQS" [ref=e139]
+            - cell "1" [ref=e140]
+            - cell [ref=e141]
+            - cell [ref=e142]:
+              - generic [ref=e143]:
+                - button "Editar" [ref=e144] [cursor=pointer]
+                - button "Remover" [ref=e145] [cursor=pointer]
+          - row [ref=e146]:
+            - cell "Rustic Wooden Chicken jWls5a" [ref=e147]
+            - cell "555" [ref=e148]
+            - cell "New ABC 13 9370, 13.3, 5th Gen CoreA5-8250U, 8GB RAM, 256GB SSD, power UHD Graphics, OS 10 Home, OS Office A & J 2016" [ref=e149]
+            - cell "33" [ref=e150]
+            - cell [ref=e151]
+            - cell [ref=e152]:
+              - generic [ref=e153]:
+                - button "Editar" [ref=e154] [cursor=pointer]
+                - button "Remover" [ref=e155] [cursor=pointer]
+          - row [ref=e156]:
+            - cell "Sleek Silk Car 7584" [ref=e157]
+            - cell "2442" [ref=e158]
+            - cell "Optio vitae unde voluptatem voluptatum." [ref=e159]
+            - cell "75" [ref=e160]
+            - cell [ref=e161]
+            - cell [ref=e162]:
+              - generic [ref=e163]:
+                - button "Editar" [ref=e164] [cursor=pointer]
+                - button "Remover" [ref=e165] [cursor=pointer]
+          - row [ref=e166]:
+            - cell "E2E Produto 1794844650764-93812" [ref=e167]
+            - cell "312" [ref=e168]
+            - cell "Produto E2E gerado em 2026-11-16T15:57:30.764Z" [ref=e169]
+            - cell "71" [ref=e170]
+            - cell [ref=e171]
+            - cell [ref=e172]:
+              - generic [ref=e173]:
+                - button "Editar" [ref=e174] [cursor=pointer]
+                - button "Remover" [ref=e175] [cursor=pointer]
+          - row [ref=e176]:
+            - cell "Garrafa de Café" [ref=e177]
+            - cell "1000" [ref=e178]
+            - cell "Garrafa de Café" [ref=e179]
+            - cell "5" [ref=e180]
+            - cell [ref=e181]
+            - cell [ref=e182]:
+              - generic [ref=e183]:
+                - button "Editar" [ref=e184] [cursor=pointer]
+                - button "Remover" [ref=e185] [cursor=pointer]
+          - row [ref=e186]:
+            - cell "Produto mwjczvecdk5j" [ref=e187]
+            - cell "4443" [ref=e188]
+            - cell "Discover the panda-like agility of our Sausages, perfect for mealy users" [ref=e189]
+            - cell "8" [ref=e190]
+            - cell [ref=e191]
+            - cell [ref=e192]:
+              - generic [ref=e193]:
+                - button "Editar" [ref=e194] [cursor=pointer]
+                - button "Remover" [ref=e195] [cursor=pointer]
+          - row [ref=e196]:
+            - cell "E2E Produto 1794844736652-8168" [ref=e197]
+            - cell "168" [ref=e198]
+            - cell "Produto E2E gerado em 2026-11-16T15:58:56.652Z" [ref=e199]
+            - cell "27" [ref=e200]
+            - cell [ref=e201]
+            - cell [ref=e202]:
+              - generic [ref=e203]:
+                - button "Editar" [ref=e204] [cursor=pointer]
+                - button "Remover" [ref=e205] [cursor=pointer]
+          - row [ref=e206]:
+            - cell "teclado qa joao 1611" [ref=e207]
+            - cell "100" [ref=e208]
+            - cell "teste" [ref=e209]
+            - cell "5" [ref=e210]
+            - cell [ref=e211]
+            - cell [ref=e212]:
+              - generic [ref=e213]:
+                - button "Editar" [ref=e214] [cursor=pointer]
+                - button "Remover" [ref=e215] [cursor=pointer]
+          - row [ref=e216]:
+            - cell "Produto mwjg4glkpuvm" [ref=e217]
+            - cell "4529" [ref=e218]
+            - cell "The sleek and diligent Shirt comes with olive LED lighting for smart functionality" [ref=e219]
+            - cell "8" [ref=e220]
+            - cell [ref=e221]
+            - cell [ref=e222]:
+              - generic [ref=e223]:
+                - button "Editar" [ref=e224] [cursor=pointer]
+                - button "Remover" [ref=e225] [cursor=pointer]
+          - row [ref=e226]:
+            - cell "Produto mwjg68c2tahj" [ref=e227]
+            - cell "2673" [ref=e228]
+            - cell "Stylish Keyboard designed to make you stand out with earnest looks" [ref=e229]
+            - cell "16" [ref=e230]
+            - cell [ref=e231]
+            - cell [ref=e232]:
+              - generic [ref=e233]:
+                - button "Editar" [ref=e234] [cursor=pointer]
+                - button "Remover" [ref=e235] [cursor=pointer]
+          - row [ref=e236]:
+            - cell "Refined Bronze Mouse vSDs9R" [ref=e237]
+            - cell "763" [ref=e238]
+            - cell "New ABC 13 9370, 13.3, 5th Gen CoreA5-8250U, 8GB RAM, 256GB SSD, power UHD Graphics, OS 10 Home, OS Office A & J 2016" [ref=e239]
+            - cell "26" [ref=e240]
+            - cell [ref=e241]
+            - cell [ref=e242]:
+              - generic [ref=e243]:
+                - button "Editar" [ref=e244] [cursor=pointer]
+                - button "Remover" [ref=e245] [cursor=pointer]
+          - row [ref=e246]:
+            - cell "Produto mwjd0tfvkgyo" [ref=e247]
+            - cell "2356" [ref=e248]
+            - cell "Our salty-inspired Pants brings a taste of luxury to your paltry lifestyle" [ref=e249]
+            - cell "11" [ref=e250]
+            - cell [ref=e251]
+            - cell [ref=e252]:
+              - generic [ref=e253]:
+                - button "Editar" [ref=e254] [cursor=pointer]
+                - button "Remover" [ref=e255] [cursor=pointer]
+          - row [ref=e256]:
+            - cell "Produto mwjg4m3rdagi" [ref=e257]
+            - cell "3461" [ref=e258]
+            - cell "Discover the queasy new Computer with an exciting mix of Silk ingredients" [ref=e259]
+            - cell "27" [ref=e260]
+            - cell [ref=e261]
+            - cell [ref=e262]:
+              - generic [ref=e263]:
+                - button "Editar" [ref=e264] [cursor=pointer]
+                - button "Remover" [ref=e265] [cursor=pointer]
+          - row [ref=e266]:
+            - cell "Garrafa de Café Ben 10" [ref=e267]
+            - cell "1000" [ref=e268]
+            - cell "Obtenha a energia de todos os aliens do Omnitrix com esta garrafa" [ref=e269]
+            - cell "1" [ref=e270]
+            - cell [ref=e271]
+            - cell [ref=e272]:
+              - generic [ref=e273]:
+                - button "Editar" [ref=e274] [cursor=pointer]
+                - button "Remover" [ref=e275] [cursor=pointer]
+          - row [ref=e276]:
+            - cell "Teclado QA Joao 1611" [ref=e277]
+            - cell "100" [ref=e278]
+            - cell "teste" [ref=e279]
+            - cell "5" [ref=e280]
+            - cell [ref=e281]
+            - cell [ref=e282]:
+              - generic [ref=e283]:
+                - button "Editar" [ref=e284] [cursor=pointer]
+                - button "Remover" [ref=e285] [cursor=pointer]
+          - row [ref=e286]:
+            - cell "Agria MX Vertical" [ref=e287]
+            - cell "470" [ref=e288]
+            - cell "Mouse" [ref=e289]
+            - cell "381" [ref=e290]
+            - cell [ref=e291]
+            - cell [ref=e292]:
+              - generic [ref=e293]:
+                - button "Editar" [ref=e294] [cursor=pointer]
+                - button "Remover" [ref=e295] [cursor=pointer]
+          - row [ref=e296]:
+            - cell "Produto mwjd00y8cu3e" [ref=e297]
+            - cell "1289" [ref=e298]
+            - cell "Ergonomic Pizza made with Wooden for all-day sturdy support" [ref=e299]
+            - cell "5" [ref=e300]
+            - cell [ref=e301]
+            - cell [ref=e302]:
+              - generic [ref=e303]:
+                - button "Editar" [ref=e304] [cursor=pointer]
+                - button "Remover" [ref=e305] [cursor=pointer]
 ```

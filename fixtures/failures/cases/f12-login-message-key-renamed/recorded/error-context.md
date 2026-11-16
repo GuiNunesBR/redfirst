@@ -32,7 +32,7 @@ Error: Contrato inválido:
           - generic [ref=e19] [cursor=pointer]: Relatórios
       - button "Logout" [ref=e21] [cursor=pointer]
   - generic [ref=e22]:
-    - heading "Bem Vindo Mrs. Ottilie Watsica" [level=1] [ref=e23]
+    - heading "Bem Vindo Augustus Herman" [level=1] [ref=e23]
     - paragraph [ref=e24]: Este é seu sistema para administrar seu ecommerce.
     - separator [ref=e25]
     - paragraph [ref=e26]:

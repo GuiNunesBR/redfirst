@@ -7,7 +7,7 @@
     "project": "chromium"
   },
   "status": "failed",
-  "durationMs": 11727,
+  "durationMs": 8368,
   "errors": [
     {
       "message": "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: 200\nReceived: 401\n\n  14 |     const resposta = await capturarApi('POST', '/login', () => login.entrar(admin.email, admin.nome));\n  15 |\n> 16 |     expect(resposta.status).toBe(200);\n     |                             ^\n  17 |     expect(validar(LoginSchema, resposta.corpo).message).toBe('Login realizado com sucesso');\n  18 |     await expect(page).toHaveURL(/\\/admin\\/home$/);\n  19 |     await expect(new AdminHomePage(page).saudacao).toContainText(`Bem Vindo ${admin.nome}`);\n    at tests/e2e/login.spec.ts:16:29",
@@ -24,11 +24,11 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:57333/usuarios",
+          "url": "http://127.0.0.1:52235/usuarios",
           "corpo": {
-            "nome": "Ross Beer",
-            "email": "qa.mwjae6wo2mke@teste.com",
-            "password": "ds2TBviyUg",
+            "nome": "Lila Harris I",
+            "email": "qa.mwjjujd8bc8k@teste.com",
+            "password": "e440rPVBVa",
             "administrador": "true"
           }
         },
@@ -36,7 +36,7 @@
           "status": 201,
           "corpo": {
             "message": "Cadastro realizado com sucesso",
-            "_id": "3kTIAdA4XspK10KS"
+            "_id": "HHqjZ4ypUrdkODDV"
           }
         }
       }
@@ -46,10 +46,10 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:57333/login",
+          "url": "http://127.0.0.1:52235/login",
           "corpo": {
-            "email": "qa.mwjae6wo2mke@teste.com",
-            "password": "ds2TBviyUg"
+            "email": "qa.mwjjujd8bc8k@teste.com",
+            "password": "e440rPVBVa"
           }
         },
         "resposta": {
@@ -66,10 +66,10 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:57333/login",
+          "url": "http://127.0.0.1:52235/login",
           "corpo": {
-            "email": "qa.mwjae6wo2mke@teste.com",
-            "password": "Ross Beer"
+            "email": "qa.mwjjujd8bc8k@teste.com",
+            "password": "Lila Harris I"
           }
         },
         "resposta": {
@@ -85,7 +85,7 @@
       "body": {
         "requisicao": {
           "metodo": "DELETE",
-          "url": "http://127.0.0.1:57333/carrinhos/cancelar-compra",
+          "url": "http://127.0.0.1:52235/carrinhos/cancelar-compra",
           "corpo": null
         },
         "resposta": {
@@ -97,11 +97,11 @@
       }
     },
     {
-      "name": "API DELETE /usuarios/3kTIAdA4XspK10KS → 200",
+      "name": "API DELETE /usuarios/HHqjZ4ypUrdkODDV → 200",
       "body": {
         "requisicao": {
           "metodo": "DELETE",
-          "url": "http://127.0.0.1:57333/usuarios/3kTIAdA4XspK10KS",
+          "url": "http://127.0.0.1:52235/usuarios/HHqjZ4ypUrdkODDV",
           "corpo": null
         },
         "resposta": {

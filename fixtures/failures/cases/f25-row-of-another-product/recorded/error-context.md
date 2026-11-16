@@ -8,14 +8,14 @@
 ```
 Error: expect(locator).toBeVisible() failed
 
-Locator: getByRole('row').filter({ hasText: 'Produto mwjar9w474o8' })
+Locator: getByRole('row').filter({ hasText: 'Produto mwjjwdnwvxgc' })
 Expected: visible
 Timeout: 7000ms
 Error: element(s) not found
 
 Call log:
-  - Expect "toBeVisible" getByRole('row').filter({ hasText: 'Produto mwjar9w474o8' }) with timeout 7000ms
-  - waiting for getByRole('row').filter({ hasText: 'Produto mwjar9w474o8' })
+  - Expect "toBeVisible" getByRole('row').filter({ hasText: 'Produto mwjjwdnwvxgc' }) with timeout 7000ms
+  - waiting for getByRole('row').filter({ hasText: 'Produto mwjjwdnwvxgc' })
 
 ```
 
@@ -43,6 +43,51 @@ Call log:
         - columnheader "Imagem"
         - columnheader "Ações"
     - rowgroup:
+      - row "Produto QA 1794845156988-9829 429 Descricao dinamica gerada em 1794845156988 28 Editar Excluir":
+        - cell "Produto QA 1794845156988-9829"
+        - cell "429"
+        - cell "Descricao dinamica gerada em 1794845156988"
+        - cell "28"
+        - cell
+        - cell "Editar Excluir":
+          - button "Editar"
+          - button "Excluir"
+      - row "Produto mwjd000qwqxi 2236 Stylish Towels designed to make you stand out with natural looks 28 Editar Excluir":
+        - cell "Produto mwjd000qwqxi"
+        - cell "2236"
+        - cell "Stylish Towels designed to make you stand out with natural looks"
+        - cell "28"
+        - cell
+        - cell "Editar Excluir":
+          - button "Editar"
+          - button "Excluir"
+      - row "Produto mwjg4mk7jdpd 4034 The sky blue Table combines Pakistan aesthetics with Oganesson-based durability 6 Editar Excluir":
+        - cell "Produto mwjg4mk7jdpd"
+        - cell "4034"
+        - cell "The sky blue Table combines Pakistan aesthetics with Oganesson-based durability"
+        - cell "6"
+        - cell
+        - cell "Editar Excluir":
+          - button "Editar"
+          - button "Excluir"
+      - row "Produto QA 1794845444415-1313 463 Descricao dinamica gerada em 1794845444415 62 Editar Excluir":
+        - cell "Produto QA 1794845444415-1313"
+        - cell "463"
+        - cell "Descricao dinamica gerada em 1794845444415"
+        - cell "62"
+        - cell
+        - cell "Editar Excluir":
+          - button "Editar"
+          - button "Excluir"
+      - row "Produto mwjg4n4hq2ke 1571 The lime Mouse combines Romania aesthetics with Krypton-based durability 10 Editar Excluir":
+        - cell "Produto mwjg4n4hq2ke"
+        - cell "1571"
+        - cell "The lime Mouse combines Romania aesthetics with Krypton-based durability"
+        - cell "10"
+        - cell
+        - cell "Editar Excluir":
+          - button "Editar"
+          - button "Excluir"
       - row "Logitech MX Vertical 470 Mouse 384 Editar Excluir":
         - cell "Logitech MX Vertical"
         - cell "470"
@@ -52,11 +97,29 @@ Call log:
         - cell "Editar Excluir":
           - button "Editar"
           - button "Excluir"
+      - row "Produto mwjd00fddxqp 4170 Ergonomic Keyboard made with Plastic for all-day voluminous support 47 Editar Excluir":
+        - cell "Produto mwjd00fddxqp"
+        - cell "4170"
+        - cell "Ergonomic Keyboard made with Plastic for all-day voluminous support"
+        - cell "47"
+        - cell
+        - cell "Editar Excluir":
+          - button "Editar"
+          - button "Excluir"
       - row "Combo Teclado e Mouse Sem Fio Logitech MK250 160 Combo Teclado e Mouse 179 Editar Excluir":
         - cell "Combo Teclado e Mouse Sem Fio Logitech MK250"
         - cell "160"
         - cell "Combo Teclado e Mouse"
         - cell "179"
+        - cell
+        - cell "Editar Excluir":
+          - button "Editar"
+          - button "Excluir"
+      - row "Produto mwjjwaimd1po 312 Innovative Shoes featuring steel technology and Bamboo construction 11 Editar Excluir":
+        - cell "Produto mwjjwaimd1po"
+        - cell "312"
+        - cell "Innovative Shoes featuring steel technology and Bamboo construction"
+        - cell "11"
         - cell
         - cell "Editar Excluir":
           - button "Editar"
@@ -79,6 +142,33 @@ Call log:
         - cell "Editar Excluir":
           - button "Editar"
           - button "Excluir"
+      - row "Rustic Wooden Chicken jWls5a 555 New ABC 13 9370, 13.3, 5th Gen CoreA5-8250U, 8GB RAM, 256GB SSD, power UHD Graphics, OS 10 Home, OS Office A & J 2016 33 Editar Excluir":
+        - cell "Rustic Wooden Chicken jWls5a"
+        - cell "555"
+        - cell "New ABC 13 9370, 13.3, 5th Gen CoreA5-8250U, 8GB RAM, 256GB SSD, power UHD Graphics, OS 10 Home, OS Office A & J 2016"
+        - cell "33"
+        - cell
+        - cell "Editar Excluir":
+          - button "Editar"
+          - button "Excluir"
+      - row "Sleek Silk Car 7584 2442 Optio vitae unde voluptatem voluptatum. 75 Editar Excluir":
+        - cell "Sleek Silk Car 7584"
+        - cell "2442"
+        - cell "Optio vitae unde voluptatem voluptatum."
+        - cell "75"
+        - cell
+        - cell "Editar Excluir":
+          - button "Editar"
+          - button "Excluir"
+      - row "E2E Produto 1794844650764-93812 312 Produto E2E gerado em 2026-11-16T15:57:30.764Z 71 Editar Excluir":
+        - cell "E2E Produto 1794844650764-93812"
+        - cell "312"
+        - cell "Produto E2E gerado em 2026-11-16T15:57:30.764Z"
+        - cell "71"
+        - cell
+        - cell "Editar Excluir":
+          - button "Editar"
+          - button "Excluir"
       - row "Garrafa de Café 1000 Garrafa de Café 5 Editar Excluir":
         - cell "Garrafa de Café"
         - cell "1000"
@@ -88,11 +178,74 @@ Call log:
         - cell "Editar Excluir":
           - button "Editar"
           - button "Excluir"
-      - row "Produto mwjar6csfhph 4130 Our giraffe-friendly Ball ensures good comfort for your pets 20 Editar Excluir":
-        - cell "Produto mwjar6csfhph"
-        - cell "4130"
-        - cell "Our giraffe-friendly Ball ensures good comfort for your pets"
-        - cell "20"
+      - row "Produto mwjczvecdk5j 4443 Discover the panda-like agility of our Sausages, perfect for mealy users 8 Editar Excluir":
+        - cell "Produto mwjczvecdk5j"
+        - cell "4443"
+        - cell "Discover the panda-like agility of our Sausages, perfect for mealy users"
+        - cell "8"
+        - cell
+        - cell "Editar Excluir":
+          - button "Editar"
+          - button "Excluir"
+      - row "E2E Produto 1794844736652-8168 168 Produto E2E gerado em 2026-11-16T15:58:56.652Z 27 Editar Excluir":
+        - cell "E2E Produto 1794844736652-8168"
+        - cell "168"
+        - cell "Produto E2E gerado em 2026-11-16T15:58:56.652Z"
+        - cell "27"
+        - cell
+        - cell "Editar Excluir":
+          - button "Editar"
+          - button "Excluir"
+      - row "teclado qa joao 1611 100 teste 5 Editar Excluir":
+        - cell "teclado qa joao 1611"
+        - cell "100"
+        - cell "teste"
+        - cell "5"
+        - cell
+        - cell "Editar Excluir":
+          - button "Editar"
+          - button "Excluir"
+      - row "Produto mwjg4glkpuvm 4529 The sleek and diligent Shirt comes with olive LED lighting for smart functionality 8 Editar Excluir":
+        - cell "Produto mwjg4glkpuvm"
+        - cell "4529"
+        - cell "The sleek and diligent Shirt comes with olive LED lighting for smart functionality"
+        - cell "8"
+        - cell
+        - cell "Editar Excluir":
+          - button "Editar"
+          - button "Excluir"
+      - row "Produto mwjg68c2tahj 2673 Stylish Keyboard designed to make you stand out with earnest looks 16 Editar Excluir":
+        - cell "Produto mwjg68c2tahj"
+        - cell "2673"
+        - cell "Stylish Keyboard designed to make you stand out with earnest looks"
+        - cell "16"
+        - cell
+        - cell "Editar Excluir":
+          - button "Editar"
+          - button "Excluir"
+      - row "Refined Bronze Mouse vSDs9R 763 New ABC 13 9370, 13.3, 5th Gen CoreA5-8250U, 8GB RAM, 256GB SSD, power UHD Graphics, OS 10 Home, OS Office A & J 2016 26 Editar Excluir":
+        - cell "Refined Bronze Mouse vSDs9R"
+        - cell "763"
+        - cell "New ABC 13 9370, 13.3, 5th Gen CoreA5-8250U, 8GB RAM, 256GB SSD, power UHD Graphics, OS 10 Home, OS Office A & J 2016"
+        - cell "26"
+        - cell
+        - cell "Editar Excluir":
+          - button "Editar"
+          - button "Excluir"
+      - row "Produto mwjd0tfvkgyo 2356 Our salty-inspired Pants brings a taste of luxury to your paltry lifestyle 11 Editar Excluir":
+        - cell "Produto mwjd0tfvkgyo"
+        - cell "2356"
+        - cell "Our salty-inspired Pants brings a taste of luxury to your paltry lifestyle"
+        - cell "11"
+        - cell
+        - cell "Editar Excluir":
+          - button "Editar"
+          - button "Excluir"
+      - row "Produto mwjg4m3rdagi 3461 Discover the queasy new Computer with an exciting mix of Silk ingredients 27 Editar Excluir":
+        - cell "Produto mwjg4m3rdagi"
+        - cell "3461"
+        - cell "Discover the queasy new Computer with an exciting mix of Silk ingredients"
+        - cell "27"
         - cell
         - cell "Editar Excluir":
           - button "Editar"
@@ -106,11 +259,29 @@ Call log:
         - cell "Editar Excluir":
           - button "Editar"
           - button "Excluir"
+      - row "Teclado QA Joao 1611 100 teste 5 Editar Excluir":
+        - cell "Teclado QA Joao 1611"
+        - cell "100"
+        - cell "teste"
+        - cell "5"
+        - cell
+        - cell "Editar Excluir":
+          - button "Editar"
+          - button "Excluir"
       - row "Agria MX Vertical 470 Mouse 381 Editar Excluir":
         - cell "Agria MX Vertical"
         - cell "470"
         - cell "Mouse"
         - cell "381"
+        - cell
+        - cell "Editar Excluir":
+          - button "Editar"
+          - button "Excluir"
+      - row "Produto mwjd00y8cu3e 1289 Ergonomic Pizza made with Wooden for all-day sturdy support 5 Editar Excluir":
+        - cell "Produto mwjd00y8cu3e"
+        - cell "1289"
+        - cell "Ergonomic Pizza made with Wooden for all-day sturdy support"
+        - cell "5"
         - cell
         - cell "Editar Excluir":
           - button "Editar"

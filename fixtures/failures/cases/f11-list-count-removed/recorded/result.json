@@ -7,7 +7,7 @@
     "project": "api"
   },
   "status": "failed",
-  "durationMs": 3544,
+  "durationMs": 3186,
   "errors": [
     {
       "message": "Error: Contrato inválido:\n✖ Invalid input: expected number, received undefined\n  → at quantidade\n\n   at ../src/api/schemas.ts:46\n\n  44 |   const resultado = schema.safeParse(dados);\n  45 |   if (!resultado.success) {\n> 46 |     throw new Error(`Contrato inválido:\\n${z.prettifyError(resultado.error)}`);\n     |           ^\n  47 |   }\n  48 |   return resultado.data;\n  49 | }\n    at validar (src/api/schemas.ts:46:11)\n    at tests/api/produtos.spec.ts:53:19",
@@ -24,11 +24,11 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:59232/usuarios",
+          "url": "http://127.0.0.1:54331/usuarios",
           "corpo": {
-            "nome": "Flossie Goldner",
-            "email": "qa.mwja6euawrxz@teste.com",
-            "password": "Pxn8Hr4Yih",
+            "nome": "Dr. Merritt Smith",
+            "email": "qa.mwjjc3w4uzea@teste.com",
+            "password": "6XrddcBF16",
             "administrador": "true"
           }
         },
@@ -36,7 +36,7 @@
           "status": 201,
           "corpo": {
             "message": "Cadastro realizado com sucesso",
-            "_id": "7lutiRQt9ikQJv1O"
+            "_id": "9PH2nxc88iJcsoMC"
           }
         }
       }
@@ -46,10 +46,10 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:59232/login",
+          "url": "http://127.0.0.1:54331/login",
           "corpo": {
-            "email": "qa.mwja6euawrxz@teste.com",
-            "password": "Pxn8Hr4Yih"
+            "email": "qa.mwjjc3w4uzea@teste.com",
+            "password": "6XrddcBF16"
           }
         },
         "resposta": {
@@ -66,29 +66,29 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:59232/produtos",
+          "url": "http://127.0.0.1:54331/produtos",
           "corpo": {
-            "nome": "Produto mwja6ftixsyt",
-            "preco": 1453,
-            "descricao": "Introducing the Uzbekistan-inspired Mouse, blending simple style with local craftsmanship",
-            "quantidade": 43
+            "nome": "Produto mwjjc4qirjon",
+            "preco": 2371,
+            "descricao": "New Chips model with 15 GB RAM, 118 GB storage, and cute features",
+            "quantidade": 40
           }
         },
         "resposta": {
           "status": 201,
           "corpo": {
             "message": "Cadastro realizado com sucesso",
-            "_id": "7cOWcdH0ShOaUCT2"
+            "_id": "wcuyUTy4UbKnOM8z"
           }
         }
       }
     },
     {
-      "name": "API GET /produtos?nome=Produto+mwja6ftixsyt → 200",
+      "name": "API GET /produtos?nome=Produto+mwjjc4qirjon → 200",
       "body": {
         "requisicao": {
           "metodo": "GET",
-          "url": "http://127.0.0.1:59232/produtos?nome=Produto+mwja6ftixsyt",
+          "url": "http://127.0.0.1:54331/produtos?nome=Produto+mwjjc4qirjon",
           "corpo": null
         },
         "resposta": {
@@ -96,11 +96,11 @@
           "corpo": {
             "produtos": [
               {
-                "nome": "Produto mwja6ftixsyt",
-                "preco": 1453,
-                "descricao": "Introducing the Uzbekistan-inspired Mouse, blending simple style with local craftsmanship",
-                "quantidade": 43,
-                "_id": "7cOWcdH0ShOaUCT2"
+                "nome": "Produto mwjjc4qirjon",
+                "preco": 2371,
+                "descricao": "New Chips model with 15 GB RAM, 118 GB storage, and cute features",
+                "quantidade": 40,
+                "_id": "wcuyUTy4UbKnOM8z"
               }
             ]
           }
@@ -112,7 +112,7 @@
       "body": {
         "requisicao": {
           "metodo": "DELETE",
-          "url": "http://127.0.0.1:59232/carrinhos/cancelar-compra",
+          "url": "http://127.0.0.1:54331/carrinhos/cancelar-compra",
           "corpo": null
         },
         "resposta": {
@@ -124,11 +124,11 @@
       }
     },
     {
-      "name": "API DELETE /produtos/7cOWcdH0ShOaUCT2 → 200",
+      "name": "API DELETE /produtos/wcuyUTy4UbKnOM8z → 200",
       "body": {
         "requisicao": {
           "metodo": "DELETE",
-          "url": "http://127.0.0.1:59232/produtos/7cOWcdH0ShOaUCT2",
+          "url": "http://127.0.0.1:54331/produtos/wcuyUTy4UbKnOM8z",
           "corpo": null
         },
         "resposta": {
@@ -140,11 +140,11 @@
       }
     },
     {
-      "name": "API DELETE /usuarios/7lutiRQt9ikQJv1O → 200",
+      "name": "API DELETE /usuarios/9PH2nxc88iJcsoMC → 200",
       "body": {
         "requisicao": {
           "metodo": "DELETE",
-          "url": "http://127.0.0.1:59232/usuarios/7lutiRQt9ikQJv1O",
+          "url": "http://127.0.0.1:54331/usuarios/9PH2nxc88iJcsoMC",
           "corpo": null
         },
         "resposta": {

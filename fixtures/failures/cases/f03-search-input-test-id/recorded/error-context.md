@@ -42,86 +42,326 @@ Error: page.unroute: Target page, context or browser has been closed
     - generic [ref=e36]:
       - generic [ref=e38]:
         - link [ref=e39] [cursor=pointer]:
-          - /url: /detalhesProduto/BeeJh5lz3k6kSIzA
-        - heading "Logitech MX Vertical" [level=5] [ref=e41]
+          - /url: /detalhesProduto/5cZMksT8IlEnO1oP
+        - heading "Produto QA 1794845156988-9829" [level=5] [ref=e41]
         - heading "Preço:" [level=6] [ref=e42]
-        - heading "$ 470" [level=6] [ref=e43]
+        - heading "$ 429" [level=6] [ref=e43]
         - generic [ref=e44]:
           - link "Detalhes" [ref=e45] [cursor=pointer]:
-            - /url: /detalhesProduto/BeeJh5lz3k6kSIzA
+            - /url: /detalhesProduto/5cZMksT8IlEnO1oP
           - link [ref=e46] [cursor=pointer]:
             - /url: /minhaListaDeProdutos
             - button "Adicionar a lista" [ref=e47]
       - generic [ref=e49]:
         - link [ref=e50] [cursor=pointer]:
-          - /url: /detalhesProduto/HZDXlBQxMYbzWJ2R
-        - heading "Combo Teclado e Mouse Sem Fio Logitech MK250" [level=5] [ref=e52]
+          - /url: /detalhesProduto/9ZNITlFqyKAjV6r0
+        - heading "Produto mwjd000qwqxi" [level=5] [ref=e52]
         - heading "Preço:" [level=6] [ref=e53]
-        - heading "$ 160" [level=6] [ref=e54]
+        - heading "$ 2236" [level=6] [ref=e54]
         - generic [ref=e55]:
           - link "Detalhes" [ref=e56] [cursor=pointer]:
-            - /url: /detalhesProduto/HZDXlBQxMYbzWJ2R
+            - /url: /detalhesProduto/9ZNITlFqyKAjV6r0
           - link [ref=e57] [cursor=pointer]:
             - /url: /minhaListaDeProdutos
             - button "Adicionar a lista" [ref=e58]
       - generic [ref=e60]:
         - link [ref=e61] [cursor=pointer]:
-          - /url: /detalhesProduto/K6leHdftCeOJj8BJ
-        - heading "Samsung 60 polegadas" [level=5] [ref=e63]
+          - /url: /detalhesProduto/A40ZOgUHazRCZ1NO
+        - heading "Produto mwjg4mk7jdpd" [level=5] [ref=e63]
         - heading "Preço:" [level=6] [ref=e64]
-        - heading "$ 5240" [level=6] [ref=e65]
+        - heading "$ 4034" [level=6] [ref=e65]
         - generic [ref=e66]:
           - link "Detalhes" [ref=e67] [cursor=pointer]:
-            - /url: /detalhesProduto/K6leHdftCeOJj8BJ
+            - /url: /detalhesProduto/A40ZOgUHazRCZ1NO
           - link [ref=e68] [cursor=pointer]:
             - /url: /minhaListaDeProdutos
             - button "Adicionar a lista" [ref=e69]
       - generic [ref=e71]:
         - link [ref=e72] [cursor=pointer]:
-          - /url: /detalhesProduto/WaNH7bS4OwvkqF8I
-        - heading "Garrafa de Café" [level=5] [ref=e74]
+          - /url: /detalhesProduto/AD8Y670oOdB85ilF
+        - heading "Produto QA 1794845444415-1313" [level=5] [ref=e74]
         - heading "Preço:" [level=6] [ref=e75]
-        - heading "$ 1000" [level=6] [ref=e76]
+        - heading "$ 463" [level=6] [ref=e76]
         - generic [ref=e77]:
           - link "Detalhes" [ref=e78] [cursor=pointer]:
-            - /url: /detalhesProduto/WaNH7bS4OwvkqF8I
+            - /url: /detalhesProduto/AD8Y670oOdB85ilF
           - link [ref=e79] [cursor=pointer]:
             - /url: /minhaListaDeProdutos
             - button "Adicionar a lista" [ref=e80]
       - generic [ref=e82]:
         - link [ref=e83] [cursor=pointer]:
-          - /url: /detalhesProduto/ZuYw3GSpp2DisUR5
-        - heading "Produto mwja0s7e3aqz" [level=5] [ref=e85]
+          - /url: /detalhesProduto/BNFQ94almrpfxDES
+        - heading "Produto mwjg4n4hq2ke" [level=5] [ref=e85]
         - heading "Preço:" [level=6] [ref=e86]
-        - heading "$ 464" [level=6] [ref=e87]
+        - heading "$ 1571" [level=6] [ref=e87]
         - generic [ref=e88]:
           - link "Detalhes" [ref=e89] [cursor=pointer]:
-            - /url: /detalhesProduto/ZuYw3GSpp2DisUR5
+            - /url: /detalhesProduto/BNFQ94almrpfxDES
           - link [ref=e90] [cursor=pointer]:
             - /url: /minhaListaDeProdutos
             - button "Adicionar a lista" [ref=e91]
       - generic [ref=e93]:
         - link [ref=e94] [cursor=pointer]:
-          - /url: /detalhesProduto/qUViWcx98Lc1H5Si
-        - heading "Garrafa de Café Ben 10" [level=5] [ref=e96]
+          - /url: /detalhesProduto/BeeJh5lz3k6kSIzA
+        - heading "Logitech MX Vertical" [level=5] [ref=e96]
         - heading "Preço:" [level=6] [ref=e97]
-        - heading "$ 1000" [level=6] [ref=e98]
+        - heading "$ 470" [level=6] [ref=e98]
         - generic [ref=e99]:
           - link "Detalhes" [ref=e100] [cursor=pointer]:
-            - /url: /detalhesProduto/qUViWcx98Lc1H5Si
+            - /url: /detalhesProduto/BeeJh5lz3k6kSIzA
           - link [ref=e101] [cursor=pointer]:
             - /url: /minhaListaDeProdutos
             - button "Adicionar a lista" [ref=e102]
       - generic [ref=e104]:
         - link [ref=e105] [cursor=pointer]:
-          - /url: /detalhesProduto/s3egH2lUNJQb2skB
-        - heading "Agria MX Vertical" [level=5] [ref=e107]
+          - /url: /detalhesProduto/E8EI6kW9sNDSjhZ7
+        - heading "Produto mwjd00fddxqp" [level=5] [ref=e107]
         - heading "Preço:" [level=6] [ref=e108]
-        - heading "$ 470" [level=6] [ref=e109]
+        - heading "$ 4170" [level=6] [ref=e109]
         - generic [ref=e110]:
           - link "Detalhes" [ref=e111] [cursor=pointer]:
-            - /url: /detalhesProduto/s3egH2lUNJQb2skB
+            - /url: /detalhesProduto/E8EI6kW9sNDSjhZ7
           - link [ref=e112] [cursor=pointer]:
             - /url: /minhaListaDeProdutos
             - button "Adicionar a lista" [ref=e113]
+      - generic [ref=e115]:
+        - link [ref=e116] [cursor=pointer]:
+          - /url: /detalhesProduto/HZDXlBQxMYbzWJ2R
+        - heading "Combo Teclado e Mouse Sem Fio Logitech MK250" [level=5] [ref=e118]
+        - heading "Preço:" [level=6] [ref=e119]
+        - heading "$ 160" [level=6] [ref=e120]
+        - generic [ref=e121]:
+          - link "Detalhes" [ref=e122] [cursor=pointer]:
+            - /url: /detalhesProduto/HZDXlBQxMYbzWJ2R
+          - link [ref=e123] [cursor=pointer]:
+            - /url: /minhaListaDeProdutos
+            - button "Adicionar a lista" [ref=e124]
+      - generic [ref=e126]:
+        - link [ref=e127] [cursor=pointer]:
+          - /url: /detalhesProduto/K6leHdftCeOJj8BJ
+        - heading "Samsung 60 polegadas" [level=5] [ref=e129]
+        - heading "Preço:" [level=6] [ref=e130]
+        - heading "$ 5240" [level=6] [ref=e131]
+        - generic [ref=e132]:
+          - link "Detalhes" [ref=e133] [cursor=pointer]:
+            - /url: /detalhesProduto/K6leHdftCeOJj8BJ
+          - link [ref=e134] [cursor=pointer]:
+            - /url: /minhaListaDeProdutos
+            - button "Adicionar a lista" [ref=e135]
+      - generic [ref=e137]:
+        - link [ref=e138] [cursor=pointer]:
+          - /url: /detalhesProduto/NAt9zDtEW9QBMnJz
+        - heading "NOTA NA A3" [level=5] [ref=e140]
+        - heading "Preço:" [level=6] [ref=e141]
+        - heading "$ 10000" [level=6] [ref=e142]
+        - generic [ref=e143]:
+          - link "Detalhes" [ref=e144] [cursor=pointer]:
+            - /url: /detalhesProduto/NAt9zDtEW9QBMnJz
+          - link [ref=e145] [cursor=pointer]:
+            - /url: /minhaListaDeProdutos
+            - button "Adicionar a lista" [ref=e146]
+      - generic [ref=e148]:
+        - link [ref=e149] [cursor=pointer]:
+          - /url: /detalhesProduto/NHlKzv06ldiRbumi
+        - heading "Rustic Wooden Chicken jWls5a" [level=5] [ref=e151]
+        - heading "Preço:" [level=6] [ref=e152]
+        - heading "$ 555" [level=6] [ref=e153]
+        - generic [ref=e154]:
+          - link "Detalhes" [ref=e155] [cursor=pointer]:
+            - /url: /detalhesProduto/NHlKzv06ldiRbumi
+          - link [ref=e156] [cursor=pointer]:
+            - /url: /minhaListaDeProdutos
+            - button "Adicionar a lista" [ref=e157]
+      - generic [ref=e159]:
+        - link [ref=e160] [cursor=pointer]:
+          - /url: /detalhesProduto/OZdX0eDVwdaUbuHg
+        - heading "Sleek Silk Car 7584" [level=5] [ref=e162]
+        - heading "Preço:" [level=6] [ref=e163]
+        - heading "$ 2442" [level=6] [ref=e164]
+        - generic [ref=e165]:
+          - link "Detalhes" [ref=e166] [cursor=pointer]:
+            - /url: /detalhesProduto/OZdX0eDVwdaUbuHg
+          - link [ref=e167] [cursor=pointer]:
+            - /url: /minhaListaDeProdutos
+            - button "Adicionar a lista" [ref=e168]
+      - generic [ref=e170]:
+        - link [ref=e171] [cursor=pointer]:
+          - /url: /detalhesProduto/OmVJip2qD8o0zi3h
+        - heading "Produto mwjj1p35e9bv" [level=5] [ref=e173]
+        - heading "Preço:" [level=6] [ref=e174]
+        - heading "$ 2324" [level=6] [ref=e175]
+        - generic [ref=e176]:
+          - link "Detalhes" [ref=e177] [cursor=pointer]:
+            - /url: /detalhesProduto/OmVJip2qD8o0zi3h
+          - link [ref=e178] [cursor=pointer]:
+            - /url: /minhaListaDeProdutos
+            - button "Adicionar a lista" [ref=e179]
+      - generic [ref=e181]:
+        - link [ref=e182] [cursor=pointer]:
+          - /url: /detalhesProduto/UnH4Q59yT1z8R1F3
+        - heading "E2E Produto 1794844650764-93812" [level=5] [ref=e184]
+        - heading "Preço:" [level=6] [ref=e185]
+        - heading "$ 312" [level=6] [ref=e186]
+        - generic [ref=e187]:
+          - link "Detalhes" [ref=e188] [cursor=pointer]:
+            - /url: /detalhesProduto/UnH4Q59yT1z8R1F3
+          - link [ref=e189] [cursor=pointer]:
+            - /url: /minhaListaDeProdutos
+            - button "Adicionar a lista" [ref=e190]
+      - generic [ref=e192]:
+        - link [ref=e193] [cursor=pointer]:
+          - /url: /detalhesProduto/WaNH7bS4OwvkqF8I
+        - heading "Garrafa de Café" [level=5] [ref=e195]
+        - heading "Preço:" [level=6] [ref=e196]
+        - heading "$ 1000" [level=6] [ref=e197]
+        - generic [ref=e198]:
+          - link "Detalhes" [ref=e199] [cursor=pointer]:
+            - /url: /detalhesProduto/WaNH7bS4OwvkqF8I
+          - link [ref=e200] [cursor=pointer]:
+            - /url: /minhaListaDeProdutos
+            - button "Adicionar a lista" [ref=e201]
+      - generic [ref=e203]:
+        - link [ref=e204] [cursor=pointer]:
+          - /url: /detalhesProduto/cIc776ENsVTMZtmG
+        - heading "Produto mwjczvecdk5j" [level=5] [ref=e206]
+        - heading "Preço:" [level=6] [ref=e207]
+        - heading "$ 4443" [level=6] [ref=e208]
+        - generic [ref=e209]:
+          - link "Detalhes" [ref=e210] [cursor=pointer]:
+            - /url: /detalhesProduto/cIc776ENsVTMZtmG
+          - link [ref=e211] [cursor=pointer]:
+            - /url: /minhaListaDeProdutos
+            - button "Adicionar a lista" [ref=e212]
+      - generic [ref=e214]:
+        - link [ref=e215] [cursor=pointer]:
+          - /url: /detalhesProduto/fVmhXDl2IQYYzzFK
+        - heading "E2E Produto 1794844736652-8168" [level=5] [ref=e217]
+        - heading "Preço:" [level=6] [ref=e218]
+        - heading "$ 168" [level=6] [ref=e219]
+        - generic [ref=e220]:
+          - link "Detalhes" [ref=e221] [cursor=pointer]:
+            - /url: /detalhesProduto/fVmhXDl2IQYYzzFK
+          - link [ref=e222] [cursor=pointer]:
+            - /url: /minhaListaDeProdutos
+            - button "Adicionar a lista" [ref=e223]
+      - generic [ref=e225]:
+        - link [ref=e226] [cursor=pointer]:
+          - /url: /detalhesProduto/gZ13K5eOKVDBc1Cj
+        - heading "teclado qa joao 1611" [level=5] [ref=e228]
+        - heading "Preço:" [level=6] [ref=e229]
+        - heading "$ 100" [level=6] [ref=e230]
+        - generic [ref=e231]:
+          - link "Detalhes" [ref=e232] [cursor=pointer]:
+            - /url: /detalhesProduto/gZ13K5eOKVDBc1Cj
+          - link [ref=e233] [cursor=pointer]:
+            - /url: /minhaListaDeProdutos
+            - button "Adicionar a lista" [ref=e234]
+      - generic [ref=e236]:
+        - link [ref=e237] [cursor=pointer]:
+          - /url: /detalhesProduto/jaCVTPMMGeCqxEb2
+        - heading "Produto mwjg4glkpuvm" [level=5] [ref=e239]
+        - heading "Preço:" [level=6] [ref=e240]
+        - heading "$ 4529" [level=6] [ref=e241]
+        - generic [ref=e242]:
+          - link "Detalhes" [ref=e243] [cursor=pointer]:
+            - /url: /detalhesProduto/jaCVTPMMGeCqxEb2
+          - link [ref=e244] [cursor=pointer]:
+            - /url: /minhaListaDeProdutos
+            - button "Adicionar a lista" [ref=e245]
+      - generic [ref=e247]:
+        - link [ref=e248] [cursor=pointer]:
+          - /url: /detalhesProduto/ki1i80Xm1sQAOowH
+        - heading "Produto mwjg68c2tahj" [level=5] [ref=e250]
+        - heading "Preço:" [level=6] [ref=e251]
+        - heading "$ 2673" [level=6] [ref=e252]
+        - generic [ref=e253]:
+          - link "Detalhes" [ref=e254] [cursor=pointer]:
+            - /url: /detalhesProduto/ki1i80Xm1sQAOowH
+          - link [ref=e255] [cursor=pointer]:
+            - /url: /minhaListaDeProdutos
+            - button "Adicionar a lista" [ref=e256]
+      - generic [ref=e258]:
+        - link [ref=e259] [cursor=pointer]:
+          - /url: /detalhesProduto/l2jJQCgTAoejHorp
+        - heading "Refined Bronze Mouse vSDs9R" [level=5] [ref=e261]
+        - heading "Preço:" [level=6] [ref=e262]
+        - heading "$ 763" [level=6] [ref=e263]
+        - generic [ref=e264]:
+          - link "Detalhes" [ref=e265] [cursor=pointer]:
+            - /url: /detalhesProduto/l2jJQCgTAoejHorp
+          - link [ref=e266] [cursor=pointer]:
+            - /url: /minhaListaDeProdutos
+            - button "Adicionar a lista" [ref=e267]
+      - generic [ref=e269]:
+        - link [ref=e270] [cursor=pointer]:
+          - /url: /detalhesProduto/lCpcBqDgPiMIZj0F
+        - heading "Produto mwjd0tfvkgyo" [level=5] [ref=e272]
+        - heading "Preço:" [level=6] [ref=e273]
+        - heading "$ 2356" [level=6] [ref=e274]
+        - generic [ref=e275]:
+          - link "Detalhes" [ref=e276] [cursor=pointer]:
+            - /url: /detalhesProduto/lCpcBqDgPiMIZj0F
+          - link [ref=e277] [cursor=pointer]:
+            - /url: /minhaListaDeProdutos
+            - button "Adicionar a lista" [ref=e278]
+      - generic [ref=e280]:
+        - link [ref=e281] [cursor=pointer]:
+          - /url: /detalhesProduto/ntQUjOgloY0O5DiF
+        - heading "Produto mwjg4m3rdagi" [level=5] [ref=e283]
+        - heading "Preço:" [level=6] [ref=e284]
+        - heading "$ 3461" [level=6] [ref=e285]
+        - generic [ref=e286]:
+          - link "Detalhes" [ref=e287] [cursor=pointer]:
+            - /url: /detalhesProduto/ntQUjOgloY0O5DiF
+          - link [ref=e288] [cursor=pointer]:
+            - /url: /minhaListaDeProdutos
+            - button "Adicionar a lista" [ref=e289]
+      - generic [ref=e291]:
+        - link [ref=e292] [cursor=pointer]:
+          - /url: /detalhesProduto/qUViWcx98Lc1H5Si
+        - heading "Garrafa de Café Ben 10" [level=5] [ref=e294]
+        - heading "Preço:" [level=6] [ref=e295]
+        - heading "$ 1000" [level=6] [ref=e296]
+        - generic [ref=e297]:
+          - link "Detalhes" [ref=e298] [cursor=pointer]:
+            - /url: /detalhesProduto/qUViWcx98Lc1H5Si
+          - link [ref=e299] [cursor=pointer]:
+            - /url: /minhaListaDeProdutos
+            - button "Adicionar a lista" [ref=e300]
+      - generic [ref=e302]:
+        - link [ref=e303] [cursor=pointer]:
+          - /url: /detalhesProduto/s2JPglpiR7RpHsW4
+        - heading "Teclado QA Joao 1611" [level=5] [ref=e305]
+        - heading "Preço:" [level=6] [ref=e306]
+        - heading "$ 100" [level=6] [ref=e307]
+        - generic [ref=e308]:
+          - link "Detalhes" [ref=e309] [cursor=pointer]:
+            - /url: /detalhesProduto/s2JPglpiR7RpHsW4
+          - link [ref=e310] [cursor=pointer]:
+            - /url: /minhaListaDeProdutos
+            - button "Adicionar a lista" [ref=e311]
+      - generic [ref=e313]:
+        - link [ref=e314] [cursor=pointer]:
+          - /url: /detalhesProduto/s3egH2lUNJQb2skB
+        - heading "Agria MX Vertical" [level=5] [ref=e316]
+        - heading "Preço:" [level=6] [ref=e317]
+        - heading "$ 470" [level=6] [ref=e318]
+        - generic [ref=e319]:
+          - link "Detalhes" [ref=e320] [cursor=pointer]:
+            - /url: /detalhesProduto/s3egH2lUNJQb2skB
+          - link [ref=e321] [cursor=pointer]:
+            - /url: /minhaListaDeProdutos
+            - button "Adicionar a lista" [ref=e322]
+      - generic [ref=e324]:
+        - link [ref=e325] [cursor=pointer]:
+          - /url: /detalhesProduto/vpFzSLD5tEQ7nOw7
+        - heading "Produto mwjd00y8cu3e" [level=5] [ref=e327]
+        - heading "Preço:" [level=6] [ref=e328]
+        - heading "$ 1289" [level=6] [ref=e329]
+        - generic [ref=e330]:
+          - link "Detalhes" [ref=e331] [cursor=pointer]:
+            - /url: /detalhesProduto/vpFzSLD5tEQ7nOw7
+          - link [ref=e332] [cursor=pointer]:
+            - /url: /minhaListaDeProdutos
+            - button "Adicionar a lista" [ref=e333]
 ```

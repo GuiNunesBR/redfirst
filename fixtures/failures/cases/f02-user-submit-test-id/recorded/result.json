@@ -7,7 +7,7 @@
     "project": "chromium"
   },
   "status": "failed",
-  "durationMs": 17417,
+  "durationMs": 18954,
   "errors": [
     {
       "message": "Error: O front não chamou POST /usuarios\n\n   at ../src/helpers/evidencias.ts:81\n\n  79 |   let relogio: NodeJS.Timeout | undefined;\n  80 |   const limite = new Promise<never>((_, reject) => {\n> 81 |     relogio = setTimeout(() => reject(new Error(`O front não chamou ${metodo} ${caminho}`)), 10_000);\n     |                                       ^\n  82 |   });\n  83 |\n  84 |   await page.route(casa, interceptar);\n    at Timeout._onTimeout (src/helpers/evidencias.ts:81:39)",
@@ -28,11 +28,11 @@
   ],
   "apiCalls": [
     {
-      "name": "API GET /usuarios?email=qa.mwjamh8qhsyv%40teste.com → 200",
+      "name": "API GET /usuarios?email=qa.mwjizhk9axvo%40teste.com → 200",
       "body": {
         "requisicao": {
           "metodo": "GET",
-          "url": "http://127.0.0.1:64809/usuarios?email=qa.mwjamh8qhsyv%40teste.com",
+          "url": "http://127.0.0.1:59511/usuarios?email=qa.mwjizhk9axvo%40teste.com",
           "corpo": null
         },
         "resposta": {

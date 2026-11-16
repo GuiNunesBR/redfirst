@@ -7,7 +7,7 @@
     "project": "api"
   },
   "status": "failed",
-  "durationMs": 1422,
+  "durationMs": 1246,
   "errors": [
     {
       "message": "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: 401\nReceived: 200\n\n  23 |     const resposta = await api.login(usuario.email, 'senha-errada');\n  24 |\n> 25 |     expect(resposta.status()).toBe(401);\n     |                               ^\n  26 |     expect(validar(MensagemSchema, await resposta.json()).message).toBe('Email e/ou senha inválidos');\n  27 |   });\n  28 |\n    at tests/api/login.spec.ts:25:31",
@@ -24,11 +24,11 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:56230/usuarios",
+          "url": "http://127.0.0.1:52354/usuarios",
           "corpo": {
-            "nome": "Mr. Nestor Rolfson",
-            "email": "qa.mwja81cdoi5h@teste.com",
-            "password": "32XSU54bMc",
+            "nome": "Dina Murray",
+            "email": "qa.mwjjgvizjo8g@teste.com",
+            "password": "8X_mBBWsRe",
             "administrador": "false"
           }
         },
@@ -36,7 +36,7 @@
           "status": 201,
           "corpo": {
             "message": "Cadastro realizado com sucesso",
-            "_id": "vHlPgeJsHLfFsxKN"
+            "_id": "KMi6RXf1xP3M1OOx"
           }
         }
       }
@@ -46,9 +46,9 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:56230/login",
+          "url": "http://127.0.0.1:52354/login",
           "corpo": {
-            "email": "qa.mwja81cdoi5h@teste.com",
+            "email": "qa.mwjjgvizjo8g@teste.com",
             "password": "senha-errada"
           }
         },
@@ -62,11 +62,11 @@
       }
     },
     {
-      "name": "API DELETE /usuarios/vHlPgeJsHLfFsxKN → 200",
+      "name": "API DELETE /usuarios/KMi6RXf1xP3M1OOx → 200",
       "body": {
         "requisicao": {
           "metodo": "DELETE",
-          "url": "http://127.0.0.1:56230/usuarios/vHlPgeJsHLfFsxKN",
+          "url": "http://127.0.0.1:52354/usuarios/KMi6RXf1xP3M1OOx",
           "corpo": null
         },
         "resposta": {

@@ -9,7 +9,7 @@
 Error: expect(locator).toContainText(expected) failed
 
 Locator: getByRole('heading', { name: /Bem Vindo/ })
-Expected substring: "Bem Vindo Adolphus Langworth"
+Expected substring: "Bem Vindo Ellsworth O'Reilly"
 Timeout: 7000ms
 Error: element(s) not found
 
@@ -30,7 +30,7 @@ Call log:
     - listitem: Listar Produtos
     - listitem: Relatórios
   - button "Logout"
-- heading "Olá, Adolphus Langworth" [level=1]
+- heading "Olá, Ellsworth O'Reilly" [level=1]
 - paragraph: Este é seu sistema para administrar seu ecommerce.
 - separator
 - paragraph:

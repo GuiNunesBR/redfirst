@@ -1,0 +1,27 @@
+{
+  "description": "The front searches products through a new endpoint, GET /produtos/busca?nome=, which answers 200 with the same list. The page shows the right product; the endpoint the test checks is never called.",
+  "category": "product-change",
+  "heal": "human",
+  "test": "tests/e2e/loja.spec.ts:11",
+  "project": "chromium",
+  "front": [
+    {
+      "find": "\"/produtos?nome=\"",
+      "replace": "\"/produtos/busca?nome=\""
+    }
+  ],
+  "api": [
+    {
+      "when": {
+        "method": "GET",
+        "path": "^/produtos/busca\\?nome=",
+        "from": "browser"
+      },
+      "then": {
+        "forward": "/produtos?nome="
+      }
+    }
+  ],
+  "note": "Either the move is intended and the test should check the new endpoint, or the front called the wrong one. The evidence shows both runs: GET /produtos?nome= in the passing one, GET /produtos/busca?nome= with the same answer shape in the failing one. Only a human can choose.",
+  "split": "dev"
+}

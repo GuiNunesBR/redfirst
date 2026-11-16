@@ -7,10 +7,10 @@
     "project": "chromium"
   },
   "status": "failed",
-  "durationMs": 22171,
+  "durationMs": 27802,
   "errors": [
     {
-      "message": "Error: O front não chamou DELETE /produtos/P7qYQ1yj4k4nN152\n\n   at ../src/helpers/evidencias.ts:81\n\n  79 |   let relogio: NodeJS.Timeout | undefined;\n  80 |   const limite = new Promise<never>((_, reject) => {\n> 81 |     relogio = setTimeout(() => reject(new Error(`O front não chamou ${metodo} ${caminho}`)), 10_000);\n     |                                       ^\n  82 |   });\n  83 |\n  84 |   await page.route(casa, interceptar);\n    at Timeout._onTimeout (src/helpers/evidencias.ts:81:39)",
+      "message": "Error: O front não chamou DELETE /produtos/BnzaPV0K8QNWyDYQ\n\n   at ../src/helpers/evidencias.ts:81\n\n  79 |   let relogio: NodeJS.Timeout | undefined;\n  80 |   const limite = new Promise<never>((_, reject) => {\n> 81 |     relogio = setTimeout(() => reject(new Error(`O front não chamou ${metodo} ${caminho}`)), 10_000);\n     |                                       ^\n  82 |   });\n  83 |\n  84 |   await page.route(casa, interceptar);\n    at Timeout._onTimeout (src/helpers/evidencias.ts:81:39)",
       "location": {
         "file": "src/helpers/evidencias.ts",
         "line": 81,
@@ -32,11 +32,11 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:50545/usuarios",
+          "url": "http://127.0.0.1:51141/usuarios",
           "corpo": {
-            "nome": "Mr. Favian Collier",
-            "email": "qa.mwja1uecnvyj@teste.com",
-            "password": "1TengFLk2u",
+            "nome": "Aaron Jerde",
+            "email": "qa.mwjj49uyf9o9@teste.com",
+            "password": "RT9shinNzQ",
             "administrador": "true"
           }
         },
@@ -44,7 +44,7 @@
           "status": 201,
           "corpo": {
             "message": "Cadastro realizado com sucesso",
-            "_id": "5iriOPyDaYlT8IfU"
+            "_id": "dSGbY74Gzjm7tqQL"
           }
         }
       }
@@ -54,10 +54,10 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:50545/login",
+          "url": "http://127.0.0.1:51141/login",
           "corpo": {
-            "email": "qa.mwja1uecnvyj@teste.com",
-            "password": "1TengFLk2u"
+            "email": "qa.mwjj49uyf9o9@teste.com",
+            "password": "RT9shinNzQ"
           }
         },
         "resposta": {
@@ -74,19 +74,19 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:50545/produtos",
+          "url": "http://127.0.0.1:51141/produtos",
           "corpo": {
-            "nome": "Produto mwja1vedtqwo",
-            "preco": 2761,
-            "descricao": "Experience the indigo brilliance of our Bacon, perfect for pure environments",
-            "quantidade": 13
+            "nome": "Produto mwjj4b799wv2",
+            "preco": 52,
+            "descricao": "Ergonomic Bike made with Wooden for all-day ornery support",
+            "quantidade": 43
           }
         },
         "resposta": {
           "status": 201,
           "corpo": {
             "message": "Cadastro realizado com sucesso",
-            "_id": "P7qYQ1yj4k4nN152"
+            "_id": "BnzaPV0K8QNWyDYQ"
           }
         }
       }
@@ -96,7 +96,7 @@
       "body": {
         "requisicao": {
           "metodo": "DELETE",
-          "url": "http://127.0.0.1:50545/carrinhos/cancelar-compra",
+          "url": "http://127.0.0.1:51141/carrinhos/cancelar-compra",
           "corpo": null
         },
         "resposta": {
@@ -108,11 +108,11 @@
       }
     },
     {
-      "name": "API DELETE /produtos/P7qYQ1yj4k4nN152 → 200",
+      "name": "API DELETE /produtos/BnzaPV0K8QNWyDYQ → 200",
       "body": {
         "requisicao": {
           "metodo": "DELETE",
-          "url": "http://127.0.0.1:50545/produtos/P7qYQ1yj4k4nN152",
+          "url": "http://127.0.0.1:51141/produtos/BnzaPV0K8QNWyDYQ",
           "corpo": null
         },
         "resposta": {
@@ -124,11 +124,11 @@
       }
     },
     {
-      "name": "API DELETE /usuarios/5iriOPyDaYlT8IfU → 200",
+      "name": "API DELETE /usuarios/dSGbY74Gzjm7tqQL → 200",
       "body": {
         "requisicao": {
           "metodo": "DELETE",
-          "url": "http://127.0.0.1:50545/usuarios/5iriOPyDaYlT8IfU",
+          "url": "http://127.0.0.1:51141/usuarios/dSGbY74Gzjm7tqQL",
           "corpo": null
         },
         "resposta": {

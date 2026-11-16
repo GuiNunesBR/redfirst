@@ -65,7 +65,9 @@ function listen(server) {
 
 /**
  * API proxy. Rules: { when: { method, path, from }, then: { delayMs, abort, respond: { status, json, text },
- * status, json: { set, rename, remove }, stripQuery } }. The first matching rule applies.
+ * status, json: { set, rename, remove }, stripQuery, forward } }. `forward` replaces the part of the path that
+ * `when.path` matched, so the app can be moved to a new endpoint that still answers with real data. The first
+ * matching rule applies.
  */
 export async function startApiProxy(upstream, rules = []) {
   const hits = rules.map(() => 0);
@@ -90,7 +92,8 @@ export async function startApiProxy(upstream, rules = []) {
         return send(res, status, { 'content-type': 'text/html; charset=utf-8', ...cors }, text ?? '');
       }
 
-      const target = new URL(then.stripQuery ? url.pathname : url.pathname + url.search, upstream);
+      const requested = then.stripQuery ? url.pathname : url.pathname + url.search;
+      const target = new URL(then.forward ? requested.replace(new RegExp(rules[index].when.path), then.forward) : requested, upstream);
       const headers = Object.fromEntries(Object.entries(req.headers).filter(([k]) => !HOP_HEADERS.has(k)));
       const upstreamResponse = await fetch(target, {
         method: req.method,

@@ -7,7 +7,7 @@
     "project": "chromium"
   },
   "status": "failed",
-  "durationMs": 11088,
+  "durationMs": 8206,
   "errors": [
     {
       "message": "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: 200\nReceived: 503\n\n  14 |     const resposta = await capturarApi('POST', '/login', () => login.entrar(admin.email, admin.password));\n  15 |\n> 16 |     expect(resposta.status).toBe(200);\n     |                             ^\n  17 |     expect(validar(LoginSchema, resposta.corpo).message).toBe('Login realizado com sucesso');\n  18 |     await expect(page).toHaveURL(/\\/admin\\/home$/);\n  19 |     await expect(new AdminHomePage(page).saudacao).toContainText(`Bem Vindo ${admin.nome}`);\n    at tests/e2e/login.spec.ts:16:29",
@@ -24,11 +24,11 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:58460/usuarios",
+          "url": "http://127.0.0.1:52682/usuarios",
           "corpo": {
-            "nome": "Junior Leuschke",
-            "email": "qa.mwjacw71w2z4@teste.com",
-            "password": "i6fb3ovD0O",
+            "nome": "Breanne Von",
+            "email": "qa.mwjjqobrq9xp@teste.com",
+            "password": "_QD9iB5a5Q",
             "administrador": "true"
           }
         },
@@ -36,7 +36,7 @@
           "status": 201,
           "corpo": {
             "message": "Cadastro realizado com sucesso",
-            "_id": "5uHgb6Wd6eczvZWK"
+            "_id": "ci6MIidafcBae2JL"
           }
         }
       }
@@ -46,10 +46,10 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:58460/login",
+          "url": "http://127.0.0.1:52682/login",
           "corpo": {
-            "email": "qa.mwjacw71w2z4@teste.com",
-            "password": "i6fb3ovD0O"
+            "email": "qa.mwjjqobrq9xp@teste.com",
+            "password": "_QD9iB5a5Q"
           }
         },
         "resposta": {
@@ -66,10 +66,10 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:58460/login",
+          "url": "http://127.0.0.1:52682/login",
           "corpo": {
-            "email": "qa.mwjacw71w2z4@teste.com",
-            "password": "i6fb3ovD0O"
+            "email": "qa.mwjjqobrq9xp@teste.com",
+            "password": "_QD9iB5a5Q"
           }
         },
         "resposta": {
@@ -83,7 +83,7 @@
       "body": {
         "requisicao": {
           "metodo": "DELETE",
-          "url": "http://127.0.0.1:58460/carrinhos/cancelar-compra",
+          "url": "http://127.0.0.1:52682/carrinhos/cancelar-compra",
           "corpo": null
         },
         "resposta": {
@@ -95,11 +95,11 @@
       }
     },
     {
-      "name": "API DELETE /usuarios/5uHgb6Wd6eczvZWK → 200",
+      "name": "API DELETE /usuarios/ci6MIidafcBae2JL → 200",
       "body": {
         "requisicao": {
           "metodo": "DELETE",
-          "url": "http://127.0.0.1:58460/usuarios/5uHgb6Wd6eczvZWK",
+          "url": "http://127.0.0.1:52682/usuarios/ci6MIidafcBae2JL",
           "corpo": null
         },
         "resposta": {

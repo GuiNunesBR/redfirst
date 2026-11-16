@@ -1,0 +1,233 @@
+{
+  "passing": {
+    "calls": [
+      {
+        "from": "page",
+        "method": "POST",
+        "endpoint": "/usuarios",
+        "status": 201,
+        "ms": 848,
+        "request": {
+          "administrador": "string",
+          "email": "string",
+          "nome": "string",
+          "password": "string"
+        },
+        "response": {
+          "_id": "string",
+          "message": "string"
+        }
+      },
+      {
+        "from": "page",
+        "method": "GET",
+        "endpoint": "/usuarios",
+        "status": 200,
+        "ms": 767,
+        "response": {
+          "quantidade": "number",
+          "usuarios": {
+            "array": 229,
+            "of": {
+              "_id": "string",
+              "administrador": "string",
+              "email": "string",
+              "nome": "string",
+              "password": "string"
+            }
+          }
+        }
+      },
+      {
+        "from": "test",
+        "method": "GET",
+        "endpoint": "/usuarios/:id",
+        "status": 200,
+        "ms": 612,
+        "response": {
+          "_id": "string",
+          "administrador": "string",
+          "email": "string",
+          "nome": "string",
+          "password": "string"
+        }
+      },
+      {
+        "from": "test",
+        "method": "GET",
+        "endpoint": "/usuarios?email=",
+        "status": 200,
+        "ms": 306,
+        "response": {
+          "quantidade": "number",
+          "usuarios": {
+            "array": 1,
+            "of": {
+              "_id": "string",
+              "administrador": "string",
+              "email": "string",
+              "nome": "string",
+              "password": "string"
+            }
+          }
+        }
+      },
+      {
+        "from": "test",
+        "method": "DELETE",
+        "endpoint": "/usuarios/:id",
+        "status": 200,
+        "ms": 332,
+        "response": {
+          "message": "string"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "step": "Navigate",
+        "ms": 3360
+      },
+      {
+        "step": "Fill \"Gennaro Streich\"",
+        "target": "internal:testid=[data-testid=\"nome\"s]",
+        "ms": 190
+      },
+      {
+        "step": "Fill \"qa.mwjimge5vtmd@teste.com\"",
+        "target": "internal:testid=[data-testid=\"email\"s]",
+        "ms": 60
+      },
+      {
+        "step": "Fill \"duhuO5yHJa\"",
+        "target": "internal:testid=[data-testid=\"password\"s]",
+        "ms": 60
+      },
+      {
+        "step": "Click",
+        "target": "internal:testid=[data-testid=\"cadastrarUsuario\"s]",
+        "ms": 270
+      },
+      {
+        "step": "Expect \"toBe\"",
+        "ms": 2
+      },
+      {
+        "step": "Expect \"toHaveURL\"",
+        "ms": 42
+      },
+      {
+        "step": "Expect \"toContainText\"",
+        "target": "internal:role=row >> internal:has-text=\"qa.mwjimge5vtmd@teste.com\"i",
+        "ms": 1084
+      },
+      {
+        "step": "Expect \"toContainText\"",
+        "target": "internal:role=row >> internal:has-text=\"qa.mwjimge5vtmd@teste.com\"i",
+        "ms": 93
+      },
+      {
+        "step": "Expect \"toMatchObject\"",
+        "ms": 3
+      }
+    ]
+  },
+  "failing": {
+    "calls": [
+      {
+        "from": "page",
+        "method": "POST",
+        "endpoint": "/usuarios",
+        "status": 201,
+        "ms": 720,
+        "request": {
+          "administrador": "string",
+          "email": "string",
+          "nome": "string",
+          "password": "string"
+        },
+        "response": {
+          "_id": "string",
+          "message": "string"
+        }
+      },
+      {
+        "from": "page",
+        "method": "GET",
+        "endpoint": "/usuarios",
+        "status": "no response",
+        "ms": -1
+      },
+      {
+        "from": "test",
+        "method": "GET",
+        "endpoint": "/usuarios?email=",
+        "status": 200,
+        "ms": 748,
+        "response": {
+          "quantidade": "number",
+          "usuarios": {
+            "array": 1,
+            "of": {
+              "_id": "string",
+              "administrador": "string",
+              "email": "string",
+              "nome": "string",
+              "password": "string"
+            }
+          }
+        }
+      },
+      {
+        "from": "test",
+        "method": "DELETE",
+        "endpoint": "/usuarios/:id",
+        "status": 200,
+        "ms": 276,
+        "response": {
+          "message": "string"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "step": "Navigate",
+        "ms": 3465
+      },
+      {
+        "step": "Fill \"Donald Ebert\"",
+        "target": "internal:testid=[data-testid=\"nome\"s]",
+        "ms": 141
+      },
+      {
+        "step": "Fill \"qa.mwjinfzhonmf@teste.com\"",
+        "target": "internal:testid=[data-testid=\"email\"s]",
+        "ms": 57
+      },
+      {
+        "step": "Fill \"WwOhWgfaZ1\"",
+        "target": "internal:testid=[data-testid=\"password\"s]",
+        "ms": 53
+      },
+      {
+        "step": "Click",
+        "target": "internal:testid=[data-testid=\"cadastrarUsuario\"s]",
+        "ms": 199
+      },
+      {
+        "step": "Expect \"toBe\"",
+        "ms": 1
+      },
+      {
+        "step": "Expect \"toHaveURL\"",
+        "ms": 38
+      },
+      {
+        "step": "Expect \"toContainText\"",
+        "target": "internal:role=row >> internal:has-text=\"qa.mwjinfzhonmf@teste.com\"i",
+        "ms": 7043,
+        "error": "Error: expect(locator).toContainText(expected) failed"
+      }
+    ]
+  }
+}

@@ -7,10 +7,10 @@
     "project": "chromium"
   },
   "status": "failed",
-  "durationMs": 17485,
+  "durationMs": 17503,
   "errors": [
     {
-      "message": "Error: expect(locator).toContainText(expected) failed\n\nLocator: getByRole('heading', { name: /Bem Vindo/ })\nExpected substring: \"Bem Vindo Adolphus Langworth\"\nTimeout: 7000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toContainText\" getByRole('heading', { name: /Bem Vindo/ }) with timeout 7000ms\n  - waiting for getByRole('heading', { name: /Bem Vindo/ })\n\n\n  17 |     expect(validar(LoginSchema, resposta.corpo).message).toBe('Login realizado com sucesso');\n  18 |     await expect(page).toHaveURL(/\\/admin\\/home$/);\n> 19 |     await expect(new AdminHomePage(page).saudacao).toContainText(`Bem Vindo ${admin.nome}`);\n     |                                                    ^\n  20 |     await evidencia('home administrativa após o login');\n  21 |   });\n  22 |\n    at tests/e2e/login.spec.ts:19:52",
+      "message": "Error: expect(locator).toContainText(expected) failed\n\nLocator: getByRole('heading', { name: /Bem Vindo/ })\nExpected substring: \"Bem Vindo Ellsworth O'Reilly\"\nTimeout: 7000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toContainText\" getByRole('heading', { name: /Bem Vindo/ }) with timeout 7000ms\n  - waiting for getByRole('heading', { name: /Bem Vindo/ })\n\n\n  17 |     expect(validar(LoginSchema, resposta.corpo).message).toBe('Login realizado com sucesso');\n  18 |     await expect(page).toHaveURL(/\\/admin\\/home$/);\n> 19 |     await expect(new AdminHomePage(page).saudacao).toContainText(`Bem Vindo ${admin.nome}`);\n     |                                                    ^\n  20 |     await evidencia('home administrativa após o login');\n  21 |   });\n  22 |\n    at tests/e2e/login.spec.ts:19:52",
       "location": {
         "file": "tests/e2e/login.spec.ts",
         "line": 19,
@@ -24,11 +24,11 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:57684/usuarios",
+          "url": "http://127.0.0.1:60679/usuarios",
           "corpo": {
-            "nome": "Adolphus Langworth",
-            "email": "qa.mwjaaxynoqka@teste.com",
-            "password": "C3KBMIjMLV",
+            "nome": "Ellsworth O'Reilly",
+            "email": "qa.mwjjmp1losug@teste.com",
+            "password": "LYZw0pwnCT",
             "administrador": "true"
           }
         },
@@ -36,7 +36,7 @@
           "status": 201,
           "corpo": {
             "message": "Cadastro realizado com sucesso",
-            "_id": "uO2nhghEGzokD1qb"
+            "_id": "3Hxd6QlFnDr08O72"
           }
         }
       }
@@ -46,10 +46,10 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:57684/login",
+          "url": "http://127.0.0.1:60679/login",
           "corpo": {
-            "email": "qa.mwjaaxynoqka@teste.com",
-            "password": "C3KBMIjMLV"
+            "email": "qa.mwjjmp1losug@teste.com",
+            "password": "LYZw0pwnCT"
           }
         },
         "resposta": {
@@ -66,10 +66,10 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:57684/login",
+          "url": "http://127.0.0.1:60679/login",
           "corpo": {
-            "email": "qa.mwjaaxynoqka@teste.com",
-            "password": "C3KBMIjMLV"
+            "email": "qa.mwjjmp1losug@teste.com",
+            "password": "LYZw0pwnCT"
           }
         },
         "resposta": {
@@ -86,7 +86,7 @@
       "body": {
         "requisicao": {
           "metodo": "DELETE",
-          "url": "http://127.0.0.1:57684/carrinhos/cancelar-compra",
+          "url": "http://127.0.0.1:60679/carrinhos/cancelar-compra",
           "corpo": null
         },
         "resposta": {
@@ -98,11 +98,11 @@
       }
     },
     {
-      "name": "API DELETE /usuarios/uO2nhghEGzokD1qb → 200",
+      "name": "API DELETE /usuarios/3Hxd6QlFnDr08O72 → 200",
       "body": {
         "requisicao": {
           "metodo": "DELETE",
-          "url": "http://127.0.0.1:57684/usuarios/uO2nhghEGzokD1qb",
+          "url": "http://127.0.0.1:60679/usuarios/3Hxd6QlFnDr08O72",
           "corpo": null
         },
         "resposta": {

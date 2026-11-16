@@ -7,10 +7,10 @@
     "project": "chromium"
   },
   "status": "failed",
-  "durationMs": 18607,
+  "durationMs": 16356,
   "errors": [
     {
-      "message": "Error: expect(locator).toContainText(expected) failed\n\nLocator: getByRole('row').filter({ hasText: 'qa.mwja3wtjhhdh@teste.com' })\nExpected substring: \"Fatima Schinner\"\nTimeout: 7000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toContainText\" getByRole('row').filter({ hasText: 'qa.mwja3wtjhhdh@teste.com' }) with timeout 7000ms\n  - waiting for getByRole('row').filter({ hasText: 'qa.mwja3wtjhhdh@teste.com' })\n\n\n  21 |     await expect(page).toHaveURL(/\\/admin\\/listarusuarios$/);\n  22 |     const linha = new ListarUsuariosPage(page).linhaDe(usuario.email);\n> 23 |     await expect(linha).toContainText(usuario.nome);\n     |                         ^\n  24 |     await expect(linha).toContainText('false');\n  25 |     await evidencia('usuário na listagem');\n  26 |\n    at tests/e2e/usuarios-admin.spec.ts:23:25",
+      "message": "Error: expect(locator).toContainText(expected) failed\n\nLocator: getByRole('row').filter({ hasText: 'qa.mwjinfzhonmf@teste.com' })\nExpected substring: \"Donald Ebert\"\nTimeout: 7000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toContainText\" getByRole('row').filter({ hasText: 'qa.mwjinfzhonmf@teste.com' }) with timeout 7000ms\n  - waiting for getByRole('row').filter({ hasText: 'qa.mwjinfzhonmf@teste.com' })\n\n\n  21 |     await expect(page).toHaveURL(/\\/admin\\/listarusuarios$/);\n  22 |     const linha = new ListarUsuariosPage(page).linhaDe(usuario.email);\n> 23 |     await expect(linha).toContainText(usuario.nome);\n     |                         ^\n  24 |     await expect(linha).toContainText('false');\n  25 |     await evidencia('usuário na listagem');\n  26 |\n    at tests/e2e/usuarios-admin.spec.ts:23:25",
       "location": {
         "file": "tests/e2e/usuarios-admin.spec.ts",
         "line": 23,
@@ -24,11 +24,11 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:54192/usuarios",
+          "url": "http://127.0.0.1:57033/usuarios",
           "corpo": {
-            "nome": "Fatima Schinner",
-            "email": "qa.mwja3wtjhhdh@teste.com",
-            "password": "LCLHgGXF0u",
+            "nome": "Donald Ebert",
+            "email": "qa.mwjinfzhonmf@teste.com",
+            "password": "WwOhWgfaZ1",
             "administrador": "false"
           }
         },
@@ -36,17 +36,17 @@
           "status": 201,
           "corpo": {
             "message": "Cadastro realizado com sucesso",
-            "_id": "iwoziXFKCRIgnBMG"
+            "_id": "NYufnWMpyHbKeytB"
           }
         }
       }
     },
     {
-      "name": "API GET /usuarios?email=qa.mwja3wtjhhdh%40teste.com → 200",
+      "name": "API GET /usuarios?email=qa.mwjinfzhonmf%40teste.com → 200",
       "body": {
         "requisicao": {
           "metodo": "GET",
-          "url": "http://127.0.0.1:54192/usuarios?email=qa.mwja3wtjhhdh%40teste.com",
+          "url": "http://127.0.0.1:57033/usuarios?email=qa.mwjinfzhonmf%40teste.com",
           "corpo": null
         },
         "resposta": {
@@ -55,11 +55,11 @@
             "quantidade": 1,
             "usuarios": [
               {
-                "nome": "Fatima Schinner",
-                "email": "qa.mwja3wtjhhdh@teste.com",
-                "password": "LCLHgGXF0u",
+                "nome": "Donald Ebert",
+                "email": "qa.mwjinfzhonmf@teste.com",
+                "password": "WwOhWgfaZ1",
                 "administrador": "false",
-                "_id": "iwoziXFKCRIgnBMG"
+                "_id": "NYufnWMpyHbKeytB"
               }
             ]
           }
@@ -67,11 +67,11 @@
       }
     },
     {
-      "name": "API DELETE /usuarios/iwoziXFKCRIgnBMG → 200",
+      "name": "API DELETE /usuarios/NYufnWMpyHbKeytB → 200",
       "body": {
         "requisicao": {
           "metodo": "DELETE",
-          "url": "http://127.0.0.1:54192/usuarios/iwoziXFKCRIgnBMG",
+          "url": "http://127.0.0.1:57033/usuarios/NYufnWMpyHbKeytB",
           "corpo": null
         },
         "resposta": {

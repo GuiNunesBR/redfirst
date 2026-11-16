@@ -8,14 +8,14 @@
 ```
 Error: expect(locator).toContainText(expected) failed
 
-Locator: getByRole('row').filter({ hasText: 'qa.mwja3wtjhhdh@teste.com' })
-Expected substring: "Fatima Schinner"
+Locator: getByRole('row').filter({ hasText: 'qa.mwjinfzhonmf@teste.com' })
+Expected substring: "Donald Ebert"
 Timeout: 7000ms
 Error: element(s) not found
 
 Call log:
-  - Expect "toContainText" getByRole('row').filter({ hasText: 'qa.mwja3wtjhhdh@teste.com' }) with timeout 7000ms
-  - waiting for getByRole('row').filter({ hasText: 'qa.mwja3wtjhhdh@teste.com' })
+  - Expect "toContainText" getByRole('row').filter({ hasText: 'qa.mwjinfzhonmf@teste.com' }) with timeout 7000ms
+  - waiting for getByRole('row').filter({ hasText: 'qa.mwjinfzhonmf@teste.com' })
 
 ```
 

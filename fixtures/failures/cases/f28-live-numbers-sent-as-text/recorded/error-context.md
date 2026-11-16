@@ -45,18 +45,18 @@ Received: 400
       - generic [ref=e33]: "Nome: *"
       - 'textbox "Nome: *" [ref=e34]':
         - /placeholder: Digite o nome do produto
-        - text: Produto mwjashetlt6u
+        - text: Produto mwjiq93j6tqy
     - generic [ref=e36]:
       - generic [ref=e37]: "Preço: *"
-      - 'spinbutton "Preço: *" [ref=e38]': "3916"
+      - 'spinbutton "Preço: *" [ref=e38]': "3744"
     - generic [ref=e40]:
       - generic [ref=e41]: "Descrição: *"
       - 'textbox "Descrição: *" [ref=e42]':
         - /placeholder: Digite a descrição do produto
-        - text: Discover the parrot-like agility of our Ball, perfect for optimal users
+        - text: Ergonomic Computer made with Gold for all-day major support
     - generic [ref=e44]:
       - generic [ref=e45]: "Quantidade: *"
-      - 'spinbutton "Quantidade: *" [ref=e46]': "30"
+      - 'spinbutton "Quantidade: *" [ref=e46]': "16"
     - generic [ref=e48]:
       - generic [ref=e49]: "Imagem: *"
       - 'button "Imagem: *" [ref=e50]'
