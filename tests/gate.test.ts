@@ -203,6 +203,30 @@ describe('G010 wait-or-retry-raised', () => {
   });
 });
 
+describe('G011 response-faked', () => {
+  const ui = (setup: string) => `import { test, expect } from '@playwright/test';
+
+test('shows the order', async ({ page }) => {
+${setup}  await page.goto('/orders/1');
+  await expect(page.getByTestId('status')).toHaveText('Paid');
+});
+`;
+  const fake = "  await page.route('**/api/orders/1', (route) => route.fulfill({ json: { status: 'Paid' } }));\n";
+  it('flags a new faked response: an error when healing, a warning in review', () => {
+    expect(gate({ [FILE]: ui('') }, { [FILE]: ui(fake) }, { mode: 'heal' }).rules).toEqual(['G011:error']);
+    expect(gate({ [FILE]: ui('') }, { [FILE]: ui(fake) }).rules).toEqual(['G011:warn']);
+  });
+  it('flags a Cypress intercept with a static reply, not one that only spies', () => {
+    const cy = (setup: string) => `describe('orders', () => {\n  it('shows the order', () => {\n${setup}    cy.visit('/orders/1');\n    cy.get('[data-cy=status]').should('have.text', 'Paid');\n  });\n});\n`;
+    const file = 'cypress/e2e/orders.cy.ts';
+    expect(gate({ [file]: cy('') }, { [file]: cy("    cy.intercept('GET', '/api/orders/1', { statusCode: 200, body: { status: 'Paid' } });\n") }, { mode: 'heal' }).rules).toEqual(['G011:error']);
+    expect(gate({ [file]: cy('') }, { [file]: cy("    cy.intercept('GET', '/api/orders/1').as('order');\n") }, { mode: 'heal' }).rules).toEqual([]);
+  });
+  it('accepts a fake that was already there', () => {
+    expect(gate({ [FILE]: ui(fake) }, { [FILE]: `${ui(fake)}// note\n` }, { mode: 'heal' }).rules).toEqual([]);
+  });
+});
+
 describe('G008 new-dependency', () => {
   const pkg = (deps: Record<string, string>) => JSON.stringify({ devDependencies: deps });
   it('flags an added dependency', () => {

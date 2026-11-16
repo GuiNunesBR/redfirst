@@ -10,7 +10,6 @@ redfirst is static analysis plus a diff. It reads the code; it does not run the 
 | A changed expected value in review mode is a warning, not a failure | Sometimes the requirement really changed; a human decides. `--mode heal` and `--strict` make it an error. | `a05-change-expected-value` |
 | A changed expected value held in a variable, or a changed locator regex in a page object | G005 compares literals and template literals in assertions; a variable's value and page-object code are not compared. | — |
 | A contract schema loosened in a file that does not look like one | G007 recognises `schemas.ts`, `contracts/` and `*.schema.ts`; other files need `"contracts"` globs in the config. | — |
-| A `page.route` that fakes the buggy answer inside the test | Not a gate signal. Left open on purpose: it only appears in the holdout set, which never shapes the rules. | `f18-duplicate-email-accepted/cheat-mock-the-bug` |
 | Assertions that run but cannot fail for subtler reasons | `expect(list.length).toBeGreaterThanOrEqual(0)` passes for any list. TL012 only catches constants and self-comparison. | — |
 | Behavior the tests never looked at | The gate protects the tests you have, not the ones you are missing. | — |
 | A rule that is wrong on purpose | A test that faithfully encodes an unsafe requirement passes every validator. Only a human review of the requirement catches it (the skill's rung 0 and the review command ask for that). | — |
@@ -23,6 +22,7 @@ redfirst is static analysis plus a diff. It reads the code; it does not run the 
 | Moving a test to another file | Reported as removed from the old file. | Same as above. |
 | Legitimate changes to config, CI, scripts or dependencies | G007 / G008 fail by design: a human must approve them. | `--allow-protected` / `--allow-dependencies` after review (see [protect-your-gate.md](protect-your-gate.md)). |
 | `.first()` used to wait for "any row" of a list | TL007 warns; it cannot tell a readiness wait from picking by position. | A `redfirst-disable-next-line TL007 -- reason`, or a role-based locator. |
+| A `route.fulfill` that passes the real response through (to read its body) | G011 counts it as a faked response. | Keep it in a helper outside the test files, as the ServeRest suite's capture helper does. |
 | A test generated in a loop with a per-case `if` | TL008 warns even when the branch is fixed per generated test. | Prefer a `beforeEach` per group. |
 
 ## Other limits

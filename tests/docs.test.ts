@@ -9,7 +9,7 @@ const read = (file: string) => readFileSync(path.join(ROOT, file), 'utf8');
 const lines = (file: string) => read(file).trimEnd().split(/\r?\n/).length;
 
 const LINT_IDS = [DISABLE_WITHOUT_REASON.id, ...RULES.map((r) => r.id)];
-const GATE_IDS = ['G001', 'G002', 'G003', 'G004', 'G005', 'G006', 'G007', 'G008', 'G009', 'G010'];
+const GATE_IDS = ['G001', 'G002', 'G003', 'G004', 'G005', 'G006', 'G007', 'G008', 'G009', 'G010', 'G011'];
 
 describe('docs', () => {
   it.each([...LINT_IDS, ...GATE_IDS])('%s is documented in docs/rules.md and the README', (id) => {

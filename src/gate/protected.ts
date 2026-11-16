@@ -120,3 +120,13 @@ export const DISABLE_PATTERNS: { label: string; re: RegExp }[] = [
   { label: '@ts-nocheck', re: /@ts-nocheck/g },
   { label: 'skip/fixme/fail', re: /\b(test|it|describe|context)\.(skip|fixme|fail)\s*\(|\b(xit|xdescribe|xcontext)\s*\(/g },
 ];
+
+/**
+ * A response the test makes up instead of getting it from the app: Playwright's `route.fulfill(...)`, Cypress's
+ * `cy.intercept(...)` with a static `statusCode`/`body`/`fixture`. A new one in a repair can hide the bug it fails on.
+ */
+export function fakedResponses(text: string): number {
+  const playwright = count(text, /\.fulfill\s*\(/g);
+  const cypress = [...text.matchAll(/cy\.intercept\s*\(/g)].filter((m) => /\b(statusCode|body|fixture)\s*:/.test(text.slice(m.index, m.index + 300).split(/\)\s*;/)[0] ?? '')).length;
+  return playwright + cypress;
+}

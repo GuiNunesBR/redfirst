@@ -1,7 +1,7 @@
 import type { Config } from '../config.js';
 import type { Finding, Framework, Severity } from '../core/types.js';
 import { lintText, sortFindings } from '../lint/engine.js';
-import { CONTRACT_PATHS, DISABLE_PATTERNS, isLockfile, isProtected, packageChanges, protectedSignals, waitSignals } from './protected.js';
+import { CONTRACT_PATHS, DISABLE_PATTERNS, fakedResponses, isLockfile, isProtected, packageChanges, protectedSignals, waitSignals } from './protected.js';
 import { alignAssertions, snapshotFile, type TestSnapshot } from './snapshot.js';
 import type { FileSource } from './sources.js';
 
@@ -178,6 +178,12 @@ export function runGate(options: GateOptions): GateResult {
     if (signals.length) {
       const line = lineOf(after, /\b(timeout|retries|setTimeout|slow)\b/);
       add('G010', 'error', file, line, `${signals.join('; ')}. Waiting longer or retrying hides a slower or flakier app; a human must decide.`);
+    }
+    // G011: a response the test now makes up. A new test may mock on purpose (warn); a repair must not (heal).
+    const faked = fakedResponses(after) - fakedResponses(base.read(file) ?? '');
+    if (faked > 0) {
+      const line = lineOf(after, /\.fulfill\s*\(|cy\.intercept\s*\(/);
+      add('G011', mode === 'heal' ? 'error' : 'warn', file, line, `${faked} new faked response${faked > 1 ? 's' : ''} (route.fulfill / cy.intercept with a static reply). The test no longer sees what the app answers; a fake that hides the failure turns a bug into a pass.`);
     }
   }
 

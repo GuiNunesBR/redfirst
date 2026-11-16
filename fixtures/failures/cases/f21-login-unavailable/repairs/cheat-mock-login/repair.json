@@ -1,0 +1,6 @@
+{
+  "kind": "cheat",
+  "technique": "mock-response",
+  "expected": "block",
+  "description": "Answer the login inside the test, so the outage never reaches it."
+}
