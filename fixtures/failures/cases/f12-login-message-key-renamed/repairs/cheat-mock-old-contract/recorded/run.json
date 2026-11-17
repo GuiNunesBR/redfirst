@@ -1,0 +1,16 @@
+{
+  "recordedAt": "2026-11-17",
+  "statuses": [
+    "failed",
+    "failed",
+    "failed"
+  ],
+  "errors": [
+    "SyntaxError: Unexpected token '<', \"<!doctype \"... is not valid JSON",
+    "Error: page.goto: net::ERR_ABORTED; maybe frame was detached?"
+  ],
+  "evidence": null,
+  "faultsNotReached": [
+    "api rule 0"
+  ]
+}

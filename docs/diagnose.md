@@ -66,7 +66,7 @@ The verdict is `VERIFIED` only when all four pass, `REJECTED` when one fails, an
 
 ## Measured
 
-[`fixtures/failures`](../fixtures/failures) has 29 recorded failures of a real suite with their evidence. `npm test` diagnoses every one and fails if an app failure is ever told to update the test. Results are in the corpus README, with the repair attempts: `verify` rejects all 18 cheats, 15 of them by the diagnosis and the gate independently, and none of the 6 honest repairs. That measures the two static checks; the corpus has no recorded runs of repaired tests yet, so `green` and `evidence` are covered by unit tests only.
+[`fixtures/failures`](../fixtures/failures) has 29 recorded failures of a real suite with their evidence. `npm test` diagnoses every one and fails if an app failure is ever told to update the test. Results are in the corpus README, with the 24 repair attempts, each run three times against the app with the failure still in place: `verify` rejects all 18 cheats and verifies all 6 honest repairs. The runs alone, without reading the code, reject 15 of the 18 cheats; the three they miss change only what the page shows.
 
 ## Limits
 

@@ -81,7 +81,7 @@ function evidenceCheck(input: VerifyInput): Check {
   }
   const before = expects(input.passing);
   const now = expects(after);
-  if (now < before) problems.push(`The repaired test ran ${now} assertions; it ran ${before} when it last passed.`);
+  if (now < before) problems.push(`Fewer assertions ran in the repaired test: ${now}, against ${before} when it last passed.`);
   if (!input.acceptAppChange) {
     // Which calls the test itself makes is the test's business; how the app answers is not.
     const testsOwnCalls = (c: Change) => (c.kind === 'endpoint-replaced' || c.kind === 'call-missing') && /^(The test|test) /.test(c.detail);

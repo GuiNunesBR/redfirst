@@ -66,22 +66,25 @@ The rules were written on the dev cases. The first run on the whole corpus misse
 
 ## Verified repairs
 
-`redfirst verify` puts the diagnosis of each failure together with the gate on each repair attempt. `npm test` runs it on the 24 attempts above:
+`redfirst verify` puts four checks on each repair attempt above: the diagnosis of the failure, the gate in heal mode, and the repaired test run three times against the app with the case's faults still in place (`repairs/<name>/recorded/run.json`: statuses and the evidence of a green run), compared with the run that passed before the failure. `npm test` runs it on the 24 attempts:
 
-| | Cheats rejected | By diagnosis and gate | By the gate alone | Honest repairs not rejected |
-|---|---|---|---|---|
-| dev | **14 / 14** | 13 | 1 | 3 / 3 |
-| holdout | **4 / 4** | 2 | 2 | 3 / 3 |
+| | Cheats rejected | Diagnosis | Gate | Green | Evidence | By the runs alone | Honest repairs verified |
+|---|---|---|---|---|---|---|---|
+| dev | **14 / 14** | 13 | 14 | 6 | 5 | 11 / 14 | **3 / 3** |
+| holdout | **4 / 4** | 2 | 4 | 2 | 2 | 4 / 4 | **3 / 3** |
 
-Fifteen of the eighteen cheats are stopped twice, by checks that share no code: the diagnosis says the test was right, and the gate sees the weakening. The three the gate stops alone are cheats on failures where the test was the thing to fix (`f01`, `f02`, `f27`), so the diagnosis rightly allows a repair. These were the first numbers; nothing was tuned for them.
+The columns per check count the cheats each one rejects on its own; most cheats are rejected by several. An honest repair has to come out `VERIFIED`, every check passing, not merely "not rejected". These were the first numbers on the recorded runs; nothing was tuned for them.
 
-Only the static half is measured here. The corpus records no run of a repaired test, so the two checks on the green run (three passes, same calls and answers as before) are covered by unit tests, not by these cases.
+- **Diagnosis and gate** read the code and the failure. Fifteen of the eighteen cheats fail both. The three only the gate stops are cheats on failures where the test was the thing to fix (`f01`, `f02`, `f27`), so the diagnosis rightly allows a repair.
+- **Green**: eight cheats did not even get the test green against the app as it was. A skip or `fixme` ran as skipped, and the faked or loosened checks still failed.
+- **Evidence** caught seven of the ten cheats that did get green, without reading the code: the list endpoint still took 10 s against 1 s before (`f05`, `f06`), `_id` was still `id` (`f08`), a deleted user still answered 200 (`f14`), a product still failed with 400 (`f27`), and fewer assertions ran (`f14`, `f27`). The three it missed (`f17`, `f19` twice) are changes to what the page shows, with the same calls and answers as before: the UI of the passing run is not compared yet. Diagnosis and gate reject all three.
 
 ## Recording
 
 ```bash
 node scripts/failures/record.mjs --deps ../playwright-serverest-e2e --baseline   # every target passes without faults
 node scripts/failures/record.mjs --deps ../playwright-serverest-e2e [ids...]     # record
+node scripts/failures/record.mjs --deps ../playwright-serverest-e2e --repairs [ids...]   # each repair, 3 runs
 ```
 
 Run `npm run build` first: the recorder reads traces with the same code as `diagnose`. `--deps` is a checkout of the suite with `npm ci` and `npx playwright install chromium` done. Recording needs network access to serverest.dev and front.serverest.dev, and is done by hand; the tests in this repository only read what was recorded. For UI cases the setup project (admin session) and its cleanup run against the real app; the faults are armed only while the target test runs. Each case first runs without its changes and must pass, so the recorded failure is the case's and not one the app already had; then it runs with them, and is rejected if the test passes or if any fault never fired. Live cases skip the first run.

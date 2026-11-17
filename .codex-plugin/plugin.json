@@ -1,6 +1,6 @@
 {
   "name": "redfirst",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Makes your AI agent write tests that can fail. A skill and hooks that guard Playwright and Cypress suites.",
   "author": {
     "name": "Guilherme Nunes Medeiros",

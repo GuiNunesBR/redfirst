@@ -1,0 +1,89 @@
+{
+  "recordedAt": "2026-11-17",
+  "statuses": [
+    "passed",
+    "passed",
+    "passed"
+  ],
+  "errors": [],
+  "evidence": {
+    "calls": [
+      {
+        "from": "test",
+        "method": "POST",
+        "endpoint": "/usuarios",
+        "status": 201,
+        "ms": 832,
+        "request": {
+          "administrador": "string",
+          "email": "string",
+          "nome": "string",
+          "password": "string"
+        },
+        "response": {
+          "_id": "string",
+          "message": "string"
+        }
+      },
+      {
+        "from": "test",
+        "method": "POST",
+        "endpoint": "/login",
+        "status": 200,
+        "ms": 375,
+        "request": {
+          "email": "string",
+          "password": "string"
+        },
+        "response": {
+          "authorization": "string",
+          "message": "string"
+        }
+      },
+      {
+        "from": "test",
+        "method": "POST",
+        "endpoint": "/produtos",
+        "status": 400,
+        "ms": 299,
+        "request": {
+          "descricao": "string",
+          "nome": "string",
+          "preco": "number",
+          "quantidade": "number"
+        },
+        "response": {
+          "message": "string"
+        },
+        "error": "{\"message\":\"Já existe produto com esse nome\"}"
+      },
+      {
+        "from": "test",
+        "method": "DELETE",
+        "endpoint": "/carrinhos/cancelar-compra",
+        "status": 200,
+        "ms": 379,
+        "response": {
+          "message": "string"
+        }
+      },
+      {
+        "from": "test",
+        "method": "DELETE",
+        "endpoint": "/usuarios/:id",
+        "status": 200,
+        "ms": 312,
+        "response": {
+          "message": "string"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "step": "Expect \"toBe\"",
+        "ms": 1
+      }
+    ]
+  },
+  "faultsNotReached": []
+}

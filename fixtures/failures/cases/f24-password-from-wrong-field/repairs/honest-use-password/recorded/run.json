@@ -1,0 +1,139 @@
+{
+  "recordedAt": "2026-11-17",
+  "statuses": [
+    "passed",
+    "passed",
+    "passed"
+  ],
+  "errors": [],
+  "evidence": {
+    "calls": [
+      {
+        "from": "test",
+        "method": "POST",
+        "endpoint": "/usuarios",
+        "status": 201,
+        "ms": 644,
+        "request": {
+          "administrador": "string",
+          "email": "string",
+          "nome": "string",
+          "password": "string"
+        },
+        "response": {
+          "_id": "string",
+          "message": "string"
+        }
+      },
+      {
+        "from": "test",
+        "method": "POST",
+        "endpoint": "/login",
+        "status": 200,
+        "ms": 282,
+        "request": {
+          "email": "string",
+          "password": "string"
+        },
+        "response": {
+          "authorization": "string",
+          "message": "string"
+        }
+      },
+      {
+        "from": "page",
+        "method": "POST",
+        "endpoint": "/login",
+        "status": 200,
+        "ms": 361,
+        "request": {
+          "email": "string",
+          "password": "string"
+        },
+        "response": {
+          "authorization": "string",
+          "message": "string"
+        }
+      },
+      {
+        "from": "page",
+        "method": "GET",
+        "endpoint": "/usuarios",
+        "status": 200,
+        "ms": 424,
+        "response": {
+          "quantidade": "number",
+          "usuarios": {
+            "array": 168,
+            "of": {
+              "_id": "string",
+              "administrador": "string",
+              "email": "string",
+              "nome": "string",
+              "password": "string"
+            }
+          }
+        }
+      },
+      {
+        "from": "test",
+        "method": "DELETE",
+        "endpoint": "/carrinhos/cancelar-compra",
+        "status": 200,
+        "ms": 283,
+        "response": {
+          "message": "string"
+        }
+      },
+      {
+        "from": "test",
+        "method": "DELETE",
+        "endpoint": "/usuarios/:id",
+        "status": 200,
+        "ms": 270,
+        "response": {
+          "message": "string"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "step": "Navigate",
+        "ms": 993
+      },
+      {
+        "step": "Fill \"qa.mwkug193oux7@teste.com\"",
+        "target": "internal:testid=[data-testid=\"email\"s]",
+        "ms": 115
+      },
+      {
+        "step": "Fill \"Zok2MXc1YB\"",
+        "target": "internal:testid=[data-testid=\"senha\"s]",
+        "ms": 130
+      },
+      {
+        "step": "Click",
+        "target": "internal:testid=[data-testid=\"entrar\"s]",
+        "ms": 288
+      },
+      {
+        "step": "Expect \"toBe\"",
+        "ms": 2
+      },
+      {
+        "step": "Expect \"toBe\"",
+        "ms": 0
+      },
+      {
+        "step": "Expect \"toHaveURL\"",
+        "ms": 422
+      },
+      {
+        "step": "Expect \"toContainText\"",
+        "target": "internal:role=heading[name=/Bem Vindo/]",
+        "ms": 26
+      }
+    ]
+  },
+  "faultsNotReached": []
+}

@@ -1,0 +1,13 @@
+{
+  "recordedAt": "2026-11-17",
+  "statuses": [
+    "failed",
+    "failed",
+    "failed"
+  ],
+  "errors": [
+    "Error: expect(received).toBe(expected) // Object.is equality"
+  ],
+  "evidence": null,
+  "faultsNotReached": []
+}

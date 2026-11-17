@@ -4,12 +4,15 @@
 // evidence from the trace of a passing and of the failing run: what the page and the test sent and got back.
 //
 //   node scripts/failures/record.mjs --deps <dir with node_modules/@playwright/test> [--baseline] [case ids...]
+//   node scripts/failures/record.mjs --deps <dir> --repairs [case ids...]
 //
 // --deps is a checkout of playwright-serverest-e2e with its dependencies installed and browsers downloaded.
 // The suite copy runs in a temporary .redfirst-recording/ folder inside it, so Node finds those modules
 // without links; the folder is removed afterwards. Needs network access to serverest.dev.
 // Every case first runs without faults and must pass (unless it is a live failure of the real app), so a
 // recorded failure is the case's and not one the app already had. --baseline stops there.
+// --repairs runs each repair attempt of the cases three times against the app with the case's faults, and keeps
+// the statuses and the evidence of a green run: what `redfirst verify` checks after a repair.
 import { spawn } from 'node:child_process';
 import { cpSync, existsSync, mkdirSync, readdirSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
@@ -24,7 +27,7 @@ const FRONT = 'https://front.serverest.dev';
 const API = 'https://serverest.dev';
 
 const { values, positionals } = parseArgs({
-  options: { deps: { type: 'string' }, baseline: { type: 'boolean', default: false }, keep: { type: 'boolean', default: false } },
+  options: { deps: { type: 'string' }, baseline: { type: 'boolean', default: false }, repairs: { type: 'boolean', default: false }, keep: { type: 'boolean', default: false } },
   allowPositionals: true,
 });
 if (!values.deps) {
@@ -87,10 +90,16 @@ function* specsOf(suite) {
   for (const child of suite.suites ?? []) yield* specsOf(child);
 }
 
+/** The target test in a report: by file and line, or by title when a repair moved it. */
+function specOf(report, file, line, title) {
+  const specs = (report.suites ?? []).flatMap((s) => [...specsOf(s)]);
+  const inFile = specs.filter((s) => s.file.replace(/\\/g, '/').endsWith(file.replace(/^tests\//, '')));
+  return inFile.find((s) => s.line === line) ?? (title ? inFile.find((s) => s.title === title) : undefined);
+}
+
 /** The target test's last result, with the evidence an agent would read. */
 function extract(report, workdir, file, line) {
-  const specs = report.suites.flatMap((s) => [...specsOf(s)]);
-  const spec = specs.find((s) => s.file.replace(/\\/g, '/').endsWith(file.replace(/^tests\//, '')) && s.line === line);
+  const spec = specOf(report, file, line);
   if (!spec) throw new Error(`Test ${file}:${line} not found in the report.`);
   const test = spec.tests.at(-1);
   const result = test.results.at(-1);
@@ -124,7 +133,7 @@ function extract(report, workdir, file, line) {
  * One run of the case's test. Faulted: the case's file changes are laid over the suite and its proxy faults are
  * armed while the target runs. Not faulted: the plain suite against the real app.
  */
-async function execute(id, spec, faulted) {
+async function execute(id, spec, faulted, repair) {
   const dir = path.join(CORPUS, 'cases', id);
   const [file, lineText] = spec.test.split(':');
   const line = Number(lineText);
@@ -132,6 +141,7 @@ async function execute(id, spec, faulted) {
   rmSync(workdir, { recursive: true, force: true });
   cpSync(path.join(CORPUS, 'suite'), workdir, { recursive: true });
   if (faulted && existsSync(path.join(dir, 'suite'))) cpSync(path.join(dir, 'suite'), workdir, { recursive: true });
+  if (repair) cpSync(path.join(dir, 'repairs', repair.name, 'files'), workdir, { recursive: true });
 
   const api = await startApiProxy(API, spec.api ?? []);
   const front = await startFrontProxy(FRONT, API, api.url, spec.front ?? []);
@@ -150,7 +160,10 @@ async function execute(id, spec, faulted) {
     if (ui) await playwright(['--project', 'setup'], 'setup.json');
     api.arm(faulted);
     front.arm(faulted);
-    const output = await playwright([`${file}:${line}`, '--project', spec.project, '--trace=on'], 'report.json');
+    // A repair may move the test: run it by title, three times.
+    const literal = (text) => text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const target = repair ? [file, '--grep', literal(repair.title), '--repeat-each=3'] : [`${file}:${line}`];
+    const output = await playwright([...target, '--project', spec.project, '--trace=on'], 'report.json');
     api.arm(false);
     front.arm(false);
     if (ui) await playwright(['--project', 'cleanup'], 'cleanup.json');
@@ -159,6 +172,7 @@ async function execute(id, spec, faulted) {
       ...api.hits().flatMap((n, i) => (n ? [] : [`api rule ${i}`])),
       ...front.hits().flatMap((n, i) => (n ? [] : [`front replacement ${i}`])),
     ];
+    if (repair) return { runs: repairRuns(JSON.parse(readFileSync(reportFile, 'utf8')), workdir, file, line, repair.title, api.url), unused };
     const { trace, ...result } = extract(JSON.parse(readFileSync(reportFile, 'utf8')), workdir, file, line);
     if (!trace) throw new Error('No trace in the report.');
     const evidence = JSON.parse(clean(JSON.stringify(evidenceOf(trace, { origin: api.url })), workdir));
@@ -168,6 +182,39 @@ async function execute(id, spec, faulted) {
     await front.close();
     if (!values.keep) rmSync(workdir, { recursive: true, force: true });
   }
+}
+
+/** Every run of the target test in a --repeat-each report, and the evidence of the first green one. */
+function repairRuns(report, workdir, file, line, title, origin) {
+  const spec = specOf(report, file, line, title);
+  if (!spec) return { statuses: [], errors: ['The test is no longer in the file.'], evidence: null };
+  const results = spec.tests.flatMap((t) => t.results.slice(-1));
+  const green = results.find((r) => r.status === 'passed');
+  const trace = green?.attachments?.find((a) => a.name === 'trace')?.path;
+  const evidence = trace ? JSON.parse(clean(JSON.stringify(evidenceOf(trace, { origin })), workdir)) : null;
+  const errors = [...new Set(results.flatMap((r) => (r.errors ?? []).map((e) => clean(e.message, workdir).split('\n')[0])))];
+  return { statuses: results.map((r) => r.status), errors, evidence };
+}
+
+/** Each repair attempt of a case, run three times against the app with the case's faults. */
+async function recordRepairs(id) {
+  const dir = path.join(CORPUS, 'cases', id);
+  const spec = JSON.parse(readFileSync(path.join(dir, 'case.json'), 'utf8'));
+  const repairs = path.join(dir, 'repairs');
+  if (!existsSync(repairs)) return `${id}: no repairs`;
+  const { title } = JSON.parse(readFileSync(path.join(dir, 'recorded', 'result.json'), 'utf8')).test;
+  const lines = [];
+  for (const name of readdirSync(repairs).sort()) {
+    const { runs, unused } = await execute(id, spec, true, { name, title });
+    const out = path.join(repairs, name, 'recorded');
+    rmSync(out, { recursive: true, force: true });
+    mkdirSync(out, { recursive: true });
+    // A fault the repair never reached is information, not an error: a faked answer, for one, avoids the app.
+    const record = { recordedAt: new Date().toISOString().slice(0, 10), ...runs, faultsNotReached: unused };
+    writeFileSync(path.join(out, 'run.json'), `${JSON.stringify(record, null, 2)}\n`);
+    lines.push(`${id}/${name}: ${runs.statuses.join(' ') || 'not run'}${unused.length ? ` (faults not reached: ${unused.join(', ')})` : ''}`);
+  }
+  return lines.join('\n');
 }
 
 const firstLine = (result) => result.errors[0]?.message.split('\n')[0] ?? '';
@@ -204,7 +251,7 @@ async function record(id) {
 let failed = 0;
 for (const id of ids) {
   try {
-    console.log(await record(id));
+    console.log(await (values.repairs ? recordRepairs(id) : record(id)));
   } catch (error) {
     failed += 1;
     console.log(`${id}: FAILED ${error.message}`);

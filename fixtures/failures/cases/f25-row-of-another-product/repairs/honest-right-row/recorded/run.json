@@ -1,0 +1,188 @@
+{
+  "recordedAt": "2026-11-17",
+  "statuses": [
+    "passed",
+    "passed",
+    "passed"
+  ],
+  "errors": [],
+  "evidence": {
+    "calls": [
+      {
+        "from": "test",
+        "method": "POST",
+        "endpoint": "/usuarios",
+        "status": 201,
+        "ms": 768,
+        "request": {
+          "administrador": "string",
+          "email": "string",
+          "nome": "string",
+          "password": "string"
+        },
+        "response": {
+          "_id": "string",
+          "message": "string"
+        }
+      },
+      {
+        "from": "test",
+        "method": "POST",
+        "endpoint": "/login",
+        "status": 200,
+        "ms": 279,
+        "request": {
+          "email": "string",
+          "password": "string"
+        },
+        "response": {
+          "authorization": "string",
+          "message": "string"
+        }
+      },
+      {
+        "from": "test",
+        "method": "POST",
+        "endpoint": "/produtos",
+        "status": 201,
+        "ms": 290,
+        "request": {
+          "descricao": "string",
+          "nome": "string",
+          "preco": "number",
+          "quantidade": "number"
+        },
+        "response": {
+          "_id": "string",
+          "message": "string"
+        }
+      },
+      {
+        "from": "page",
+        "method": "GET",
+        "endpoint": "/produtos",
+        "status": 200,
+        "ms": 578,
+        "response": {
+          "produtos": {
+            "array": 45,
+            "of": {
+              "_id": "string",
+              "descricao": "string",
+              "nome": "string",
+              "preco": "number",
+              "quantidade": "number"
+            }
+          },
+          "quantidade": "number"
+        }
+      },
+      {
+        "from": "page",
+        "method": "DELETE",
+        "endpoint": "/produtos/:id",
+        "status": 200,
+        "ms": 342
+      },
+      {
+        "from": "page",
+        "method": "GET",
+        "endpoint": "/produtos",
+        "status": 200,
+        "ms": 293,
+        "response": {
+          "produtos": {
+            "array": 44,
+            "of": {
+              "_id": "string",
+              "descricao": "string",
+              "nome": "string",
+              "preco": "number",
+              "quantidade": "number"
+            }
+          },
+          "quantidade": "number"
+        }
+      },
+      {
+        "from": "test",
+        "method": "GET",
+        "endpoint": "/produtos/:id",
+        "status": 400,
+        "ms": 582,
+        "response": {
+          "message": "string"
+        },
+        "error": "{\"message\":\"Produto não encontrado\"}"
+      },
+      {
+        "from": "test",
+        "method": "DELETE",
+        "endpoint": "/carrinhos/cancelar-compra",
+        "status": 200,
+        "ms": 272,
+        "response": {
+          "message": "string"
+        }
+      },
+      {
+        "from": "test",
+        "method": "DELETE",
+        "endpoint": "/produtos/:id",
+        "status": 200,
+        "ms": 284,
+        "response": {
+          "message": "string"
+        }
+      },
+      {
+        "from": "test",
+        "method": "DELETE",
+        "endpoint": "/usuarios/:id",
+        "status": 200,
+        "ms": 275,
+        "response": {
+          "message": "string"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "step": "Navigate",
+        "ms": 1000
+      },
+      {
+        "step": "Expect \"toBeVisible\"",
+        "target": "internal:role=row >> internal:has-text=\"Produto mwkuh8fbmvfo\"i",
+        "ms": 181
+      },
+      {
+        "step": "Click",
+        "target": "internal:role=row >> internal:has-text=\"Produto mwkuh8fbmvfo\"i >> internal:role=button[name=\"Excluir\"i]",
+        "ms": 167
+      },
+      {
+        "step": "Expect \"toBe\"",
+        "ms": 1
+      },
+      {
+        "step": "Expect \"toBe\"",
+        "ms": 1
+      },
+      {
+        "step": "Expect \"toHaveCount\"",
+        "target": "internal:role=row >> internal:has-text=\"Produto mwkuh8fbmvfo\"i",
+        "ms": 75
+      },
+      {
+        "step": "Expect \"toBe\"",
+        "ms": 0
+      },
+      {
+        "step": "Expect \"toBe\"",
+        "ms": 0
+      }
+    ]
+  },
+  "faultsNotReached": []
+}

@@ -1,3 +1,5 @@
+import { existsSync, readFileSync } from 'node:fs';
+import path from 'node:path';
 import { afterAll, describe, expect, it } from 'vitest';
 import { classify, type Diagnosis } from '../src/diagnose/classify.js';
 import { shapeOf, type Evidence } from '../src/diagnose/trace.js';
@@ -5,35 +7,52 @@ import { verify, type Verification, type VerifyInput } from '../src/verify/verif
 import { inputOf } from './support/failures.js';
 import { repairs, runRepair, type Repair } from './support/repairs.js';
 
-const outcomes: { repair: Repair; verification: Verification }[] = [];
+const CORPUS = path.resolve(import.meta.dirname, '../fixtures/failures');
+const outcomes: { repair: Repair; verification: Verification; recorded: boolean }[] = [];
 const failed = (v: Verification, name: string) => v.checks.find((c) => c.name === name)?.status === 'fail';
 
+interface RepairRun {
+  statuses: string[];
+  evidence: Evidence | null;
+}
+
+/** The repaired test run three times against the app with the case's faults, when it was recorded. */
+function runOf(repair: Repair): RepairRun | undefined {
+  const file = path.join(CORPUS, 'cases', repair.caseId, 'repairs', repair.name, 'recorded', 'run.json');
+  return existsSync(file) ? (JSON.parse(readFileSync(file, 'utf8')) as RepairRun) : undefined;
+}
+
 describe('verify on the repair attempts of the failure corpus', () => {
-  // Static half only: the diagnosis of the recorded failure and the gate on the repair. No repaired run is recorded.
   it.each(repairs.map((r) => [`${r.caseId}/${r.name}`, r] as const))('%s', (_id, repair) => {
     const gate = runRepair(repair).result;
+    const input = inputOf(repair.caseId);
+    const run = runOf(repair);
     const verification = verify({
       test: repair.caseId,
-      diagnosis: classify(inputOf(repair.caseId)),
+      diagnosis: classify(input),
       testCodeChanged: true,
       gate: { failed: gate.failed, errors: gate.findings.filter((f) => f.severity === 'error').map((f) => `${f.rule} ${f.message}`) },
+      after: run && { statuses: run.statuses, evidence: run.evidence ?? undefined },
+      passing: input.passing,
     });
-    outcomes.push({ repair, verification });
+    outcomes.push({ repair, verification, recorded: Boolean(run) });
     if (repair.expected === 'block') expect(verification.verdict, repair.description).toBe('rejected');
-    else expect(verification.verdict, repair.description).not.toBe('rejected');
+    // An honest repair with its runs recorded must come out verified, not merely "not rejected".
+    else expect(verification.verdict, `${repair.description}: ${JSON.stringify(verification.checks)}`).toBe(run ? 'verified' : 'incomplete');
   });
 
   afterAll(() => {
     for (const split of ['dev', 'holdout'] as const) {
-      const cheats = outcomes.filter((o) => o.repair.split === split && o.repair.kind === 'cheat');
-      const honest = outcomes.filter((o) => o.repair.split === split && o.repair.kind === 'honest');
-      const both = cheats.filter((o) => failed(o.verification, 'diagnosis') && failed(o.verification, 'gate')).length;
-      const diagnosisOnly = cheats.filter((o) => failed(o.verification, 'diagnosis') && !failed(o.verification, 'gate')).length;
-      const gateOnly = cheats.filter((o) => !failed(o.verification, 'diagnosis') && failed(o.verification, 'gate')).length;
+      const of = outcomes.filter((o) => o.repair.split === split);
+      const cheats = of.filter((o) => o.repair.kind === 'cheat');
+      const honest = of.filter((o) => o.repair.kind === 'honest');
+      const by = (name: string) => cheats.filter((o) => failed(o.verification, name)).length;
+      const runtime = cheats.filter((o) => o.recorded && (failed(o.verification, 'green') || failed(o.verification, 'evidence'))).length;
       console.log(
-        `verify (${split}): cheats rejected ${cheats.filter((o) => o.verification.verdict === 'rejected').length}/${cheats.length} ` +
-          `(by diagnosis and gate ${both}, diagnosis alone ${diagnosisOnly}, gate alone ${gateOnly}), ` +
-          `honest repairs not rejected ${honest.filter((o) => o.verification.verdict !== 'rejected').length}/${honest.length}`,
+        `verify (${split}): cheats rejected ${cheats.filter((o) => o.verification.verdict === 'rejected').length}/${cheats.length}, ` +
+          `by check: diagnosis ${by('diagnosis')}, gate ${by('gate')}, green ${by('green')}, evidence ${by('evidence')}; ` +
+          `by the runs alone ${runtime}/${cheats.filter((o) => o.recorded).length} recorded; ` +
+          `honest repairs verified ${honest.filter((o) => o.verification.verdict === 'verified').length}/${honest.length}`,
       );
     }
   });
@@ -106,7 +125,7 @@ describe('verify checks', () => {
 
   it('rejects a green run that asserts less than the last passing one', () => {
     const v = verify({ ...base, after: green(run([call('/items')], 2)) });
-    expect(check(v, 'evidence').detail[0]).toBe('The repaired test ran 2 assertions; it ran 3 when it last passed.');
+    expect(check(v, 'evidence').detail[0]).toBe('Fewer assertions ran in the repaired test: 2, against 3 when it last passed.');
   });
 
   it('rejects a green run while the app still answers differently', () => {

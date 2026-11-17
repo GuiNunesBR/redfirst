@@ -1,0 +1,16 @@
+{
+  "recordedAt": "2026-11-17",
+  "statuses": [
+    "failed",
+    "failed",
+    "failed"
+  ],
+  "errors": [
+    "Error: O front não chamou POST /login",
+    "Error: page.unroute: Target page, context or browser has been closed"
+  ],
+  "evidence": null,
+  "faultsNotReached": [
+    "api rule 0"
+  ]
+}

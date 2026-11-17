@@ -1,0 +1,143 @@
+{
+  "recordedAt": "2026-11-17",
+  "statuses": [
+    "passed",
+    "passed",
+    "passed"
+  ],
+  "errors": [],
+  "evidence": {
+    "calls": [
+      {
+        "from": "page",
+        "method": "POST",
+        "endpoint": "/usuarios",
+        "status": 201,
+        "ms": 709,
+        "request": {
+          "administrador": "string",
+          "email": "string",
+          "nome": "string",
+          "password": "string"
+        },
+        "response": {
+          "_id": "string",
+          "message": "string"
+        }
+      },
+      {
+        "from": "page",
+        "method": "GET",
+        "endpoint": "/usuarios",
+        "status": 200,
+        "ms": 10235,
+        "response": {
+          "quantidade": "number",
+          "usuarios": {
+            "array": 152,
+            "of": {
+              "_id": "string",
+              "administrador": "string",
+              "email": "string",
+              "nome": "string",
+              "password": "string"
+            }
+          }
+        }
+      },
+      {
+        "from": "test",
+        "method": "GET",
+        "endpoint": "/usuarios/:id",
+        "status": 200,
+        "ms": 270,
+        "response": {
+          "_id": "string",
+          "administrador": "string",
+          "email": "string",
+          "nome": "string",
+          "password": "string"
+        }
+      },
+      {
+        "from": "test",
+        "method": "GET",
+        "endpoint": "/usuarios?email=",
+        "status": 200,
+        "ms": 294,
+        "response": {
+          "quantidade": "number",
+          "usuarios": {
+            "array": 1,
+            "of": {
+              "_id": "string",
+              "administrador": "string",
+              "email": "string",
+              "nome": "string",
+              "password": "string"
+            }
+          }
+        }
+      },
+      {
+        "from": "test",
+        "method": "DELETE",
+        "endpoint": "/usuarios/:id",
+        "status": 200,
+        "ms": 269,
+        "response": {
+          "message": "string"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "step": "Navigate",
+        "ms": 984
+      },
+      {
+        "step": "Fill \"Dr. Clovis Conroy\"",
+        "target": "internal:testid=[data-testid=\"nome\"s]",
+        "ms": 44
+      },
+      {
+        "step": "Fill \"qa.mwku1cwcnir3@teste.com\"",
+        "target": "internal:testid=[data-testid=\"email\"s]",
+        "ms": 17
+      },
+      {
+        "step": "Fill \"iofvVWzg2C\"",
+        "target": "internal:testid=[data-testid=\"password\"s]",
+        "ms": 21
+      },
+      {
+        "step": "Click",
+        "target": "internal:testid=[data-testid=\"cadastrarUsuario\"s]",
+        "ms": 64
+      },
+      {
+        "step": "Expect \"toBe\"",
+        "ms": 1
+      },
+      {
+        "step": "Expect \"toHaveURL\"",
+        "ms": 16
+      },
+      {
+        "step": "Expect \"toContainText\"",
+        "target": "internal:role=row >> internal:has-text=\"qa.mwku1cwcnir3@teste.com\"i",
+        "ms": 10695
+      },
+      {
+        "step": "Expect \"toContainText\"",
+        "target": "internal:role=row >> internal:has-text=\"qa.mwku1cwcnir3@teste.com\"i",
+        "ms": 35
+      },
+      {
+        "step": "Expect \"toMatchObject\"",
+        "ms": 1
+      }
+    ]
+  },
+  "faultsNotReached": []
+}

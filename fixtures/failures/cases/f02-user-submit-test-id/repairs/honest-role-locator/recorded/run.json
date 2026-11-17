@@ -1,0 +1,143 @@
+{
+  "recordedAt": "2026-11-17",
+  "statuses": [
+    "passed",
+    "passed",
+    "passed"
+  ],
+  "errors": [],
+  "evidence": {
+    "calls": [
+      {
+        "from": "page",
+        "method": "POST",
+        "endpoint": "/usuarios",
+        "status": 201,
+        "ms": 779,
+        "request": {
+          "administrador": "string",
+          "email": "string",
+          "nome": "string",
+          "password": "string"
+        },
+        "response": {
+          "_id": "string",
+          "message": "string"
+        }
+      },
+      {
+        "from": "page",
+        "method": "GET",
+        "endpoint": "/usuarios",
+        "status": 200,
+        "ms": 651,
+        "response": {
+          "quantidade": "number",
+          "usuarios": {
+            "array": 147,
+            "of": {
+              "_id": "string",
+              "administrador": "string",
+              "email": "string",
+              "nome": "string",
+              "password": "string"
+            }
+          }
+        }
+      },
+      {
+        "from": "test",
+        "method": "GET",
+        "endpoint": "/usuarios/:id",
+        "status": 200,
+        "ms": 271,
+        "response": {
+          "_id": "string",
+          "administrador": "string",
+          "email": "string",
+          "nome": "string",
+          "password": "string"
+        }
+      },
+      {
+        "from": "test",
+        "method": "GET",
+        "endpoint": "/usuarios?email=",
+        "status": 200,
+        "ms": 266,
+        "response": {
+          "quantidade": "number",
+          "usuarios": {
+            "array": 1,
+            "of": {
+              "_id": "string",
+              "administrador": "string",
+              "email": "string",
+              "nome": "string",
+              "password": "string"
+            }
+          }
+        }
+      },
+      {
+        "from": "test",
+        "method": "DELETE",
+        "endpoint": "/usuarios/:id",
+        "status": 200,
+        "ms": 341,
+        "response": {
+          "message": "string"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "step": "Navigate",
+        "ms": 1421
+      },
+      {
+        "step": "Fill \"Bradford Wisoky\"",
+        "target": "internal:testid=[data-testid=\"nome\"s]",
+        "ms": 60
+      },
+      {
+        "step": "Fill \"qa.mwktw35wfbjx@teste.com\"",
+        "target": "internal:testid=[data-testid=\"email\"s]",
+        "ms": 37
+      },
+      {
+        "step": "Fill \"Pny9SypOoy\"",
+        "target": "internal:testid=[data-testid=\"password\"s]",
+        "ms": 38
+      },
+      {
+        "step": "Click",
+        "target": "internal:role=button[name=\"Cadastrar\"i]",
+        "ms": 133
+      },
+      {
+        "step": "Expect \"toBe\"",
+        "ms": 1
+      },
+      {
+        "step": "Expect \"toHaveURL\"",
+        "ms": 25
+      },
+      {
+        "step": "Expect \"toContainText\"",
+        "target": "internal:role=row >> internal:has-text=\"qa.mwktw35wfbjx@teste.com\"i",
+        "ms": 901
+      },
+      {
+        "step": "Expect \"toContainText\"",
+        "target": "internal:role=row >> internal:has-text=\"qa.mwktw35wfbjx@teste.com\"i",
+        "ms": 28
+      },
+      {
+        "step": "Expect \"toMatchObject\"",
+        "ms": 1
+      }
+    ]
+  },
+  "faultsNotReached": []
+}

@@ -81,9 +81,14 @@ describe('failure corpus', () => {
   });
 
   it.each(ids)('%s leaks no machine paths or tokens', (id) => {
-    const dir = path.join(CORPUS, 'cases', id, 'recorded');
-    for (const file of readdirSync(dir)) {
-      const text = readFileSync(path.join(dir, file), 'utf8');
+    const caseDir = path.join(CORPUS, 'cases', id);
+    const repairs = path.join(caseDir, 'repairs');
+    const recorded = [
+      path.join(caseDir, 'recorded'),
+      ...(existsSync(repairs) ? readdirSync(repairs).map((name) => path.join(repairs, name, 'recorded')) : []),
+    ].filter((dir) => existsSync(dir));
+    for (const file of recorded.flatMap((dir) => readdirSync(dir).map((f) => path.join(dir, f)))) {
+      const text = readFileSync(file, 'utf8');
       expect(text, file).not.toMatch(/[A-Za-z]:[\\/]Users|\/home\/|\/Users\/|\.redfirst-recording/);
       expect(text, file).not.toMatch(/Bearer (?!<token>)[A-Za-z0-9._-]{20,}/);
       expect(text, file).not.toMatch(/\u001b\[/);
