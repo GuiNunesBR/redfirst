@@ -1,7 +1,7 @@
-import { execFileSync, spawnSync } from 'node:child_process';
+import { spawnSync } from 'node:child_process';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
-import { beforeAll, describe, expect, it } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { PROTECTED_PATHS } from '../src/gate/protected.js';
 
 const ROOT = path.resolve(import.meta.dirname, '..');
@@ -84,11 +84,8 @@ describe('pre-edit-protect', () => {
   });
 });
 
+// dist/ is built once for the whole run by tests/build.ts.
 describe('post-edit-lint', () => {
-  beforeAll(() => {
-    execFileSync(process.execPath, [path.join(ROOT, 'node_modules', 'typescript', 'bin', 'tsc'), '-p', 'tsconfig.build.json'], { cwd: ROOT });
-  }, 60_000);
-
   it('sends lint errors back to the agent', () => {
     const result = hook('post-edit-lint.mjs', path.join(ROOT, 'fixtures', 'playwright', 'bad', 'TL001.spec.ts'));
     expect(result.code).toBe(2);

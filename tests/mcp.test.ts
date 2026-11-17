@@ -199,11 +199,8 @@ describe('MCP verify_fix on a repaired test', () => {
   });
 });
 
+// dist/ is built once for the whole run by tests/build.ts.
 describe('redfirst mcp over stdio', () => {
-  beforeAll(() => {
-    execFileSync(process.execPath, [path.join(ROOT, 'node_modules', 'typescript', 'bin', 'tsc'), '-p', 'tsconfig.build.json'], { cwd: ROOT });
-  }, 60_000);
-
   it('serves the tools for the project it starts in', async () => {
     const client = new Client({ name: 'test', version: '0' });
     await client.connect(new StdioClientTransport({ command: process.execPath, args: [path.join(ROOT, 'dist', 'cli.js'), 'mcp'], cwd: ROOT }));
