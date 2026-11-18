@@ -1,5 +1,5 @@
 {
-  "recordedAt": "2026-11-17",
+  "recordedAt": "2026-11-18",
   "statuses": [
     "passed",
     "passed",
@@ -13,7 +13,7 @@
         "method": "POST",
         "endpoint": "/usuarios",
         "status": 201,
-        "ms": 709,
+        "ms": 669,
         "request": {
           "administrador": "string",
           "email": "string",
@@ -30,11 +30,11 @@
         "method": "GET",
         "endpoint": "/usuarios",
         "status": 200,
-        "ms": 10235,
+        "ms": 10095,
         "response": {
           "quantidade": "number",
           "usuarios": {
-            "array": 152,
+            "array": 673,
             "of": {
               "_id": "string",
               "administrador": "string",
@@ -50,7 +50,7 @@
         "method": "GET",
         "endpoint": "/usuarios/:id",
         "status": 200,
-        "ms": 270,
+        "ms": 577,
         "response": {
           "_id": "string",
           "administrador": "string",
@@ -64,7 +64,7 @@
         "method": "GET",
         "endpoint": "/usuarios?email=",
         "status": 200,
-        "ms": 294,
+        "ms": 245,
         "response": {
           "quantidade": "number",
           "usuarios": {
@@ -84,7 +84,7 @@
         "method": "DELETE",
         "endpoint": "/usuarios/:id",
         "status": 200,
-        "ms": 269,
+        "ms": 243,
         "response": {
           "message": "string"
         }
@@ -93,27 +93,27 @@
     "actions": [
       {
         "step": "Navigate",
-        "ms": 984
+        "ms": 722
       },
       {
-        "step": "Fill \"Dr. Clovis Conroy\"",
+        "step": "Fill \"Felipe Bashirian-Bins III\"",
         "target": "internal:testid=[data-testid=\"nome\"s]",
-        "ms": 44
+        "ms": 52
       },
       {
-        "step": "Fill \"qa.mwku1cwcnir3@teste.com\"",
+        "step": "Fill \"qa.mwmic0pxviy3@teste.com\"",
         "target": "internal:testid=[data-testid=\"email\"s]",
-        "ms": 17
+        "ms": 27
       },
       {
-        "step": "Fill \"iofvVWzg2C\"",
+        "step": "Fill \"nhoFdUtb_J\"",
         "target": "internal:testid=[data-testid=\"password\"s]",
-        "ms": 21
+        "ms": 27
       },
       {
         "step": "Click",
         "target": "internal:testid=[data-testid=\"cadastrarUsuario\"s]",
-        "ms": 64
+        "ms": 97
       },
       {
         "step": "Expect \"toBe\"",
@@ -121,21 +121,23 @@
       },
       {
         "step": "Expect \"toHaveURL\"",
-        "ms": 16
+        "ms": 25
       },
       {
         "step": "Expect \"toContainText\"",
-        "target": "internal:role=row >> internal:has-text=\"qa.mwku1cwcnir3@teste.com\"i",
-        "ms": 10695
+        "target": "internal:role=row >> internal:has-text=\"qa.mwmic0pxviy3@teste.com\"i",
+        "ms": 10471,
+        "shown": "‹nome›‹email›‹password›‹id›"
       },
       {
         "step": "Expect \"toContainText\"",
-        "target": "internal:role=row >> internal:has-text=\"qa.mwku1cwcnir3@teste.com\"i",
-        "ms": 35
+        "target": "internal:role=row >> internal:has-text=\"qa.mwmic0pxviy3@teste.com\"i",
+        "ms": 143,
+        "shown": "‹nome›‹email›‹password›‹id›"
       },
       {
         "step": "Expect \"toMatchObject\"",
-        "ms": 1
+        "ms": 2
       }
     ]
   },

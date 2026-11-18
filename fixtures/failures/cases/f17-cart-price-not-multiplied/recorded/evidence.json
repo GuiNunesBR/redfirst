@@ -6,7 +6,7 @@
         "method": "POST",
         "endpoint": "/usuarios",
         "status": 201,
-        "ms": 698,
+        "ms": 646,
         "request": {
           "administrador": "string",
           "email": "string",
@@ -23,7 +23,7 @@
         "method": "POST",
         "endpoint": "/login",
         "status": 200,
-        "ms": 305,
+        "ms": 282,
         "request": {
           "email": "string",
           "password": "string"
@@ -38,7 +38,7 @@
         "method": "POST",
         "endpoint": "/usuarios",
         "status": 201,
-        "ms": 299,
+        "ms": 280,
         "request": {
           "administrador": "string",
           "email": "string",
@@ -54,115 +54,115 @@
         "from": "test",
         "method": "POST",
         "endpoint": "/login",
+        "status": 200,
+        "ms": 287,
+        "request": {
+          "email": "string",
+          "password": "string"
+        },
+        "response": {
+          "authorization": "string",
+          "message": "string"
+        }
+      },
+      {
+        "from": "test",
+        "method": "POST",
+        "endpoint": "/produtos",
+        "status": 201,
+        "ms": 283,
+        "request": {
+          "descricao": "string",
+          "nome": "string",
+          "preco": "number",
+          "quantidade": "number"
+        },
+        "response": {
+          "_id": "string",
+          "message": "string"
+        }
+      },
+      {
+        "from": "page",
+        "method": "POST",
+        "endpoint": "/login",
+        "status": 200,
+        "ms": 598,
+        "request": {
+          "email": "string",
+          "password": "string"
+        },
+        "response": {
+          "authorization": "string",
+          "message": "string"
+        }
+      },
+      {
+        "from": "page",
+        "method": "GET",
+        "endpoint": "/usuarios",
+        "status": 200,
+        "ms": 803,
+        "response": {
+          "quantidade": "number",
+          "usuarios": {
+            "array": 624,
+            "of": {
+              "_id": "string",
+              "administrador": "string",
+              "email": "string",
+              "nome": "string",
+              "password": "string"
+            }
+          }
+        }
+      },
+      {
+        "from": "page",
+        "method": "GET",
+        "endpoint": "/produtos",
+        "status": 200,
+        "ms": 637,
+        "response": {
+          "produtos": {
+            "array": 318,
+            "of": {
+              "_id": "string",
+              "descricao": "string",
+              "nome": "string",
+              "preco": "number",
+              "quantidade": "number"
+            }
+          },
+          "quantidade": "number"
+        }
+      },
+      {
+        "from": "page",
+        "method": "GET",
+        "endpoint": "/produtos?nome=",
+        "status": 200,
+        "ms": 625,
+        "response": {
+          "produtos": {
+            "array": 1,
+            "of": {
+              "_id": "string",
+              "descricao": "string",
+              "nome": "string",
+              "preco": "number",
+              "quantidade": "number"
+            }
+          },
+          "quantidade": "number"
+        }
+      },
+      {
+        "from": "test",
+        "method": "DELETE",
+        "endpoint": "/carrinhos/cancelar-compra",
         "status": 200,
         "ms": 284,
-        "request": {
-          "email": "string",
-          "password": "string"
-        },
-        "response": {
-          "authorization": "string",
-          "message": "string"
-        }
-      },
-      {
-        "from": "test",
-        "method": "POST",
-        "endpoint": "/produtos",
-        "status": 201,
-        "ms": 346,
-        "request": {
-          "descricao": "string",
-          "nome": "string",
-          "preco": "number",
-          "quantidade": "number"
-        },
-        "response": {
-          "_id": "string",
-          "message": "string"
-        }
-      },
-      {
-        "from": "page",
-        "method": "POST",
-        "endpoint": "/login",
-        "status": 200,
-        "ms": 633,
-        "request": {
-          "email": "string",
-          "password": "string"
-        },
-        "response": {
-          "authorization": "string",
-          "message": "string"
-        }
-      },
-      {
-        "from": "page",
-        "method": "GET",
-        "endpoint": "/usuarios",
-        "status": 200,
-        "ms": 480,
-        "response": {
-          "quantidade": "number",
-          "usuarios": {
-            "array": 234,
-            "of": {
-              "_id": "string",
-              "administrador": "string",
-              "email": "string",
-              "nome": "string",
-              "password": "string"
-            }
-          }
-        }
-      },
-      {
-        "from": "page",
-        "method": "GET",
-        "endpoint": "/produtos",
-        "status": 200,
-        "ms": 602,
-        "response": {
-          "produtos": {
-            "array": 27,
-            "of": {
-              "_id": "string",
-              "descricao": "string",
-              "nome": "string",
-              "preco": "number",
-              "quantidade": "number"
-            }
-          },
-          "quantidade": "number"
-        }
-      },
-      {
-        "from": "page",
-        "method": "GET",
-        "endpoint": "/produtos?nome=",
-        "status": 200,
-        "ms": 366,
-        "response": {
-          "produtos": {
-            "array": 1,
-            "of": {
-              "_id": "string",
-              "descricao": "string",
-              "nome": "string",
-              "preco": "number",
-              "quantidade": "number"
-            }
-          },
-          "quantidade": "number"
-        }
-      },
-      {
-        "from": "test",
-        "method": "DELETE",
-        "endpoint": "/carrinhos/cancelar-compra",
-        "status": 200,
-        "ms": 309,
         "response": {
           "message": "string"
         }
@@ -172,7 +172,7 @@
         "method": "DELETE",
         "endpoint": "/carrinhos/cancelar-compra",
         "status": 200,
-        "ms": 283,
+        "ms": 287,
         "response": {
           "message": "string"
         }
@@ -182,7 +182,7 @@
         "method": "DELETE",
         "endpoint": "/produtos/:id",
         "status": 200,
-        "ms": 311,
+        "ms": 288,
         "response": {
           "message": "string"
         }
@@ -192,7 +192,7 @@
         "method": "DELETE",
         "endpoint": "/usuarios/:id",
         "status": 200,
-        "ms": 347,
+        "ms": 287,
         "response": {
           "message": "string"
         }
@@ -202,7 +202,7 @@
         "method": "DELETE",
         "endpoint": "/usuarios/:id",
         "status": 200,
-        "ms": 294,
+        "ms": 287,
         "response": {
           "message": "string"
         }
@@ -211,337 +211,36 @@
     "actions": [
       {
         "step": "Navigate",
-        "ms": 3322
+        "ms": 1024
       },
       {
-        "step": "Fill \"qa.mwjjhwcbepu7@teste.com\"",
+        "step": "Fill \"qa.mwmhuwfdawtw@teste.com\"",
         "target": "internal:testid=[data-testid=\"email\"s]",
-        "ms": 219
+        "ms": 99
       },
       {
-        "step": "Fill \"nFxnu7Ap2s\"",
+        "step": "Fill \"u4bfFQWgpY\"",
         "target": "internal:testid=[data-testid=\"senha\"s]",
-        "ms": 112
+        "ms": 37
       },
       {
         "step": "Click",
         "target": "internal:testid=[data-testid=\"entrar\"s]",
-        "ms": 209
+        "ms": 176
       },
       {
         "step": "Expect \"toHaveURL\"",
-        "ms": 1404
+        "ms": 1446
       },
       {
-        "step": "Fill \"Produto mwjjhwu9lyo5\"",
+        "step": "Fill \"Produto mwmhuwxdzxga\"",
         "target": "internal:testid=[data-testid=\"pesquisar\"s]",
-        "ms": 92
+        "ms": 101
       },
       {
         "step": "Click",
         "target": "internal:testid=[data-testid=\"botaoPesquisar\"s]",
-        "ms": 232
-      },
-      {
-        "step": "Expect \"toBe\"",
-        "ms": 1
-      },
-      {
-        "step": "Expect \"toBe\"",
-        "ms": 0
-      },
-      {
-        "step": "Expect \"toMatchObject\"",
-        "ms": 4
-      },
-      {
-        "step": "Expect \"toHaveCount\"",
-        "target": ".card",
-        "ms": 75
-      },
-      {
-        "step": "Expect \"toBeVisible\"",
-        "target": ".card >> internal:has-text=\"Produto mwjjhwu9lyo5\"i",
-        "ms": 27
-      },
-      {
-        "step": "Click",
-        "target": ".card >> internal:has-text=\"Produto mwjjhwu9lyo5\"i >> internal:testid=[data-testid=\"adicionarNaLista\"s]",
-        "ms": 140
-      },
-      {
-        "step": "Expect \"toHaveURL\"",
-        "ms": 31
-      },
-      {
-        "step": "Expect \"toContainText\"",
-        "target": "internal:testid=[data-testid=\"shopping-cart-product-name\"s]",
-        "ms": 27
-      },
-      {
-        "step": "Expect \"toHaveText\"",
-        "target": "internal:testid=[data-testid=\"shopping-cart-product-quantity\"s]",
-        "ms": 26
-      },
-      {
-        "step": "Click",
-        "target": "internal:testid=[data-testid=\"product-increase-quantity\"s]",
-        "ms": 89
-      },
-      {
-        "step": "Expect \"toHaveText\"",
-        "target": "internal:testid=[data-testid=\"shopping-cart-product-quantity\"s]",
-        "ms": 28
-      },
-      {
-        "step": "Expect \"toHaveText\"",
-        "target": "internal:text=/^Preço R\\$/",
-        "ms": 33
-      }
-    ]
-  },
-  "failing": {
-    "calls": [
-      {
-        "from": "test",
-        "method": "POST",
-        "endpoint": "/usuarios",
-        "status": 201,
-        "ms": 733,
-        "request": {
-          "administrador": "string",
-          "email": "string",
-          "nome": "string",
-          "password": "string"
-        },
-        "response": {
-          "_id": "string",
-          "message": "string"
-        }
-      },
-      {
-        "from": "test",
-        "method": "POST",
-        "endpoint": "/login",
-        "status": 200,
-        "ms": 273,
-        "request": {
-          "email": "string",
-          "password": "string"
-        },
-        "response": {
-          "authorization": "string",
-          "message": "string"
-        }
-      },
-      {
-        "from": "test",
-        "method": "POST",
-        "endpoint": "/usuarios",
-        "status": 201,
-        "ms": 296,
-        "request": {
-          "administrador": "string",
-          "email": "string",
-          "nome": "string",
-          "password": "string"
-        },
-        "response": {
-          "_id": "string",
-          "message": "string"
-        }
-      },
-      {
-        "from": "test",
-        "method": "POST",
-        "endpoint": "/login",
-        "status": 200,
-        "ms": 293,
-        "request": {
-          "email": "string",
-          "password": "string"
-        },
-        "response": {
-          "authorization": "string",
-          "message": "string"
-        }
-      },
-      {
-        "from": "test",
-        "method": "POST",
-        "endpoint": "/produtos",
-        "status": 201,
-        "ms": 293,
-        "request": {
-          "descricao": "string",
-          "nome": "string",
-          "preco": "number",
-          "quantidade": "number"
-        },
-        "response": {
-          "_id": "string",
-          "message": "string"
-        }
-      },
-      {
-        "from": "page",
-        "method": "POST",
-        "endpoint": "/login",
-        "status": 200,
-        "ms": 584,
-        "request": {
-          "email": "string",
-          "password": "string"
-        },
-        "response": {
-          "authorization": "string",
-          "message": "string"
-        }
-      },
-      {
-        "from": "page",
-        "method": "GET",
-        "endpoint": "/usuarios",
-        "status": 200,
-        "ms": 525,
-        "response": {
-          "quantidade": "number",
-          "usuarios": {
-            "array": 234,
-            "of": {
-              "_id": "string",
-              "administrador": "string",
-              "email": "string",
-              "nome": "string",
-              "password": "string"
-            }
-          }
-        }
-      },
-      {
-        "from": "page",
-        "method": "GET",
-        "endpoint": "/produtos",
-        "status": 200,
-        "ms": 596,
-        "response": {
-          "produtos": {
-            "array": 27,
-            "of": {
-              "_id": "string",
-              "descricao": "string",
-              "nome": "string",
-              "preco": "number",
-              "quantidade": "number"
-            }
-          },
-          "quantidade": "number"
-        }
-      },
-      {
-        "from": "page",
-        "method": "GET",
-        "endpoint": "/produtos?nome=",
-        "status": 200,
-        "ms": 689,
-        "response": {
-          "produtos": {
-            "array": 1,
-            "of": {
-              "_id": "string",
-              "descricao": "string",
-              "nome": "string",
-              "preco": "number",
-              "quantidade": "number"
-            }
-          },
-          "quantidade": "number"
-        }
-      },
-      {
-        "from": "test",
-        "method": "DELETE",
-        "endpoint": "/carrinhos/cancelar-compra",
-        "status": 200,
-        "ms": 694,
-        "response": {
-          "message": "string"
-        }
-      },
-      {
-        "from": "test",
-        "method": "DELETE",
-        "endpoint": "/carrinhos/cancelar-compra",
-        "status": 200,
-        "ms": 290,
-        "response": {
-          "message": "string"
-        }
-      },
-      {
-        "from": "test",
-        "method": "DELETE",
-        "endpoint": "/produtos/:id",
-        "status": 200,
-        "ms": 302,
-        "response": {
-          "message": "string"
-        }
-      },
-      {
-        "from": "test",
-        "method": "DELETE",
-        "endpoint": "/usuarios/:id",
-        "status": 200,
-        "ms": 300,
-        "response": {
-          "message": "string"
-        }
-      },
-      {
-        "from": "test",
-        "method": "DELETE",
-        "endpoint": "/usuarios/:id",
-        "status": 200,
-        "ms": 301,
-        "response": {
-          "message": "string"
-        }
-      }
-    ],
-    "actions": [
-      {
-        "step": "Navigate",
-        "ms": 3634
-      },
-      {
-        "step": "Fill \"qa.mwjjiwgizp98@teste.com\"",
-        "target": "internal:testid=[data-testid=\"email\"s]",
-        "ms": 52
-      },
-      {
-        "step": "Fill \"cOM9faDm9i\"",
-        "target": "internal:testid=[data-testid=\"senha\"s]",
-        "ms": 20
-      },
-      {
-        "step": "Click",
-        "target": "internal:testid=[data-testid=\"entrar\"s]",
-        "ms": 102
-      },
-      {
-        "step": "Expect \"toHaveURL\"",
-        "ms": 1358
-      },
-      {
-        "step": "Fill \"Produto mwjjiwxmcqdb\"",
-        "target": "internal:testid=[data-testid=\"pesquisar\"s]",
-        "ms": 27
-      },
-      {
-        "step": "Click",
-        "target": "internal:testid=[data-testid=\"botaoPesquisar\"s]",
-        "ms": 90
+        "ms": 383
       },
       {
         "step": "Expect \"toBe\"",
@@ -558,47 +257,360 @@
       {
         "step": "Expect \"toHaveCount\"",
         "target": ".card",
-        "ms": 21
+        "ms": 19,
+        "shown": "‹nome›Preço: $ ‹preco›‹id› a lista"
       },
       {
         "step": "Expect \"toBeVisible\"",
-        "target": ".card >> internal:has-text=\"Produto mwjjiwxmcqdb\"i",
-        "ms": 17
+        "target": ".card >> internal:has-text=\"Produto mwmhuwxdzxga\"i",
+        "ms": 17,
+        "shown": "‹nome›Preço: $ ‹preco›‹id› a lista"
       },
       {
         "step": "Click",
-        "target": ".card >> internal:has-text=\"Produto mwjjiwxmcqdb\"i >> internal:testid=[data-testid=\"adicionarNaLista\"s]",
-        "ms": 76
+        "target": ".card >> internal:has-text=\"Produto mwmhuwxdzxga\"i >> internal:testid=[data-testid=\"adicionarNaLista\"s]",
+        "ms": 95
       },
       {
         "step": "Expect \"toHaveURL\"",
-        "ms": 13
+        "ms": 31
       },
       {
         "step": "Expect \"toContainText\"",
         "target": "internal:testid=[data-testid=\"shopping-cart-product-name\"s]",
-        "ms": 15
+        "ms": 19,
+        "shown": "Produto:‹nome›"
       },
       {
         "step": "Expect \"toHaveText\"",
         "target": "internal:testid=[data-testid=\"shopping-cart-product-quantity\"s]",
-        "ms": 16
+        "ms": 42,
+        "shown": "Total: 1"
       },
       {
         "step": "Click",
         "target": "internal:testid=[data-testid=\"product-increase-quantity\"s]",
-        "ms": 42
+        "ms": 284
       },
       {
         "step": "Expect \"toHaveText\"",
         "target": "internal:testid=[data-testid=\"shopping-cart-product-quantity\"s]",
-        "ms": 10
+        "ms": 57,
+        "shown": "Total: 2"
       },
       {
         "step": "Expect \"toHaveText\"",
         "target": "internal:text=/^Preço R\\$/",
-        "ms": 7030,
-        "error": "Error: expect(locator).toHaveText(expected) failed"
+        "ms": 16,
+        "shown": "Preço R$#"
+      }
+    ]
+  },
+  "failing": {
+    "calls": [
+      {
+        "from": "test",
+        "method": "POST",
+        "endpoint": "/usuarios",
+        "status": 201,
+        "ms": 558,
+        "request": {
+          "administrador": "string",
+          "email": "string",
+          "nome": "string",
+          "password": "string"
+        },
+        "response": {
+          "_id": "string",
+          "message": "string"
+        }
+      },
+      {
+        "from": "test",
+        "method": "POST",
+        "endpoint": "/login",
+        "status": 200,
+        "ms": 236,
+        "request": {
+          "email": "string",
+          "password": "string"
+        },
+        "response": {
+          "authorization": "string",
+          "message": "string"
+        }
+      },
+      {
+        "from": "test",
+        "method": "POST",
+        "endpoint": "/usuarios",
+        "status": 201,
+        "ms": 243,
+        "request": {
+          "administrador": "string",
+          "email": "string",
+          "nome": "string",
+          "password": "string"
+        },
+        "response": {
+          "_id": "string",
+          "message": "string"
+        }
+      },
+      {
+        "from": "test",
+        "method": "POST",
+        "endpoint": "/login",
+        "status": 200,
+        "ms": 253,
+        "request": {
+          "email": "string",
+          "password": "string"
+        },
+        "response": {
+          "authorization": "string",
+          "message": "string"
+        }
+      },
+      {
+        "from": "test",
+        "method": "POST",
+        "endpoint": "/produtos",
+        "status": 201,
+        "ms": 244,
+        "request": {
+          "descricao": "string",
+          "nome": "string",
+          "preco": "number",
+          "quantidade": "number"
+        },
+        "response": {
+          "_id": "string",
+          "message": "string"
+        }
+      },
+      {
+        "from": "page",
+        "method": "POST",
+        "endpoint": "/login",
+        "status": 200,
+        "ms": 484,
+        "request": {
+          "email": "string",
+          "password": "string"
+        },
+        "response": {
+          "authorization": "string",
+          "message": "string"
+        }
+      },
+      {
+        "from": "page",
+        "method": "GET",
+        "endpoint": "/usuarios",
+        "status": 200,
+        "ms": 467,
+        "response": {
+          "quantidade": "number",
+          "usuarios": {
+            "array": 624,
+            "of": {
+              "_id": "string",
+              "administrador": "string",
+              "email": "string",
+              "nome": "string",
+              "password": "string"
+            }
+          }
+        }
+      },
+      {
+        "from": "page",
+        "method": "GET",
+        "endpoint": "/produtos",
+        "status": 200,
+        "ms": 524,
+        "response": {
+          "produtos": {
+            "array": 319,
+            "of": {
+              "_id": "string",
+              "descricao": "string",
+              "nome": "string",
+              "preco": "number",
+              "quantidade": "number"
+            }
+          },
+          "quantidade": "number"
+        }
+      },
+      {
+        "from": "page",
+        "method": "GET",
+        "endpoint": "/produtos?nome=",
+        "status": 200,
+        "ms": 301,
+        "response": {
+          "produtos": {
+            "array": 1,
+            "of": {
+              "_id": "string",
+              "descricao": "string",
+              "nome": "string",
+              "preco": "number",
+              "quantidade": "number"
+            }
+          },
+          "quantidade": "number"
+        }
+      },
+      {
+        "from": "test",
+        "method": "DELETE",
+        "endpoint": "/carrinhos/cancelar-compra",
+        "status": 200,
+        "ms": 532,
+        "response": {
+          "message": "string"
+        }
+      },
+      {
+        "from": "test",
+        "method": "DELETE",
+        "endpoint": "/carrinhos/cancelar-compra",
+        "status": 200,
+        "ms": 241,
+        "response": {
+          "message": "string"
+        }
+      },
+      {
+        "from": "test",
+        "method": "DELETE",
+        "endpoint": "/produtos/:id",
+        "status": 200,
+        "ms": 246,
+        "response": {
+          "message": "string"
+        }
+      },
+      {
+        "from": "test",
+        "method": "DELETE",
+        "endpoint": "/usuarios/:id",
+        "status": 200,
+        "ms": 241,
+        "response": {
+          "message": "string"
+        }
+      },
+      {
+        "from": "test",
+        "method": "DELETE",
+        "endpoint": "/usuarios/:id",
+        "status": 200,
+        "ms": 243,
+        "response": {
+          "message": "string"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "step": "Navigate",
+        "ms": 772
+      },
+      {
+        "step": "Fill \"qa.mwmhvo4t9ljf@teste.com\"",
+        "target": "internal:testid=[data-testid=\"email\"s]",
+        "ms": 54
+      },
+      {
+        "step": "Fill \"c0cQM2fl9R\"",
+        "target": "internal:testid=[data-testid=\"senha\"s]",
+        "ms": 28
+      },
+      {
+        "step": "Click",
+        "target": "internal:testid=[data-testid=\"entrar\"s]",
+        "ms": 120
+      },
+      {
+        "step": "Expect \"toHaveURL\"",
+        "ms": 1421
+      },
+      {
+        "step": "Fill \"Produto mwmhvojgktms\"",
+        "target": "internal:testid=[data-testid=\"pesquisar\"s]",
+        "ms": 600
+      },
+      {
+        "step": "Click",
+        "target": "internal:testid=[data-testid=\"botaoPesquisar\"s]",
+        "ms": 184
+      },
+      {
+        "step": "Expect \"toBe\"",
+        "ms": 1
+      },
+      {
+        "step": "Expect \"toBe\"",
+        "ms": 0
+      },
+      {
+        "step": "Expect \"toMatchObject\"",
+        "ms": 3
+      },
+      {
+        "step": "Expect \"toHaveCount\"",
+        "target": ".card",
+        "ms": 16,
+        "shown": "‹nome›Preço: $ ‹preco›‹id› a lista"
+      },
+      {
+        "step": "Expect \"toBeVisible\"",
+        "target": ".card >> internal:has-text=\"Produto mwmhvojgktms\"i",
+        "ms": 14,
+        "shown": "‹nome›Preço: $ ‹preco›‹id› a lista"
+      },
+      {
+        "step": "Click",
+        "target": ".card >> internal:has-text=\"Produto mwmhvojgktms\"i >> internal:testid=[data-testid=\"adicionarNaLista\"s]",
+        "ms": 110
+      },
+      {
+        "step": "Expect \"toHaveURL\"",
+        "ms": 14
+      },
+      {
+        "step": "Expect \"toContainText\"",
+        "target": "internal:testid=[data-testid=\"shopping-cart-product-name\"s]",
+        "ms": 13,
+        "shown": "Produto:‹nome›"
+      },
+      {
+        "step": "Expect \"toHaveText\"",
+        "target": "internal:testid=[data-testid=\"shopping-cart-product-quantity\"s]",
+        "ms": 13,
+        "shown": "Total: 1"
+      },
+      {
+        "step": "Click",
+        "target": "internal:testid=[data-testid=\"product-increase-quantity\"s]",
+        "ms": 219
+      },
+      {
+        "step": "Expect \"toHaveText\"",
+        "target": "internal:testid=[data-testid=\"shopping-cart-product-quantity\"s]",
+        "ms": 15,
+        "shown": "Total: 2"
+      },
+      {
+        "step": "Expect \"toHaveText\"",
+        "target": "internal:text=/^Preço R\\$/",
+        "ms": 7032,
+        "error": "Error: expect(locator).toHaveText(expected) failed",
+        "shown": "Preço R$‹preco›"
       }
     ]
   }

@@ -1,5 +1,5 @@
 {
-  "recordedAt": "2026-11-17",
+  "recordedAt": "2026-11-18",
   "statuses": [
     "passed",
     "passed",
@@ -13,7 +13,7 @@
         "method": "POST",
         "endpoint": "/usuarios",
         "status": 201,
-        "ms": 768,
+        "ms": 545,
         "request": {
           "administrador": "string",
           "email": "string",
@@ -30,7 +30,7 @@
         "method": "POST",
         "endpoint": "/login",
         "status": 200,
-        "ms": 279,
+        "ms": 243,
         "request": {
           "email": "string",
           "password": "string"
@@ -45,7 +45,7 @@
         "method": "POST",
         "endpoint": "/produtos",
         "status": 201,
-        "ms": 290,
+        "ms": 248,
         "request": {
           "descricao": "string",
           "nome": "string",
@@ -62,10 +62,10 @@
         "method": "GET",
         "endpoint": "/produtos",
         "status": 200,
-        "ms": 578,
+        "ms": 668,
         "response": {
           "produtos": {
-            "array": 45,
+            "array": 372,
             "of": {
               "_id": "string",
               "descricao": "string",
@@ -82,17 +82,17 @@
         "method": "DELETE",
         "endpoint": "/produtos/:id",
         "status": 200,
-        "ms": 342
+        "ms": 611
       },
       {
         "from": "page",
         "method": "GET",
         "endpoint": "/produtos",
         "status": 200,
-        "ms": 293,
+        "ms": 716,
         "response": {
           "produtos": {
-            "array": 44,
+            "array": 371,
             "of": {
               "_id": "string",
               "descricao": "string",
@@ -109,7 +109,7 @@
         "method": "GET",
         "endpoint": "/produtos/:id",
         "status": 400,
-        "ms": 582,
+        "ms": 617,
         "response": {
           "message": "string"
         },
@@ -120,7 +120,7 @@
         "method": "DELETE",
         "endpoint": "/carrinhos/cancelar-compra",
         "status": 200,
-        "ms": 272,
+        "ms": 298,
         "response": {
           "message": "string"
         }
@@ -130,7 +130,7 @@
         "method": "DELETE",
         "endpoint": "/produtos/:id",
         "status": 200,
-        "ms": 284,
+        "ms": 247,
         "response": {
           "message": "string"
         }
@@ -140,7 +140,7 @@
         "method": "DELETE",
         "endpoint": "/usuarios/:id",
         "status": 200,
-        "ms": 275,
+        "ms": 249,
         "response": {
           "message": "string"
         }
@@ -149,17 +149,18 @@
     "actions": [
       {
         "step": "Navigate",
-        "ms": 1000
+        "ms": 715
       },
       {
         "step": "Expect \"toBeVisible\"",
-        "target": "internal:role=row >> internal:has-text=\"Produto mwkuh8fbmvfo\"i",
-        "ms": 181
+        "target": "internal:role=row >> internal:has-text=\"Produto mwmir7c2o4fz\"i",
+        "ms": 1069,
+        "shown": "‹nome›‹preco›‹descricao›‹quantidade›EditarExcluir"
       },
       {
         "step": "Click",
-        "target": "internal:role=row >> internal:has-text=\"Produto mwkuh8fbmvfo\"i >> internal:role=button[name=\"Excluir\"i]",
-        "ms": 167
+        "target": "internal:role=row >> internal:has-text=\"Produto mwmir7c2o4fz\"i >> internal:role=button[name=\"Excluir\"i]",
+        "ms": 178
       },
       {
         "step": "Expect \"toBe\"",
@@ -167,12 +168,12 @@
       },
       {
         "step": "Expect \"toBe\"",
-        "ms": 1
+        "ms": 0
       },
       {
         "step": "Expect \"toHaveCount\"",
-        "target": "internal:role=row >> internal:has-text=\"Produto mwkuh8fbmvfo\"i",
-        "ms": 75
+        "target": "internal:role=row >> internal:has-text=\"Produto mwmir7c2o4fz\"i",
+        "ms": 89
       },
       {
         "step": "Expect \"toBe\"",

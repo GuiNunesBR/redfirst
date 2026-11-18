@@ -1,5 +1,5 @@
 {
-  "recordedAt": "2026-11-17",
+  "recordedAt": "2026-11-18",
   "statuses": [
     "passed",
     "passed",
@@ -13,7 +13,7 @@
         "method": "POST",
         "endpoint": "/usuarios",
         "status": 201,
-        "ms": 836,
+        "ms": 610,
         "request": {
           "administrador": "string",
           "email": "string",
@@ -30,7 +30,7 @@
         "method": "POST",
         "endpoint": "/login",
         "status": 200,
-        "ms": 311,
+        "ms": 279,
         "request": {
           "email": "string",
           "password": "string"
@@ -45,7 +45,7 @@
         "method": "POST",
         "endpoint": "/login",
         "status": 200,
-        "ms": 319,
+        "ms": 277,
         "request": {
           "email": "string",
           "password": "string"
@@ -60,11 +60,11 @@
         "method": "GET",
         "endpoint": "/usuarios",
         "status": 200,
-        "ms": 429,
+        "ms": 504,
         "response": {
           "quantidade": "number",
           "usuarios": {
-            "array": 168,
+            "array": 732,
             "of": {
               "_id": "string",
               "administrador": "string",
@@ -80,7 +80,7 @@
         "method": "DELETE",
         "endpoint": "/carrinhos/cancelar-compra",
         "status": 200,
-        "ms": 291,
+        "ms": 244,
         "response": {
           "message": "string"
         }
@@ -90,7 +90,7 @@
         "method": "DELETE",
         "endpoint": "/usuarios/:id",
         "status": 200,
-        "ms": 281,
+        "ms": 241,
         "response": {
           "message": "string"
         }
@@ -99,22 +99,22 @@
     "actions": [
       {
         "step": "Navigate",
-        "ms": 1288
+        "ms": 1094
       },
       {
-        "step": "Fill \"qa.mwkuafqck1bh@teste.com\"",
+        "step": "Fill \"qa.mwmikxj3te9h@teste.com\"",
         "target": "internal:testid=[data-testid=\"email\"s]",
-        "ms": 93
+        "ms": 60
       },
       {
-        "step": "Fill \"m1ppmtR_Cs\"",
+        "step": "Fill \"Mnnfn_ftER\"",
         "target": "internal:testid=[data-testid=\"senha\"s]",
-        "ms": 54
+        "ms": 27
       },
       {
         "step": "Click",
         "target": "internal:testid=[data-testid=\"entrar\"s]",
-        "ms": 137
+        "ms": 94
       },
       {
         "step": "Expect \"toBe\"",
@@ -126,12 +126,13 @@
       },
       {
         "step": "Expect \"toHaveURL\"",
-        "ms": 898
+        "ms": 872
       },
       {
         "step": "Expect \"toBeVisible\"",
         "target": "internal:role=heading[level=1]",
-        "ms": 20
+        "ms": 17,
+        "shown": "Olá, ‹nome›"
       }
     ]
   },

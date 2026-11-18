@@ -6,7 +6,7 @@
         "method": "POST",
         "endpoint": "/usuarios",
         "status": 201,
-        "ms": 1008,
+        "ms": 583,
         "request": {
           "administrador": "string",
           "email": "string",
@@ -23,11 +23,11 @@
         "method": "GET",
         "endpoint": "/usuarios",
         "status": 200,
-        "ms": 772,
+        "ms": 728,
         "response": {
           "quantidade": "number",
           "usuarios": {
-            "array": 231,
+            "array": 599,
             "of": {
               "_id": "string",
               "administrador": "string",
@@ -43,7 +43,7 @@
         "method": "GET",
         "endpoint": "/usuarios/:id",
         "status": 200,
-        "ms": 696,
+        "ms": 502,
         "response": {
           "_id": "string",
           "administrador": "string",
@@ -57,7 +57,7 @@
         "method": "GET",
         "endpoint": "/usuarios?email=",
         "status": 200,
-        "ms": 309,
+        "ms": 254,
         "response": {
           "quantidade": "number",
           "usuarios": {
@@ -77,7 +77,7 @@
         "method": "DELETE",
         "endpoint": "/usuarios/:id",
         "status": 200,
-        "ms": 284,
+        "ms": 243,
         "response": {
           "message": "string"
         }
@@ -86,27 +86,27 @@
     "actions": [
       {
         "step": "Navigate",
-        "ms": 6735
+        "ms": 1719
       },
       {
-        "step": "Fill \"Ian Zieme Sr.\"",
+        "step": "Fill \"Ms. Cheyenne Reichert Jr.\"",
         "target": "internal:testid=[data-testid=\"nome\"s]",
-        "ms": 143
+        "ms": 88
       },
       {
-        "step": "Fill \"qa.mwjiy9cjeics@teste.com\"",
+        "step": "Fill \"qa.mwmhh8n8acsm@teste.com\"",
         "target": "internal:testid=[data-testid=\"email\"s]",
-        "ms": 64
+        "ms": 61
       },
       {
-        "step": "Fill \"wsSQpU1Mlt\"",
+        "step": "Fill \"n6KEHEEDSC\"",
         "target": "internal:testid=[data-testid=\"password\"s]",
-        "ms": 60
+        "ms": 95
       },
       {
         "step": "Click",
         "target": "internal:testid=[data-testid=\"cadastrarUsuario\"s]",
-        "ms": 185
+        "ms": 150
       },
       {
         "step": "Expect \"toBe\"",
@@ -114,21 +114,23 @@
       },
       {
         "step": "Expect \"toHaveURL\"",
-        "ms": 40
+        "ms": 42
       },
       {
         "step": "Expect \"toContainText\"",
-        "target": "internal:role=row >> internal:has-text=\"qa.mwjiy9cjeics@teste.com\"i",
-        "ms": 1085
+        "target": "internal:role=row >> internal:has-text=\"qa.mwmhh8n8acsm@teste.com\"i",
+        "ms": 1072,
+        "shown": "‹nome›‹email›‹password›‹id›"
       },
       {
         "step": "Expect \"toContainText\"",
-        "target": "internal:role=row >> internal:has-text=\"qa.mwjiy9cjeics@teste.com\"i",
-        "ms": 99
+        "target": "internal:role=row >> internal:has-text=\"qa.mwmhh8n8acsm@teste.com\"i",
+        "ms": 147,
+        "shown": "‹nome›‹email›‹password›‹id›"
       },
       {
         "step": "Expect \"toMatchObject\"",
-        "ms": 4
+        "ms": 2
       }
     ]
   },
@@ -139,7 +141,7 @@
         "method": "GET",
         "endpoint": "/usuarios?email=",
         "status": 200,
-        "ms": 819,
+        "ms": 530,
         "response": {
           "quantidade": "number",
           "usuarios": {
@@ -151,27 +153,27 @@
     "actions": [
       {
         "step": "Navigate",
-        "ms": 4029
+        "ms": 658
       },
       {
-        "step": "Fill \"Mr. Devin Hills\"",
+        "step": "Fill \"Jolie Wisoky\"",
         "target": "internal:testid=[data-testid=\"nome\"s]",
-        "ms": 206
+        "ms": 53
       },
       {
-        "step": "Fill \"qa.mwjizhk9axvo@teste.com\"",
+        "step": "Fill \"qa.mwmhi7cgfqpc@teste.com\"",
         "target": "internal:testid=[data-testid=\"email\"s]",
-        "ms": 169
+        "ms": 22
       },
       {
-        "step": "Fill \"WZN4sfe_AE\"",
+        "step": "Fill \"uC18nLKTOl\"",
         "target": "internal:testid=[data-testid=\"password\"s]",
-        "ms": 201
+        "ms": 20
       },
       {
         "step": "Click",
         "target": "internal:testid=[data-testid=\"cadastrarUsuario\"s]",
-        "ms": 12435,
+        "ms": 11544,
         "error": "Error: locator.click: Test ended."
       }
     ]

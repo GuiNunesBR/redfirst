@@ -6,7 +6,7 @@
         "method": "POST",
         "endpoint": "/usuarios",
         "status": 201,
-        "ms": 683,
+        "ms": 661,
         "request": {
           "administrador": "string",
           "email": "string",
@@ -23,7 +23,7 @@
         "method": "POST",
         "endpoint": "/usuarios",
         "status": 400,
-        "ms": 995,
+        "ms": 364,
         "request": {
           "administrador": "string",
           "email": "string",
@@ -40,7 +40,7 @@
         "method": "DELETE",
         "endpoint": "/usuarios/:id",
         "status": 200,
-        "ms": 373,
+        "ms": 291,
         "response": {
           "message": "string"
         }
@@ -49,27 +49,27 @@
     "actions": [
       {
         "step": "Navigate",
-        "ms": 7233
+        "ms": 841
       },
       {
-        "step": "Fill \"Valentine Pollich\"",
+        "step": "Fill \"Letha Simonis IV\"",
         "target": "internal:testid=[data-testid=\"nome\"s]",
-        "ms": 123
+        "ms": 61
       },
       {
-        "step": "Fill \"qa.mwjjk2wfd3ni@teste.com\"",
+        "step": "Fill \"qa.mwmhwkvtezoc@teste.com\"",
         "target": "internal:testid=[data-testid=\"email\"s]",
-        "ms": 41
+        "ms": 37
       },
       {
-        "step": "Fill \"iVHauTQSJK\"",
+        "step": "Fill \"Hs_Ko_sSrn\"",
         "target": "internal:testid=[data-testid=\"password\"s]",
-        "ms": 34
+        "ms": 44
       },
       {
         "step": "Click",
         "target": "internal:testid=[data-testid=\"cadastrar\"s]",
-        "ms": 96
+        "ms": 124
       },
       {
         "step": "Expect \"toBe\"",
@@ -77,12 +77,13 @@
       },
       {
         "step": "Expect \"toBe\"",
-        "ms": 0
+        "ms": 5
       },
       {
         "step": "Expect \"toContainText\"",
         "target": ".alert",
-        "ms": 18
+        "ms": 45,
+        "shown": "×Este email já está sendo usado"
       }
     ]
   },
@@ -93,7 +94,7 @@
         "method": "POST",
         "endpoint": "/usuarios",
         "status": 201,
-        "ms": 772,
+        "ms": 653,
         "request": {
           "administrador": "string",
           "email": "string",
@@ -110,7 +111,7 @@
         "method": "POST",
         "endpoint": "/usuarios",
         "status": 201,
-        "ms": 67,
+        "ms": 38,
         "request": {
           "administrador": "string",
           "email": "string",
@@ -127,7 +128,7 @@
         "method": "POST",
         "endpoint": "/login",
         "status": 200,
-        "ms": 1174,
+        "ms": 590,
         "request": {
           "email": "string",
           "password": "string"
@@ -142,7 +143,7 @@
         "method": "DELETE",
         "endpoint": "/usuarios/:id",
         "status": 200,
-        "ms": 693,
+        "ms": 609,
         "response": {
           "message": "string"
         }
@@ -151,31 +152,31 @@
     "actions": [
       {
         "step": "Navigate",
-        "ms": 5346
+        "ms": 872
       },
       {
-        "step": "Fill \"Violet Kuhn\"",
+        "step": "Fill \"Johnnie Hahn\"",
         "target": "internal:testid=[data-testid=\"nome\"s]",
-        "ms": 164
+        "ms": 42
       },
       {
-        "step": "Fill \"qa.mwjjkzrkpdo1@teste.com\"",
+        "step": "Fill \"qa.mwmhx8pyzkl7@teste.com\"",
         "target": "internal:testid=[data-testid=\"email\"s]",
-        "ms": 47
+        "ms": 27
       },
       {
-        "step": "Fill \"YaG3FShse4\"",
+        "step": "Fill \"gGgwGUXE7h\"",
         "target": "internal:testid=[data-testid=\"password\"s]",
-        "ms": 41
+        "ms": 22
       },
       {
         "step": "Click",
         "target": "internal:testid=[data-testid=\"cadastrar\"s]",
-        "ms": 147
+        "ms": 82
       },
       {
         "step": "Expect \"toBe\"",
-        "ms": 11,
+        "ms": 7,
         "error": "Error: expect(received).toBe(expected) // Object.is equality"
       }
     ]

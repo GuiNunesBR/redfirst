@@ -6,7 +6,7 @@
         "method": "POST",
         "endpoint": "/usuarios",
         "status": 201,
-        "ms": 852,
+        "ms": 646,
         "request": {
           "administrador": "string",
           "email": "string",
@@ -23,7 +23,7 @@
         "method": "POST",
         "endpoint": "/login",
         "status": 200,
-        "ms": 358,
+        "ms": 289,
         "request": {
           "email": "string",
           "password": "string"
@@ -38,7 +38,7 @@
         "method": "POST",
         "endpoint": "/produtos",
         "status": 201,
-        "ms": 322,
+        "ms": 307,
         "request": {
           "descricao": "string",
           "nome": "string",
@@ -55,10 +55,10 @@
         "method": "GET",
         "endpoint": "/produtos",
         "status": 200,
-        "ms": 1049,
+        "ms": 813,
         "response": {
           "produtos": {
-            "array": 27,
+            "array": 319,
             "of": {
               "_id": "string",
               "descricao": "string",
@@ -75,25 +75,45 @@
         "method": "DELETE",
         "endpoint": "/produtos/:id",
         "status": 200,
-        "ms": 370
+        "ms": 633
       },
       {
         "from": "test",
         "method": "GET",
         "endpoint": "/produtos/:id",
         "status": 400,
-        "ms": 293,
+        "ms": 236,
         "response": {
           "message": "string"
         },
         "error": "{\"message\":\"Produto não encontrado\"}"
       },
       {
+        "from": "page",
+        "method": "GET",
+        "endpoint": "/produtos",
+        "status": 200,
+        "ms": 913,
+        "response": {
+          "produtos": {
+            "array": 317,
+            "of": {
+              "_id": "string",
+              "descricao": "string",
+              "nome": "string",
+              "preco": "number",
+              "quantidade": "number"
+            }
+          },
+          "quantidade": "number"
+        }
+      },
+      {
         "from": "test",
         "method": "DELETE",
         "endpoint": "/carrinhos/cancelar-compra",
         "status": 200,
-        "ms": 301,
+        "ms": 248,
         "response": {
           "message": "string"
         }
@@ -103,7 +123,7 @@
         "method": "DELETE",
         "endpoint": "/produtos/:id",
         "status": 200,
-        "ms": 302,
+        "ms": 248,
         "response": {
           "message": "string"
         }
@@ -113,32 +133,27 @@
         "method": "DELETE",
         "endpoint": "/usuarios/:id",
         "status": 200,
-        "ms": 284,
+        "ms": 241,
         "response": {
           "message": "string"
         }
-      },
-      {
-        "from": "page",
-        "method": "GET",
-        "endpoint": "/produtos",
-        "status": "no response"
       }
     ],
     "actions": [
       {
         "step": "Navigate",
-        "ms": 7441
+        "ms": 931
       },
       {
         "step": "Expect \"toBeVisible\"",
-        "target": "internal:role=row >> internal:has-text=\"Produto mwjj5umzunth\"i",
-        "ms": 238
+        "target": "internal:role=row >> internal:has-text=\"Produto mwmhnuenmopx\"i",
+        "ms": 1043,
+        "shown": "‹nome›‹preco›‹descricao›‹quantidade›EditarExcluir"
       },
       {
         "step": "Click",
-        "target": "internal:role=row >> internal:has-text=\"Produto mwjj5umzunth\"i >> internal:role=button[name=\"Excluir\"i]",
-        "ms": 165
+        "target": "internal:role=row >> internal:has-text=\"Produto mwmhnuenmopx\"i >> internal:role=button[name=\"Excluir\"i]",
+        "ms": 383
       },
       {
         "step": "Expect \"toBe\"",
@@ -150,8 +165,8 @@
       },
       {
         "step": "Expect \"toHaveCount\"",
-        "target": "internal:role=row >> internal:has-text=\"Produto mwjj5umzunth\"i",
-        "ms": 97
+        "target": "internal:role=row >> internal:has-text=\"Produto mwmhnuenmopx\"i",
+        "ms": 88
       },
       {
         "step": "Expect \"toBe\"",
@@ -170,7 +185,7 @@
         "method": "POST",
         "endpoint": "/usuarios",
         "status": 201,
-        "ms": 1157,
+        "ms": 560,
         "request": {
           "administrador": "string",
           "email": "string",
@@ -187,7 +202,7 @@
         "method": "POST",
         "endpoint": "/login",
         "status": 200,
-        "ms": 301,
+        "ms": 251,
         "request": {
           "email": "string",
           "password": "string"
@@ -202,7 +217,7 @@
         "method": "POST",
         "endpoint": "/produtos",
         "status": 201,
-        "ms": 311,
+        "ms": 253,
         "request": {
           "descricao": "string",
           "nome": "string",
@@ -218,28 +233,14 @@
         "from": "page",
         "method": "GET",
         "endpoint": "/produtos",
-        "status": 200,
-        "ms": 9914,
-        "response": {
-          "produtos": {
-            "array": 26,
-            "of": {
-              "_id": "string",
-              "descricao": "string",
-              "nome": "string",
-              "preco": "number",
-              "quantidade": "number"
-            }
-          },
-          "quantidade": "number"
-        }
+        "status": "no response"
       },
       {
         "from": "test",
         "method": "DELETE",
         "endpoint": "/carrinhos/cancelar-compra",
         "status": 200,
-        "ms": 655,
+        "ms": 542,
         "response": {
           "message": "string"
         }
@@ -249,7 +250,7 @@
         "method": "DELETE",
         "endpoint": "/produtos/:id",
         "status": 200,
-        "ms": 328,
+        "ms": 253,
         "response": {
           "message": "string"
         }
@@ -259,7 +260,7 @@
         "method": "DELETE",
         "endpoint": "/usuarios/:id",
         "status": 200,
-        "ms": 281,
+        "ms": 252,
         "response": {
           "message": "string"
         }
@@ -268,12 +269,12 @@
     "actions": [
       {
         "step": "Navigate",
-        "ms": 3781
+        "ms": 1355
       },
       {
         "step": "Expect \"toBeVisible\"",
-        "target": "internal:role=row >> internal:has-text=\"Produto mwjj733hszf4\"i",
-        "ms": 7174,
+        "target": "internal:role=row >> internal:has-text=\"Produto mwmhop3zf99s\"i",
+        "ms": 7043,
         "error": "Error: expect(locator).toBeVisible() failed"
       }
     ]

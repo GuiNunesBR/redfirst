@@ -1,5 +1,5 @@
 {
-  "recordedAt": "2026-11-17",
+  "recordedAt": "2026-11-18",
   "statuses": [
     "passed",
     "passed",
@@ -13,7 +13,7 @@
         "method": "POST",
         "endpoint": "/usuarios",
         "status": 201,
-        "ms": 650,
+        "ms": 633,
         "request": {
           "administrador": "string",
           "email": "string",
@@ -30,7 +30,7 @@
         "method": "POST",
         "endpoint": "/login",
         "status": 200,
-        "ms": 268,
+        "ms": 289,
         "request": {
           "email": "string",
           "password": "string"
@@ -45,7 +45,7 @@
         "method": "POST",
         "endpoint": "/produtos",
         "status": 201,
-        "ms": 299,
+        "ms": 296,
         "request": {
           "descricao": "string",
           "nome": "string",
@@ -62,10 +62,10 @@
         "method": "GET",
         "endpoint": "/produtos",
         "status": 200,
-        "ms": 9977,
+        "ms": 10066,
         "response": {
           "produtos": {
-            "array": 45,
+            "array": 346,
             "of": {
               "_id": "string",
               "descricao": "string",
@@ -82,18 +82,7 @@
         "method": "DELETE",
         "endpoint": "/produtos/:id",
         "status": 200,
-        "ms": 309
-      },
-      {
-        "from": "test",
-        "method": "GET",
-        "endpoint": "/produtos/:id",
-        "status": 400,
-        "ms": 295,
-        "response": {
-          "message": "string"
-        },
-        "error": "{\"message\":\"Produto não encontrado\"}"
+        "ms": 572
       },
       {
         "from": "page",
@@ -103,10 +92,21 @@
       },
       {
         "from": "test",
+        "method": "GET",
+        "endpoint": "/produtos/:id",
+        "status": 400,
+        "ms": 611,
+        "response": {
+          "message": "string"
+        },
+        "error": "{\"message\":\"Produto não encontrado\"}"
+      },
+      {
+        "from": "test",
         "method": "DELETE",
         "endpoint": "/carrinhos/cancelar-compra",
         "status": 200,
-        "ms": 271,
+        "ms": 249,
         "response": {
           "message": "string"
         }
@@ -116,7 +116,7 @@
         "method": "DELETE",
         "endpoint": "/produtos/:id",
         "status": 200,
-        "ms": 277,
+        "ms": 245,
         "response": {
           "message": "string"
         }
@@ -126,7 +126,7 @@
         "method": "DELETE",
         "endpoint": "/usuarios/:id",
         "status": 200,
-        "ms": 277,
+        "ms": 240,
         "response": {
           "message": "string"
         }
@@ -135,21 +135,22 @@
     "actions": [
       {
         "step": "Navigate",
-        "ms": 1213
+        "ms": 874
       },
       {
         "step": "Expect \"toBeVisible\"",
-        "target": "internal:role=row >> internal:has-text=\"Produto mwktxg11ubut\"i",
-        "ms": 9710
+        "target": "internal:role=row >> internal:has-text=\"Produto mwmi7xhxus1p\"i",
+        "ms": 10334,
+        "shown": "‹nome›‹preco›‹descricao›‹quantidade›EditarExcluir"
       },
       {
         "step": "Click",
-        "target": "internal:role=row >> internal:has-text=\"Produto mwktxg11ubut\"i >> internal:role=button[name=\"Excluir\"i]",
-        "ms": 84
+        "target": "internal:role=row >> internal:has-text=\"Produto mwmi7xhxus1p\"i >> internal:role=button[name=\"Excluir\"i]",
+        "ms": 179
       },
       {
         "step": "Expect \"toBe\"",
-        "ms": 0
+        "ms": 1
       },
       {
         "step": "Expect \"toBe\"",
@@ -157,8 +158,8 @@
       },
       {
         "step": "Expect \"toHaveCount\"",
-        "target": "internal:role=row >> internal:has-text=\"Produto mwktxg11ubut\"i",
-        "ms": 40
+        "target": "internal:role=row >> internal:has-text=\"Produto mwmi7xhxus1p\"i",
+        "ms": 53
       },
       {
         "step": "Expect \"toBe\"",

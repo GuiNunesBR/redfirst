@@ -6,7 +6,7 @@
         "method": "POST",
         "endpoint": "/usuarios",
         "status": 201,
-        "ms": 655,
+        "ms": 511,
         "request": {
           "administrador": "string",
           "email": "string",
@@ -23,7 +23,7 @@
         "method": "DELETE",
         "endpoint": "/usuarios/:id",
         "status": 200,
-        "ms": 290,
+        "ms": 231,
         "response": {
           "message": "string"
         }
@@ -33,7 +33,7 @@
         "method": "GET",
         "endpoint": "/usuarios/:id",
         "status": 400,
-        "ms": 307,
+        "ms": 237,
         "response": {
           "message": "string"
         },
@@ -43,7 +43,7 @@
     "actions": [
       {
         "step": "Expect \"toBe\"",
-        "ms": 2
+        "ms": 1
       },
       {
         "step": "Expect \"toBe\"",
@@ -62,7 +62,7 @@
         "method": "POST",
         "endpoint": "/usuarios",
         "status": 201,
-        "ms": 1178,
+        "ms": 504,
         "request": {
           "administrador": "string",
           "email": "string",
@@ -79,7 +79,7 @@
         "method": "DELETE",
         "endpoint": "/usuarios/:id",
         "status": 200,
-        "ms": 8,
+        "ms": 1,
         "response": {
           "message": "string"
         }
@@ -89,7 +89,7 @@
         "method": "GET",
         "endpoint": "/usuarios/:id",
         "status": 200,
-        "ms": 318,
+        "ms": 234,
         "response": {
           "_id": "string",
           "administrador": "string",
@@ -102,15 +102,15 @@
     "actions": [
       {
         "step": "Expect \"toBe\"",
-        "ms": 4
+        "ms": 0
       },
       {
         "step": "Expect \"toBe\"",
-        "ms": 2
+        "ms": 0
       },
       {
         "step": "Expect \"toBe\"",
-        "ms": 15,
+        "ms": 7,
         "error": "Error: expect(received).toBe(expected) // Object.is equality"
       }
     ]

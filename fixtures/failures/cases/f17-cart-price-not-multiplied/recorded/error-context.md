@@ -9,18 +9,18 @@
 Error: expect(locator).toHaveText(expected) failed
 
 Locator:  getByText(/^Preço R\$/)
-Expected: "Preço R$7814"
-Received: "Preço R$3907"
+Expected: "Preço R$5484"
+Received: "Preço R$2742"
 Timeout:  7000ms
 
 Call log:
   - Expect "toHaveText" getByText(/^Preço R\$/) with timeout 7000ms
   - waiting for getByText(/^Preço R\$/)
-    18 × locator resolved to <p>Preço R$3907</p>
-       - unexpected value "Preço R$3907"
+    17 × locator resolved to <p>Preço R$2742</p>
+       - unexpected value "Preço R$2742"
 
 ```
 
 ```yaml
-- paragraph: Preço R$3907
+- paragraph: Preço R$2742
 ```

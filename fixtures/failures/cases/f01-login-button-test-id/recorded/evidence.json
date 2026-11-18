@@ -6,7 +6,7 @@
         "method": "POST",
         "endpoint": "/usuarios",
         "status": 201,
-        "ms": 1008,
+        "ms": 570,
         "request": {
           "administrador": "string",
           "email": "string",
@@ -23,7 +23,7 @@
         "method": "POST",
         "endpoint": "/login",
         "status": 200,
-        "ms": 465,
+        "ms": 258,
         "request": {
           "email": "string",
           "password": "string"
@@ -38,7 +38,7 @@
         "method": "POST",
         "endpoint": "/login",
         "status": 200,
-        "ms": 848,
+        "ms": 325,
         "request": {
           "email": "string",
           "password": "string"
@@ -53,11 +53,11 @@
         "method": "GET",
         "endpoint": "/usuarios",
         "status": 200,
-        "ms": 587,
+        "ms": 568,
         "response": {
           "quantidade": "number",
           "usuarios": {
-            "array": 231,
+            "array": 598,
             "of": {
               "_id": "string",
               "administrador": "string",
@@ -73,7 +73,7 @@
         "method": "DELETE",
         "endpoint": "/carrinhos/cancelar-compra",
         "status": 200,
-        "ms": 296,
+        "ms": 249,
         "response": {
           "message": "string"
         }
@@ -83,7 +83,7 @@
         "method": "DELETE",
         "endpoint": "/usuarios/:id",
         "status": 200,
-        "ms": 383,
+        "ms": 247,
         "response": {
           "message": "string"
         }
@@ -92,26 +92,26 @@
     "actions": [
       {
         "step": "Navigate",
-        "ms": 4094
+        "ms": 742
       },
       {
-        "step": "Fill \"qa.mwjiw7h92fxc@teste.com\"",
+        "step": "Fill \"qa.mwmhfesho71t@teste.com\"",
         "target": "internal:testid=[data-testid=\"email\"s]",
-        "ms": 183
+        "ms": 62
       },
       {
-        "step": "Fill \"nM62gfq0Dj\"",
+        "step": "Fill \"r7Vwry6Zrq\"",
         "target": "internal:testid=[data-testid=\"senha\"s]",
-        "ms": 85
+        "ms": 39
       },
       {
         "step": "Click",
         "target": "internal:testid=[data-testid=\"entrar\"s]",
-        "ms": 346
+        "ms": 105
       },
       {
         "step": "Expect \"toBe\"",
-        "ms": 2
+        "ms": 1
       },
       {
         "step": "Expect \"toBe\"",
@@ -119,12 +119,13 @@
       },
       {
         "step": "Expect \"toHaveURL\"",
-        "ms": 914
+        "ms": 885
       },
       {
         "step": "Expect \"toContainText\"",
         "target": "internal:role=heading[name=/Bem Vindo/]",
-        "ms": 33
+        "ms": 21,
+        "shown": "Bem Vindo ‹nome›"
       }
     ]
   },
@@ -135,7 +136,7 @@
         "method": "POST",
         "endpoint": "/usuarios",
         "status": 201,
-        "ms": 901,
+        "ms": 597,
         "request": {
           "administrador": "string",
           "email": "string",
@@ -152,7 +153,7 @@
         "method": "POST",
         "endpoint": "/login",
         "status": 200,
-        "ms": 396,
+        "ms": 317,
         "request": {
           "email": "string",
           "password": "string"
@@ -167,7 +168,7 @@
         "method": "DELETE",
         "endpoint": "/carrinhos/cancelar-compra",
         "status": 200,
-        "ms": 1120,
+        "ms": 574,
         "response": {
           "message": "string"
         }
@@ -177,7 +178,7 @@
         "method": "DELETE",
         "endpoint": "/usuarios/:id",
         "status": 200,
-        "ms": 382,
+        "ms": 266,
         "response": {
           "message": "string"
         }
@@ -186,22 +187,22 @@
     "actions": [
       {
         "step": "Navigate",
-        "ms": 4146
+        "ms": 1008
       },
       {
-        "step": "Fill \"qa.mwjix5evwii5@teste.com\"",
+        "step": "Fill \"qa.mwmhg6yqc6nv@teste.com\"",
         "target": "internal:testid=[data-testid=\"email\"s]",
-        "ms": 174
+        "ms": 97
       },
       {
-        "step": "Fill \"jqeUiWEx94\"",
+        "step": "Fill \"3saWRjdLO9\"",
         "target": "internal:testid=[data-testid=\"senha\"s]",
-        "ms": 65
+        "ms": 46
       },
       {
         "step": "Click",
         "target": "internal:testid=[data-testid=\"entrar\"s]",
-        "ms": 13400,
+        "ms": 11919,
         "error": "Error: locator.click: Test ended."
       }
     ]

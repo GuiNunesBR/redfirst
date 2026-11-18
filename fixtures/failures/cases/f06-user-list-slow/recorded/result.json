@@ -1,5 +1,5 @@
 {
-  "recordedAt": "2026-11-16",
+  "recordedAt": "2026-11-18",
   "test": {
     "file": "tests/e2e/usuarios-admin.spec.ts",
     "line": 8,
@@ -7,10 +7,10 @@
     "project": "chromium"
   },
   "status": "failed",
-  "durationMs": 16356,
+  "durationMs": 13942,
   "errors": [
     {
-      "message": "Error: expect(locator).toContainText(expected) failed\n\nLocator: getByRole('row').filter({ hasText: 'qa.mwjinfzhonmf@teste.com' })\nExpected substring: \"Donald Ebert\"\nTimeout: 7000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toContainText\" getByRole('row').filter({ hasText: 'qa.mwjinfzhonmf@teste.com' }) with timeout 7000ms\n  - waiting for getByRole('row').filter({ hasText: 'qa.mwjinfzhonmf@teste.com' })\n\n\n  21 |     await expect(page).toHaveURL(/\\/admin\\/listarusuarios$/);\n  22 |     const linha = new ListarUsuariosPage(page).linhaDe(usuario.email);\n> 23 |     await expect(linha).toContainText(usuario.nome);\n     |                         ^\n  24 |     await expect(linha).toContainText('false');\n  25 |     await evidencia('usuário na listagem');\n  26 |\n    at tests/e2e/usuarios-admin.spec.ts:23:25",
+      "message": "Error: expect(locator).toContainText(expected) failed\n\nLocator: getByRole('row').filter({ hasText: 'qa.mwmhqjcnkmrg@teste.com' })\nExpected substring: \"Sarah Miller\"\nTimeout: 7000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toContainText\" getByRole('row').filter({ hasText: 'qa.mwmhqjcnkmrg@teste.com' }) with timeout 7000ms\n  - waiting for getByRole('row').filter({ hasText: 'qa.mwmhqjcnkmrg@teste.com' })\n\n\n  21 |     await expect(page).toHaveURL(/\\/admin\\/listarusuarios$/);\n  22 |     const linha = new ListarUsuariosPage(page).linhaDe(usuario.email);\n> 23 |     await expect(linha).toContainText(usuario.nome);\n     |                         ^\n  24 |     await expect(linha).toContainText('false');\n  25 |     await evidencia('usuário na listagem');\n  26 |\n    at tests/e2e/usuarios-admin.spec.ts:23:25",
       "location": {
         "file": "tests/e2e/usuarios-admin.spec.ts",
         "line": 23,
@@ -24,11 +24,11 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:57033/usuarios",
+          "url": "http://127.0.0.1:64633/usuarios",
           "corpo": {
-            "nome": "Donald Ebert",
-            "email": "qa.mwjinfzhonmf@teste.com",
-            "password": "WwOhWgfaZ1",
+            "nome": "Sarah Miller",
+            "email": "qa.mwmhqjcnkmrg@teste.com",
+            "password": "f20zfeDVjL",
             "administrador": "false"
           }
         },
@@ -36,17 +36,17 @@
           "status": 201,
           "corpo": {
             "message": "Cadastro realizado com sucesso",
-            "_id": "NYufnWMpyHbKeytB"
+            "_id": "42qDYgLLFcZqLoCF"
           }
         }
       }
     },
     {
-      "name": "API GET /usuarios?email=qa.mwjinfzhonmf%40teste.com → 200",
+      "name": "API GET /usuarios?email=qa.mwmhqjcnkmrg%40teste.com → 200",
       "body": {
         "requisicao": {
           "metodo": "GET",
-          "url": "http://127.0.0.1:57033/usuarios?email=qa.mwjinfzhonmf%40teste.com",
+          "url": "http://127.0.0.1:64633/usuarios?email=qa.mwmhqjcnkmrg%40teste.com",
           "corpo": null
         },
         "resposta": {
@@ -55,11 +55,11 @@
             "quantidade": 1,
             "usuarios": [
               {
-                "nome": "Donald Ebert",
-                "email": "qa.mwjinfzhonmf@teste.com",
-                "password": "WwOhWgfaZ1",
+                "nome": "Sarah Miller",
+                "email": "qa.mwmhqjcnkmrg@teste.com",
+                "password": "f20zfeDVjL",
                 "administrador": "false",
-                "_id": "NYufnWMpyHbKeytB"
+                "_id": "42qDYgLLFcZqLoCF"
               }
             ]
           }
@@ -67,11 +67,11 @@
       }
     },
     {
-      "name": "API DELETE /usuarios/NYufnWMpyHbKeytB → 200",
+      "name": "API DELETE /usuarios/42qDYgLLFcZqLoCF → 200",
       "body": {
         "requisicao": {
           "metodo": "DELETE",
-          "url": "http://127.0.0.1:57033/usuarios/NYufnWMpyHbKeytB",
+          "url": "http://127.0.0.1:64633/usuarios/42qDYgLLFcZqLoCF",
           "corpo": null
         },
         "resposta": {

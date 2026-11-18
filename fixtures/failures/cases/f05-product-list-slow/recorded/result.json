@@ -1,5 +1,5 @@
 {
-  "recordedAt": "2026-11-16",
+  "recordedAt": "2026-11-18",
   "test": {
     "file": "tests/e2e/produtos-admin.spec.ts",
     "line": 32,
@@ -7,10 +7,10 @@
     "project": "chromium"
   },
   "status": "failed",
-  "durationMs": 19595,
+  "durationMs": 12671,
   "errors": [
     {
-      "message": "Error: expect(locator).toBeVisible() failed\n\nLocator: getByRole('row').filter({ hasText: 'Produto mwjj733hszf4' })\nExpected: visible\nTimeout: 7000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" getByRole('row').filter({ hasText: 'Produto mwjj733hszf4' }) with timeout 7000ms\n  - waiting for getByRole('row').filter({ hasText: 'Produto mwjj733hszf4' })\n\n\n  38 |     const listagem = new ListarProdutosPage(page);\n  39 |     await listagem.abrir();\n> 40 |     await expect(listagem.linhaDe(produto.nome)).toBeVisible();\n     |                                                  ^\n  41 |     await evidencia('produto antes da exclusão');\n  42 |\n  43 |     const resposta = await capturarApi('DELETE', `/produtos/${_id}`, () => listagem.excluir(produto.nome));\n    at tests/e2e/produtos-admin.spec.ts:40:50",
+      "message": "Error: expect(locator).toBeVisible() failed\n\nLocator: getByRole('row').filter({ hasText: 'Produto mwmhop3zf99s' })\nExpected: visible\nTimeout: 7000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" getByRole('row').filter({ hasText: 'Produto mwmhop3zf99s' }) with timeout 7000ms\n  - waiting for getByRole('row').filter({ hasText: 'Produto mwmhop3zf99s' })\n\n\n  38 |     const listagem = new ListarProdutosPage(page);\n  39 |     await listagem.abrir();\n> 40 |     await expect(listagem.linhaDe(produto.nome)).toBeVisible();\n     |                                                  ^\n  41 |     await evidencia('produto antes da exclusão');\n  42 |\n  43 |     const resposta = await capturarApi('DELETE', `/produtos/${_id}`, () => listagem.excluir(produto.nome));\n    at tests/e2e/produtos-admin.spec.ts:40:50",
       "location": {
         "file": "tests/e2e/produtos-admin.spec.ts",
         "line": 40,
@@ -24,11 +24,11 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:57956/usuarios",
+          "url": "http://127.0.0.1:55114/usuarios",
           "corpo": {
-            "nome": "Dusty Bednar",
-            "email": "qa.mwjj71o1gaa5@teste.com",
-            "password": "XVguKZInb1",
+            "nome": "Benton Murphy",
+            "email": "qa.mwmhooenxhkt@teste.com",
+            "password": "UDd2hvvoaN",
             "administrador": "true"
           }
         },
@@ -36,7 +36,7 @@
           "status": 201,
           "corpo": {
             "message": "Cadastro realizado com sucesso",
-            "_id": "WnKg0mXBR2TXQNYh"
+            "_id": "ZX74DLFYUJWS61BU"
           }
         }
       }
@@ -46,10 +46,10 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:57956/login",
+          "url": "http://127.0.0.1:55114/login",
           "corpo": {
-            "email": "qa.mwjj71o1gaa5@teste.com",
-            "password": "XVguKZInb1"
+            "email": "qa.mwmhooenxhkt@teste.com",
+            "password": "UDd2hvvoaN"
           }
         },
         "resposta": {
@@ -66,19 +66,19 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:57956/produtos",
+          "url": "http://127.0.0.1:55114/produtos",
           "corpo": {
-            "nome": "Produto mwjj733hszf4",
-            "preco": 3716,
-            "descricao": "Discover the total new Salad with an exciting mix of Wooden ingredients",
-            "quantidade": 7
+            "nome": "Produto mwmhop3zf99s",
+            "preco": 12,
+            "descricao": "Experience the sky blue brilliance of our Salad, perfect for multicolored environments",
+            "quantidade": 41
           }
         },
         "resposta": {
           "status": 201,
           "corpo": {
             "message": "Cadastro realizado com sucesso",
-            "_id": "099Qcr2Ajzqw0u9D"
+            "_id": "bGb6vjomnKu6kTl8"
           }
         }
       }
@@ -88,7 +88,7 @@
       "body": {
         "requisicao": {
           "metodo": "DELETE",
-          "url": "http://127.0.0.1:57956/carrinhos/cancelar-compra",
+          "url": "http://127.0.0.1:55114/carrinhos/cancelar-compra",
           "corpo": null
         },
         "resposta": {
@@ -100,11 +100,11 @@
       }
     },
     {
-      "name": "API DELETE /produtos/099Qcr2Ajzqw0u9D → 200",
+      "name": "API DELETE /produtos/bGb6vjomnKu6kTl8 → 200",
       "body": {
         "requisicao": {
           "metodo": "DELETE",
-          "url": "http://127.0.0.1:57956/produtos/099Qcr2Ajzqw0u9D",
+          "url": "http://127.0.0.1:55114/produtos/bGb6vjomnKu6kTl8",
           "corpo": null
         },
         "resposta": {
@@ -116,11 +116,11 @@
       }
     },
     {
-      "name": "API DELETE /usuarios/WnKg0mXBR2TXQNYh → 200",
+      "name": "API DELETE /usuarios/ZX74DLFYUJWS61BU → 200",
       "body": {
         "requisicao": {
           "metodo": "DELETE",
-          "url": "http://127.0.0.1:57956/usuarios/WnKg0mXBR2TXQNYh",
+          "url": "http://127.0.0.1:55114/usuarios/ZX74DLFYUJWS61BU",
           "corpo": null
         },
         "resposta": {

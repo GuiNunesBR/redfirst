@@ -1,5 +1,5 @@
 {
-  "recordedAt": "2026-11-16",
+  "recordedAt": "2026-11-18",
   "test": {
     "file": "tests/api/produtos.spec.ts",
     "line": 6,
@@ -7,7 +7,7 @@
     "project": "api"
   },
   "status": "failed",
-  "durationMs": 2422,
+  "durationMs": 1836,
   "errors": [
     {
       "message": "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: 201\nReceived: 400\n\n   9 |     const criado = await api.criarProduto(produto, admin.token);\n  10 |\n> 11 |     expect(criado.status()).toBe(201);\n     |                             ^\n  12 |     const { _id } = validar(CadastroSchema, await criado.json());\n  13 |     limpeza.produto(_id, admin.token);\n  14 |\n    at tests/api/produtos.spec.ts:11:29",
@@ -24,11 +24,11 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:57484/usuarios",
+          "url": "http://127.0.0.1:55269/usuarios",
           "corpo": {
-            "nome": "Maximillia Conn",
-            "email": "qa.mwjjxfco09ij@teste.com",
-            "password": "Ol0w2irq7J",
+            "nome": "Mr. Gage Herman",
+            "email": "qa.mwmi3xh6ucjm@teste.com",
+            "password": "0yP9tWKURm",
             "administrador": "true"
           }
         },
@@ -36,7 +36,7 @@
           "status": 201,
           "corpo": {
             "message": "Cadastro realizado com sucesso",
-            "_id": "WpVCWTJ8n25eHP0A"
+            "_id": "A67GPRDXzA1YLdQS"
           }
         }
       }
@@ -46,10 +46,10 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:57484/login",
+          "url": "http://127.0.0.1:55269/login",
           "corpo": {
-            "email": "qa.mwjjxfco09ij@teste.com",
-            "password": "Ol0w2irq7J"
+            "email": "qa.mwmi3xh6ucjm@teste.com",
+            "password": "0yP9tWKURm"
           }
         },
         "resposta": {
@@ -66,12 +66,12 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:57484/produtos",
+          "url": "http://127.0.0.1:55269/produtos",
           "corpo": {
             "nome": "Logitech MX Vertical",
-            "preco": 2047,
-            "descricao": "Discover the breakable new Chair with an exciting mix of Granite ingredients",
-            "quantidade": 26
+            "preco": 43,
+            "descricao": "The azure Cheese combines Spain aesthetics with Rutherfordium-based durability",
+            "quantidade": 10
           }
         },
         "resposta": {
@@ -87,7 +87,7 @@
       "body": {
         "requisicao": {
           "metodo": "DELETE",
-          "url": "http://127.0.0.1:57484/carrinhos/cancelar-compra",
+          "url": "http://127.0.0.1:55269/carrinhos/cancelar-compra",
           "corpo": null
         },
         "resposta": {
@@ -99,11 +99,11 @@
       }
     },
     {
-      "name": "API DELETE /usuarios/WpVCWTJ8n25eHP0A → 200",
+      "name": "API DELETE /usuarios/A67GPRDXzA1YLdQS → 200",
       "body": {
         "requisicao": {
           "metodo": "DELETE",
-          "url": "http://127.0.0.1:57484/usuarios/WpVCWTJ8n25eHP0A",
+          "url": "http://127.0.0.1:55269/usuarios/A67GPRDXzA1YLdQS",
           "corpo": null
         },
         "resposta": {

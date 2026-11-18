@@ -6,7 +6,7 @@
         "method": "POST",
         "endpoint": "/usuarios",
         "status": 201,
-        "ms": 680,
+        "ms": 653,
         "request": {
           "administrador": "string",
           "email": "string",
@@ -23,7 +23,7 @@
         "method": "POST",
         "endpoint": "/login",
         "status": 200,
-        "ms": 284,
+        "ms": 286,
         "request": {
           "email": "string",
           "password": "string"
@@ -38,7 +38,7 @@
         "method": "POST",
         "endpoint": "/login",
         "status": 200,
-        "ms": 356,
+        "ms": 334,
         "request": {
           "email": "string",
           "password": "string"
@@ -53,11 +53,11 @@
         "method": "GET",
         "endpoint": "/usuarios",
         "status": 200,
-        "ms": 510,
+        "ms": 649,
         "response": {
           "quantidade": "number",
           "usuarios": {
-            "array": 233,
+            "array": 630,
             "of": {
               "_id": "string",
               "administrador": "string",
@@ -73,7 +73,7 @@
         "method": "DELETE",
         "endpoint": "/carrinhos/cancelar-compra",
         "status": 200,
-        "ms": 297,
+        "ms": 280,
         "response": {
           "message": "string"
         }
@@ -83,7 +83,7 @@
         "method": "DELETE",
         "endpoint": "/usuarios/:id",
         "status": 200,
-        "ms": 290,
+        "ms": 281,
         "response": {
           "message": "string"
         }
@@ -92,151 +92,22 @@
     "actions": [
       {
         "step": "Navigate",
-        "ms": 3688
+        "ms": 906
       },
       {
-        "step": "Fill \"qa.mwjjlw1v1dno@teste.com\"",
+        "step": "Fill \"qa.mwmhxvpopose@teste.com\"",
         "target": "internal:testid=[data-testid=\"email\"s]",
-        "ms": 75
+        "ms": 78
       },
       {
-        "step": "Fill \"68SwYpOeWQ\"",
+        "step": "Fill \"sXZperWaE9\"",
         "target": "internal:testid=[data-testid=\"senha\"s]",
-        "ms": 21
+        "ms": 42
       },
       {
         "step": "Click",
         "target": "internal:testid=[data-testid=\"entrar\"s]",
-        "ms": 69
-      },
-      {
-        "step": "Expect \"toBe\"",
-        "ms": 1
-      },
-      {
-        "step": "Expect \"toBe\"",
-        "ms": 0
-      },
-      {
-        "step": "Expect \"toHaveURL\"",
-        "ms": 854
-      },
-      {
-        "step": "Expect \"toContainText\"",
-        "target": "internal:role=heading[name=/Bem Vindo/]",
-        "ms": 18
-      }
-    ]
-  },
-  "failing": {
-    "calls": [
-      {
-        "from": "test",
-        "method": "POST",
-        "endpoint": "/usuarios",
-        "status": 201,
-        "ms": 874,
-        "request": {
-          "administrador": "string",
-          "email": "string",
-          "nome": "string",
-          "password": "string"
-        },
-        "response": {
-          "_id": "string",
-          "message": "string"
-        }
-      },
-      {
-        "from": "test",
-        "method": "POST",
-        "endpoint": "/login",
-        "status": 200,
-        "ms": 298,
-        "request": {
-          "email": "string",
-          "password": "string"
-        },
-        "response": {
-          "authorization": "string",
-          "message": "string"
-        }
-      },
-      {
-        "from": "page",
-        "method": "POST",
-        "endpoint": "/login",
-        "status": 200,
-        "ms": 856,
-        "request": {
-          "email": "string",
-          "password": "string"
-        },
-        "response": {
-          "authorization": "string",
-          "message": "string"
-        }
-      },
-      {
-        "from": "page",
-        "method": "GET",
-        "endpoint": "/usuarios",
-        "status": 200,
-        "ms": 486,
-        "response": {
-          "quantidade": "number",
-          "usuarios": {
-            "array": 233,
-            "of": {
-              "_id": "string",
-              "administrador": "string",
-              "email": "string",
-              "nome": "string",
-              "password": "string"
-            }
-          }
-        }
-      },
-      {
-        "from": "test",
-        "method": "DELETE",
-        "endpoint": "/carrinhos/cancelar-compra",
-        "status": 200,
-        "ms": 882,
-        "response": {
-          "message": "string"
-        }
-      },
-      {
-        "from": "test",
-        "method": "DELETE",
-        "endpoint": "/usuarios/:id",
-        "status": 200,
-        "ms": 293,
-        "response": {
-          "message": "string"
-        }
-      }
-    ],
-    "actions": [
-      {
-        "step": "Navigate",
-        "ms": 3812
-      },
-      {
-        "step": "Fill \"qa.mwjjmp1losug@teste.com\"",
-        "target": "internal:testid=[data-testid=\"email\"s]",
-        "ms": 149
-      },
-      {
-        "step": "Fill \"LYZw0pwnCT\"",
-        "target": "internal:testid=[data-testid=\"senha\"s]",
-        "ms": 62
-      },
-      {
-        "step": "Click",
-        "target": "internal:testid=[data-testid=\"entrar\"s]",
-        "ms": 272
+        "ms": 96
       },
       {
         "step": "Expect \"toBe\"",
@@ -248,12 +119,142 @@
       },
       {
         "step": "Expect \"toHaveURL\"",
-        "ms": 527
+        "ms": 888
       },
       {
         "step": "Expect \"toContainText\"",
         "target": "internal:role=heading[name=/Bem Vindo/]",
-        "ms": 7048,
+        "ms": 58,
+        "shown": "Bem Vindo ‹nome›"
+      }
+    ]
+  },
+  "failing": {
+    "calls": [
+      {
+        "from": "test",
+        "method": "POST",
+        "endpoint": "/usuarios",
+        "status": 201,
+        "ms": 725,
+        "request": {
+          "administrador": "string",
+          "email": "string",
+          "nome": "string",
+          "password": "string"
+        },
+        "response": {
+          "_id": "string",
+          "message": "string"
+        }
+      },
+      {
+        "from": "test",
+        "method": "POST",
+        "endpoint": "/login",
+        "status": 200,
+        "ms": 372,
+        "request": {
+          "email": "string",
+          "password": "string"
+        },
+        "response": {
+          "authorization": "string",
+          "message": "string"
+        }
+      },
+      {
+        "from": "page",
+        "method": "POST",
+        "endpoint": "/login",
+        "status": 200,
+        "ms": 349,
+        "request": {
+          "email": "string",
+          "password": "string"
+        },
+        "response": {
+          "authorization": "string",
+          "message": "string"
+        }
+      },
+      {
+        "from": "page",
+        "method": "GET",
+        "endpoint": "/usuarios",
+        "status": 200,
+        "ms": 636,
+        "response": {
+          "quantidade": "number",
+          "usuarios": {
+            "array": 640,
+            "of": {
+              "_id": "string",
+              "administrador": "string",
+              "email": "string",
+              "nome": "string",
+              "password": "string"
+            }
+          }
+        }
+      },
+      {
+        "from": "test",
+        "method": "DELETE",
+        "endpoint": "/carrinhos/cancelar-compra",
+        "status": 200,
+        "ms": 524,
+        "response": {
+          "message": "string"
+        }
+      },
+      {
+        "from": "test",
+        "method": "DELETE",
+        "endpoint": "/usuarios/:id",
+        "status": 200,
+        "ms": 245,
+        "response": {
+          "message": "string"
+        }
+      }
+    ],
+    "actions": [
+      {
+        "step": "Navigate",
+        "ms": 874
+      },
+      {
+        "step": "Fill \"qa.mwmhyjsytho4@teste.com\"",
+        "target": "internal:testid=[data-testid=\"email\"s]",
+        "ms": 64
+      },
+      {
+        "step": "Fill \"LV9VEPWZrR\"",
+        "target": "internal:testid=[data-testid=\"senha\"s]",
+        "ms": 34
+      },
+      {
+        "step": "Click",
+        "target": "internal:testid=[data-testid=\"entrar\"s]",
+        "ms": 91
+      },
+      {
+        "step": "Expect \"toBe\"",
+        "ms": 1
+      },
+      {
+        "step": "Expect \"toBe\"",
+        "ms": 0
+      },
+      {
+        "step": "Expect \"toHaveURL\"",
+        "ms": 878
+      },
+      {
+        "step": "Expect \"toContainText\"",
+        "target": "internal:role=heading[name=/Bem Vindo/]",
+        "ms": 7020,
         "error": "Error: expect(locator).toContainText(expected) failed"
       }
     ]

@@ -1,5 +1,5 @@
 {
-  "recordedAt": "2026-11-17",
+  "recordedAt": "2026-11-18",
   "statuses": [
     "passed",
     "passed",
@@ -13,7 +13,7 @@
         "method": "POST",
         "endpoint": "/usuarios",
         "status": 201,
-        "ms": 810,
+        "ms": 530,
         "request": {
           "administrador": "string",
           "email": "string",
@@ -30,7 +30,7 @@
         "method": "DELETE",
         "endpoint": "/usuarios/:id",
         "status": 200,
-        "ms": 384,
+        "ms": 243,
         "response": {
           "message": "string"
         }
@@ -39,7 +39,7 @@
     "actions": [
       {
         "step": "Expect \"toBe\"",
-        "ms": 0
+        "ms": 1
       },
       {
         "step": "Expect \"toBe\"",

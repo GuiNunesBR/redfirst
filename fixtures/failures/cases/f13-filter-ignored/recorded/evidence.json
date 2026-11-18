@@ -6,7 +6,7 @@
         "method": "POST",
         "endpoint": "/usuarios",
         "status": 201,
-        "ms": 973,
+        "ms": 558,
         "request": {
           "administrador": "string",
           "email": "string",
@@ -23,7 +23,7 @@
         "method": "POST",
         "endpoint": "/login",
         "status": 200,
-        "ms": 374,
+        "ms": 234,
         "request": {
           "email": "string",
           "password": "string"
@@ -38,7 +38,7 @@
         "method": "POST",
         "endpoint": "/produtos",
         "status": 201,
-        "ms": 382,
+        "ms": 241,
         "request": {
           "descricao": "string",
           "nome": "string",
@@ -55,7 +55,7 @@
         "method": "GET",
         "endpoint": "/produtos?nome=",
         "status": 200,
-        "ms": 413,
+        "ms": 242,
         "response": {
           "produtos": {
             "array": 1,
@@ -75,7 +75,7 @@
         "method": "DELETE",
         "endpoint": "/carrinhos/cancelar-compra",
         "status": 200,
-        "ms": 372,
+        "ms": 241,
         "response": {
           "message": "string"
         }
@@ -85,7 +85,7 @@
         "method": "DELETE",
         "endpoint": "/produtos/:id",
         "status": 200,
-        "ms": 382,
+        "ms": 259,
         "response": {
           "message": "string"
         }
@@ -95,7 +95,7 @@
         "method": "DELETE",
         "endpoint": "/usuarios/:id",
         "status": 200,
-        "ms": 372,
+        "ms": 242,
         "response": {
           "message": "string"
         }
@@ -104,7 +104,7 @@
     "actions": [
       {
         "step": "Expect \"toBe\"",
-        "ms": 2
+        "ms": 1
       },
       {
         "step": "Expect \"toBe\"",
@@ -119,7 +119,7 @@
         "method": "POST",
         "endpoint": "/usuarios",
         "status": 201,
-        "ms": 726,
+        "ms": 520,
         "request": {
           "administrador": "string",
           "email": "string",
@@ -136,7 +136,7 @@
         "method": "POST",
         "endpoint": "/login",
         "status": 200,
-        "ms": 337,
+        "ms": 240,
         "request": {
           "email": "string",
           "password": "string"
@@ -151,7 +151,7 @@
         "method": "POST",
         "endpoint": "/produtos",
         "status": 201,
-        "ms": 281,
+        "ms": 244,
         "request": {
           "descricao": "string",
           "nome": "string",
@@ -168,10 +168,10 @@
         "method": "GET",
         "endpoint": "/produtos?nome=",
         "status": 200,
-        "ms": 300,
+        "ms": 415,
         "response": {
           "produtos": {
-            "array": 27,
+            "array": 318,
             "of": {
               "_id": "string",
               "descricao": "string",
@@ -188,7 +188,7 @@
         "method": "DELETE",
         "endpoint": "/carrinhos/cancelar-compra",
         "status": 200,
-        "ms": 298,
+        "ms": 247,
         "response": {
           "message": "string"
         }
@@ -198,7 +198,7 @@
         "method": "DELETE",
         "endpoint": "/produtos/:id",
         "status": 200,
-        "ms": 291,
+        "ms": 249,
         "response": {
           "message": "string"
         }
@@ -208,7 +208,7 @@
         "method": "DELETE",
         "endpoint": "/usuarios/:id",
         "status": 200,
-        "ms": 280,
+        "ms": 241,
         "response": {
           "message": "string"
         }
@@ -217,7 +217,7 @@
     "actions": [
       {
         "step": "Expect \"toBe\"",
-        "ms": 14,
+        "ms": 26,
         "error": "Error: expect(received).toBe(expected) // Object.is equality"
       }
     ]

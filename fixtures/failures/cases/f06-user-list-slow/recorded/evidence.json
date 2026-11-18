@@ -6,7 +6,7 @@
         "method": "POST",
         "endpoint": "/usuarios",
         "status": 201,
-        "ms": 848,
+        "ms": 687,
         "request": {
           "administrador": "string",
           "email": "string",
@@ -23,11 +23,11 @@
         "method": "GET",
         "endpoint": "/usuarios",
         "status": 200,
-        "ms": 767,
+        "ms": 943,
         "response": {
           "quantidade": "number",
           "usuarios": {
-            "array": 229,
+            "array": 621,
             "of": {
               "_id": "string",
               "administrador": "string",
@@ -43,7 +43,7 @@
         "method": "GET",
         "endpoint": "/usuarios/:id",
         "status": 200,
-        "ms": 612,
+        "ms": 509,
         "response": {
           "_id": "string",
           "administrador": "string",
@@ -57,7 +57,7 @@
         "method": "GET",
         "endpoint": "/usuarios?email=",
         "status": 200,
-        "ms": 306,
+        "ms": 243,
         "response": {
           "quantidade": "number",
           "usuarios": {
@@ -77,7 +77,7 @@
         "method": "DELETE",
         "endpoint": "/usuarios/:id",
         "status": 200,
-        "ms": 332,
+        "ms": 251,
         "response": {
           "message": "string"
         }
@@ -86,45 +86,47 @@
     "actions": [
       {
         "step": "Navigate",
-        "ms": 3360
+        "ms": 1006
       },
       {
-        "step": "Fill \"Gennaro Streich\"",
+        "step": "Fill \"Gina Witting-Ward\"",
         "target": "internal:testid=[data-testid=\"nome\"s]",
-        "ms": 190
+        "ms": 56
       },
       {
-        "step": "Fill \"qa.mwjimge5vtmd@teste.com\"",
+        "step": "Fill \"qa.mwmhpixgvbzs@teste.com\"",
         "target": "internal:testid=[data-testid=\"email\"s]",
-        "ms": 60
+        "ms": 26
       },
       {
-        "step": "Fill \"duhuO5yHJa\"",
+        "step": "Fill \"g1UO7gh0h9\"",
         "target": "internal:testid=[data-testid=\"password\"s]",
-        "ms": 60
+        "ms": 20
       },
       {
         "step": "Click",
         "target": "internal:testid=[data-testid=\"cadastrarUsuario\"s]",
-        "ms": 270
+        "ms": 120
       },
       {
         "step": "Expect \"toBe\"",
-        "ms": 2
+        "ms": 1
       },
       {
         "step": "Expect \"toHaveURL\"",
-        "ms": 42
+        "ms": 23
       },
       {
         "step": "Expect \"toContainText\"",
-        "target": "internal:role=row >> internal:has-text=\"qa.mwjimge5vtmd@teste.com\"i",
-        "ms": 1084
+        "target": "internal:role=row >> internal:has-text=\"qa.mwmhpixgvbzs@teste.com\"i",
+        "ms": 2501,
+        "shown": "‹nome›‹email›‹password›‹id›"
       },
       {
         "step": "Expect \"toContainText\"",
-        "target": "internal:role=row >> internal:has-text=\"qa.mwjimge5vtmd@teste.com\"i",
-        "ms": 93
+        "target": "internal:role=row >> internal:has-text=\"qa.mwmhpixgvbzs@teste.com\"i",
+        "ms": 118,
+        "shown": "‹nome›‹email›‹password›‹id›"
       },
       {
         "step": "Expect \"toMatchObject\"",
@@ -139,7 +141,7 @@
         "method": "POST",
         "endpoint": "/usuarios",
         "status": 201,
-        "ms": 720,
+        "ms": 811,
         "request": {
           "administrador": "string",
           "email": "string",
@@ -155,15 +157,14 @@
         "from": "page",
         "method": "GET",
         "endpoint": "/usuarios",
-        "status": "no response",
-        "ms": -1
+        "status": "no response"
       },
       {
         "from": "test",
         "method": "GET",
         "endpoint": "/usuarios?email=",
         "status": 200,
-        "ms": 748,
+        "ms": 503,
         "response": {
           "quantidade": "number",
           "usuarios": {
@@ -183,7 +184,7 @@
         "method": "DELETE",
         "endpoint": "/usuarios/:id",
         "status": 200,
-        "ms": 276,
+        "ms": 241,
         "response": {
           "message": "string"
         }
@@ -192,27 +193,27 @@
     "actions": [
       {
         "step": "Navigate",
-        "ms": 3465
+        "ms": 1032
       },
       {
-        "step": "Fill \"Donald Ebert\"",
+        "step": "Fill \"Sarah Miller\"",
         "target": "internal:testid=[data-testid=\"nome\"s]",
-        "ms": 141
+        "ms": 93
       },
       {
-        "step": "Fill \"qa.mwjinfzhonmf@teste.com\"",
+        "step": "Fill \"qa.mwmhqjcnkmrg@teste.com\"",
         "target": "internal:testid=[data-testid=\"email\"s]",
-        "ms": 57
+        "ms": 52
       },
       {
-        "step": "Fill \"WwOhWgfaZ1\"",
+        "step": "Fill \"f20zfeDVjL\"",
         "target": "internal:testid=[data-testid=\"password\"s]",
-        "ms": 53
+        "ms": 59
       },
       {
         "step": "Click",
         "target": "internal:testid=[data-testid=\"cadastrarUsuario\"s]",
-        "ms": 199
+        "ms": 277
       },
       {
         "step": "Expect \"toBe\"",
@@ -220,12 +221,12 @@
       },
       {
         "step": "Expect \"toHaveURL\"",
-        "ms": 38
+        "ms": 28
       },
       {
         "step": "Expect \"toContainText\"",
-        "target": "internal:role=row >> internal:has-text=\"qa.mwjinfzhonmf@teste.com\"i",
-        "ms": 7043,
+        "target": "internal:role=row >> internal:has-text=\"qa.mwmhqjcnkmrg@teste.com\"i",
+        "ms": 7041,
         "error": "Error: expect(locator).toContainText(expected) failed"
       }
     ]

@@ -6,7 +6,7 @@
         "method": "POST",
         "endpoint": "/usuarios",
         "status": 201,
-        "ms": 990,
+        "ms": 700,
         "request": {
           "administrador": "string",
           "email": "string",
@@ -23,7 +23,7 @@
         "method": "POST",
         "endpoint": "/login",
         "status": 200,
-        "ms": 306,
+        "ms": 243,
         "request": {
           "email": "string",
           "password": "string"
@@ -38,7 +38,7 @@
         "method": "POST",
         "endpoint": "/login",
         "status": 200,
-        "ms": 2001,
+        "ms": 431,
         "request": {
           "email": "string",
           "password": "string"
@@ -53,11 +53,11 @@
         "method": "GET",
         "endpoint": "/usuarios",
         "status": 200,
-        "ms": 718,
+        "ms": 511,
         "response": {
           "quantidade": "number",
           "usuarios": {
-            "array": 232,
+            "array": 622,
             "of": {
               "_id": "string",
               "administrador": "string",
@@ -73,7 +73,7 @@
         "method": "DELETE",
         "endpoint": "/carrinhos/cancelar-compra",
         "status": 200,
-        "ms": 360,
+        "ms": 247,
         "response": {
           "message": "string"
         }
@@ -83,7 +83,7 @@
         "method": "DELETE",
         "endpoint": "/usuarios/:id",
         "status": 200,
-        "ms": 352,
+        "ms": 245,
         "response": {
           "message": "string"
         }
@@ -92,22 +92,22 @@
     "actions": [
       {
         "step": "Navigate",
-        "ms": 6473
+        "ms": 977
       },
       {
-        "step": "Fill \"qa.mwjjcqjjjlba@teste.com\"",
+        "step": "Fill \"qa.mwmhser5mkei@teste.com\"",
         "target": "internal:testid=[data-testid=\"email\"s]",
-        "ms": 234
+        "ms": 214
       },
       {
-        "step": "Fill \"wGzEwliJTU\"",
+        "step": "Fill \"EGjbZBnsiH\"",
         "target": "internal:testid=[data-testid=\"senha\"s]",
-        "ms": 156
+        "ms": 350
       },
       {
         "step": "Click",
         "target": "internal:testid=[data-testid=\"entrar\"s]",
-        "ms": 957
+        "ms": 453
       },
       {
         "step": "Expect \"toBe\"",
@@ -119,12 +119,13 @@
       },
       {
         "step": "Expect \"toHaveURL\"",
-        "ms": 989
+        "ms": 897
       },
       {
         "step": "Expect \"toContainText\"",
         "target": "internal:role=heading[name=/Bem Vindo/]",
-        "ms": 96
+        "ms": 17,
+        "shown": "Bem Vindo ‹nome›"
       }
     ]
   },
@@ -135,7 +136,7 @@
         "method": "POST",
         "endpoint": "/usuarios",
         "status": 201,
-        "ms": 1002,
+        "ms": 915,
         "request": {
           "administrador": "string",
           "email": "string",
@@ -152,7 +153,7 @@
         "method": "POST",
         "endpoint": "/login",
         "status": 200,
-        "ms": 347,
+        "ms": 242,
         "request": {
           "email": "string",
           "password": "string"
@@ -167,7 +168,7 @@
         "method": "POST",
         "endpoint": "/login",
         "status": 200,
-        "ms": 1071,
+        "ms": 290,
         "request": {
           "email": "string",
           "password": "string"
@@ -182,11 +183,11 @@
         "method": "GET",
         "endpoint": "/usuarios",
         "status": 200,
-        "ms": 1042,
+        "ms": 507,
         "response": {
           "quantidade": "number",
           "usuarios": {
-            "array": 232,
+            "array": 622,
             "of": {
               "_id": "string",
               "administrador": "string",
@@ -202,7 +203,7 @@
         "method": "DELETE",
         "endpoint": "/carrinhos/cancelar-compra",
         "status": 200,
-        "ms": 314,
+        "ms": 515,
         "response": {
           "message": "string"
         }
@@ -212,7 +213,7 @@
         "method": "DELETE",
         "endpoint": "/usuarios/:id",
         "status": 200,
-        "ms": 283,
+        "ms": 240,
         "response": {
           "message": "string"
         }
@@ -221,26 +222,26 @@
     "actions": [
       {
         "step": "Navigate",
-        "ms": 6364
+        "ms": 769
       },
       {
-        "step": "Fill \"qa.mwjjegzmtmal@teste.com\"",
+        "step": "Fill \"qa.mwmht8w8p1vr@teste.com\"",
         "target": "internal:testid=[data-testid=\"email\"s]",
-        "ms": 380
+        "ms": 79
       },
       {
-        "step": "Fill \"7DYFRpoeeG\"",
+        "step": "Fill \"qM6fmZFWYj\"",
         "target": "internal:testid=[data-testid=\"senha\"s]",
-        "ms": 168
+        "ms": 54
       },
       {
         "step": "Click",
         "target": "internal:testid=[data-testid=\"entrar\"s]",
-        "ms": 976
+        "ms": 123
       },
       {
         "step": "Expect \"toBe\"",
-        "ms": 3
+        "ms": 1
       }
     ]
   }

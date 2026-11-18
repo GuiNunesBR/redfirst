@@ -1,5 +1,5 @@
 {
-  "recordedAt": "2026-11-16",
+  "recordedAt": "2026-11-18",
   "test": {
     "file": "tests/e2e/cadastro.spec.ts",
     "line": 35,
@@ -7,7 +7,7 @@
     "project": "chromium"
   },
   "status": "failed",
-  "durationMs": 10181,
+  "durationMs": 3833,
   "errors": [
     {
       "message": "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: 400\nReceived: 201\n\n  44 |     const resposta = await capturarApi('POST', '/usuarios', () => cadastro.enviar());\n  45 |\n> 46 |     expect(resposta.status).toBe(400);\n     |                             ^\n  47 |     expect(validar(MensagemSchema, resposta.corpo).message).toBe('Este email já está sendo usado');\n  48 |     await expect(cadastro.alerta).toContainText('Este email já está sendo usado');\n  49 |     await evidencia('alerta de e-mail duplicado');\n    at tests/e2e/cadastro.spec.ts:46:29",
@@ -24,11 +24,11 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:63089/usuarios",
+          "url": "http://127.0.0.1:57027/usuarios",
           "corpo": {
-            "nome": "Violet Kuhn",
-            "email": "qa.mwjjkzrkpdo1@teste.com",
-            "password": "YaG3FShse4",
+            "nome": "Johnnie Hahn",
+            "email": "qa.mwmhx8pyzkl7@teste.com",
+            "password": "gGgwGUXE7h",
             "administrador": "false"
           }
         },
@@ -36,7 +36,7 @@
           "status": 201,
           "corpo": {
             "message": "Cadastro realizado com sucesso",
-            "_id": "LYESNp6jX2q5Q8wi"
+            "_id": "4PjlcVjO7qj4jnjH"
           }
         }
       }
@@ -46,11 +46,11 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:63089/usuarios",
+          "url": "http://127.0.0.1:57027/usuarios",
           "corpo": {
-            "nome": "Violet Kuhn",
-            "email": "qa.mwjjkzrkpdo1@teste.com",
-            "password": "YaG3FShse4",
+            "nome": "Johnnie Hahn",
+            "email": "qa.mwmhx8pyzkl7@teste.com",
+            "password": "gGgwGUXE7h",
             "administrador": "false"
           }
         },
@@ -64,11 +64,11 @@
       }
     },
     {
-      "name": "API DELETE /usuarios/LYESNp6jX2q5Q8wi → 200",
+      "name": "API DELETE /usuarios/4PjlcVjO7qj4jnjH → 200",
       "body": {
         "requisicao": {
           "metodo": "DELETE",
-          "url": "http://127.0.0.1:63089/usuarios/LYESNp6jX2q5Q8wi",
+          "url": "http://127.0.0.1:57027/usuarios/4PjlcVjO7qj4jnjH",
           "corpo": null
         },
         "resposta": {

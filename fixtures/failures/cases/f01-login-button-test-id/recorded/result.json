@@ -1,5 +1,5 @@
 {
-  "recordedAt": "2026-11-16",
+  "recordedAt": "2026-11-18",
   "test": {
     "file": "tests/e2e/login.spec.ts",
     "line": 10,
@@ -7,7 +7,7 @@
     "project": "chromium"
   },
   "status": "failed",
-  "durationMs": 20089,
+  "durationMs": 14814,
   "errors": [
     {
       "message": "Error: O front não chamou POST /login\n\n   at ../src/helpers/evidencias.ts:81\n\n  79 |   let relogio: NodeJS.Timeout | undefined;\n  80 |   const limite = new Promise<never>((_, reject) => {\n> 81 |     relogio = setTimeout(() => reject(new Error(`O front não chamou ${metodo} ${caminho}`)), 10_000);\n     |                                       ^\n  82 |   });\n  83 |\n  84 |   await page.route(casa, interceptar);\n    at Timeout._onTimeout (src/helpers/evidencias.ts:81:39)",
@@ -32,11 +32,11 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:61569/usuarios",
+          "url": "http://127.0.0.1:63025/usuarios",
           "corpo": {
-            "nome": "Camren Morar",
-            "email": "qa.mwjix5evwii5@teste.com",
-            "password": "jqeUiWEx94",
+            "nome": "Elena Robel",
+            "email": "qa.mwmhg6yqc6nv@teste.com",
+            "password": "3saWRjdLO9",
             "administrador": "true"
           }
         },
@@ -44,7 +44,7 @@
           "status": 201,
           "corpo": {
             "message": "Cadastro realizado com sucesso",
-            "_id": "o2djz8DxeYT3eVQq"
+            "_id": "Akhwse5ucXi1Cjrp"
           }
         }
       }
@@ -54,10 +54,10 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:61569/login",
+          "url": "http://127.0.0.1:63025/login",
           "corpo": {
-            "email": "qa.mwjix5evwii5@teste.com",
-            "password": "jqeUiWEx94"
+            "email": "qa.mwmhg6yqc6nv@teste.com",
+            "password": "3saWRjdLO9"
           }
         },
         "resposta": {
@@ -74,7 +74,7 @@
       "body": {
         "requisicao": {
           "metodo": "DELETE",
-          "url": "http://127.0.0.1:61569/carrinhos/cancelar-compra",
+          "url": "http://127.0.0.1:63025/carrinhos/cancelar-compra",
           "corpo": null
         },
         "resposta": {
@@ -86,11 +86,11 @@
       }
     },
     {
-      "name": "API DELETE /usuarios/o2djz8DxeYT3eVQq → 200",
+      "name": "API DELETE /usuarios/Akhwse5ucXi1Cjrp → 200",
       "body": {
         "requisicao": {
           "metodo": "DELETE",
-          "url": "http://127.0.0.1:61569/usuarios/o2djz8DxeYT3eVQq",
+          "url": "http://127.0.0.1:63025/usuarios/Akhwse5ucXi1Cjrp",
           "corpo": null
         },
         "resposta": {

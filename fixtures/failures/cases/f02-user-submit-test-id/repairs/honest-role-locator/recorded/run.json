@@ -1,5 +1,5 @@
 {
-  "recordedAt": "2026-11-17",
+  "recordedAt": "2026-11-18",
   "statuses": [
     "passed",
     "passed",
@@ -13,7 +13,7 @@
         "method": "POST",
         "endpoint": "/usuarios",
         "status": 201,
-        "ms": 779,
+        "ms": 685,
         "request": {
           "administrador": "string",
           "email": "string",
@@ -30,11 +30,11 @@
         "method": "GET",
         "endpoint": "/usuarios",
         "status": 200,
-        "ms": 651,
+        "ms": 939,
         "response": {
           "quantidade": "number",
           "usuarios": {
-            "array": 147,
+            "array": 659,
             "of": {
               "_id": "string",
               "administrador": "string",
@@ -50,7 +50,7 @@
         "method": "GET",
         "endpoint": "/usuarios/:id",
         "status": 200,
-        "ms": 271,
+        "ms": 630,
         "response": {
           "_id": "string",
           "administrador": "string",
@@ -64,7 +64,7 @@
         "method": "GET",
         "endpoint": "/usuarios?email=",
         "status": 200,
-        "ms": 266,
+        "ms": 293,
         "response": {
           "quantidade": "number",
           "usuarios": {
@@ -84,7 +84,7 @@
         "method": "DELETE",
         "endpoint": "/usuarios/:id",
         "status": 200,
-        "ms": 341,
+        "ms": 284,
         "response": {
           "message": "string"
         }
@@ -93,27 +93,27 @@
     "actions": [
       {
         "step": "Navigate",
-        "ms": 1421
+        "ms": 666
       },
       {
-        "step": "Fill \"Bradford Wisoky\"",
+        "step": "Fill \"Emmalee Feest\"",
         "target": "internal:testid=[data-testid=\"nome\"s]",
-        "ms": 60
+        "ms": 57
       },
       {
-        "step": "Fill \"qa.mwktw35wfbjx@teste.com\"",
+        "step": "Fill \"qa.mwmi6cc7iwip@teste.com\"",
         "target": "internal:testid=[data-testid=\"email\"s]",
-        "ms": 37
+        "ms": 39
       },
       {
-        "step": "Fill \"Pny9SypOoy\"",
+        "step": "Fill \"z2h3n6MehG\"",
         "target": "internal:testid=[data-testid=\"password\"s]",
-        "ms": 38
+        "ms": 21
       },
       {
         "step": "Click",
         "target": "internal:role=button[name=\"Cadastrar\"i]",
-        "ms": 133
+        "ms": 122
       },
       {
         "step": "Expect \"toBe\"",
@@ -121,17 +121,19 @@
       },
       {
         "step": "Expect \"toHaveURL\"",
-        "ms": 25
+        "ms": 27
       },
       {
         "step": "Expect \"toContainText\"",
-        "target": "internal:role=row >> internal:has-text=\"qa.mwktw35wfbjx@teste.com\"i",
-        "ms": 901
+        "target": "internal:role=row >> internal:has-text=\"qa.mwmi6cc7iwip@teste.com\"i",
+        "ms": 1561,
+        "shown": "‹nome›‹email›‹password›‹id›"
       },
       {
         "step": "Expect \"toContainText\"",
-        "target": "internal:role=row >> internal:has-text=\"qa.mwktw35wfbjx@teste.com\"i",
-        "ms": 28
+        "target": "internal:role=row >> internal:has-text=\"qa.mwmi6cc7iwip@teste.com\"i",
+        "ms": 113,
+        "shown": "‹nome›‹email›‹password›‹id›"
       },
       {
         "step": "Expect \"toMatchObject\"",

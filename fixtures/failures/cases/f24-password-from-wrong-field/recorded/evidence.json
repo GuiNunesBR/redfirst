@@ -6,7 +6,7 @@
         "method": "POST",
         "endpoint": "/usuarios",
         "status": 201,
-        "ms": 866,
+        "ms": 628,
         "request": {
           "administrador": "string",
           "email": "string",
@@ -38,7 +38,7 @@
         "method": "POST",
         "endpoint": "/login",
         "status": 200,
-        "ms": 943,
+        "ms": 344,
         "request": {
           "email": "string",
           "password": "string"
@@ -53,11 +53,11 @@
         "method": "GET",
         "endpoint": "/usuarios",
         "status": 200,
-        "ms": 597,
+        "ms": 657,
         "response": {
           "quantidade": "number",
           "usuarios": {
-            "array": 243,
+            "array": 646,
             "of": {
               "_id": "string",
               "administrador": "string",
@@ -73,7 +73,7 @@
         "method": "DELETE",
         "endpoint": "/carrinhos/cancelar-compra",
         "status": 200,
-        "ms": 396,
+        "ms": 280,
         "response": {
           "message": "string"
         }
@@ -83,7 +83,7 @@
         "method": "DELETE",
         "endpoint": "/usuarios/:id",
         "status": 200,
-        "ms": 281,
+        "ms": 309,
         "response": {
           "message": "string"
         }
@@ -92,39 +92,40 @@
     "actions": [
       {
         "step": "Navigate",
-        "ms": 5238
+        "ms": 784
       },
       {
-        "step": "Fill \"qa.mwjjs9qlzjod@teste.com\"",
+        "step": "Fill \"qa.mwmi0p0wl5ql@teste.com\"",
         "target": "internal:testid=[data-testid=\"email\"s]",
-        "ms": 111
+        "ms": 56
       },
       {
-        "step": "Fill \"VC0BgQpbWA\"",
+        "step": "Fill \"t2Jn2cnJzj\"",
         "target": "internal:testid=[data-testid=\"senha\"s]",
-        "ms": 38
+        "ms": 42
       },
       {
         "step": "Click",
         "target": "internal:testid=[data-testid=\"entrar\"s]",
-        "ms": 193
-      },
-      {
-        "step": "Expect \"toBe\"",
-        "ms": 2
+        "ms": 108
       },
       {
         "step": "Expect \"toBe\"",
         "ms": 1
       },
       {
+        "step": "Expect \"toBe\"",
+        "ms": 0
+      },
+      {
         "step": "Expect \"toHaveURL\"",
-        "ms": 892
+        "ms": 878
       },
       {
         "step": "Expect \"toContainText\"",
         "target": "internal:role=heading[name=/Bem Vindo/]",
-        "ms": 30
+        "ms": 17,
+        "shown": "Bem Vindo ‹nome›"
       }
     ]
   },
@@ -135,7 +136,7 @@
         "method": "POST",
         "endpoint": "/usuarios",
         "status": 201,
-        "ms": 730,
+        "ms": 971,
         "request": {
           "administrador": "string",
           "email": "string",
@@ -152,7 +153,7 @@
         "method": "POST",
         "endpoint": "/login",
         "status": 200,
-        "ms": 310,
+        "ms": 357,
         "request": {
           "email": "string",
           "password": "string"
@@ -167,7 +168,7 @@
         "method": "POST",
         "endpoint": "/login",
         "status": 401,
-        "ms": 391,
+        "ms": 335,
         "request": {
           "email": "string",
           "password": "string"
@@ -182,7 +183,7 @@
         "method": "DELETE",
         "endpoint": "/carrinhos/cancelar-compra",
         "status": 200,
-        "ms": 287,
+        "ms": 285,
         "response": {
           "message": "string"
         }
@@ -192,7 +193,7 @@
         "method": "DELETE",
         "endpoint": "/usuarios/:id",
         "status": 200,
-        "ms": 377,
+        "ms": 318,
         "response": {
           "message": "string"
         }
@@ -201,26 +202,26 @@
     "actions": [
       {
         "step": "Navigate",
-        "ms": 3654
+        "ms": 854
       },
       {
-        "step": "Fill \"qa.mwjjujd8bc8k@teste.com\"",
+        "step": "Fill \"qa.mwmi1c7ykltr@teste.com\"",
         "target": "internal:testid=[data-testid=\"email\"s]",
-        "ms": 79
+        "ms": 61
       },
       {
-        "step": "Fill \"Lila Harris I\"",
+        "step": "Fill \"Clyde Cassin\"",
         "target": "internal:testid=[data-testid=\"senha\"s]",
-        "ms": 31
+        "ms": 37
       },
       {
         "step": "Click",
         "target": "internal:testid=[data-testid=\"entrar\"s]",
-        "ms": 135
+        "ms": 100
       },
       {
         "step": "Expect \"toBe\"",
-        "ms": 5,
+        "ms": 7,
         "error": "Error: expect(received).toBe(expected) // Object.is equality"
       }
     ]

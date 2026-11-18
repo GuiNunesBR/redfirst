@@ -1,5 +1,5 @@
 {
-  "recordedAt": "2026-11-16",
+  "recordedAt": "2026-11-18",
   "test": {
     "file": "tests/e2e/loja.spec.ts",
     "line": 11,
@@ -7,10 +7,10 @@
     "project": "chromium"
   },
   "status": "failed",
-  "durationMs": 19834,
+  "durationMs": 16229,
   "errors": [
     {
-      "message": "Error: expect(locator).toHaveText(expected) failed\n\nLocator:  getByText(/^Preço R\\$/)\nExpected: \"Preço R$7814\"\nReceived: \"Preço R$3907\"\nTimeout:  7000ms\n\nCall log:\n  - Expect \"toHaveText\" getByText(/^Preço R\\$/) with timeout 7000ms\n  - waiting for getByText(/^Preço R\\$/)\n    18 × locator resolved to <p>Preço R$3907</p>\n       - unexpected value \"Preço R$3907\"\n\n\n  40 |\n  41 |     await expect(lista.quantidade).toHaveText('Total: 2');\n> 42 |     await expect(lista.preco).toHaveText(`Preço R$${produto.preco * 2}`);\n     |                               ^\n  43 |     await evidencia('lista de compras com duas unidades');\n  44 |   });\n  45 | });\n    at tests/e2e/loja.spec.ts:42:31",
+      "message": "Error: expect(locator).toHaveText(expected) failed\n\nLocator:  getByText(/^Preço R\\$/)\nExpected: \"Preço R$5484\"\nReceived: \"Preço R$2742\"\nTimeout:  7000ms\n\nCall log:\n  - Expect \"toHaveText\" getByText(/^Preço R\\$/) with timeout 7000ms\n  - waiting for getByText(/^Preço R\\$/)\n    17 × locator resolved to <p>Preço R$2742</p>\n       - unexpected value \"Preço R$2742\"\n\n\n  40 |\n  41 |     await expect(lista.quantidade).toHaveText('Total: 2');\n> 42 |     await expect(lista.preco).toHaveText(`Preço R$${produto.preco * 2}`);\n     |                               ^\n  43 |     await evidencia('lista de compras com duas unidades');\n  44 |   });\n  45 | });\n    at tests/e2e/loja.spec.ts:42:31",
       "location": {
         "file": "tests/e2e/loja.spec.ts",
         "line": 42,
@@ -24,11 +24,11 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:60116/usuarios",
+          "url": "http://127.0.0.1:51694/usuarios",
           "corpo": {
-            "nome": "Roman VonRueden",
-            "email": "qa.mwjjivmvgjd3@teste.com",
-            "password": "33nv5CAGdw",
+            "nome": "Alvera Waters",
+            "email": "qa.mwmhvneu87oa@teste.com",
+            "password": "2k8xbmXjKC",
             "administrador": "true"
           }
         },
@@ -36,7 +36,7 @@
           "status": 201,
           "corpo": {
             "message": "Cadastro realizado com sucesso",
-            "_id": "lke7Aw3swJ1i08ny"
+            "_id": "g9K15RPmkYUYF7Gb"
           }
         }
       }
@@ -46,10 +46,10 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:60116/login",
+          "url": "http://127.0.0.1:51694/login",
           "corpo": {
-            "email": "qa.mwjjivmvgjd3@teste.com",
-            "password": "33nv5CAGdw"
+            "email": "qa.mwmhvneu87oa@teste.com",
+            "password": "2k8xbmXjKC"
           }
         },
         "resposta": {
@@ -66,11 +66,11 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:60116/usuarios",
+          "url": "http://127.0.0.1:51694/usuarios",
           "corpo": {
-            "nome": "Mr. Cody King V",
-            "email": "qa.mwjjiwgizp98@teste.com",
-            "password": "cOM9faDm9i",
+            "nome": "Aiyana Osinski",
+            "email": "qa.mwmhvo4t9ljf@teste.com",
+            "password": "c0cQM2fl9R",
             "administrador": "false"
           }
         },
@@ -78,7 +78,7 @@
           "status": 201,
           "corpo": {
             "message": "Cadastro realizado com sucesso",
-            "_id": "cpxyoThlFy55wW5V"
+            "_id": "rei79peHGvnokjey"
           }
         }
       }
@@ -88,10 +88,10 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:60116/login",
+          "url": "http://127.0.0.1:51694/login",
           "corpo": {
-            "email": "qa.mwjjiwgizp98@teste.com",
-            "password": "cOM9faDm9i"
+            "email": "qa.mwmhvo4t9ljf@teste.com",
+            "password": "c0cQM2fl9R"
           }
         },
         "resposta": {
@@ -108,29 +108,29 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:60116/produtos",
+          "url": "http://127.0.0.1:51694/produtos",
           "corpo": {
-            "nome": "Produto mwjjiwxmcqdb",
-            "preco": 3907,
-            "descricao": "New salmon Chips with ergonomic design for rigid comfort",
-            "quantidade": 21
+            "nome": "Produto mwmhvojgktms",
+            "preco": 2742,
+            "descricao": "The Jenna Keyboard is the latest in a series of tidy products from McKenzie and Sons",
+            "quantidade": 47
           }
         },
         "resposta": {
           "status": 201,
           "corpo": {
             "message": "Cadastro realizado com sucesso",
-            "_id": "eYOIQa4KzjWj3QDd"
+            "_id": "jhD5OiDSnd2cZddj"
           }
         }
       }
     },
     {
-      "name": "Front GET /produtos?nome=Produto%20mwjjiwxmcqdb → 200",
+      "name": "Front GET /produtos?nome=Produto%20mwmhvojgktms → 200",
       "body": {
         "requisicao": {
           "metodo": "GET",
-          "url": "http://127.0.0.1:60116/produtos?nome=Produto%20mwjjiwxmcqdb",
+          "url": "http://127.0.0.1:51694/produtos?nome=Produto%20mwmhvojgktms",
           "corpo": null
         },
         "resposta": {
@@ -139,11 +139,11 @@
             "quantidade": 1,
             "produtos": [
               {
-                "nome": "Produto mwjjiwxmcqdb",
-                "preco": 3907,
-                "descricao": "New salmon Chips with ergonomic design for rigid comfort",
-                "quantidade": 21,
-                "_id": "eYOIQa4KzjWj3QDd"
+                "nome": "Produto mwmhvojgktms",
+                "preco": 2742,
+                "descricao": "The Jenna Keyboard is the latest in a series of tidy products from McKenzie and Sons",
+                "quantidade": 47,
+                "_id": "jhD5OiDSnd2cZddj"
               }
             ]
           }
@@ -155,7 +155,7 @@
       "body": {
         "requisicao": {
           "metodo": "DELETE",
-          "url": "http://127.0.0.1:60116/carrinhos/cancelar-compra",
+          "url": "http://127.0.0.1:51694/carrinhos/cancelar-compra",
           "corpo": null
         },
         "resposta": {
@@ -171,7 +171,7 @@
       "body": {
         "requisicao": {
           "metodo": "DELETE",
-          "url": "http://127.0.0.1:60116/carrinhos/cancelar-compra",
+          "url": "http://127.0.0.1:51694/carrinhos/cancelar-compra",
           "corpo": null
         },
         "resposta": {
@@ -183,11 +183,11 @@
       }
     },
     {
-      "name": "API DELETE /produtos/eYOIQa4KzjWj3QDd → 200",
+      "name": "API DELETE /produtos/jhD5OiDSnd2cZddj → 200",
       "body": {
         "requisicao": {
           "metodo": "DELETE",
-          "url": "http://127.0.0.1:60116/produtos/eYOIQa4KzjWj3QDd",
+          "url": "http://127.0.0.1:51694/produtos/jhD5OiDSnd2cZddj",
           "corpo": null
         },
         "resposta": {
@@ -199,11 +199,11 @@
       }
     },
     {
-      "name": "API DELETE /usuarios/lke7Aw3swJ1i08ny → 200",
+      "name": "API DELETE /usuarios/g9K15RPmkYUYF7Gb → 200",
       "body": {
         "requisicao": {
           "metodo": "DELETE",
-          "url": "http://127.0.0.1:60116/usuarios/lke7Aw3swJ1i08ny",
+          "url": "http://127.0.0.1:51694/usuarios/g9K15RPmkYUYF7Gb",
           "corpo": null
         },
         "resposta": {
@@ -215,11 +215,11 @@
       }
     },
     {
-      "name": "API DELETE /usuarios/cpxyoThlFy55wW5V → 200",
+      "name": "API DELETE /usuarios/rei79peHGvnokjey → 200",
       "body": {
         "requisicao": {
           "metodo": "DELETE",
-          "url": "http://127.0.0.1:60116/usuarios/cpxyoThlFy55wW5V",
+          "url": "http://127.0.0.1:51694/usuarios/rei79peHGvnokjey",
           "corpo": null
         },
         "resposta": {

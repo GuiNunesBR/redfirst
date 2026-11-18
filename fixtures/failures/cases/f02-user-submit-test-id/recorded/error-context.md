@@ -40,17 +40,17 @@ Error: page.unroute: Target page, context or browser has been closed
       - generic [ref=e29]: "Nome: *"
       - 'textbox "Nome: *" [ref=e30]':
         - /placeholder: Digite seu nome
-        - text: Mr. Devin Hills
+        - text: Jolie Wisoky
     - generic [ref=e32]:
       - generic [ref=e33]: "Email: *"
       - 'textbox "Email: *" [ref=e34]':
         - /placeholder: Digite seu email
-        - text: qa.mwjizhk9axvo@teste.com
+        - text: qa.mwmhi7cgfqpc@teste.com
     - generic [ref=e36]:
       - generic [ref=e37]: "Senha: *"
       - 'textbox "Senha: *" [active] [ref=e38]':
         - /placeholder: Digite sua senha
-        - text: WZN4sfe_AE
+        - text: uC18nLKTOl
     - generic [ref=e41]:
       - checkbox "Cadastrar como administrador?" [ref=e42]
       - generic [ref=e43]: Cadastrar como administrador?

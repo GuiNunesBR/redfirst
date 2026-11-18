@@ -1,5 +1,5 @@
 {
-  "recordedAt": "2026-11-17",
+  "recordedAt": "2026-11-18",
   "statuses": [
     "passed",
     "passed",
@@ -13,7 +13,7 @@
         "method": "POST",
         "endpoint": "/usuarios",
         "status": 201,
-        "ms": 797,
+        "ms": 533,
         "request": {
           "administrador": "string",
           "email": "string",
@@ -30,7 +30,7 @@
         "method": "POST",
         "endpoint": "/login",
         "status": 200,
-        "ms": 331,
+        "ms": 241,
         "request": {
           "email": "string",
           "password": "string"
@@ -45,7 +45,7 @@
         "method": "POST",
         "endpoint": "/login",
         "status": 200,
-        "ms": 346,
+        "ms": 286,
         "request": {
           "email": "string",
           "password": "string"
@@ -60,11 +60,11 @@
         "method": "GET",
         "endpoint": "/usuarios",
         "status": 200,
-        "ms": 444,
+        "ms": 510,
         "response": {
           "quantidade": "number",
           "usuarios": {
-            "array": 168,
+            "array": 732,
             "of": {
               "_id": "string",
               "administrador": "string",
@@ -80,7 +80,7 @@
         "method": "DELETE",
         "endpoint": "/carrinhos/cancelar-compra",
         "status": 200,
-        "ms": 296,
+        "ms": 268,
         "response": {
           "message": "string"
         }
@@ -90,7 +90,7 @@
         "method": "DELETE",
         "endpoint": "/usuarios/:id",
         "status": 200,
-        "ms": 292,
+        "ms": 244,
         "response": {
           "message": "string"
         }
@@ -99,26 +99,26 @@
     "actions": [
       {
         "step": "Navigate",
-        "ms": 2199
+        "ms": 741
       },
       {
-        "step": "Fill \"qa.mwku93uolors@teste.com\"",
+        "step": "Fill \"qa.mwmijwi7ktzr@teste.com\"",
         "target": "internal:testid=[data-testid=\"email\"s]",
-        "ms": 136
+        "ms": 54
       },
       {
-        "step": "Fill \"eWoo8iKV4Y\"",
+        "step": "Fill \"1UekSSFE0u\"",
         "target": "internal:testid=[data-testid=\"senha\"s]",
-        "ms": 73
+        "ms": 25
       },
       {
         "step": "Click",
         "target": "internal:testid=[data-testid=\"entrar\"s]",
-        "ms": 150
+        "ms": 84
       },
       {
         "step": "Expect \"toBe\"",
-        "ms": 2
+        "ms": 1
       },
       {
         "step": "Expect \"toBe\"",
@@ -126,12 +126,13 @@
       },
       {
         "step": "Expect \"toHaveURL\"",
-        "ms": 917
+        "ms": 870
       },
       {
         "step": "Expect \"toContainText\"",
         "target": "internal:role=heading[name=/Olá/]",
-        "ms": 22
+        "ms": 19,
+        "shown": "Olá, ‹nome›"
       }
     ]
   },

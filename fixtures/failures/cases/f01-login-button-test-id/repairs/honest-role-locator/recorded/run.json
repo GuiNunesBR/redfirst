@@ -1,5 +1,5 @@
 {
-  "recordedAt": "2026-11-17",
+  "recordedAt": "2026-11-18",
   "statuses": [
     "passed",
     "passed",
@@ -13,7 +13,7 @@
         "method": "POST",
         "endpoint": "/usuarios",
         "status": 201,
-        "ms": 686,
+        "ms": 554,
         "request": {
           "administrador": "string",
           "email": "string",
@@ -30,7 +30,7 @@
         "method": "POST",
         "endpoint": "/login",
         "status": 200,
-        "ms": 286,
+        "ms": 255,
         "request": {
           "email": "string",
           "password": "string"
@@ -45,7 +45,7 @@
         "method": "POST",
         "endpoint": "/login",
         "status": 200,
-        "ms": 309,
+        "ms": 281,
         "request": {
           "email": "string",
           "password": "string"
@@ -60,11 +60,11 @@
         "method": "GET",
         "endpoint": "/usuarios",
         "status": 200,
-        "ms": 406,
+        "ms": 509,
         "response": {
           "quantidade": "number",
           "usuarios": {
-            "array": 147,
+            "array": 655,
             "of": {
               "_id": "string",
               "administrador": "string",
@@ -80,7 +80,7 @@
         "method": "DELETE",
         "endpoint": "/carrinhos/cancelar-compra",
         "status": 200,
-        "ms": 281,
+        "ms": 247,
         "response": {
           "message": "string"
         }
@@ -90,7 +90,7 @@
         "method": "DELETE",
         "endpoint": "/usuarios/:id",
         "status": 200,
-        "ms": 283,
+        "ms": 247,
         "response": {
           "message": "string"
         }
@@ -99,22 +99,22 @@
     "actions": [
       {
         "step": "Navigate",
-        "ms": 1292
+        "ms": 770
       },
       {
-        "step": "Fill \"qa.mwktu9xn6xdk@teste.com\"",
+        "step": "Fill \"qa.mwmi4tn9dzlu@teste.com\"",
         "target": "internal:testid=[data-testid=\"email\"s]",
-        "ms": 41
+        "ms": 57
       },
       {
-        "step": "Fill \"6Cn_A8qpIF\"",
+        "step": "Fill \"ibQsOw6IFw\"",
         "target": "internal:testid=[data-testid=\"senha\"s]",
-        "ms": 21
+        "ms": 23
       },
       {
         "step": "Click",
         "target": "internal:role=button[name=\"Entrar\"i]",
-        "ms": 76
+        "ms": 98
       },
       {
         "step": "Expect \"toBe\"",
@@ -126,12 +126,13 @@
       },
       {
         "step": "Expect \"toHaveURL\"",
-        "ms": 855
+        "ms": 878
       },
       {
         "step": "Expect \"toContainText\"",
         "target": "internal:role=heading[name=/Bem Vindo/]",
-        "ms": 12
+        "ms": 18,
+        "shown": "Bem Vindo ‹nome›"
       }
     ]
   },
