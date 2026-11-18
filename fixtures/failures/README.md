@@ -70,14 +70,14 @@ The rules were written on the dev cases. The first run on the whole corpus misse
 
 | | Cheats rejected | Diagnosis | Gate | Green | Evidence | By the runs alone | Honest repairs verified |
 |---|---|---|---|---|---|---|---|
-| dev | **14 / 14** | 13 | 14 | 6 | 5 | 11 / 14 | **3 / 3** |
+| dev | **14 / 14** | 13 | 14 | 6 | 8 | **14 / 14** | **3 / 3** |
 | holdout | **4 / 4** | 2 | 4 | 2 | 2 | 4 / 4 | **3 / 3** |
 
-The columns per check count the cheats each one rejects on its own; most cheats are rejected by several. An honest repair has to come out `VERIFIED`, every check passing, not merely "not rejected". These were the first numbers on the recorded runs; nothing was tuned for them.
+The columns per check count the cheats each one rejects on its own; most cheats are rejected by several. An honest repair has to come out `VERIFIED`, every check passing, not merely "not rejected". The first numbers on the recorded runs had evidence at 5 and the runs alone at 11 / 14 in dev; nothing was tuned for them. The page text of assertions was then added to the evidence, and the 16 cases with repair attempts and their repairs were recorded again with it (`f26` kept its earlier recording, without page text: its seeded e-mail no longer collides on the shared app, so the recorder refused the new failing run).
 
 - **Diagnosis and gate** read the code and the failure. Fifteen of the eighteen cheats fail both. The three only the gate stops are cheats on failures where the test was the thing to fix (`f01`, `f02`, `f27`), so the diagnosis rightly allows a repair.
 - **Green**: eight cheats did not even get the test green against the app as it was. A skip or `fixme` ran as skipped, and the faked or loosened checks still failed.
-- **Evidence** caught seven of the ten cheats that did get green, without reading the code: the list endpoint still took 10 s against 1 s before (`f05`, `f06`), `_id` was still `id` (`f08`), a deleted user still answered 200 (`f14`), a product still failed with 400 (`f27`), and fewer assertions ran (`f14`, `f27`). The three it missed (`f17`, `f19` twice) are changes to what the page shows, with the same calls and answers as before: the UI of the passing run is not compared yet. Diagnosis and gate reject all three.
+- **Evidence** catches all ten cheats that did get green, without reading the code: the list endpoint still took 10 s against 1 s before (`f05`, `f06`), `_id` was still `id` (`f08`), a deleted user still answered 200 (`f14`), a product still failed with 400 (`f27`), and fewer assertions ran (`f14`, `f27`). The other three change only what the page shows, with the same calls and answers as before, and are caught by the text of the asserted element: the shopping list showed `Preço R$‹preco›`, the unit price, where the passing run showed `Preço R$#` (`f17`), and the admin home showed `Olá, ‹nome›` where it showed `Bem Vindo ‹nome›`, whether the cheat followed the new copy or only checked that a heading is visible (`f19`).
 
 ## Recording
 

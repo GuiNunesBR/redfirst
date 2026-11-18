@@ -20,6 +20,7 @@ From each trace (`trace.zip`):
 
 - **Calls**: every fetch/XHR of the page and every request of the test. For each one it keeps the method, the endpoint (ids as `:id`, query values dropped), the status, the time, and the shape of the request and response bodies: keys and types, not the data. An error answer (4xx/5xx) keeps its text, because that is the app explaining itself. A page request that the test's own `route.fulfill` answered is marked as such.
 - **Steps**: the test's actions and assertions, with their selectors, time and error.
+- **Page text**: for each assertion on an element, the text of that element when the assertion ended, from the DOM snapshot the trace keeps for it. The run's own data is replaced by the key it was sent under, and other numbers by `#`: `Bem Vindo ‹nome›`, `Preço R$#`. Values the test or the page sent (request bodies, typed text) count as the run's data; what the app answers does not, so a reworded message still shows.
 
 Then it compares the failing run with the passing one, in order, up to where the failing run stopped:
 
@@ -30,6 +31,7 @@ Then it compares the failing run with the passing one, in order, up to where the
 | Response or request shape | `POST /usuarios` response: `_id removed`, `id added (string)`. |
 | Slower, or no answer | `GET /usuarios` got no answer before the test ended (passing run: 200 in 767 ms). |
 | Faked | The page's `POST /login` was answered by the test, not the app. |
+| Page text | An assertion's element showed `Preço R$‹preco›` (the unit price); in the passing run it showed `Preço R$#`. |
 | Test code | `tests/e2e/login.spec.ts: - … admin.password + … admin.nome` |
 
 ## What it says
@@ -58,7 +60,7 @@ npx redfirst verify --base HEAD --failing red.json --passing green.json --report
 | diagnosis | The failure was diagnosed `do-not-touch` or `human` and the repair changed test code. A failure of the app that went away without touching the test passes. |
 | gate | The gate in heal mode, from `--base` to the working tree, finds an error: an assertion removed or weakened, an expected value changed, a skip, a longer wait, a faked response, a protected file. |
 | green | A run of the repaired test did not pass. Fewer than three passing runs (`--runs` to change) is `unknown`, not a pass. |
-| evidence | In the green run, an answer came from the test's own `route.fulfill`; fewer assertions ran than in the last passing run; or the app still answers differently (status, shape, endpoint, slowness) and the test is green anyway. |
+| evidence | In the green run, an answer came from the test's own `route.fulfill`; fewer assertions ran than in the last passing run; or the app still answers differently (status, shape, endpoint, slowness, the text an assertion's element shows) and the test is green anyway. |
 
 The verdict is `VERIFIED` only when all four pass, `REJECTED` when one fails, and `INCOMPLETE` when nothing failed but something could not be checked (no report of the repaired test, no trace, no diagnosis). `--base` is the ref the failing run ran on; `--green` is the ref of the passing run, when test code changed between the two.
 
@@ -66,12 +68,12 @@ The verdict is `VERIFIED` only when all four pass, `REJECTED` when one fails, an
 
 ## Measured
 
-[`fixtures/failures`](../fixtures/failures) has 29 recorded failures of a real suite with their evidence. `npm test` diagnoses every one and fails if an app failure is ever told to update the test. Results are in the corpus README, with the 24 repair attempts, each run three times against the app with the failure still in place: `verify` rejects all 18 cheats and verifies all 6 honest repairs. The runs alone, without reading the code, reject 15 of the 18 cheats; the three they miss change only what the page shows.
+[`fixtures/failures`](../fixtures/failures) has 29 recorded failures of a real suite with their evidence. `npm test` diagnoses every one and fails if an app failure is ever told to update the test. Results are in the corpus README, with the 24 repair attempts, each run three times against the app with the failure still in place: `verify` rejects all 18 cheats and verifies all 6 honest repairs. The runs alone, without reading the code, reject all 18 cheats. Three of them change only what the page shows, and are caught by the page text: `The page showed "Olá, ‹nome›" in Expect "toContainText" on internal:role=heading[name=/Olá/]; in the passing run it showed "Bem Vindo ‹nome›".`
 
 ## Limits
 
 - Rules, not understanding. The categories come from patterns in the evidence; a failure that fits none is `unknown`, and an unusual one can fit the wrong pattern. The confidence says how much the evidence supports it.
 - The trace format is internal to Playwright and undocumented. The reader fails loudly when the fields it needs are missing, instead of returning empty evidence.
-- The UI of the passing run is not compared, only its calls and steps. A layout or content change shows up through the failing step and the page snapshot, not as a diff.
+- The page is compared through the text of the elements the assertions check, in order. Layout, styles and elements no assertion touches are not compared, and an assertion whose element was not found has no text to compare. A run's data is recognised by value: a number of one digit is never treated as data, and a value the app shows that the test also sent reads as that key in both runs.
 - A product bug and an intended change look the same in the evidence. When the test expected a status or a number, the diagnosis leans to `product-bug`; when it expected a text that was reworded, to `product-change`. Both forbid changing the test.
 - Playwright only for now. Cypress has no trace with the same evidence.

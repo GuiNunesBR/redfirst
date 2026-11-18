@@ -27,7 +27,7 @@ Each of these turns a red build green without fixing anything. Knowing the Playw
 | `redfirst gate` | Compares the tests at a base and a head and fails when the change weakens them, or touches the files that decide whether tests run (G001–G011). |
 | [`hooks`](hooks) | Agent hooks: block edits to protected files; lint every test file the agent edits and send the errors back. |
 | `redfirst diagnose` | Reads a failing Playwright run and its traces, compares it with a passing run, and says why the test failed and whether a fix may touch the test. |
-| `redfirst verify` | Judges a repair: the failure was the test's to fix, nothing was weakened, the test is green three times, and the green run still gets the same answers from the app. |
+| `redfirst verify` | Judges a repair: the failure was the test's to fix, nothing was weakened, the test is green three times, and the green run still gets the same answers from the app and shows the same text in its assertions. |
 | `redfirst mcp` | An MCP server with `lint`, `gate`, `classify_failure` and `verify_fix` as tools, for any agent that speaks MCP. |
 | Plugin manifests | Install the skill, the command and the hooks as a plugin in Claude Code, Codex or Grok Build. |
 | [`commands/redfirst-review.md`](commands/redfirst-review.md) | A terse senior-SDET review of a test diff. |
@@ -127,7 +127,7 @@ users.spec.ts:3 lists the users
   ok      diagnosis: The failure was diagnosed as locator (medium confidence), action update-test.
   ok      gate: Nothing removed, weakened, skipped, slowed down or faked in the test code.
   ok      green: Passed 3 of 3 runs.
-  ok      evidence: Same calls and answers as the last passing run, no faked answer, assertions run: 1 (1 then).
+  ok      evidence: Same calls, answers and page text as the last passing run, no faked answer, assertions run: 1 (1 then).
   verdict: VERIFIED
 ```
 
