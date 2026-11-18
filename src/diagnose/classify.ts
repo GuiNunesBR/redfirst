@@ -31,7 +31,7 @@ export interface FailureInput {
 
 /** A difference between the passing and the failing run, as evidence. */
 export interface Change {
-  kind: 'endpoint-replaced' | 'call-missing' | 'status' | 'response-shape' | 'request-shape' | 'slower' | 'no-response' | 'faked' | 'test-code';
+  kind: 'endpoint-replaced' | 'call-missing' | 'status' | 'response-shape' | 'request-shape' | 'slower' | 'no-response' | 'faked' | 'shown' | 'test-code';
   detail: string;
 }
 
@@ -133,6 +133,16 @@ export function compare(passing: Evidence, failing: Evidence): Change[] {
         i += 1;
       }
     }
+  }
+  // What the page showed in each assertion on an element, in order, where both runs read the element.
+  const onElement = (e: Evidence) => e.actions.filter((a) => a.step.startsWith('Expect') && a.target);
+  const before = onElement(passing);
+  const after = onElement(failing);
+  for (let k = 0; k < Math.min(before.length, after.length); k += 1) {
+    const p = before[k]!;
+    const f = after[k]!;
+    if (p.shown === undefined || f.shown === undefined || p.shown === f.shown) continue;
+    changes.push({ kind: 'shown', detail: `The page showed "${f.shown}" in ${f.step} on ${f.target}; in the passing run it showed "${p.shown}".` });
   }
   return changes;
 }
@@ -241,7 +251,7 @@ export function classify(input: FailureInput): Diagnosis {
   if (!input.passing) unknowns.push('No passing run to compare with: changes in endpoints, statuses and answers since the test last passed cannot be shown.');
   if (category === 'unknown') unknowns.push('The evidence does not point to one cause.');
   if (!input.snapshot) unknowns.push('No page snapshot at the failure.');
-  unknowns.push('The UI of the passing run is not compared: only its calls and steps are.');
+  if (input.passing && !input.passing.actions.some((a) => a.shown !== undefined)) unknowns.push('The passing run has no page text for its assertions: only its calls and steps are compared.');
 
   const heal = HEAL_OF[category];
   if (heal !== 'update-test') mayDo.length = 0;

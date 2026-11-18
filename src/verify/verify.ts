@@ -37,7 +37,7 @@ export interface Verification {
 const expects = (e: Evidence) => e.actions.filter((a) => a.step.startsWith('Expect')).length;
 
 /** Differences from the passing run that mean the app still misbehaves while the test is green. */
-const APP_STILL_DIFFERENT: Change['kind'][] = ['status', 'response-shape', 'request-shape', 'slower', 'no-response', 'endpoint-replaced', 'call-missing'];
+const APP_STILL_DIFFERENT: Change['kind'][] = ['status', 'response-shape', 'request-shape', 'slower', 'no-response', 'endpoint-replaced', 'call-missing', 'shown'];
 
 function diagnosisCheck(input: VerifyInput): Check {
   const d = input.diagnosis;
@@ -90,7 +90,7 @@ function evidenceCheck(input: VerifyInput): Check {
   }
   return problems.length
     ? { name: 'evidence', status: 'fail', detail: problems }
-    : { name: 'evidence', status: 'pass', detail: [`Same calls and answers as the last passing run, no faked answer, assertions run: ${now} (${before} then).`] };
+    : { name: 'evidence', status: 'pass', detail: [`Same calls, answers and page text as the last passing run, no faked answer, assertions run: ${now} (${before} then).`] };
 }
 
 export function verify(input: VerifyInput): Verification {

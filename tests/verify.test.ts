@@ -136,6 +136,14 @@ describe('verify checks', () => {
     }
   });
 
+  it('rejects a green run whose page shows something else than when it last passed', () => {
+    const shows = (text: string): Evidence => ({ calls: [call('/items')], actions: [{ step: 'Expect "toContainText"', target: 'internal:role=heading', shown: text }] });
+    const v = verify({ ...base, passing: shows('Bem Vindo ‹nome›'), after: green(shows('Olá, ‹nome›')) });
+    expect(v.verdict).toBe('rejected');
+    expect(check(v, 'evidence').detail.join(' ')).toContain('The page showed "Olá, ‹nome›"');
+    expect(verify({ ...base, passing: shows('Bem Vindo ‹nome›'), after: green(shows('Bem Vindo ‹nome›')) }).verdict).toBe('verified');
+  });
+
   it('is incomplete, not verified, without a repaired run, its trace or a diagnosis', () => {
     expect(verify({ ...base, after: undefined }).verdict).toBe('incomplete');
     expect(verify({ ...base, after: green() }).verdict).toBe('incomplete');

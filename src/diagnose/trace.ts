@@ -26,6 +26,11 @@ export interface Action {
   target?: string;
   ms?: number;
   error?: string;
+  /**
+   * For an assertion on an element: the element's text when the assertion ended, with the run's own data as
+   * `‹key›` (a value the test or the page sent under that key) and other numbers as `#`.
+   */
+  shown?: string;
 }
 
 /** What one run of a test did: the calls to the app and the test's steps, in order. */
@@ -66,9 +71,12 @@ interface TraceEvent {
   title?: string;
   startTime?: number;
   endTime?: number;
-  params?: { selector?: string };
+  params?: { selector?: string; value?: string };
   error?: { message?: string };
-  snapshot?: {
+  snapshot?: ResourceSnapshot | FrameSnapshot;
+}
+
+interface ResourceSnapshot {
     pageref?: string;
     startedDateTime: string;
     time: number;
@@ -76,7 +84,18 @@ interface TraceEvent {
     _wasFulfilled?: boolean;
     request: { method: string; url: string; headers?: { name: string }[]; postData?: { _file?: string; mimeType?: string } };
     response: { status: number; content?: { _file?: string; mimeType?: string } };
-  };
+}
+
+/**
+ * The DOM of a frame after a call. A node is a text, `[tag, attributes?, ...children]`, or `[[snapshotsAgo, index]]`:
+ * a subtree unchanged since an earlier snapshot of the same frame, by its index in that snapshot's nodes in post-order.
+ */
+type DomNode = string | [string] | [string, Record<string, string>, ...DomNode[]] | [[number, number]];
+interface FrameSnapshot {
+  callId: string;
+  phase?: string;
+  frameId: string;
+  html: DomNode;
 }
 
 const lines = (buffer: Buffer | undefined): TraceEvent[] =>
@@ -117,6 +136,82 @@ function bodyOf(entries: Map<string, Buffer>, file: string | undefined, mimeType
   }
 }
 
+const isJson = (buffer: Buffer | undefined): unknown => {
+  try {
+    return buffer?.length ? JSON.parse(buffer.toString('utf8')) : undefined;
+  } catch {
+    return undefined;
+  }
+};
+
+/** Values of a JSON body by key: the data a run made up, to tell it apart from what the page shows. */
+function valuesOf(value: unknown, into: Map<string, string>, key = 'value'): void {
+  if (Array.isArray(value)) for (const item of value) valuesOf(item, into, key);
+  else if (value && typeof value === 'object') for (const [k, v] of Object.entries(value)) valuesOf(v, into, k);
+  else if ((typeof value === 'string' && value.length >= 3 && !/^(true|false|null)$/.test(value)) || (typeof value === 'number' && Math.abs(value) >= 10)) {
+    if (!into.has(String(value))) into.set(String(value), key);
+  }
+}
+
+/**
+ * The text as it reads without the run's data: the same page in another run, with other unique names and
+ * prices, reads the same. Single digits stay, so a count like "Total: 2" is still compared.
+ */
+export function maskData(text: string, data: Map<string, string>): string {
+  let out = text.replace(/\s+/g, ' ').trim();
+  for (const [value, key] of [...data].sort((a, b) => b[0].length - a[0].length)) {
+    out = /^-?\d+(\.\d+)?$/.test(value)
+      ? out.replace(new RegExp(`(?<![\\d.,])${value.replace('.', '\\.')}(?![.,]?\\d)`, 'g'), `‹${key}›`)
+      : out.split(value).join(`‹${key}›`);
+  }
+  return out
+    .replace(/\b(?=[A-Za-z0-9]*[A-Z0-9])[A-Za-z0-9]{16,}\b/g, '‹id›')
+    .replace(/(?<![\d.,])\d{2,}(?:[.,]\d+)*(?![.,]?\d)/g, '#')
+    .slice(0, 200);
+}
+
+const isRef = (n: DomNode): n is [[number, number]] => Array.isArray(n) && Array.isArray(n[0]);
+
+/** The text of the elements an assertion targeted, from its after-snapshot. */
+function targetText(snapshots: FrameSnapshot[], index: number): string | undefined {
+  const nodes = new Map<number, DomNode[]>();
+  const nodesOf = (i: number) => {
+    let list = nodes.get(i);
+    if (!list) {
+      const out: DomNode[] = [];
+      const visit = (n: DomNode) => {
+        if (typeof n === 'string') out.push(n);
+        else if (!isRef(n)) {
+          for (const child of n.slice(2) as DomNode[]) visit(child);
+          out.push(n);
+        }
+      };
+      visit(snapshots[i]!.html);
+      nodes.set(i, (list = out));
+    }
+    return list;
+  };
+  const resolve = (n: DomNode, i: number): [DomNode | undefined, number] => (isRef(n) ? [nodesOf(i - n[0][0])[n[0][1]], i - n[0][0]] : [n, i]);
+  const text = (node: DomNode, at: number): string => {
+    const [n, i] = resolve(node, at);
+    if (n === undefined || isRef(n)) return '';
+    if (typeof n === 'string') return n;
+    const [tag, attributes, ...children] = n;
+    if (/^(SCRIPT|STYLE|NOSCRIPT)$/.test(tag)) return '';
+    if (/^(INPUT|TEXTAREA|SELECT)$/.test(tag)) return attributes?.__playwright_value_ ?? '';
+    return (children as DomNode[]).map((c) => text(c, i)).join('');
+  };
+  const found: string[] = [];
+  const find = (node: DomNode, at: number) => {
+    const [n, i] = resolve(node, at);
+    if (n === undefined || typeof n === 'string' || isRef(n)) return;
+    if (n[1] && '__playwright_target__' in n[1]) found.push(text(n, i));
+    else for (const child of n.slice(2) as DomNode[]) find(child, i);
+  };
+  find(snapshots[index]!.html, index);
+  return found.length ? found.join(' | ') : undefined;
+}
+
 function textOf(entries: Map<string, Buffer>, file: string | undefined): string | undefined {
   const text = file ? entries.get(file)?.toString('utf8') : undefined;
   if (!text) return undefined;
@@ -149,9 +244,11 @@ export function evidenceOf(traceFile: string, options: EvidenceOptions = {}): Ev
 
   type Raw = Call & { at: number; fulfilled: boolean; forPage: boolean };
   const calls: Raw[] = [];
+  // What the test and the page sent: unique names, e-mails and prices that differ from run to run.
+  const data = new Map<string, string>();
   for (const name of network) {
     for (const event of lines(entries.get(name))) {
-      const snapshot = event.snapshot;
+      const snapshot = event.snapshot as ResourceSnapshot | undefined;
       if (event.type !== 'resource-snapshot' || !snapshot) continue;
       const { request, response, pageref } = snapshot;
       if (request.method === 'OPTIONS') continue;
@@ -169,6 +266,7 @@ export function evidenceOf(traceFile: string, options: EvidenceOptions = {}): Ev
         response: bodyOf(entries, response.content?._file, response.content?.mimeType),
         error: response.status >= 400 ? textOf(entries, response.content?._file) : undefined,
       });
+      valuesOf(isJson(request.postData?._file ? entries.get(request.postData._file) : undefined), data);
     }
   }
   calls.sort((a, b) => a.at - b.at);
@@ -183,8 +281,20 @@ export function evidenceOf(traceFile: string, options: EvidenceOptions = {}): Ev
   }
 
   const selectors = new Map<string, string>();
+  // The after-snapshot of each call, with the earlier snapshots of its frame that it refers to.
+  const pages = new Map<string, { frame: FrameSnapshot[]; index: number }>();
   for (const name of library) {
-    for (const event of lines(entries.get(name))) if (event.type === 'before' && event.callId && event.params?.selector) selectors.set(event.callId, event.params.selector);
+    const frames = new Map<string, FrameSnapshot[]>();
+    for (const event of lines(entries.get(name))) {
+      if (event.type === 'before' && event.callId && event.params?.selector) selectors.set(event.callId, event.params.selector);
+      if (event.type === 'before' && event.method === 'fill' && event.params?.value) valuesOf(event.params.value, data, 'typed');
+      if (event.type !== 'frame-snapshot' || !event.snapshot) continue;
+      const snapshot = event.snapshot as FrameSnapshot;
+      const frame = frames.get(snapshot.frameId) ?? [];
+      frames.set(snapshot.frameId, frame);
+      frame.push(snapshot);
+      if (snapshot.phase === 'after') pages.set(snapshot.callId, { frame, index: frame.length - 1 });
+    }
   }
   const steps = new Map<string, TraceEvent>();
   const ends = new Map<string, TraceEvent>();
@@ -200,12 +310,15 @@ export function evidenceOf(traceFile: string, options: EvidenceOptions = {}): Ev
   for (const [callId, before] of steps) {
     if (!STEP_METHODS.has(before.method ?? '') || NOISE.test(before.title ?? '') || inHook(before)) continue;
     const after = ends.get(callId);
+    const page = before.method === 'expect' && selectors.has(callId) ? pages.get(callId) : undefined;
+    const text = page && targetText(page.frame, page.index);
     actions.push({
       at: before.startTime ?? 0,
       step: before.title ?? '',
       target: selectors.get(callId),
       ms: after?.endTime !== undefined && before.startTime !== undefined ? Math.round(after.endTime - before.startTime) : undefined,
       error: after ? plain(after.error?.message)?.split('\n')[0] : 'never finished',
+      shown: text === undefined ? undefined : maskData(text, data),
     });
   }
   actions.sort((a, b) => a.at - b.at);

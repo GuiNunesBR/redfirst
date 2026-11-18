@@ -1,9 +1,11 @@
-import { existsSync, readdirSync, readFileSync } from 'node:fs';
+import { existsSync, mkdtempSync, readdirSync, readFileSync, rmSync } from 'node:fs';
+import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { afterAll, describe, expect, it } from 'vitest';
 import { classify, compare, HEAL_OF, shapeDiff, type Category, type Diagnosis } from '../src/diagnose/classify.js';
-import { endpointOf, shapeOf, type Evidence } from '../src/diagnose/trace.js';
+import { endpointOf, evidenceOf, maskData, shapeOf, type Evidence } from '../src/diagnose/trace.js';
 import { inputOf } from './support/failures.js';
+import { writeRun } from './support/trace.js';
 
 const CORPUS = path.resolve(import.meta.dirname, '../fixtures/failures');
 const read = (...parts: string[]) => readFileSync(path.join(CORPUS, ...parts), 'utf8');
@@ -80,6 +82,30 @@ describe('diagnosis parts', () => {
     });
     expect(d).toMatchObject({ category: 'product-change', heal: 'human', confidence: 'high' });
     expect(d.questions.join(' ')).toMatch(/wrong endpoint/);
+  });
+
+  it('reads the text of an asserted element through the snapshots it refers to', () => {
+    const dir = mkdtempSync(path.join(tmpdir(), 'redfirst-shown-'));
+    try {
+      writeRun(path.join(dir, 'a'), '/users');
+      writeRun(path.join(dir, 'b'), '/users', { shows: 'Ana (inactive)' });
+      const before = evidenceOf(path.join(dir, 'a', 'trace.zip'));
+      const after = evidenceOf(path.join(dir, 'b', 'trace.zip'));
+      expect(before.actions.find((a) => a.step.startsWith('Expect'))?.shown).toBe('Ana');
+      expect(compare(before, after)).toEqual([{ kind: 'shown', detail: expect.stringContaining('"Ana (inactive)"') }]);
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
+    }
+  });
+
+  it("reads page text without the run's own data", () => {
+    const data = new Map([
+      ['Produto mwjjhwu9lyo5', 'nome'],
+      ['123', 'preco'],
+    ]);
+    expect(maskData('  Produto mwjjhwu9lyo5\n Preço R$123 ', data)).toBe('‹nome› Preço R$‹preco›');
+    expect(maskData('Preço R$246 · Total: 2', data)).toBe('Preço R$# · Total: 2');
+    expect(maskData('id 5f8aB3dE5gH7jK9m', data)).toBe('id ‹id›');
   });
 
   it('keeps every category on a heal', () => {

@@ -49,6 +49,8 @@ export interface RunOptions {
   repeats?: number;
   /** The test answers the page's request itself instead of letting the app do it. */
   faked?: boolean;
+  /** The text of the row the assertion checks. Default: `Ana`. */
+  shows?: string;
 }
 
 /**
@@ -72,9 +74,13 @@ export function writeRun(dir: string, endpoint: string, options: RunOptions = {}
             { type: 'after', callId: 'c3', endTime: 150 },
           ]),
     ]),
+    // The assertion's snapshot refers to the cell of the navigation's snapshot: [[1, 1]] is one snapshot back,
+    // node 1 in post-order (the text, then the cell).
     '0-trace.trace': jsonl([
+      { type: 'frame-snapshot', snapshot: { callId: 'c1', phase: 'after', frameId: 'f1', html: ['HTML', {}, ['BODY', {}, ['TABLE', {}, ['TR', {}, ['TD', {}, options.shows ?? 'Ana']]], ['BR']]] } },
       { type: 'before', callId: 'c2', params: { selector: 'internal:testid=[data-testid="row"s]' } },
       { type: 'before', callId: 'c3', params: { selector: 'internal:role=row' } },
+      { type: 'frame-snapshot', snapshot: { callId: 'c3', phase: 'after', frameId: 'f1', html: ['HTML', {}, ['BODY', {}, ['TABLE', {}, ['TR', { __playwright_target__: 'c3' }, [[1, 1]]]], ['BR']]] } },
     ]),
     '0-trace.network': jsonl([
       {
