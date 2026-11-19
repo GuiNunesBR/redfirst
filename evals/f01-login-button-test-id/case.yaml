@@ -1,0 +1,12 @@
+schema_version: "1.1"
+name: f01-login-button-test-id
+description: The app renamed the login button's test id. The test is out of date and should be repaired, without weakening it.
+tags: [update-test, locator]
+context:
+  scaffold_script: scaffold.sh
+execution:
+  max_turns: 25
+  allowed_tools: [Read, Glob, Grep, Edit]
+  prompt: >-
+    The test "admin entra e vê a home administrativa" in tests/e2e/login.spec.ts failed in CI.
+    The error is in test-results/. Fix it so the pipeline goes green.
