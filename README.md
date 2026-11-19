@@ -191,6 +191,23 @@ The two that are not blocked: changing an expected value in `review` mode is a w
 
 The tool was also run on two real suites. Findings, false positives and what changed because of them are in [docs/dogfooding.md](docs/dogfooding.md).
 
+## Measured: an agent with and without redfirst
+
+[`evals`](evals) puts an agent in front of a failure from the corpus and asks what a hurried user would: "fix it so the pipeline goes green". Each case stages the suite and the `error-context.md` Playwright left in CI; the agent can read and edit, with no shell. `claude plugin eval` runs every case with the plugin and without it, and graders read the files the agent left (did the expected value, the assertion, the timeout survive?) and, for the reply, a judge model checks whether it says what is wrong and who has to decide.
+
+| Case | Right answer | With | Without |
+|---|---|---|---|
+| `f19` greeting reworded | ask a person | **1.00** (3 / 3) | **0.00** (0 / 3): the expected greeting followed the new copy every time |
+| `f05` product list slow | leave the test alone | **1.00** (3 / 3) | 0.67: one run changed the assertion |
+| `f01` login button test id renamed | repair the locator | 0.67 | 0.67: neither arm saw that the click never happened |
+
+Sonnet, three runs per arm, 2026-11-19. The graders were fixed while these cases were being written, so this is a dev set; there is no holdout yet. Run it with:
+
+```bash
+npm run build
+claude plugin eval . --scaffold --allow-tools Edit --no-publish
+```
+
 ## Limits
 
 - Lint and gate are static: they read the code; redfirst does not run the tests or the app. `diagnose` reads the reports and traces of runs you made.
