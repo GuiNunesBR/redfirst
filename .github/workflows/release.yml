@@ -1,9 +1,8 @@
 name: Release
 
-# Publishes to npm when a version tag is pushed, through npm trusted publishing, and the package carries a
-# provenance statement that links it to this workflow and commit. npm only accepts a trusted publisher on a
-# package that already exists, so the first publish of a new package uses a short-lived NPM_TOKEN secret;
-# when the secret is absent, npm authenticates through the trusted publisher.
+# Publishes to npm when a version tag is pushed, through npm trusted publishing: no token is stored in the
+# repository, and the package carries a provenance statement that links it to this workflow and commit.
+# npm only accepts a trusted publisher on a package that already exists; the first publish needed a token.
 on:
   push:
     tags: ['v*']
@@ -27,8 +26,6 @@ jobs:
       - name: Tag matches the package version
         run: test "${GITHUB_REF_NAME}" = "v$(node -p "require('./package.json').version")"
       - name: Publish unless this version is already on npm
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           package="$(node -p "require('./package.json').name")@$(node -p "require('./package.json').version")"
           if npm view "${package}" version > /dev/null 2>&1; then
