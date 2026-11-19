@@ -1,6 +1,6 @@
 {
   "name": "@guinunesbr/redfirst",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Makes your AI agent write tests that can fail. A skill, a linter and a gate for Playwright and Cypress suites.",
   "license": "MIT",
   "repository": {
