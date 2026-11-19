@@ -1,5 +1,5 @@
 {
-  "recordedAt": "2026-11-16",
+  "recordedAt": "2026-11-19",
   "test": {
     "file": "tests/api/usuarios.spec.ts",
     "line": 6,
@@ -7,7 +7,7 @@
     "project": "api"
   },
   "status": "failed",
-  "durationMs": 1043,
+  "durationMs": 1075,
   "errors": [
     {
       "message": "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: 201\nReceived: 400\n\n   7 |     const resposta = await api.criarUsuario(novoUsuario({ email: 'fulano@qa.com' }));\n   8 |\n>  9 |     expect(resposta.status()).toBe(201);\n     |                               ^\n  10 |     const corpo = validar(CadastroSchema, await resposta.json());\n  11 |     limpeza.usuario(corpo._id);\n  12 |     expect(corpo.message).toBe('Cadastro realizado com sucesso');\n    at tests/api/usuarios.spec.ts:9:31",
@@ -24,11 +24,11 @@
       "body": {
         "requisicao": {
           "metodo": "POST",
-          "url": "http://127.0.0.1:54735/usuarios",
+          "url": "http://127.0.0.1:52535/usuarios",
           "corpo": {
-            "nome": "Ollie Kirlin",
+            "nome": "Mose Ondricka",
             "email": "fulano@qa.com",
-            "password": "buHeeel9yy",
+            "password": "DhOLwtMhaU",
             "administrador": "false"
           }
         },

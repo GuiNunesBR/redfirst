@@ -130,6 +130,26 @@ function extract(report, workdir, file, line) {
 }
 
 /**
+ * Data the case expects to find on the shared app, such as a user whose e-mail the faulted test reuses.
+ * Others can delete it at any time, so it is created before the run when missing, and only what was created
+ * here is removed afterwards.
+ */
+async function seed(spec) {
+  const created = [];
+  for (const user of spec.seed?.users ?? []) {
+    const found = await (await fetch(`${API}/usuarios?email=${encodeURIComponent(user.email)}`)).json();
+    if (found.quantidade > 0) continue;
+    const response = await fetch(`${API}/usuarios`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(user) });
+    const body = await response.json();
+    if (response.status !== 201) throw new Error(`seed ${user.email}: ${response.status} ${body.message ?? ''}`);
+    created.push(body._id);
+  }
+  return async () => {
+    for (const id of created) await fetch(`${API}/usuarios/${id}`, { method: 'DELETE' });
+  };
+}
+
+/**
  * One run of the case's test. Faulted: the case's file changes are laid over the suite and its proxy faults are
  * armed while the target runs. Not faulted: the plain suite against the real app.
  */
@@ -143,6 +163,7 @@ async function execute(id, spec, faulted, repair) {
   if (faulted && existsSync(path.join(dir, 'suite'))) cpSync(path.join(dir, 'suite'), workdir, { recursive: true });
   if (repair) cpSync(path.join(dir, 'repairs', repair.name, 'files'), workdir, { recursive: true });
 
+  const unseed = faulted ? await seed(spec) : async () => {};
   const api = await startApiProxy(API, spec.api ?? []);
   const front = await startFrontProxy(FRONT, API, api.url, spec.front ?? []);
   const reportFile = path.join(workdir, 'report.json');
@@ -180,6 +201,7 @@ async function execute(id, spec, faulted, repair) {
   } finally {
     await api.close();
     await front.close();
+    await unseed();
     if (!values.keep) rmSync(workdir, { recursive: true, force: true });
   }
 }

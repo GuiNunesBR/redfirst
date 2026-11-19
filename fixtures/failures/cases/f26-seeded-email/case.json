@@ -5,5 +5,15 @@
   "test": "tests/api/usuarios.spec.ts:6",
   "project": "api",
   "fix": "Generate a unique email, as novoUsuario() does.",
-  "split": "dev"
+  "split": "dev",
+  "seed": {
+    "users": [
+      {
+        "nome": "Fulano da Silva",
+        "email": "fulano@qa.com",
+        "password": "teste",
+        "administrador": "true"
+      }
+    ]
+  }
 }

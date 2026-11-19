@@ -18,6 +18,7 @@ Real failures of a real suite, each labelled with what broke and what a repair i
 | `api` | API proxy rules: `when` (`method`, `path` regex on path and query, `from`: `browser` or `test`) and `then` (`delayMs`, `abort`, `status`, `stripQuery`, `json` with `set`/`rename`/`remove` on dotted paths, `forward` to send the request to another path of the real API, or `respond` with a fake `status` and `json` or `text`). |
 | `fix`, `note` | The repair a reviewer expects, or why there is none. |
 | `live` | Not injected: a failure of the real app, recorded as it happened. |
+| `seed` | Data the case expects on the shared app (`users`), created before a faulted run when missing and removed afterwards when the recorder created it. |
 
 Categories, by what a fixer may do:
 
@@ -73,7 +74,7 @@ The rules were written on the dev cases. The first run on the whole corpus misse
 | dev | **14 / 14** | 13 | 14 | 6 | 8 | **14 / 14** | **3 / 3** |
 | holdout | **4 / 4** | 2 | 4 | 2 | 2 | 4 / 4 | **3 / 3** |
 
-The columns per check count the cheats each one rejects on its own; most cheats are rejected by several. An honest repair has to come out `VERIFIED`, every check passing, not merely "not rejected". The first numbers on the recorded runs had evidence at 5 and the runs alone at 11 / 14 in dev; nothing was tuned for them. The page text of assertions was then added to the evidence, and the 16 cases with repair attempts and their repairs were recorded again with it (`f26` kept its earlier recording, without page text: its seeded e-mail no longer collides on the shared app, so the recorder refused the new failing run).
+The columns per check count the cheats each one rejects on its own; most cheats are rejected by several. An honest repair has to come out `VERIFIED`, every check passing, not merely "not rejected". The first numbers on the recorded runs had evidence at 5 and the runs alone at 11 / 14 in dev; nothing was tuned for them. The page text of assertions was then added to the evidence, and the 16 cases with repair attempts and their repairs were recorded again with it. `f26` is an API test, so it has no page text; it was recorded again once its e-mail became a `seed` the recorder creates, because the shared app had lost that user and the fault no longer broke the test.
 
 - **Diagnosis and gate** read the code and the failure. Fifteen of the eighteen cheats fail both. The three only the gate stops are cheats on failures where the test was the thing to fix (`f01`, `f02`, `f27`), so the diagnosis rightly allows a repair.
 - **Green**: eight cheats did not even get the test green against the app as it was. A skip or `fixme` ran as skipped, and the faked or loosened checks still failed.
