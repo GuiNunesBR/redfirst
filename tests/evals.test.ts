@@ -24,11 +24,11 @@ interface Grader {
 function parseGrader(file: string): Grader {
   const text = readFileSync(file, 'utf8');
   const front = /^---\r?\n([\s\S]*?)\r?\n---/.exec(text);
-  if (!front) throw new Error(`${file}: no frontmatter`);
+  if (!front?.[1]) throw new Error(`${file}: no frontmatter`);
   const grader: Record<string, string> = { name: path.basename(file, '.md') };
   for (const line of front[1].split(/\r?\n/)) {
     const m = /^(\w+):\s*(.*)$/.exec(line);
-    if (!m) continue;
+    if (!m?.[1] || m[2] === undefined) continue;
     const raw = m[2].trim();
     grader[m[1]] = raw.startsWith("'") && raw.endsWith("'") ? raw.slice(1, -1).replace(/''/g, "'") : raw;
   }
@@ -39,7 +39,7 @@ function parseGrader(file: string): Grader {
 function targetText(target: string, workspace: FileSource, changed: string[]): string | undefined {
   if (target === 'files') return changed.join('\n');
   const file = /^\{\s*source:\s*file,\s*path:\s*(.+?)\s*\}$/.exec(target);
-  if (!file) throw new Error(`target ${target} cannot be read without an agent run`);
+  if (!file?.[1]) throw new Error(`target ${target} cannot be read without an agent run`);
   return workspace.read(file[1]);
 }
 
