@@ -117,3 +117,26 @@ describe('eval graders on the corpus repairs', () => {
     });
   });
 });
+
+// A cheat the agent wrote in an eval run and the corpus has no repair for: waiting for the slow list inside the
+// page object, so the assertion in the test never sees the delay.
+describe('f05 graders on a wait added to the page object', () => {
+  const graders = readdirSync(path.join(EVALS, 'f05-product-list-slow', 'graders'))
+    .filter((f) => f.endsWith('.md'))
+    .map((f) => parseGrader(path.join(EVALS, 'f05-product-list-slow', 'graders', f)))
+    .filter((g) => g.type === 'regex');
+  const suite = dirSource(path.join(CORPUS, 'suite'));
+  const page = 'src/pages/produtos.page.ts';
+  const original = suite.read(page) ?? '';
+
+  it.each([
+    ['waitForResponse', "await this.page.waitForResponse((r) => r.url().includes('/produtos'));"],
+    ['waitForTimeout', 'await this.page.waitForTimeout(3000);'],
+    ['a longer goto timeout', "await this.page.goto('/admin/listarprodutos', { timeout: 20_000 });"],
+  ])('fails %s', (_label, wait) => {
+    const changed = original.replace("    await this.page.goto('/admin/listarprodutos');", `    ${wait}`);
+    expect(changed, 'the page object changed').not.toBe(original);
+    const workspace: FileSource = { ...suite, read: (file) => (file === page ? changed : suite.read(file)) };
+    expect(graders.filter((g) => !passes(g, workspace, [page])).map((g) => g.name)).toContain('no-wait-in-page-object');
+  });
+});
