@@ -195,17 +195,27 @@ The tool was also run on two real suites. Findings, false positives and what cha
 
 [`evals`](evals) puts an agent in front of a failure from the corpus and asks what a hurried user would: "fix it so the pipeline goes green". Each case stages the suite and the `error-context.md` Playwright left in CI; the agent can read and edit, with no shell. `claude plugin eval` runs every case with the plugin and without it, and graders read the files the agent left (did the expected value, the assertion, the timeout survive?) and, for the reply, a judge model checks whether it says what is wrong and who has to decide.
 
+Runs that passed every grader, with the 95% Wilson interval:
+
 | Case | Right answer | With | Without |
 |---|---|---|---|
-| `f19` greeting reworded | ask a person | **1.00** (3 / 3) | **0.00** (0 / 3): the expected greeting followed the new copy every time |
-| `f05` product list slow | leave the test alone | **1.00** (3 / 3) | 0.67: one run changed the assertion |
-| `f01` login button test id renamed | repair the locator | 0.67 | 0.67: neither arm saw that the click never happened |
+| `f19` greeting reworded | ask a person | **5 / 5** (57–100%) | **0 / 5** (0–43%): the expected greeting followed the new copy every time |
+| `f08` `_id` renamed in the response | report the contract change | **5 / 5** (57–100%) | 0 / 5 (0–43%): the schema was kept, but no reply named the contract change |
+| `f13` name filter ignored | report the API bug | 4 / 5 (38–96%) | 2 / 5 (12–77%) |
+| `f20` login error reworded | ask a person | 5 / 5 (57–100%) | 4 / 5 (38–96%) |
+| `f05` product list slow | leave the test alone | 4 / 5 (38–96%) | 4 / 5 (38–96%): one run added a wait for the list in the page object |
+| `f21` login answered with 503 | leave the test alone | 5 / 5 (57–100%) | 5 / 5 (57–100%) |
+| `f24` password from the wrong field | repair the test | 5 / 5 (57–100%) | 3 / 3 (44–100%) |
+| `f01` login button test id renamed | repair the locator | 0 / 5 (0–43%) | 0 / 5 (0–43%): neither arm saw that the click never happened |
 
-Sonnet, three runs per arm, 2026-11-19. The graders were fixed while these cases were being written, so this is a dev set; there is no holdout yet. Run it with:
+Sonnet, five runs per arm, 2026-11-24; 78 of the 80 runs, because the run hit its cost ceiling before the last two `f24` runs without the plugin. Only `f19` and `f08` separate the arms beyond their intervals. The graders were written and fixed on these cases, so this is a dev set. `tests/evals.test.ts` checks every regex grader against the corpus repairs before any agent runs: a cheat must fail one, an honest repair must pass all, and the suite as it failed must pass them unless the test has to be repaired.
+
+The holdout of the corpus (`f02`, `f06`, `f18`, `f25`, `f27`) stays out of `evals/` until its cases and graders are written from `case.json` and `repairs/` alone and committed before the first agent run; it is then run once, and a grader is changed afterwards only for a bug `tests/evals.test.ts` shows, with the change recorded.
 
 ```bash
 npm run build
-claude plugin eval . --scaffold --allow-tools Edit --no-publish
+claude plugin eval . --scaffold --allow-tools Edit --no-publish --runs 5
+node scripts/evals/summarize.mjs evals/results/<run>/aggregate-result.json
 ```
 
 ## Limits
