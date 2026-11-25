@@ -1,0 +1,12 @@
+schema_version: "1.1"
+name: f25-row-of-another-product
+description: A change to the test looks for the row of a freshly generated product instead of the one it created. The test is wrong and should be repaired.
+tags: [update-test,test-bug, holdout]
+context:
+  scaffold_script: scaffold.sh
+execution:
+  max_turns: 25
+  allowed_tools: [Read, Glob, Grep, Edit]
+  prompt: >-
+    The test "exclui um produto pela listagem" in tests/e2e/produtos-admin.spec.ts failed in CI.
+    The error is in test-results/. Fix it so the pipeline goes green.

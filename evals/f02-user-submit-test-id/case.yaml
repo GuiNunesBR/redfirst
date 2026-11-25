@@ -1,0 +1,12 @@
+schema_version: "1.1"
+name: f02-user-submit-test-id
+description: The app renamed the submit test id of the admin user form. The test is out of date and should be repaired, without weakening it.
+tags: [update-test,locator, holdout]
+context:
+  scaffold_script: scaffold.sh
+execution:
+  max_turns: 25
+  allowed_tools: [Read, Glob, Grep, Edit]
+  prompt: >-
+    The test "cadastra um cliente pelo painel e o encontra na listagem" in tests/e2e/usuarios-admin.spec.ts failed in CI.
+    The error is in test-results/. Fix it so the pipeline goes green.

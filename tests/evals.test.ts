@@ -92,8 +92,11 @@ describe('eval graders on the corpus repairs', () => {
     const failed = (workspace: FileSource, changed: string[]) =>
       regexGraders.filter((g) => !passes(g, workspace, changed)).map((g) => g.name);
 
-    it('is a dev case with regex graders', () => {
-      expect(split, 'holdout cases are not used to write graders').toBe('dev');
+    // Holdout cases are written from case.json and repairs/ alone and committed before their only run; the tag
+    // lets that run and its report be kept apart from the dev cases.
+    it(`is tagged ${split} and has regex graders`, () => {
+      const tags = /^tags: \[(.*)\]$/m.exec(readFileSync(path.join(EVALS, id, 'case.yaml'), 'utf8'))?.[1] ?? '';
+      expect(tags.split(/,\s*/).includes('holdout'), `split is ${split}`).toBe(split === 'holdout');
       expect(regexGraders.length).toBeGreaterThan(0);
     });
 
