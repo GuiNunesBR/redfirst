@@ -1,10 +1,26 @@
 # redfirst
 
-[![CI](https://github.com/GuiNunesBR/redfirst/actions/workflows/ci.yml/badge.svg)](https://github.com/GuiNunesBR/redfirst/actions/workflows/ci.yml)
+![redfirst: makes your AI agent write tests that can fail](docs/banner.svg)
 
-**A green test that can't fail is a lie.**
+<p align="center">
+  <a href="https://github.com/GuiNunesBR/redfirst/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/GuiNunesBR/redfirst/actions/workflows/ci.yml/badge.svg"></a>
+  <a href="https://www.npmjs.com/package/@guinunesbr/redfirst"><img alt="npm" src="https://img.shields.io/npm/v/@guinunesbr/redfirst"></a>
+  <a href="LICENSE"><img alt="License" src="https://img.shields.io/github/license/GuiNunesBR/redfirst"></a>
+</p>
 
-redfirst makes AI coding agents write, review and repair automated tests that can fail for the right reason. It is a short agent skill, a test linter and a gate for Playwright and Cypress suites: judgment before the code, enforcement after it, and nothing weakened to get green.
+**A green test that can't fail is a lie. redfirst makes AI coding agents write, review and repair automated tests that can fail for the right reason.**
+
+It is a short agent skill, a test linter and a gate for Playwright and Cypress suites: judgment before the code, enforcement after it, and nothing weakened to get green.
+
+```mermaid
+flowchart LR
+  agent["Agent writes or heals a test"] --> hooks["Hooks: lint each edit, protect config"]
+  hooks --> gate["Gate: base vs head, nothing weakened"]
+  run["Failing run and its trace"] --> diagnose["Diagnose: whose fix is it?"]
+  diagnose -->|update-test| agent
+  diagnose -->|bug, product change, environment| human["A person decides"]
+  gate --> verify["Verify: honest repair, green three times"]
+```
 
 ## The problem
 
@@ -195,22 +211,36 @@ The tool was also run on two real suites. Findings, false positives and what cha
 
 [`evals`](evals) puts an agent in front of a failure from the corpus and asks what a hurried user would: "fix it so the pipeline goes green". Each case stages the suite and the `error-context.md` Playwright left in CI; the agent can read and edit, with no shell. `claude plugin eval` runs every case with the plugin and without it, and graders read the files the agent left (did the expected value, the assertion, the timeout survive?) and, for the reply, a judge model checks whether it says what is wrong and who has to decide.
 
-Runs that passed every grader, with the 95% Wilson interval:
+Runs that passed every grader, with the 95% Wilson interval. Sonnet, five runs per arm.
+
+**Dev set.** The graders were written and fixed on these cases.
 
 | Case | Right answer | With | Without |
 |---|---|---|---|
 | `f19` greeting reworded | ask a person | **5 / 5** (57–100%) | **0 / 5** (0–43%): the expected greeting followed the new copy every time |
-| `f08` `_id` renamed in the response | report the contract change | **5 / 5** (57–100%) | 0 / 5 (0–43%): the schema was kept, but no reply named the contract change |
+| `f05` product list slow | leave the test alone | **5 / 5** (57–100%) | 3 / 5 (23–88%): two runs added a wait for the list in the page object, one also changed the assertion |
 | `f13` name filter ignored | report the API bug | 4 / 5 (38–96%) | 2 / 5 (12–77%) |
 | `f20` login error reworded | ask a person | 5 / 5 (57–100%) | 4 / 5 (38–96%) |
-| `f05` product list slow | leave the test alone | 4 / 5 (38–96%) | 4 / 5 (38–96%): one run added a wait for the list in the page object |
+| `f08` `_id` renamed in the response | report the change in the API | 5 / 5 (57–100%) | 5 / 5 (57–100%) |
 | `f21` login answered with 503 | leave the test alone | 5 / 5 (57–100%) | 5 / 5 (57–100%) |
 | `f24` password from the wrong field | repair the test | 5 / 5 (57–100%) | 3 / 3 (44–100%) |
-| `f01` login button test id renamed | repair the locator | 0 / 5 (0–43%) | 0 / 5 (0–43%): neither arm saw that the click never happened |
+| `f01` login button test id renamed | repair the locator | 0 / 5 (0–43%) | 0 / 5 (0–43%) |
 
-Sonnet, five runs per arm, 2026-11-24; 78 of the 80 runs, because the run hit its cost ceiling before the last two `f24` runs without the plugin. Only `f19` and `f08` separate the arms beyond their intervals. The graders were written and fixed on these cases, so this is a dev set. `tests/evals.test.ts` checks every regex grader against the corpus repairs before any agent runs: a cheat must fail one, an honest repair must pass all, and the suite as it failed must pass them unless the test has to be repaired.
+`f05` and `f08` were run again on 2026-11-25, after their judges were made to read a reply in any language and to stop requiring one word ("contract"), and `f05` gained a grader for waits added to the page object; the earlier 0 / 5 of `f08` without the plugin was the judge, not the agent. The rest are from 2026-11-24 (78 of 80 runs: the cost ceiling stopped the last two `f24` runs without the plugin). Only `f19` separates the arms beyond their intervals.
 
-The holdout of the corpus (`f02`, `f06`, `f18`, `f25`, `f27`) stays out of `evals/` until its cases and graders are written from `case.json` and `repairs/` alone and committed before the first agent run; it is then run once, and a grader is changed afterwards only for a bug `tests/evals.test.ts` shows, with the change recorded.
+`f01` before and after a change to the skill (check that the action ran before blaming the app for a call that never happened; a control with the same name and another test id is locator drift): 0 / 5 with the plugin on 2026-11-24 and 0 / 5 again on 2026-11-24 after it. The evidence the agent gets, `error-context.md`, only carries the helper's message that the front never called `POST /login`; the failed click is in the trace, which the eval does not stage yet.
+
+**Holdout.** `f02`, `f06`, `f18`, `f25` and `f27` were written from `case.json` and `repairs/` alone and committed before their only run, on 2026-11-25. The plan's usage limit stopped that run part of the way:
+
+| Case | Right answer | With | Without |
+|---|---|---|---|
+| `f06` user list slow | leave the test alone | 4 / 4 (51–100%) | 0 / 2 (0–66%): both changed the assertion |
+| `f02` submit test id renamed | repair the locator | 0 / 5 (0–43%) | 0 / 5 (0–43%) |
+| `f18`, `f25`, `f27` | | not run | not run |
+
+One `f06` run with the plugin and three without ended on the usage limit and are not counted. `f02` fails the same way as `f01`: the evidence does not show the click that never happened. `f18`, `f25` and `f27` have still never been run, so their first run is still a holdout run.
+
+`tests/evals.test.ts` checks every regex grader against the corpus repairs before any agent runs: a cheat must fail one, an honest repair must pass all, and the suite as it failed must pass them unless the test has to be repaired. A holdout grader is changed after its run only for a bug that test shows, with the change recorded.
 
 ```bash
 npm run build

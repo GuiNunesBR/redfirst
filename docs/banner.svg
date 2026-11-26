@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="400" viewBox="0 0 1280 400" role="img" aria-labelledby="title desc">
+  <title id="title">redfirst</title>
+  <desc id="desc">Makes your AI agent write tests that can fail. The agent's edits pass through hooks and a gate, and failures through diagnose and verify.</desc>
+  <defs>
+    <clipPath id="card"><rect width="1280" height="400" rx="20"/></clipPath>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#9aa3ad"/>
+    </marker>
+    <style>
+      text { font-family: 'Segoe UI', Helvetica, Arial, sans-serif; }
+      .chip { fill: #fdeceb; stroke: #f4c3bf; }
+      .chip-text { font-size: 15px; fill: #b3261e; font-weight: 600; }
+      .box { fill: #ffffff; stroke: #dfe3e8; stroke-width: 1.5; }
+      .box-title { font-size: 18px; font-weight: 700; fill: #1f2328; }
+      .box-text { font-size: 14px; fill: #59636e; }
+      .link { stroke: #9aa3ad; stroke-width: 2; fill: none; }
+    </style>
+  </defs>
+
+  <g clip-path="url(#card)">
+  <rect width="1280" height="400" fill="#f6f8fa"/>
+  <rect x="0" y="340" width="1280" height="60" fill="#eef1f4"/>
+  <rect x="0" y="0" width="10" height="340" fill="#d93025"/>
+  </g>
+
+  <!-- A test that goes red first -->
+  <g transform="translate(64 70)">
+    <circle cx="16" cy="16" r="16" fill="#d93025"/>
+    <path d="M9 9 L23 23 M23 9 L9 23" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M44 16 h22" stroke="#9aa3ad" stroke-width="2"/>
+    <circle cx="86" cy="16" r="16" fill="#1a7f37"/>
+    <path d="M78 16 L84 22 L95 10" stroke="#ffffff" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <text x="64" y="172" font-size="64" font-weight="800" fill="#1f2328">redfirst</text>
+  <text x="64" y="216" font-size="24" fill="#424a53">Makes your AI agent write tests</text>
+  <text x="64" y="248" font-size="24" fill="#424a53">that can fail.</text>
+
+  <g transform="translate(64 276)">
+    <rect class="chip" width="104" height="30" rx="8"/><text class="chip-text" x="14" y="20">Playwright</text>
+    <rect class="chip" x="116" width="84" height="30" rx="8"/><text class="chip-text" x="130" y="20">Cypress</text>
+    <rect class="chip" x="212" width="62" height="30" rx="8"/><text class="chip-text" x="226" y="20">MCP</text>
+    <rect class="chip" x="286" width="98" height="30" rx="8"/><text class="chip-text" x="300" y="20">Offline</text>
+  </g>
+
+  <!-- How it works -->
+  <g transform="translate(600 56)">
+    <rect class="box" width="180" height="96" rx="14"/>
+    <text class="box-title" x="20" y="38">Agent</text>
+    <text class="box-text" x="20" y="64">writes or heals</text>
+    <text class="box-text" x="20" y="83">a test</text>
+
+    <path class="link" d="M180 48 H226" marker-end="url(#arrow)"/>
+
+    <rect class="box" x="232" width="200" height="96" rx="14"/>
+    <text class="box-title" x="252" y="38">Hooks · gate</text>
+    <text class="box-text" x="252" y="64">block weakened or</text>
+    <text class="box-text" x="252" y="83">skipped assertions</text>
+
+    <path class="link" d="M332 96 V132" marker-end="url(#arrow)"/>
+
+    <rect class="box" x="232" y="138" width="200" height="96" rx="14"/>
+    <text class="box-title" x="252" y="176">Diagnose · verify</text>
+    <text class="box-text" x="252" y="202">who has to fix it,</text>
+    <text class="box-text" x="252" y="221">and is the fix honest</text>
+
+    <path class="link" d="M232 186 H132 V102" marker-end="url(#arrow)"/>
+    <text class="box-text" x="20" y="176">evidence back</text>
+    <text class="box-text" x="20" y="195">to the agent</text>
+
+    <rect x="470" y="70" width="140" height="120" rx="14" fill="#fdeceb" stroke="#f4c3bf" stroke-width="1.5"/>
+    <text x="540" y="116" text-anchor="middle" font-size="16" font-weight="700" fill="#b3261e">Green only</text>
+    <text x="540" y="138" text-anchor="middle" font-size="16" font-weight="700" fill="#b3261e">when the test</text>
+    <text x="540" y="160" text-anchor="middle" font-size="16" font-weight="700" fill="#b3261e">can fail</text>
+    <path class="link" d="M432 186 H450 V130 H464" marker-end="url(#arrow)"/>
+  </g>
+
+  <text x="64" y="377" font-size="16" fill="#59636e">github.com/GuiNunesBR/redfirst</text>
+  <text x="1216" y="377" font-size="16" fill="#59636e" text-anchor="end">npm i -D @guinunesbr/redfirst</text>
+</svg>
